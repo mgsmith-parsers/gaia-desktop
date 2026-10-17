@@ -1,0 +1,482 @@
+# GAIA-Desktop
+
+A JavaFX desktop front-end for the GAIA GS1 parser: type, paste, open, or scan an input and
+read the result as the instrument-readout HTML report — rendered live in a `WebView` rather
+than written to a file.
+
+```
+tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21   →  depends on tools.pantheum:gaia:1.1.0
+```
+
+### The user guide in other languages
+
+Translation is under way — see [`docs/i18n-plan.md`](docs/i18n-plan.md). English is the source
+of truth; [`docs/i18n-manifest.json`](docs/i18n-manifest.json) records which revision each
+translation was made from, and `python3 docs/check-i18n.py` checks them structurally.
+
+| Language | | User guide |
+|---|---|---|
+| English | English | [GaiaDesktop-User.md](docs/GaiaDesktop-User.md) |
+| Arabic | العربية | [دليل المستخدم](docs/i18n/Arabic/GaiaDesktop-User-Arabic.md) |
+| Bengali | বাংলা | [ব্যবহারকারীর নির্দেশিকা](docs/i18n/Bengali/GaiaDesktop-User-Bengali.md) |
+| Cantonese | 廣東話 | [使用者指南](docs/i18n/Cantonese/GaiaDesktop-User-Cantonese.md) |
+| Chinese (Simplified) | 简体中文 | [用户指南](docs/i18n/Chinese/GaiaDesktop-User-Chinese.md) |
+| Czech | Čeština | [Uživatelská příručka](docs/i18n/Czech/GaiaDesktop-User-Czech.md) |
+| Dutch | Nederlands | [Gebruikershandleiding](docs/i18n/Dutch/GaiaDesktop-User-Dutch.md) |
+| Egyptian Arabic | مصري | [دليل المستخدم](docs/i18n/EgyptianArabic/GaiaDesktop-User-EgyptianArabic.md) |
+| French | Français | [Guide de l'utilisateur](docs/i18n/French/GaiaDesktop-User-French.md) |
+| German | Deutsch | [Benutzerhandbuch](docs/i18n/German/GaiaDesktop-User-German.md) |
+| Hausa | Hausa | [Jagorar mai amfani](docs/i18n/Hausa/GaiaDesktop-User-Hausa.md) |
+| Hindi | हिन्दी | [उपयोगकर्ता मार्गदर्शिका](docs/i18n/Hindi/GaiaDesktop-User-Hindi.md) |
+| Indonesian | Bahasa Indonesia | [Panduan Pengguna](docs/i18n/Indonesian/GaiaDesktop-User-Indonesian.md) |
+| Italian | Italiano | [Guida dell'utente](docs/i18n/Italian/GaiaDesktop-User-Italian.md) |
+| Japanese | 日本語 | [ユーザーガイド](docs/i18n/Japanese/GaiaDesktop-User-Japanese.md) |
+| Javanese | Basa Jawa | [Pandhuan panganggo](docs/i18n/Javanese/GaiaDesktop-User-Javanese.md) |
+| Korean | 한국어 | [사용자 안내서](docs/i18n/Korean/GaiaDesktop-User-Korean.md) |
+| Marathi | मराठी | [वापरकर्ता मार्गदर्शिका](docs/i18n/Marathi/GaiaDesktop-User-Marathi.md) |
+| Nigerian Pidgin | Naijá | [Guide for di person wey dey use am](docs/i18n/NigerianPidgin/GaiaDesktop-User-NigerianPidgin.md) |
+| Persian | فارسی | [راهنمای کاربر](docs/i18n/Persian/GaiaDesktop-User-Persian.md) |
+| Polish | Polski | [Podręcznik użytkownika](docs/i18n/Polish/GaiaDesktop-User-Polish.md) |
+| Portuguese | Português | [Guia do utilizador](docs/i18n/Portuguese/GaiaDesktop-User-Portuguese.md) |
+| Punjabi | ਪੰਜਾਬੀ | [ਵਰਤੋਂਕਾਰ ਗਾਈਡ](docs/i18n/Punjabi/GaiaDesktop-User-Punjabi.md) |
+| Russian | Русский | [Руководство пользователя](docs/i18n/Russian/GaiaDesktop-User-Russian.md) |
+| Spanish | Español | [Guía del usuario](docs/i18n/Spanish/GaiaDesktop-User-Spanish.md) |
+| Swahili | Kiswahili | [Mwongozo wa mtumiaji](docs/i18n/Swahili/GaiaDesktop-User-Swahili.md) |
+| Swedish | Svenska | [Användarhandbok](docs/i18n/Swedish/GaiaDesktop-User-Swedish.md) |
+| Tagalog | Tagalog | [Gabay ng gumagamit](docs/i18n/Tagalog/GaiaDesktop-User-Tagalog.md) |
+| Tamil | தமிழ் | [பயனர் வழிகாட்டி](docs/i18n/Tamil/GaiaDesktop-User-Tamil.md) |
+| Telugu | తెలుగు | [వినియోగదారు మార్గదర్శిని](docs/i18n/Telugu/GaiaDesktop-User-Telugu.md) |
+| Turkish | Türkçe | [Kullanıcı Kılavuzu](docs/i18n/Turkish/GaiaDesktop-User-Turkish.md) |
+| Ukrainian | Українська | [Посібник користувача](docs/i18n/Ukrainian/GaiaDesktop-User-Ukrainian.md) |
+| Urdu | اردو | [صارف گائیڈ](docs/i18n/Urdu/GaiaDesktop-User-Urdu.md) |
+| Vietnamese | Tiếng Việt | [Hướng dẫn người dùng](docs/i18n/Vietnamese/GaiaDesktop-User-Vietnamese.md) |
+| Wu Chinese | 吴语 | [用户指南](docs/i18n/WuChinese/GaiaDesktop-User-WuChinese.md) |
+
+> **Full guides:**
+> [`docs/GaiaDesktop-User.md`](docs/GaiaDesktop-User.md) — the UI in detail: parsing, the
+> builder, the report, options, languages, shortcuts and troubleshooting.
+> [`docs/GaiaDesktop-Developer.md`](docs/GaiaDesktop-Developer.md) — packaging, architecture,
+> the `{GS}` token, the scanner gate, the localization contract, the state file formats and
+> testing.
+> [`docs/GaiaDesktop-Zebra-Scanner-Windows.md`](docs/GaiaDesktop-Zebra-Scanner-Windows.md) —
+> installing and configuring a Zebra scanner on Windows (tested with the DS8108): Java, the Zebra
+> Scanner SDK, the scanner's USB mode and GS1 settings, connecting, and troubleshooting.
+> Every distribution carries all of `docs/` (the guides and their translations), indexed by
+> `readme.html` at its root.
+> This page is the short build-and-run note.
+
+## Build & run
+
+The core must be installed to `~/.m2` first — this module resolves `gaia:1.1.0` from the
+local repository, like `gaia-api` and `gaia-demo`.
+
+```bash
+(cd gaia && mvn -q install -DskipTests)     # publish the core
+(cd gaia-desktop && mvn -q javafx:run)      # run it
+(cd gaia-desktop && mvn -q package)         # target/dist/gaia-desktop-<version>-<platform>/ — jar (~290 KB), lib/, run.sh (run.bat on win) — and the same, zipped
+(cd gaia-desktop && mvn -q -Pfat package)   # target/dist/gaia-desktop-<version>-<platform>/ — one ~50 MB jar, run.sh (run.bat on win)
+(cd gaia-desktop && mvn -q package -Dfx.platform=win)   # another platform's; see below
+java -jar gaia-desktop/target/dist/gaia-desktop-1.0.0-mac-aarch64/gaia-desktop.jar
+java -jar gaia-desktop/target/dist/gaia-desktop-1.0.0-mac-aarch64/gaia-desktop.jar --language=FR   # this run only
+```
+
+### The launch scripts
+
+Everything shippable is assembled under **`target/dist/gaia-desktop-<version>-<platform>/`** —
+`gaia-desktop-1.0.0-win`, `gaia-desktop-1.0.0-mac-aarch64` and so on, the version taken from the
+pom, see [Building for other platforms](#building-for-other-platforms) — and
+nothing else is, so the directory can be zipped or copied as a set without picking artefacts out of `target/` next to
+`classes/`, `maven-status/` and the rest of the build's scratch:
+
+```
+target/dist/gaia-desktop-1.0.0-win/
+├── gaia-desktop.jar
+├── lib/                    17 Maven jars (absent in -Pfat)
+└── run.bat                 (run.sh in the mac, mac-aarch64 and linux distributions)
+```
+
+The build ships **nothing of Zebra's**. On Windows the scanner's JavaPOS services and their
+`CSJPOS*.dll` natives come from Zebra's Scanner SDK installed on the machine, which `run.bat`
+finds and wires in — see [What `run.bat` adds on Windows](#what-runbat-adds-on-windows). Any
+DLLs placed beside `run.bat` by hand still go on `java.library.path` ahead of the `PATH`.
+
+`mvn package` writes the platform's launcher there alongside the jar — **`run.bat`** in the `win`
+distribution, **`run.sh`** in every other, so each directory carries only the one its users can run:
+
+```bash
+./run.sh                  # macOS, Linux
+./run.sh --language=FR    # arguments pass straight through
+run.bat                   # Windows
+```
+
+Each script **builds the class path itself** — `gaia-desktop.jar` first, then every `.jar` in
+`lib/` beside it, named one by one rather than left to a `lib/*` wildcard — and launches with
+`-cp`. That is why they name the main class: `-cp` does not read the manifest's `Main-Class`.
+(It does still follow its `Class-Path`, so the `lib/` jars load either way.) Running
+`java -jar gaia-desktop.jar` by hand works through the manifest alone; the scripts simply do not
+depend on it, so a jar whose manifest is stale, hand-edited or short an entry still starts. The same script also covers both
+packagings, since the `-Pfat` jar has no `lib/` to add and needs none.
+
+They do the rest of what `java -jar` does not, once the app leaves a developer's machine:
+resolve their own directory (so they work from any working directory and survive spaces in the
+path), prefer `JAVA_HOME` and fall back to `java` on the `PATH`, and refuse an old JVM with a
+sentence about installing Java 21 rather than letting it fail with
+`UnsupportedClassVersionError`, which names no remedy. A missing jar, or an empty `lib/`, is
+reported in the same terms the [troubleshooting table](docs/GaiaDesktop-User.md#troubleshooting)
+uses. Extra JVM options go in `GAIA_DESKTOP_OPTS`:
+
+```bash
+GAIA_DESKTOP_OPTS=-Xmx1g ./run.sh
+```
+
+#### What `run.bat` adds on Windows
+
+`run.bat` adapts to what is installed beside it and on the machine, and prints one line saying
+what it picked (`run.bat: Java … from …; JavaFX from …; JavaPOS from lib\; Zebra services from …`):
+
+| | First choice | Otherwise |
+|---|---|---|
+| **Java** | a bundled runtime, `jdk*\` beside the script (e.g. `jdk-27\`) | `JAVA_HOME`, then `java` on the `PATH` |
+| **JavaFX** | a JavaFX SDK, `javafx-sdk*\lib\` beside the script, on the module path — `lib\javafx-*.jar` then stay off the class path | `lib\javafx-*.jar` on the class path |
+| **Zebra services** | Zebra's Scanner SDK at `ZEBRA_HOME` (default `%ProgramFiles%\Zebra Technologies\Barcode Scanners\Scanner SDK\JPOS\`): its `Jpos*.jar` service jars and `bin\` on the class path, `bin\` on the `PATH` for the `CSJPOS*.dll` natives | none — the app runs, but cannot connect a scanner |
+
+The JavaPOS API itself always comes from `lib\javapos-*.jar`. The SDK's own JavaPOS jar,
+`javaPOS114.jar`, is deliberately left off: its `jcl.xsd` accepts JavaPOS versions only up to
+1.10 and its `jpos.properties` overrides the app's configuration, so with it on the class path
+every Connect fails with *"Service does not exist in loaded JCL registry"*. The
+[developer guide](docs/GaiaDesktop-Developer.md#the-zebra-natives) has the details. Set
+`ZEBRA_HOME` before running the script to use an SDK installed elsewhere.
+
+It always passes three system properties: the JDK's own SAX parser for `jpos.xml`
+(`javax.xml.parsers.SAXParserFactory`), because `lib\`'s Xerces 2.12.2 rejects the JAXP property
+the JavaPOS loader sets and then loads no devices at all; `java.net.useSystemProxies=true`; and
+`javax.net.ssl.trustStoreType=Windows-ROOT`, so proxies and trusted certificates come from
+Windows. On Java 17 and later it adds `--enable-native-access` (`ALL-UNNAMED`, plus
+`javafx.graphics,javafx.web` when JavaFX runs from the SDK as modules), which newer JDKs require
+before code may load native libraries — `run.sh` passes `--enable-native-access=ALL-UNNAMED`
+too, for the JavaFX natives on macOS and Linux. The script is stored with CRLF line endings, which
+`cmd.exe` needs to find its `call :label` subroutines reliably.
+
+`run.bat` deliberately uses `java.exe`, not `javaw.exe`, so the console window stays open —
+Windows is the only platform where the scanner runs, and its status, the JavaPOS errors and
+the startup version line all go to the console. Change the one word if a console-free launch
+matters more.
+
+The sources are `src/main/scripts/`; the build copies them unfiltered (`run.sh` is full of
+`${...}` shell expansions that Maven filtering would be free to rewrite) and sets the
+executable bit on `run.sh`.
+
+### Building for other platforms
+
+The JavaFX jars in `lib/` hold native code, so a distribution runs on one platform only. The
+build picks the platform with the `fx.platform` property — set automatically to the building
+machine's, and overridden on the command line to build any other. The JavaFX jars are ordinary
+Maven downloads, so **one machine can build every platform**; nothing has to run on Windows to
+produce the Windows distribution.
+
+| `-Dfx.platform=` | For | Output |
+|---|---|---|
+| `mac-aarch64` | macOS, Apple silicon | `target/dist/gaia-desktop-1.0.0-mac-aarch64/` |
+| `mac` | macOS, Intel | `target/dist/gaia-desktop-1.0.0-mac/` |
+| `win` | Windows x64 | `target/dist/gaia-desktop-1.0.0-win/` |
+| `linux` | Linux x64 | `target/dist/gaia-desktop-1.0.0-linux/` |
+| `linux-aarch64` | Linux ARM64 | `target/dist/gaia-desktop-1.0.0-linux-aarch64/` |
+
+Each platform gets its own directory, so building one leaves the others in place. All four
+desktop platforms, from a clean start:
+
+```bash
+(cd gaia-desktop && mvn -q clean package)    # this machine's platform, with the tests
+for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -DskipTests -Dfx.platform=$p); done
+```
+
+The tests are platform-independent, so running them once is enough. `-Pfat` takes
+`-Dfx.platform` the same way. Each distribution still needs a Java 21+ runtime on the target
+machine; the run scripts say so when there is none.
+
+The property is `fx.platform` and not OpenJFX's own `javafx.platform` on purpose: setting that one
+from outside makes OpenJFX's pom define it in terms of itself, Maven rejects the pom, and the
+platform jars silently drop out of the build.
+
+### macOS: GAIA Desktop.app
+
+The two macOS distributions hold an app bundle instead of a loose jar, so the app opens from
+Finder, the Dock or Launchpad like any other — no Terminal:
+
+```
+gaia-desktop-1.0.0-mac-aarch64/
+├── GAIA Desktop.app/
+│   └── Contents/
+│       ├── Info.plist            name, version (from the pom), bundle id tools.pantheum.gaia.desktop
+│       ├── MacOS/gaia-desktop    the launcher script
+│       ├── Resources/gaia-desktop.icns
+│       └── Java/                 gaia-desktop.jar and lib/, moved in by the build
+└── run.sh                        still works: it finds the jar inside the app
+```
+
+The app is self-contained — drag it to Applications on its own — but does not bundle a Java
+runtime. Its launcher asks macOS for a Java 21 or newer (`/usr/libexec/java_home -v 21+`), then
+tries Homebrew's `openjdk`, since an app opened from Finder sees neither `JAVA_HOME` nor the
+shell's `PATH`; with none found it says so in a dialog. It starts in `~/.gaia-desktop`, so the
+log goes to `~/.gaia-desktop/logs/gaia-desktop.log`, and passes `-Xdock:name` / `-Xdock:icon` so
+the menu bar and Dock read **GAIA Desktop** with its icon rather than "java".
+
+The app is **not signed or notarised**. The first time a copy downloaded from GitHub is opened,
+macOS refuses it as from an unidentified developer: right-click it → **Open**, or allow it under
+**System Settings → Privacy & Security**, once; after that it opens normally. Removing that step
+takes an Apple Developer ID, code signing and notarisation.
+
+The build makes the bundle from `src/main/macos/` (Info.plist, launcher, icon) in the
+`mac-app-and-zip` antrun step, on any machine, for `mac` and `mac-aarch64` only. The icon comes
+from `tools/icon/GaiaIcon.java`; the same artwork, as PNGs in `src/main/resources/icons/`, is the
+window icon on Windows and Linux.
+
+### Releasing on GitHub
+
+Every build also zips its distribution, beside the directory:
+
+```
+target/dist/
+├── gaia-desktop-1.0.0-win/              the directory, as above
+├── gaia-desktop-1.0.0-win.zip           the same, under one gaia-desktop-1.0.0-win/ folder
+├── gaia-desktop-1.0.0-mac-aarch64.zip
+├── gaia-desktop-1.0.0-mac.zip
+└── gaia-desktop-1.0.0-linux.zip
+```
+
+Unzipping gives one folder, not files strewn into the current directory, and `run.sh` and the
+macOS app's launcher keep their executable bit inside the zip, so they run straight after
+unzipping. The macOS zips hold `GAIA Desktop.app` and `run.sh` (see above); the Windows and
+Linux zips the jar, `lib/` and their script. The zips
+are for a **GitHub release**, not a Maven repository: they are not attached to the build, so
+`mvn install` does not copy them into `~/.m2`. Maven Central publishes a version once, as one
+upload, which four separate per-platform builds cannot be. Each zip is that platform's
+self-contained download; the user still needs Java 21 or newer.
+
+After building all four (above), publish them with the GitHub CLI, from the gaia-desktop
+repository:
+
+```bash
+gh release create v1.0.0 gaia-desktop/target/dist/gaia-desktop-1.0.0-*.zip --title "GAIA Desktop 1.0.0" --generate-notes
+```
+
+### Thin or fat
+
+Both layouts write the same path, `target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar`, and exactly one of them runs per
+build — the default skips the assembly, and `-Pfat` skips the jar plugin and the dependency
+copy.
+
+| | Default | `-Pfat` |
+|---|---|---|
+| `gaia-desktop.jar` | ~290 KB, this module's classes and resources only | ~50 MB, dependencies unpacked into it |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, ~46–55 MB by platform, named one by one on the jar's manifest `Class-Path` | — |
+| Ship | the jar **and** `lib/` beside it | one file |
+
+Both start the same way — `./run.sh`, or `java -jar target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar` — and both
+use the `Launcher` shim, since JavaFX is on the class path either way.
+
+The default is thin because a rebuild then rewrites only what changed — almost the entire fat
+jar is one file, `libjfxwebkit.dylib` — the app's own classes stay readable in a small,
+diffable artifact, and a deployment can share or swap the JavaFX jars without rebuilding.
+Reach for `-Pfat` when the deliverable has to be a single file. Neither is more portable: both
+carry the JavaFX jars of one platform, `${fx.platform}`.
+
+The manifest `Class-Path` and `lib/` are two halves of one thing — the jar names
+`lib/<artifact>-<version>.jar` for every runtime dependency, and `copy-dependencies` fills
+`lib/` with exactly those names. Move the jar somewhere without `lib/` beside it and it will
+not start. That coupling governs `java -jar`; the launch scripts reach the same class path a
+second, independent way, by listing `lib/` themselves.
+
+`mvn javafx:run` is the development path: the plugin puts JavaFX on the **module path**, so
+the toolkit starts as a named module. The packaged jar cannot do that — everything is on the
+class path — so its `Main-Class` is the `Launcher` shim rather than `GaiaDesktopApp`, which
+is what keeps the JavaFX launcher from refusing to start with "JavaFX runtime components are
+missing". Either layout carries the JavaFX natives of one platform, so **both are
+platform-specific** — build one per target with `-Dfx.platform`, from any machine.
+
+## What it does
+
+| Area | Behaviour |
+|------|-----------|
+| **Modes** | **Parse** (the default) and **Build**, switched by the segmented control at the left of the toolbar. Build hides the capture-side controls (input bar, `{GS}`, Parse, and — where they exist — the scanner and its device picker) and shows the AI editor instead; history, report, options and export serve both. A connected scanner keeps working — *Scanner → Connect/disconnect* (<kbd>⌘K</kbd>) still toggles it and the status bar still reports it. The mode is remembered between runs. |
+| **Input bar** | Element strings, GS1 Digital Link URIs, and raw scans with an AIM Code ID prefix. `{GS}` inserts a real FNC1 (0x1D) at the caret. <kbd>Enter</kbd> parses. |
+| **Scanner** | **Windows only** — Zebra ships its JavaPOS services for Windows, so on macOS and Linux no scanner control is built at all (no toggle, no device picker, no Scanner menu, no state in the status bar). Where it is supported: connect/disconnect a JavaPOS scanner and every scan is parsed and appended to the history, with the logical device name from the picker (defaults to `ZebraAllScanners`). The rule is one `os.name` test, `ScannerService.isSupportedPlatform()`. |
+| **File** | *File → Open text file…* parses each non-blank line as its own capture. Read as ISO-8859-1 so a raw 0x1D separator survives the round trip. |
+| **History** | Every capture, newest first, with a valid/invalid dot, HRI, source, and AI count. Right-click to copy the input or HRI, send it back to the input bar, or remove it. |
+| **Report** | The selected capture as a full parse report: verdict, element-string tape, parse metadata, per-AI cards with interpretations, and errors/warnings with remediation. |
+| **Export** | **Save report → As HTML…** (<kbd>⌘S</kbd>) writes exactly what is on screen — one self-contained file, no external assets. **As PDF…** (<kbd>⌘P</kbd>) prints the document through the platform pipeline; pick the PDF destination in the system dialog. |
+| **Build** | A table of AI/value pairs — type a code or pick from all 541 AIs — with the data title and format filling in from the core registry as you type, and an unrecognised AI marked before you press anything. *Build element string* / *Build Digital Link* (optional custom domain and path prefix). |
+| **Options** | Every `ParseConfig` option — parse mode, language (35), date rendering, and the two structural-check escapes. Changing one **re-parses the selected capture in place**, so the panel doubles as a "what does this input look like under these settings" control. Hidden on a first launch; open it from the toolbar or *View → Options panel*. |
+| **Language** | Switches the whole application, not just parser messages: menus, buttons, the options panel, the status line, and the report. Right-to-left catalogues flip the window and set `dir="rtl"` on the report. |
+| **Theme** | Light/dark (<kbd>⌘D</kbd>). The chrome and the report share one palette and switch together — the WebView does not follow the OS setting, so the app pins it. |
+| **State** | Options and captures are remembered between runs — see [State](#state) below. |
+| **Updates** | A few seconds after start-up, at most once a day, the app asks GitHub's API for the latest published release (`update/UpdateChecker`; drafts and pre-releases never count). If it is newer than the running version, a status-bar link opens its release page — nothing is downloaded or installed — beside *Skip this version*. Silent when nothing is new or GitHub cannot be reached; never asks from a development build, whose version is `unknown`. *Help → Check for updates…* checks now and reports either way; *Help → Check for updates automatically* switches the daily check off. |
+| **About** | A button at the right of the status bar. The dialog reports the app version, its build timestamp, the GAIA parser version and the GS1 releases implemented — the status bar itself carries no version text. Also *Help → About*, which on macOS lives in the system menu bar. |
+
+### PDF export
+
+JavaFX has no API that writes a page straight to a PDF file, so PDF goes through the
+platform's print pipeline: `WebEngine.print(PrinterJob)` lays the document out under the
+report's `@media print` rules and hands paginated, **text-selectable** pages to the job. The
+destination — and, for a PDF destination, the file name — is chosen in the system dialog:
+
+| Platform | Destination to pick |
+|----------|--------------------|
+| macOS | **PDF ▾ → Save as PDF** |
+| Windows | **Microsoft Print to PDF** |
+| Linux / CUPS | **Print to File**, output format PDF |
+
+The print stylesheet forces the light palette even when the app is in dark mode (a dark PDF
+is unreadable on paper), wraps the element-string tape instead of scrolling it, keeps cards
+whole across page breaks, and marks the meaningful backgrounds — the AI chips, the verdict
+wash — `print-color-adjust: exact` so they survive.
+
+If the machine has no printer or PDF destination at all, `PrinterJob.createPrinterJob()`
+returns `null`; the app says so and points at the HTML export, which prints from any browser.
+
+## State
+
+Two files under `~/.gaia-desktop/`, deliberately kept apart: they change on different clocks,
+and a hand-edited or corrupt capture log should not cost you your settings.
+
+| File | Holds | Written when |
+|------|-------|--------------|
+| `options.properties` | parser options, theme, options-panel visibility, last scanner device, last mode (Parse/Build/Combine), update-check settings | an option changes, and on exit |
+| `captures.tsv` | the capture history, newest first, capped at 500 | the history changes, and on exit |
+
+Point `-Dgaia.desktop.home=…` somewhere else to move both (the tests use it to stay out of
+the real home directory).
+
+Only what cannot be recomputed is stored in `captures.tsv`: the input, its provenance, and the
+capture time. The `ParseResult` is **not** serialised — it is re-derived by parsing the input
+again on load, so a restored history reflects the options in force now rather than the ones in
+force when it was captured. Inputs routinely contain FNC1 (0x1D) and whatever else a scanner
+emits, so the input field is escaped (`\\`, `\t`, `\n`, `\r`, `\xNN`) and the file is read and
+written as ISO-8859-1, byte for byte.
+
+Restoring happens on a background thread, so a long history never delays the first frame.
+
+### First launch
+
+With no `options.properties`, the options are seeded from the machine's own regional settings
+rather than from GAIA's built-in defaults:
+
+- the **message language** comes from `Locale.getDefault()`, falling back to English when the
+  parser has no catalogue for it (`zh-HK` → Cantonese and `ar-EG` → Egyptian Arabic are
+  special-cased, since the language code alone cannot carry them);
+- the **date options** are read out of the locale's short date pattern — `d/MM/yy`, `M/d/yy`,
+  `dd.MM.yyyy`, `yyyy-MM-dd` — which gives the component order, the separator, and whether the
+  month and year are abbreviated.
+
+Note the last one: a locale whose short pattern uses `yy` starts with **two-digit years**,
+which is what the OS shows everywhere else but differs from GAIA's own `FOUR_DIGIT` default.
+Change it in the options panel and the choice sticks.
+
+## Languages
+
+The label catalogue is one properties file per language in
+[`src/main/resources/i18n`](src/main/resources/i18n), named with the same code the core uses
+for its error catalogues (`ui_EN.properties`, `ui_PCM.properties`, …). All 35 exist and all 35
+carry an identical key set — a test enforces that.
+
+Coverage is in two layers, because **fallback is per key, not per file**:
+
+- the **shared report vocabulary** (31 keys — input, elements, errors, start time, …) is
+  translated in **all 35 languages**. It was lifted wholesale from `gaia-demo`'s
+  `GaiaHtmlReport`, which already carried a reviewed 35-language table;
+- the **desktop chrome** (114 keys — menus, buttons, the builder, the options panel, the
+  status line, the scanner status, the dialog bodies, the report's own layout labels) is
+  translated in **all 35** as well.
+
+The per-key fallback is now a safety net rather than something a user meets: it catches a key
+added to English before the translations catch up. Two values stay English everywhere on
+purpose — `act.hri` (HRI) and `build.colAi` (AI), both GS1 abbreviations — and Nigerian Pidgin,
+being English-based, legitimately matches English on much of its chrome. The English catalogue
+is the contract, and every key must exist there.
+
+Deliberately left untranslated: the terse field names set in monospace next to raw values,
+which are identifiers rather than prose (`format`, `position`, `length`, `raw`, `part` in the
+element cards, `AI`, `sep`, `pos`, `len` on the tape, and the four cells locating an error);
+the sample-input names, which name GS1 constructs; the symbology names, which are proper nouns;
+the `GE-C084` remediation paragraph, which is standards prose where a half-translation would be
+worse than English; and `ElementBuilder`'s unknown-AI backstop, which is unreachable from the
+UI — the editor checks for unknown AIs itself and reports them from the catalogue.
+
+The scanner is not an exception to any of this: it reports a `ScannerListener.Event` and the
+values that vary, and `MainView` turns that into text from the catalogue. Log lines stay English
+by design.
+
+Still outstanding: `ScanSource.label()` (`manual`, `scanner`, `file`, `built`), shown on the
+history row and in the report masthead. It needs more than a key — `HistoryCell` has no
+`UiStrings`, and its cell factory is installed once, so the cells would have to be refreshed on
+a language change too.
+
+Two tests keep the catalogues honest: one fails if the code asks for a key English does not
+define, the other if any of the 35 files drifts from the English key set.
+
+### How building fits in
+
+`GaiaBuilder` validates by **parsing its own candidate output**, so anything it returns is
+guaranteed to parse. A successful build is therefore just an input: it goes through the same
+`capture(...)` funnel as a scan or a paste and gets the ordinary parse report, history entry,
+export and persistence — there is no second rendering path for built strings, and a build is
+stored as `ScanSource.BUILT`.
+
+A *failed* build stays in the editor next to the rows that caused it, because a `BuildResult`
+carries errors but no `ParseResult` for the report to render.
+
+Right-click a capture → **Build** opens its AIs in the editor, which is how you take a scan,
+change a value, and rebuild it.
+
+## Where things are
+
+- **Entry points** — `GaiaDesktopApp` (the `Application`), `Launcher` (fat-jar `Main-Class`).
+- **`ui/MainView`** — the window, and the single funnel every input passes through
+  (`capture(...)`), whatever its source.
+- **`ui/OptionsPane`** — the parser-options panel, bound to `parse/ParseOptions`.
+- **`parse/ParseOptions`** — the observable form of `ParseConfig`; `toParseConfig()` mints
+  an immutable config per parse. `parse/Languages` supplies the picker labels, the locale
+  mapping, and the RTL flag; `parse/SystemDefaults` seeds a first launch from the OS.
+- **`build/ElementBuilder`** — the build half, JavaFX-free and unit-tested: AI lookups and
+  the two build calls. The AI list is **not** copied — it reads the core's
+  `AiDefinitionRegistry`, so the picker cannot offer an AI the builder would reject.
+  `build/AiPair` is one editable row; `ui/BuilderPane` is the editor.
+- **`i18n/UiStrings`** — the label catalogue, with per-key fallback to English.
+- **`store/`** — `AppPaths` (where state lives), `OptionsStore`, `CaptureStore`.
+- **`scanner/ScannerService`** — the JavaPOS control: open → claim → enable, re-arming the
+  data event after each scan. Every device call runs on its own long-lived **`gaia-scanner`**
+  thread (Zebra's COM layer binds to the thread that opened the device); callbacks arrive on the
+  **JavaPOS event thread**, and `MainView.FxScannerListener` hops them to the FX thread.
+- **`html/GaiaDesktopReport`** — the report renderer. A pure function of its arguments and
+  free of JavaFX, so it is unit-tested without starting the toolkit.
+- **`model/ScanRecord`** — one capture: input, provenance, and the current result. Input and
+  result are separate because re-parsing under new options replaces only the result.
+
+## Provenance
+
+Two files from `gaia-demo` were the templates:
+
+- `scanner/GaiaScannerDemo` → `scanner/ScannerService`. Same device wiring, minus the
+  parsing and printing — the service reports scans and lets the app decide.
+- `html/GaiaHtmlReportV2` → `html/GaiaDesktopReport`. Same design, with the theme pinned by
+  the caller instead of following `prefers-color-scheme`, a provenance line in the masthead
+  for scanner captures, and every label taken from the catalogue.
+- `html/GaiaHtmlReport`'s 35-language label table → `resources/i18n/ui_*.properties`,
+  extracted mechanically rather than retyped.
+
+They are copies, not a dependency: `gaia-demo` is a leaf module that nothing builds against,
+and the dependency direction in this repo runs one way into the core.
+
+## Scanner configuration
+
+`src/main/resources/jpos.xml` is the JavaPOS device registry, copied from `gaia-demo`. Edit
+it to set the USB product ID for your scanner model. Common Zebra USB product IDs:
+
+| Model | PID | Model | PID |
+|-------|-----|-------|-----|
+| DS2208 | 0105 | DS2278 | 0121 |
+| DS4608 | 0300 | DS8178 | 0400 |
+| LI4278 | 1300 | | |
+
+Scanner bytes are read as ISO-8859-1 (each byte maps 1:1) so the AIM Code ID prefix and
+every FNC1 separator reach the parser intact.

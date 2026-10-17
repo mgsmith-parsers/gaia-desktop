@@ -1,0 +1,518 @@
+/*
+ * Gaia Desktop — application chrome.
+ *
+ * The palette is the same one the HTML report uses (see GaiaDesktopReport.CSS), declared
+ * here as JavaFX looked-up colours so the window and the report inside the WebView read as
+ * one surface. Light is the base; MainView adds the "theme-dark" style class to the root
+ * to switch, which re-defines the same names.
+ *
+ * The names are declared on ".root" rather than ".main-view" so that any scene this
+ * stylesheet is attached to can resolve them — dialogs get the sheet too, and their root
+ * is a DialogPane, not the main view.
+ */
+
+.root {
+    -gaia-paper:     #eef1f2;
+    -gaia-card:      #ffffff;
+    -gaia-ink:       #131a1e;
+    -gaia-ink-soft:  #43535b;
+    -gaia-ink-faint: #6b7d85;
+    -gaia-line:      #d5dcde;
+    -gaia-line-soft: #e3e8ea;
+    -gaia-accent:    #0b7c84;
+    -gaia-accent-ink:#075258;
+    -gaia-ok:        #1c7a4d;
+    -gaia-err:       #b23a33;
+
+    -fx-font-family: "system-ui", "SF Pro Text", "Segoe UI", "Roboto", sans-serif;
+}
+
+.main-view {
+    -fx-background-color: -gaia-paper;
+}
+
+.root.theme-dark {
+    -gaia-paper:     #0d1416;
+    -gaia-card:      #131c1f;
+    -gaia-ink:       #e7edee;
+    -gaia-ink-soft:  #a6b6bb;
+    -gaia-ink-faint: #71858b;
+    -gaia-line:      #26343a;
+    -gaia-line-soft: #1d292e;
+    -gaia-accent:    #35b7bf;
+    -gaia-accent-ink:#7fd6db;
+    -gaia-ok:        #46b981;
+    -gaia-err:       #e0645d;
+}
+
+/* ---------------------------------------------------------------- menus */
+
+.menu-bar {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: transparent transparent -gaia-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.menu-bar .label,
+.menu .label,
+.menu-item .label {
+    -fx-text-fill: -gaia-ink;
+}
+
+.context-menu,
+.menu-bar .menu .context-menu {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line;
+    -fx-border-width: 1;
+}
+
+/*
+ * Only seen where the menu bar is drawn in the window — Windows and Linux; macOS moves it to the
+ * system menu bar. JavaFX draws each top-level menu as a MenuButton, so the ".menu-button" rule
+ * for real buttons below would otherwise frame File, Input, Copy… as bordered, rounded buttons
+ * with a hand cursor. These win over it by specificity.
+ */
+.menu-bar > .container > .menu-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 0.4em 0.75em 0.4em 0.75em;
+    -fx-cursor: default;
+}
+
+.menu-bar > .container > .menu-button:hover,
+.menu-bar > .container > .menu-button:focused,
+.menu-bar > .container > .menu-button:showing {
+    -fx-background-color: -gaia-line-soft;
+    -fx-border-color: transparent;
+}
+
+/*
+ * Items in an open menu or context menu. Left alone these take Modena's own colours, which are
+ * not this palette's: a bright blue highlight under our ink-coloured text, and check marks and
+ * submenu arrows in Modena's dark mark colour, nearly invisible on the dark theme's card.
+ */
+.menu-item:focused {
+    -fx-background-color: -gaia-accent;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: white;
+}
+
+.menu-item .accelerator-text {
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+.check-menu-item:checked > .left-container > .check,
+.radio-menu-item:checked > .left-container > .radio,
+.menu > .right-container > .arrow {
+    -fx-background-color: -gaia-ink-soft;
+}
+
+.check-menu-item:focused:checked > .left-container > .check,
+.radio-menu-item:focused:checked > .left-container > .radio,
+.menu:focused > .right-container > .arrow {
+    -fx-background-color: white;
+}
+
+/* ---------------------------------------------------------------- input bar */
+
+.input-bar {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: transparent transparent -gaia-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.input-field {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 13px;
+    -fx-background-color: -gaia-paper;
+    -fx-text-fill: -gaia-ink;
+    -fx-prompt-text-fill: -gaia-ink-faint;
+    -fx-background-radius: 6;
+    -fx-border-color: -gaia-line;
+    -fx-border-radius: 6;
+    -fx-padding: 7 10 7 10;
+}
+
+.input-field:focused {
+    -fx-border-color: -gaia-accent;
+}
+
+.button, .toggle-button, .combo-box, .menu-button {
+    -fx-background-color: -gaia-card;
+    -fx-text-fill: -gaia-ink;
+    -fx-background-radius: 6;
+    -fx-border-color: -gaia-line;
+    -fx-border-radius: 6;
+    -fx-padding: 6 12 6 12;
+    -fx-cursor: hand;
+}
+
+.button:hover, .toggle-button:hover, .combo-box:hover, .menu-button:hover {
+    -fx-border-color: -gaia-accent;
+}
+
+/* MenuButton draws its label through a nested Label, which does not inherit -fx-text-fill. */
+.menu-button > .label {
+    -fx-text-fill: -gaia-ink;
+}
+
+.menu-button > .arrow-button > .arrow {
+    -fx-background-color: -gaia-ink-faint;
+}
+
+.toggle-button:selected {
+    -fx-background-color: -gaia-accent;
+    -fx-text-fill: white;
+    -fx-border-color: -gaia-accent;
+}
+
+.accent-button {
+    -fx-background-color: -gaia-accent;
+    -fx-text-fill: white;
+    -fx-border-color: -gaia-accent;
+    -fx-font-weight: bold;
+}
+
+.accent-button:hover {
+    -fx-opacity: 0.9;
+}
+
+.combo-box .list-cell,
+.combo-box-popup .list-cell {
+    -fx-text-fill: -gaia-ink;
+    -fx-background-color: -gaia-card;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line;
+}
+
+.combo-box-popup .list-cell:filled:selected,
+.combo-box-popup .list-cell:filled:hover {
+    -fx-background-color: -gaia-accent;
+    -fx-text-fill: white;
+}
+
+/* ---------------------------------------------------------------- history */
+
+.history-pane {
+    -fx-background-color: -gaia-card;
+}
+
+.section-header {
+    -fx-font-size: 10.5px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -gaia-ink-faint;
+    /* The report's section rules are letter-spaced small caps; JavaFX has no
+       letter-spacing, so upper case alone carries the same signal. */
+    -fx-label-padding: 0 0 2 0;
+}
+
+.list-view {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-cell {
+    -fx-background-color: -gaia-card;
+    -fx-padding: 0 8 0 10;
+    -fx-border-color: transparent transparent -gaia-line-soft transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* Empty rows below the last capture must not draw separators. */
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: -gaia-line-soft;
+}
+
+.list-cell:filled:selected {
+    -fx-background-color: -gaia-accent;
+}
+
+.list-cell:filled:selected .history-summary,
+.list-cell:filled:selected .history-detail,
+.list-cell:filled:selected .label {
+    -fx-text-fill: white;
+}
+
+.history-summary {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 12px;
+    -fx-text-fill: -gaia-ink;
+}
+
+.history-detail {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 10px;
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+.dot-ok  { -fx-text-fill: -gaia-ok;  -fx-font-size: 11px; }
+.dot-bad { -fx-text-fill: -gaia-err; -fx-font-size: 11px; }
+
+.list-cell:filled:selected .dot-ok,
+.list-cell:filled:selected .dot-bad {
+    -fx-text-fill: white;
+}
+
+/* ---------------------------------------------------------------- options panel */
+
+.options-pane {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line transparent transparent transparent;
+    -fx-border-width: 0 0 0 1;
+}
+
+.options-pane > .viewport {
+    -fx-background-color: -gaia-card;
+}
+
+.options-box {
+    -fx-background-color: -gaia-card;
+}
+
+.field-label {
+    -fx-font-size: 10.5px;
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+.check-box {
+    -fx-text-fill: -gaia-ink;
+    -fx-font-size: 11.5px;
+}
+
+.check-box .box {
+    -fx-background-color: -gaia-paper;
+    -fx-border-color: -gaia-line;
+    -fx-border-radius: 3;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: -gaia-accent;
+}
+
+.separator .line {
+    -fx-border-color: -gaia-line-soft;
+}
+
+/* ---------------------------------------------------------------- split & status */
+
+.split-pane {
+    -fx-background-color: -gaia-paper;
+    -fx-padding: 0;
+}
+
+.split-pane > .split-pane-divider {
+    -fx-background-color: -gaia-line;
+    -fx-padding: 0 1 0 1;
+}
+
+.status-bar {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.status-text {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 10.5px;
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+/* A toolbar button would tower over a 10.5px status line — this one matches its scale. */
+.status-button {
+    -fx-font-size: 10.5px;
+    -fx-padding: 2 9 2 9;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-text-fill: -gaia-ink-soft;
+}
+
+/*
+ * The "new version available" notice in the status bar: two links at the status line's scale.
+ * Hyperlink pads itself and draws a focus border by default, which would make the bar jump
+ * when the notice appears.
+ */
+.update-link,
+.update-skip {
+    -fx-font-size: 10.5px;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+}
+
+.update-link {
+    -fx-text-fill: -gaia-accent;
+    -fx-font-weight: bold;
+}
+
+.update-skip {
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+.update-link:visited {
+    -fx-text-fill: -gaia-accent;
+}
+
+/* ---------------------------------------------------------------- dialogs */
+
+.dialog-pane {
+    -fx-background-color: -gaia-card;
+}
+
+.dialog-pane .label,
+.dialog-pane .header-panel .label {
+    -fx-text-fill: -gaia-ink;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: -gaia-paper;
+}
+
+.tooltip {
+    -fx-background-color: -gaia-ink;
+    -fx-text-fill: -gaia-paper;
+    -fx-font-size: 11px;
+    -fx-background-radius: 6;
+}
+
+/* ---------------------------------------------------------------- builder */
+
+/* Parse ⇄ Build reads as one segmented control, not two loose buttons. */
+.mode-bar > .toggle-button {
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+
+.mode-bar > .toggle-button:first-child {
+    -fx-background-radius: 6 0 0 6;
+    -fx-border-radius: 6 0 0 6;
+}
+
+.mode-bar > .toggle-button:last-child {
+    -fx-background-radius: 0 6 6 0;
+    -fx-border-radius: 0 6 6 0;
+    -fx-border-width: 1 1 1 0;
+}
+
+.builder-pane {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: transparent transparent -gaia-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.builder-pane .table-view {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line;
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 11.5px;
+}
+
+/* The header sits on the card surface and the rows sit back from it, so the two never read
+   as the same band. Holds in both themes: card is lighter than paper in light, darker in
+   dark, but the header/row contrast is there either way. */
+.builder-pane .table-view .column-header-background,
+.builder-pane .table-view .column-header,
+.builder-pane .table-view .filler {
+    -fx-background-color: -gaia-card;
+}
+
+.builder-pane .table-view .column-header-background {
+    -fx-border-color: transparent transparent -gaia-line transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.builder-pane .table-view .column-header .label {
+    -fx-text-fill: -gaia-ink-faint;
+    -fx-font-size: 10.5px;
+}
+
+.builder-pane .table-row-cell {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: transparent transparent -gaia-line-soft transparent;
+}
+
+/* A row that exists — one you can type in — sits back from the card, so the editable area
+   reads as rows rather than as blank space. Theme-aware: -gaia-paper is the light grey in
+   the light theme and the darker ground in the dark one, keeping the same relationship. */
+.builder-pane .table-row-cell:filled {
+    -fx-background-color: -gaia-paper;
+}
+
+.builder-pane .table-row-cell:filled .table-cell {
+    -fx-background-color: transparent;
+}
+
+/* The filler rows a TableView paints below the last item are not rows the user can type
+   in — drawing separators under them makes the editor look full of blanks. */
+.builder-pane .table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.builder-pane .table-row-cell:empty .table-cell {
+    -fx-border-color: transparent;
+}
+
+.builder-pane .table-row-cell .text,
+.builder-pane .table-cell {
+    -fx-text-fill: -gaia-ink;
+}
+
+/* An AI the core does not recognise, marked before the build is even attempted. */
+.builder-pane .table-row-cell:bad .table-cell {
+    -fx-text-fill: -gaia-err;
+}
+
+.builder-pane .table-row-cell:filled:selected {
+    -fx-background-color: -gaia-accent;
+}
+
+.builder-pane .table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: white;
+}
+
+/* The editor that appears inside a cell while typing. */
+.builder-pane .edit-cell-field {
+    -fx-background-color: -gaia-card;
+    -fx-text-fill: -gaia-ink;
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 11.5px;
+    -fx-border-color: -gaia-accent;
+    -fx-border-width: 1;
+    -fx-background-radius: 3;
+    -fx-border-radius: 3;
+    -fx-padding: 1 4 1 4;
+}
+
+.builder-message {
+    -fx-font-family: "SF Mono", "Menlo", "Consolas", monospace;
+    -fx-font-size: 10.5px;
+    -fx-text-fill: -gaia-ink-faint;
+}
+
+.builder-message.bad {
+    -fx-text-fill: -gaia-err;
+}
+
+.builder-dl > .title {
+    -fx-background-color: -gaia-paper;
+    -fx-font-size: 11px;
+}
+
+.builder-dl > .content {
+    -fx-background-color: -gaia-card;
+    -fx-border-color: -gaia-line;
+}

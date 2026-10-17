@@ -1,0 +1,81 @@
+#!/bin/sh
+#
+# GAIA Desktop.app launcher — the bundle's CFBundleExecutable, run by macOS when the app is
+# opened from Finder, the Dock or Launchpad, with no Terminal behind it.
+#
+# The app is self-contained: gaia-desktop.jar and lib/ live in Contents/Java beside this
+# script's Contents/MacOS, so the .app can be dragged to Applications on its own. It still needs
+# a Java 21 or newer installed — it does not bundle one — and says so in a dialog when there is
+# none, since nothing it prints here is seen.
+#
+# Unlike run.sh it cannot rely on JAVA_HOME or the PATH: apps opened from Finder do not inherit a
+# shell's environment. So Java is asked for by version through /usr/libexec/java_home, which
+# lists the JDKs installed in /Library/Java/JavaVirtualMachines; Homebrew's openjdk, which is not
+# registered there unless linked by hand, is tried after it.
+
+set -u
+
+MAIN_CLASS=tools.pantheum.gaia.desktop.Launcher
+MIN_JAVA=21
+
+CONTENTS=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+JAVA_DIR="$CONTENTS/Java"
+ICON="$CONTENTS/Resources/gaia-desktop.icns"
+
+# A dialog, because a Finder launch has no console to read an error from.
+fail() {
+    /usr/bin/osascript -e "display alert \"GAIA Desktop cannot start\" message \"$1\" as critical" >/dev/null 2>&1
+    echo "GAIA Desktop: $1" >&2
+    exit 1
+}
+
+# The major version of the java at $1, or nothing if it cannot be read.
+java_major() {
+    v=$("$1" -version 2>&1 | sed -n 's/.*version "\([^"]*\)".*/\1/p' | head -n 1)
+    case "$v" in
+        1.*) echo "$v" | cut -d. -f2 ;;
+        *)   echo "$v" | cut -d. -f1 | cut -d- -f1 ;;
+    esac
+}
+
+JAVA=
+if JH=$(/usr/libexec/java_home -v "$MIN_JAVA+" 2>/dev/null) && [ -x "$JH/bin/java" ]; then
+    JAVA="$JH/bin/java"
+else
+    for candidate in "${JAVA_HOME:-}/bin/java" /opt/homebrew/opt/openjdk/bin/java /usr/local/opt/openjdk/bin/java; do
+        [ -x "$candidate" ] || continue
+        major=$(java_major "$candidate")
+        if echo "$major" | grep -q '^[0-9][0-9]*$' && [ "$major" -ge "$MIN_JAVA" ]; then
+            JAVA="$candidate"
+            break
+        fi
+    done
+fi
+[ -n "$JAVA" ] || fail "GAIA Desktop needs Java $MIN_JAVA or newer, and none was found. Install a Java $MIN_JAVA JDK (for example from adoptium.net), then open the app again."
+
+[ -f "$JAVA_DIR/gaia-desktop.jar" ] || fail "The app is incomplete: Contents/Java/gaia-desktop.jar is missing. Download GAIA Desktop again."
+
+# The class path as run.sh builds it: the jar, then every jar in lib/ named one by one.
+CLASSPATH="$JAVA_DIR/gaia-desktop.jar"
+for JARFILE in "$JAVA_DIR"/lib/*.jar; do
+    [ -e "$JARFILE" ] || break
+    CLASSPATH="$CLASSPATH:$JARFILE"
+done
+
+# A Finder launch starts in /, where logback could not create logs/gaia-desktop.log. Start in
+# the app's own state directory instead, so the log lands in ~/.gaia-desktop/logs/.
+STATE_DIR="$HOME/.gaia-desktop"
+mkdir -p "$STATE_DIR" 2>/dev/null && cd "$STATE_DIR" || cd "$HOME" || true
+
+# Older macOS passes a -psn_… process serial number as an argument; it is not one of ours.
+for arg do
+    shift
+    case "$arg" in -psn_*) ;; *) set -- "$@" "$arg" ;; esac
+done
+
+# -Xdock gives the Dock and the menu bar the app's name and icon rather than "java" and the
+# JDK's. --enable-native-access as in run.sh: JavaFX loads its natives from the jars in lib/.
+# GAIA_DESKTOP_OPTS is honoured as in run.sh, for the rare launch from a shell.
+# shellcheck disable=SC2086
+exec "$JAVA" -Xdock:name="GAIA Desktop" -Xdock:icon="$ICON" --enable-native-access=ALL-UNNAMED \
+    ${GAIA_DESKTOP_OPTS:-} -cp "$CLASSPATH" "$MAIN_CLASS" "$@"

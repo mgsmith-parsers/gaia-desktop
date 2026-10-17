@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    GAIA Desktop.app's Info.plist. Copied into the Mac distributions by the build, which replaces
+    @VERSION@ with the pom's version; see the mac-app-and-zip step in pom.xml.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>GAIA Desktop</string>
+    <key>CFBundleDisplayName</key>
+    <string>GAIA Desktop</string>
+    <key>CFBundleIdentifier</key>
+    <string>tools.pantheum.gaia.desktop</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@VERSION@</string>
+    <key>CFBundleVersion</key>
+    <string>@VERSION@</string>
+    <key>CFBundleExecutable</key>
+    <string>gaia-desktop</string>
+    <key>CFBundleIconFile</key>
+    <string>gaia-desktop</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.developer-tools</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>11.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+</dict>
+</plist>

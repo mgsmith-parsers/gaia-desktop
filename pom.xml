@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>tools.pantheum</groupId>
+    <artifactId>gaia-desktop</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+    <name>GAIA-Desktop</name>
+    <description>JavaFX desktop front-end for the GAIA GS1 parser — manual entry, Zebra scanner input, and HTML parse reports</description>
+
+    <properties>
+        <!--
+            Java 21, the LTS that JavaFX 21 is built for. Compiled with release=21 rather than
+            source/target, so the JDK API is checked too: a call to anything newer than 21 fails
+            the build here instead of with NoSuchMethodError on a user's Java 21. The core gaia
+            jar stays Java 11 bytecode and runs unchanged on 21.
+        -->
+        <java.version>21</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+        <!--
+            The date stamped on every entry of the jar and the distribution zip: the build time.
+            Without it, the archivers in maven-jar-plugin 3.5 and maven-assembly-plugin 3.8 date
+            every entry 1 February 1980, so an unzipped distribution looked 46 years old.
+        -->
+        <project.build.outputTimestamp>${maven.build.timestamp}</project.build.outputTimestamp>
+
+        <!--
+            Everything shippable is assembled under target/dist/ and nothing else is: the jar,
+            lib/ and the launch script land there together, so the directory can be zipped or
+            copied as-is without picking artefacts out of target/ alongside classes/,
+            maven-status/ and the rest of the build's scratch.
+
+            One directory per platform, named <artifactId>-<version>-<platform> —
+            target/dist/gaia-desktop-1.0.0-win/, target/dist/gaia-desktop-1.0.0-mac-aarch64/, ... —
+            since the JavaFX jars in lib/ differ by platform (see fx.platform below), and building
+            one platform must not overwrite another's. The name says what is inside once the
+            directory, or a zip of it, has left target/.
+        -->
+        <dist.dir>${project.build.directory}/dist/${project.artifactId}-${project.version}-${fx.platform}</dist.dir>
+
+        <!--
+            Which packaging the build produces. By default the jar plugin writes
+            target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar holding this module's own classes, and the dependencies
+            are copied beside it into target/dist/gaia-desktop-<version>-<platform>/lib/ and named on the jar's manifest
+            Class-Path; the assembly is skipped. The "fat" profile flips all three, so exactly
+            one of the two layouts ever claims target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar.
+        -->
+        <jar.phase>package</jar.phase>
+        <assembly.skipAssembly>true</assembly.skipAssembly>
+        <mdep.skip>false</mdep.skip>
+
+        <gaia.version>1.1.0</gaia.version>
+        <!-- 21.x is the JavaFX LTS line for Java 21; it needs Java 17 or later to run. -->
+        <javafx.version>21.0.12</javafx.version>
+        <javafx.plugin.version>0.0.8</javafx.plugin.version>
+        <!--
+            fx.platform — the platform whose JavaFX jars go into the build, as an OpenJFX
+            classifier: mac-aarch64, mac, win, linux or linux-aarch64. Set to the build machine's
+            own by the fx-* profiles at the bottom; override it to build for another one, e.g.
+            `mvn package -Dfx.platform=win`. The JavaFX jars are ordinary downloads, so any machine
+            can build every platform's dist/.
+
+            Deliberately not called javafx.platform: OpenJFX's own pom defines that property in
+            terms of itself when it is set from outside, and Maven then rejects the pom as invalid
+            and silently drops the platform jars.
+        -->
+
+        <javapos.contracts.version>1.14.5</javapos.contracts.version>
+        <javapos.controls.version>1.14.2</javapos.controls.version>
+        <javapos.config.version>4.0.2</javapos.config.version>
+        <slf4j.version>2.0.20</slf4j.version>
+        <logback.version>1.6.5</logback.version>
+                <xerces.version>2.12.2</xerces.version>
+        
+        <junit.version>6.1.3</junit.version>
+        <!-- Test scope only; see the dependency comment. gaia-demo, which ships it, pins its own. -->
+        <zxing.version>3.5.4</zxing.version>
+    </properties>
+
+    <dependencies>
+        <!-- GAIA core parsing/building library -->
+        <dependency>
+            <groupId>tools.pantheum</groupId>
+            <artifactId>gaia</artifactId>
+            <version>${gaia.version}</version>
+        </dependency>
+
+        <!--
+            JavaFX, each module named with its ${fx.platform} jar — the one holding that
+            platform's classes and natives. javafx-web brings WebView, which renders the HTML
+            reports; it needs media, and everything needs graphics and base.
+
+            Every module is listed rather than left to arrive transitively, and each excludes
+            org.openjfx: OpenJFX's poms choose the transitive jars by the *build machine's* OS,
+            so letting them through would put the Mac natives into a Windows build beside the
+            Windows ones.
+        -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-base</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${fx.platform}</classifier>
+            <exclusions><exclusion><groupId>org.openjfx</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-graphics</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${fx.platform}</classifier>
+            <exclusions><exclusion><groupId>org.openjfx</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${fx.platform}</classifier>
+            <exclusions><exclusion><groupId>org.openjfx</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${fx.platform}</classifier>
+            <exclusions><exclusion><groupId>org.openjfx</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>${javafx.version}</version>
+            <classifier>${fx.platform}</classifier>
+            <exclusions><exclusion><groupId>org.openjfx</groupId><artifactId>*</artifactId></exclusion></exclusions>
+        </dependency>
+
+        <!-- Xerces XML parser (jpos.xml is read through it) -->
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>${xerces.version}</version>
+        </dependency>
+
+        <!-- JavaPOS contracts (interfaces) -->
+        <dependency>
+            <groupId>org.javapos</groupId>
+            <artifactId>javapos-contracts</artifactId>
+            <version>${javapos.contracts.version}</version>
+        </dependency>
+
+        <!-- JavaPOS controls (Scanner, CashDrawer, etc. client-side controls) -->
+        <dependency>
+            <groupId>org.javapos</groupId>
+            <artifactId>javapos-controls</artifactId>
+            <version>${javapos.controls.version}</version>
+        </dependency>
+
+        <!-- JavaPOS config loader (reads jpos.xml, wires logical names to services) -->
+        <dependency>
+            <groupId>org.javapos</groupId>
+            <artifactId>javapos-config-loader</artifactId>
+            <version>${javapos.config.version}</version>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+            Test scope only, and never in dist/lib: an independent decoder to read back what
+            DataMatrixEncoder writes. Verifying an encoder against code from the same hand proves
+            only that the two agree, and a Data Matrix that is wrong still looks like a Data Matrix
+            — so the symbols are decoded by a library that knows nothing about this one, and checked
+            to report symbology ]d2. ZXing cannot *write* a GS1 Data Matrix (no FNC1 codeword in its
+            high-level encoder), which is why it is here as a judge and not as the implementation.
+        -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>${zxing.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- The module builds exactly one artifact: target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar -->
+        <finalName>gaia-desktop</finalName>
+
+        <!--
+            Only the version stub is filtered — the same split the core pom uses. Filtering
+            everything would rewrite any ${...} inside the i18n catalogues and the CSS, and
+            would re-encode the properties files on the way through.
+        -->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>gaia-desktop-version.properties</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <excludes>
+                    <exclude>gaia-desktop-version.properties</exclude>
+                    <exclude>**/.DS_Store</exclude>
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.16.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <!--
+                        Recompile only sources that changed. The default ("incremental") also
+                        recompiles the whole module whenever the class path changes — which every
+                        -Dfx.platform build after the first does, swapping one platform's JavaFX
+                        jars for another's — though the classes come out identical. Rewriting every
+                        class file per platform is slow, and in an iCloud-synced folder it leaves
+                        conflict copies ("Foo 2.class") that the jar then packages. Delete a source
+                        and its class lingers until the next clean; the build guide says to use
+                        clean for that reason already.
+                    -->
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.6.0</version>
+            </plugin>
+
+            <!--
+                mvn javafx:run — the development entry point. The plugin puts the JavaFX
+                artifacts on the module path, so the toolkit starts as a named module and
+                GaiaDesktopApp can be launched directly (no Launcher shim needed here).
+            -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>${javafx.plugin.version}</version>
+                <configuration>
+                    <mainClass>tools.pantheum.gaia.desktop.GaiaDesktopApp</mainClass>
+                </configuration>
+            </plugin>
+
+            <!--
+                The module's default output: target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar carrying this module's
+                classes only, with every dependency listed on the manifest Class-Path as
+                lib/<artifact>-<version>.jar. The copy-dependencies execution below fills that
+                lib/ directory with exactly those names, so the two halves stay in step — move
+                the jar without lib/ beside it and it will not start.
+
+                Main-Class is the Launcher shim rather than the Application subclass: JavaFX is
+                on the class path here (unnamed module), and the JavaFX launcher refuses to
+                start when the main class extends Application in that layout.
+
+                In the "fat" profile ${jar.phase} is "none" and the assembly below writes that
+                path instead, so the two never both claim it.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <outputDirectory>${dist.dir}</outputDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>tools.pantheum.gaia.desktop.Launcher</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-jar</id>
+                        <phase>${jar.phase}</phase>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+                The other half of the default layout: every runtime dependency copied into
+                target/dist/gaia-desktop-<version>-<platform>/lib/ under the same <artifactId>-<version>.jar names the manifest
+                Class-Path above spells out. Skipped in the "fat" profile, where the assembly
+                unpacks the dependencies into the jar itself.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.11.0</version>
+                <executions>
+                    <execution>
+                        <!--
+                            Not in Eclipse. m2e resolves an open workspace project to its
+                            target/classes folder rather than to a jar, and copy-dependencies
+                            refuses to copy an unpackaged artifact ("Artifact has not been
+                            packaged yet ... see MDEP-187"), which fails the auto-build every
+                            time the gaia project is open beside this one. Nothing is lost:
+                            Eclipse launches the app from the project class path, and a
+                            command-line build still fills target/lib/. Run `mvn package`
+                            before using target/gaia-desktop.jar itself.
+                        -->
+                        <?m2e ignore?>
+                        <id>copy-runtime-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dist.dir}/lib</outputDirectory>
+                            <!-- runtime: everything the app needs to start, minus the test-only jars -->
+                            <includeScope>runtime</includeScope>
+                            <overWriteSnapshots>true</overWriteSnapshots>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+                The launch scripts, copied beside the jar so the things that make up a
+                distribution sit together in target/dist/gaia-desktop-<version>-<platform>/ — gaia-desktop.jar, lib/ and
+                the platform's script. Both are copied here and the antrun step below removes the
+                one that does not belong. Unfiltered on purpose — run.sh is full of ${...} shell expansions that
+                Maven filtering would be free to rewrite, and the scripts need no build-time
+                values anyway.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-launch-scripts</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dist.dir}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/scripts</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.8.0</version>
+                <executions>
+                    <!--
+                        Executable fat JAR — target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar
+                        in the "fat" profile only; skipped by default (assembly.skipAssembly, which
+                        this execution leaves to the property). Main-Class is the Launcher shim for
+                        the same reason as above. The jar bundles the JavaFX natives for
+                        ${fx.platform}, so it is platform-specific — one per platform, as the
+                        default layout is. It writes into dist/ as well, so that profile produces
+                        the same shippable directory, just with no lib/ in it.
+                    -->
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${dist.dir}</outputDirectory>
+                            <archive>
+                                <manifest>
+                                    <mainClass>tools.pantheum.gaia.desktop.Launcher</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <appendAssemblyId>false</appendAssemblyId>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--
+                One launch script per distribution: run.bat for win, run.sh for every other
+                platform. Decided here, from the resolved ${fx.platform}, rather than by profiles
+                choosing what to copy — profile activation cannot see a value another profile set,
+                so a Linux build on a Windows machine would get the host's script. The delete also
+                clears a stale script left by an earlier build without clean.
+
+                copy-resources does not carry the executable bit, so run.sh is made executable
+                here too. Declared after the copy so it runs after it: Maven keeps plugin order
+                within a phase.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>pick-launch-script</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target xmlns:if="ant:if" xmlns:unless="ant:unless">
+                                <condition property="dist.windows">
+                                    <equals arg1="${fx.platform}" arg2="win"/>
+                                </condition>
+                                <delete file="${dist.dir}/run.sh"  if:set="dist.windows"/>
+                                <delete file="${dist.dir}/run.bat" unless:set="dist.windows"/>
+                                <chmod  file="${dist.dir}/run.sh"  perm="755" unless:set="dist.windows"/>
+                                <!-- Every distribution carries the guides, as docs/ with its
+                                     layout kept so the links between them still resolve, and
+                                     readme.html at the root indexing them. The translation
+                                     tooling stays behind. The delete clears a guide that was
+                                     renamed or removed since an earlier build without clean. -->
+                                <delete dir="${dist.dir}/docs"/>
+                                <copy todir="${dist.dir}/docs">
+                                    <fileset dir="${project.basedir}/docs"
+                                             excludes="check-i18n.py,i18n-manifest.json,i18n-plan.md"/>
+                                </copy>
+                                <copy file="${project.basedir}/src/main/dist/readme.html" todir="${dist.dir}"
+                                      overwrite="true" encoding="UTF-8" outputencoding="UTF-8">
+                                    <filterset>
+                                        <filter token="VERSION" value="${project.version}"/>
+                                    </filterset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+
+                    <!--
+                        Last in the package phase — this plugin is declared after the jar and
+                        assembly plugins for that — so the jar exists, in either packaging, when it
+                        runs. Two things, in order:
+
+                        For mac and mac-aarch64, GAIA Desktop.app: Info.plist (the version filled
+                        in), the launcher and the icon from src/main/macos/, and gaia-desktop.jar
+                        and lib/ moved into Contents/Java, so the app stands alone and can be
+                        dragged to Applications. run.sh stays beside it and finds the jar there.
+
+                        Then, for every platform, the distribution zip,
+                        target/dist/gaia-desktop-<version>-<platform>.zip: dist/ under a folder of
+                        its own name, so unzipping gives one directory. run.sh and the app's
+                        launcher are stored with mode 755, or they would unzip unrunnable. The zip
+                        is for a GitHub release and is not attached to the build: the four
+                        platforms come from four builds, which Maven Central — one immutable upload
+                        per version — could never take as one release.
+                    -->
+                    <execution>
+                        <id>mac-app-and-zip</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target xmlns:if="ant:if">
+                                <property name="dist.name" value="${project.artifactId}-${project.version}-${fx.platform}"/>
+                                <property name="dist.zip"  value="${project.build.directory}/dist/${dist.name}.zip"/>
+                                <property name="app.dir"   value="${dist.dir}/GAIA Desktop.app"/>
+                                <condition property="dist.mac">
+                                    <matches string="${fx.platform}" pattern="^mac"/>
+                                </condition>
+                                <available property="dist.has.lib" file="${dist.dir}/lib" type="dir"/>
+
+                                <sequential if:set="dist.mac">
+                                    <delete dir="${app.dir}"/>
+                                    <copy file="${project.basedir}/src/main/macos/Info.plist" todir="${app.dir}/Contents">
+                                        <filterset>
+                                            <filter token="VERSION" value="${project.version}"/>
+                                        </filterset>
+                                    </copy>
+                                    <copy file="${project.basedir}/src/main/macos/gaia-desktop" todir="${app.dir}/Contents/MacOS"/>
+                                    <chmod file="${app.dir}/Contents/MacOS/gaia-desktop" perm="755"/>
+                                    <copy file="${project.basedir}/src/main/macos/gaia-desktop.icns" todir="${app.dir}/Contents/Resources"/>
+                                    <move file="${dist.dir}/gaia-desktop.jar" todir="${app.dir}/Contents/Java"/>
+                                </sequential>
+                                <sequential if:set="dist.mac">
+                                    <move file="${dist.dir}/lib" tofile="${app.dir}/Contents/Java/lib" if:set="dist.has.lib"/>
+                                </sequential>
+
+                                <delete file="${dist.zip}"/>
+                                <zip destfile="${dist.zip}">
+                                    <zipfileset dir="${dist.dir}" prefix="${dist.name}"
+                                                excludes="run.sh,**/Contents/MacOS/**"/>
+                                    <zipfileset dir="${dist.dir}" prefix="${dist.name}"
+                                                includes="run.sh,**/Contents/MacOS/**" filemode="755"/>
+                                </zip>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <!--
+            mvn -Pfat package — one self-contained ~50 MB target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar with the
+            dependencies unpacked into it and no lib/ directory to keep beside it. Worth it for
+            handing someone a single file; the default layout is better for everything else,
+            since almost all of that 49 MB is one file (libjfxwebkit.dylib) that a rebuild
+            would rewrite whether or not it changed.
+
+            Neither layout is more portable than the other: both carry the JavaFX jars for
+            ${fx.platform} only.
+        -->
+        <profile>
+            <id>fat</id>
+            <properties>
+                <jar.phase>none</jar.phase>
+                <assembly.skipAssembly>false</assembly.skipAssembly>
+                <mdep.skip>true</mdep.skip>
+            </properties>
+        </profile>
+
+        <!--
+            Kept so that "-Pthin", the flag this layout used to need, still names it now that
+            it is the default. Sets exactly the default values.
+        -->
+        <profile>
+            <id>thin</id>
+            <properties>
+                <jar.phase>package</jar.phase>
+                <assembly.skipAssembly>true</assembly.skipAssembly>
+                <mdep.skip>false</mdep.skip>
+            </properties>
+        </profile>
+
+        <!--
+            The build machine's platform, as the default for fx.platform. A -Dfx.platform=... on
+            the command line outranks these, so they only decide what a plain `mvn package` or
+            `mvn javafx:run` gets. os.arch reads x86_64 on an Intel Mac but amd64 on Linux.
+        -->
+        <profile>
+            <id>fx-mac-aarch64</id>
+            <activation><os><family>mac</family><arch>aarch64</arch></os></activation>
+            <properties><fx.platform>mac-aarch64</fx.platform></properties>
+        </profile>
+        <profile>
+            <id>fx-mac</id>
+            <activation><os><family>mac</family><arch>x86_64</arch></os></activation>
+            <properties><fx.platform>mac</fx.platform></properties>
+        </profile>
+        <profile>
+            <id>fx-win</id>
+            <activation><os><family>windows</family></os></activation>
+            <properties><fx.platform>win</fx.platform></properties>
+        </profile>
+        <profile>
+            <id>fx-linux</id>
+            <activation><os><family>unix</family><name>Linux</name><arch>amd64</arch></os></activation>
+            <properties><fx.platform>linux</fx.platform></properties>
+        </profile>
+        <profile>
+            <id>fx-linux-aarch64</id>
+            <activation><os><family>unix</family><name>Linux</name><arch>aarch64</arch></os></activation>
+            <properties><fx.platform>linux-aarch64</fx.platform></properties>
+        </profile>
+    </profiles>
+</project>
