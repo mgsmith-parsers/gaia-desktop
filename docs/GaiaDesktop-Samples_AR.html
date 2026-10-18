@@ -57,9 +57,10 @@
     .combine { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1rem; }
     .arrow { text-align: center; color: var(--muted); font-size: 1.5rem; margin: .75rem 0; }
     .result { max-width: 30rem; margin: 0 auto; }
-    /* Right to left: element strings and HRI stay left to right; carrier names and chips take their own direction. */
+    /* Right to left: element strings and HRI stay left to right; chips and the carrier line take their own direction. */
     [dir="rtl"] .mono { direction: ltr; unicode-bidi: isolate; }
-    [dir="rtl"] dd, [dir="rtl"] .chip, [dir="rtl"] h3 { unicode-bidi: plaintext; }
+    [dir="rtl"] .chip { unicode-bidi: plaintext; }
+    [dir="rtl"] dd { unicode-bidi: plaintext; text-align: right; }
   </style>
 </head>
 <body>
