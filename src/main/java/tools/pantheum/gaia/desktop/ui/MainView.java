@@ -176,8 +176,7 @@ public final class MainView extends BorderPane {
      */
     private CombinePane combinePane;
     /**
-     * The window's bottom edge: the status bar, with the Combine strip above it in Combine mode —
-     * where the viewer's Multi GS1-128 Validator keeps its toolbar.
+     * The window's bottom edge: the status bar, with the Combine strip above it in Combine mode.
      */
     private final VBox bottomBox = new VBox();
     /** The capture history and the split it shares with the report; Combine hides the history. */
@@ -1009,7 +1008,7 @@ public final class MainView extends BorderPane {
         }
 
         if (combining) {
-            // The viewer's layout: the report fills the window and the strip runs along the
+            // The report fills the window and the strip runs along the
             // bottom. The capture history steps aside — Combine scans never enter it.
             if (!bottomBox.getChildren().contains(combinePane)) bottomBox.getChildren().add(0, combinePane);
             split.getItems().remove(historyPane);

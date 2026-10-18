@@ -22,13 +22,6 @@ import java.util.List;
  * coordinate</em> by an amount that depends on the symbol's dimensions. Wrapping with a plain
  * modulo instead produces a layout that is right in the middle of the symbol and wrong at every
  * edge — which decodes small symbols correctly and larger ones as noise.
- *
- * <p><b>Twin.</b> Copied from {@code gaia-demo}'s own Data Matrix decoder, which must not be
- * depended on from here (see {@code CLAUDE.md}); the same arrangement as
- * {@code scanner/Symbologies}. Two deliberate differences, both so that
- * {@link DataMatrixEncoder} can walk the layout in the other direction: {@link #placementOrder}
- * is package-private rather than private, and {@link #insertDataRegions} is new — the inverse
- * of {@link #extractDataRegions}. Everything else is verbatim; fix a bug in both.
  */
 final class BitPlacement {
 

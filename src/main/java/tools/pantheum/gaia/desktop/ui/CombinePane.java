@@ -18,9 +18,8 @@ import tools.pantheum.gaia.desktop.i18n.UiStrings;
 import tools.pantheum.gaia.desktop.parse.GsToken;
 
 /**
- * The Combine strip: the bar along the bottom of the window in Combine mode, where the viewer's
- * Multi GS1-128 Validator keeps its toolbar — an entry field for a GS1-128 barcode, and the three
- * actions that manage the scans held.
+ * The Combine strip: the bar along the bottom of the window in Combine mode — an entry field for a
+ * GS1-128 barcode, and the three actions that manage the scans held.
  *
  * <p>The field exists because the dialog has to work on a machine with no scanner, which is every
  * machine that is not Windows. FNC1 is typed as {@code {GS}}, the same token the input bar uses,
@@ -66,9 +65,9 @@ public final class CombinePane extends HBox {
             control.setMinWidth(Region.USE_PREF_SIZE);
         }
 
-        // The viewer's toolbar, left to right: Reset, Remove Last, a divider, then the entry. Its
-        // Close and Save are not repeated here — leaving the mode is the close, and Save report
-        // sits in the main toolbar for every mode.
+        // Left to right: Reset, Remove Last, a divider, then the entry. There is no Close or Save
+        // here — leaving the mode is the close, and Save report sits in the main toolbar for every
+        // mode.
         Separator divider = new Separator(Orientation.VERTICAL);
         entry.setPrefWidth(420);
         getChildren().addAll(resetButton, removeLast, divider, caption, entry, addButton);
@@ -100,12 +99,12 @@ public final class CombinePane extends HBox {
 
     /** Enables Remove Last only while there is a scan to remove. */
     public void setHasScans(boolean hasScans) {
-        // As in the viewer: Remove Last needs a scan to remove; Reset is always available, since
+        // Remove Last needs a scan to remove; Reset is always available, since
         // it also clears a refusal and the entry field.
         removeLast.setDisable(!hasScans);
     }
 
-    /** Empties the entry field, as the viewer's Reset does. */
+    /** Empties the entry field, as Reset does. */
     public void clearEntry() {
         entry.clear();
     }

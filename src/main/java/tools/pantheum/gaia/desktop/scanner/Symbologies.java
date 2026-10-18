@@ -31,10 +31,6 @@ import java.util.TreeMap;
  * <p>A type outside the table below still gets a usable name — the JavaPOS constant name, found
  * by reflection — rather than a bare number. That matters because vendor services do report
  * values outside the UnifiedPOS list, and because JavaPOS gains constants over time.
- *
- * <p><b>This class is copied to {@code tools.pantheum.gaia.demo.scanner.Symbologies}</b>,
- * identical but for the package line — the modules do not depend on each other, so the two are
- * kept in step by hand. Change one, change the other; both carry the same test.
  */
 public final class Symbologies {
 

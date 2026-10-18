@@ -25,24 +25,22 @@ import tools.pantheum.gaia.gs1.util.ASCIIRevealerUtils;
 import tools.pantheum.gaia.result.ParseResult;
 
 /**
- * The Combine strip's report: the viewer's Multi GS1-128 Validator content, in GAIA Desktop's look.
+ * The Combine strip's report: the scans held and what combining them makes, in GAIA Desktop's look.
  *
- * <p><b>Content</b> follows the viewer's {@code MultiGS1128ValidatorHtmlReport} section for
- * section and column for column: the status and scan count, the scans held (each with its raw
+ * <p><b>Content</b>, section by section: the status and scan count, the scans held (each with its raw
  * input, its carrier, its element string and whatever the scan alone does not satisfy), what
  * combining them found — duplicates and conflicts — the combined element string, its AIs, the
  * engine's validation of it, and, when it is valid, the GS1 Data Matrix with its HRI beneath.
- * The AIs are the one exception to the viewer's layout: they are the parse report's element
- * cards ({@link GaiaDesktopReport#appendElementCards}), so a combined label's AIs read exactly
+ * The AIs are the parse report's element cards ({@link GaiaDesktopReport#appendElementCards}), so a combined label's AIs read exactly
  * as a parsed barcode's do.
  *
  * <p><b>Look</b> is the parse report's: it renders through {@link GaiaDesktopReport}'s shell —
  * masthead, verdict bar, section headings, key/value cards, stylesheet, theme and text direction —
- * so switching strips does not change the window's character. The viewer's tables are drawn as
- * cards in that stylesheet ({@code COMBINE_CSS} there).
+ * so switching strips does not change the window's character. The tables are drawn as cards in
+ * that stylesheet ({@code COMBINE_CSS} there).
  *
- * <p>The Data Matrix is drawn here, as inline SVG, rather than fetched from TEC-IT as the viewer
- * does: nothing in GAIA Desktop sends data off the machine. Every word comes from
+ * <p>The Data Matrix is drawn here, as inline SVG, rather than fetched from an online barcode
+ * service: nothing in GAIA Desktop sends data off the machine. Every word comes from
  * {@link UiStrings}, so the page reads in all 35 languages.
  *
  * <p>Pure functions returning a complete document; JavaFX-free, so testable without the toolkit.
@@ -53,7 +51,7 @@ public final class GaiaCombineReport {
 
     private static final DateTimeFormatter TS_HUMAN = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    /** One module of the drawn symbol, in pixels; a 24×24 symbol comes out near the viewer's image. */
+    /** One module of the drawn symbol, in pixels: a 24×24 symbol is 140 px with its quiet zone. */
     private static final int MODULE_PX = 5;
 
     /** A default file name for "save report as…", distinct from the parse report's. */
@@ -122,7 +120,7 @@ public final class GaiaCombineReport {
 
     // ---------------------------------------------------------------- sections
 
-    /** The viewer's Status and Scans rows, as the parse report's verdict bar. */
+    /** The status and scan count, as the parse report's verdict bar. */
     private static void verdict(StringBuilder h, List<Scan> scans, Combination combination, UiStrings s) {
         boolean conflict = !combination.conflicts().isEmpty();
         boolean bad = !scans.isEmpty() && !combination.encodable();
@@ -211,7 +209,7 @@ public final class GaiaCombineReport {
         ParseResult validation = combination.validation();
         String elementString = combination.elementString();
 
-        // The viewer's Element string / HRI / Length rows, as the parse report's key/value cards.
+        // The element string, HRI and length, as the parse report's key/value cards.
         heading(h, s.get("combine.combined"), null);
         h.append("<div class=\"grid\">\n");
         GaiaDesktopReport.cellWide(h, s.get("elementString"), code(ASCIIRevealerUtils.printable(elementString)));
@@ -257,8 +255,7 @@ public final class GaiaCombineReport {
     }
 
     /**
-     * The symbol, drawn only when the combination is encodable, with its HRI beneath as the
-     * viewer prints it. A Data Matrix of data the engine rejects is the one thing on this page
+     * The symbol, drawn only when the combination is encodable, with its HRI beneath. A Data Matrix of data the engine rejects is the one thing on this page
      * someone might print, so an invalid combination gets the reason instead.
      */
     private static void appendDataMatrix(StringBuilder h, List<Scan> scans, Combination combination, UiStrings s) {

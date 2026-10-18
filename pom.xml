@@ -78,7 +78,7 @@
                 <xerces.version>2.12.2</xerces.version>
         
         <junit.version>6.1.3</junit.version>
-        <!-- Test scope only; see the dependency comment. gaia-demo, which ships it, pins its own. -->
+        <!-- Test scope only; see the dependency comment. -->
         <zxing.version>3.5.4</zxing.version>
     </properties>
 

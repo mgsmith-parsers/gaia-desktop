@@ -20,8 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Tests for {@link GaiaCombineReport} — the Combine strip's report: the viewer's Multi GS1-128
- * Validator content, in GAIA Desktop's look.
+ * Tests for {@link GaiaCombineReport} — the Combine strip's report, in GAIA Desktop's look.
  *
  * <p>JavaFX-free: the report is a pure function of the scans, their combination, an optional
  * refusal, a theme and a catalogue. The combinations come from a real {@link ScanCombiner}, so a
@@ -85,8 +84,8 @@ class GaiaCombineReportTest {
     @Test
     @DisplayName("nothing in the page would make a network request")
     void fetchesNothing() {
-        // The viewer draws its Data Matrix as an <img> from TEC-IT's barcode service, which sends
-        // the element string off the machine. Here it is inline SVG. The SVG namespace is a URI
+        // An <img> from an online barcode service would send the element string off the machine.
+        // Here the Data Matrix is inline SVG. The SVG namespace is a URI
         // but not a fetch, so it is the one http reference allowed.
         String html = render(combiner(SSCC, CONTENTS, DATES)).replace("http://www.w3.org/2000/svg", "");
 
@@ -138,12 +137,12 @@ class GaiaCombineReportTest {
         // Combined: HRI, element string with FNC1 shown as {GS}, and length.
         assertTrue(html.contains("<h2>Combined</h2>"));
         assertTrue(html.contains("<div class=\"k\">HRI</div><div class=\"v\"><code>" + HRI + "</code></div>"),
-                "the HRI card, labelled as the viewer labels it");
+                "the HRI card");
         assertTrue(html.contains("<code>" + "00093123450000000012" + "0209312345000012" + "3724"
                 + "{GS}" + "15261231" + "10LOT1" + "</code>"), "the combined element string");
         assertTrue(html.contains("<div class=\"k\">Length</div><div class=\"v\">55 chars</div>"));
 
-        // The symbol, inline, in its white tile, with the HRI printed under it as the viewer does.
+        // The symbol, inline, in its white tile, with the HRI printed under it.
         assertTrue(html.contains("<div class=\"symbol\"><span class=\"tile\"><svg "));
         assertTrue(html.contains("<div class=\"hri\">" + HRI + "</div></span></div>"));
         assertFalse(html.contains("Not drawn"));

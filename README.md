@@ -68,7 +68,7 @@ translation was made from, and `python3 docs/check-i18n.py` checks them structur
 ## Build & run
 
 The core must be installed to `~/.m2` first — this module resolves `gaia:1.1.0` from the
-local repository, like `gaia-api` and `gaia-demo`.
+local repository.
 
 ```bash
 (cd gaia && mvn -q install -DskipTests)     # publish the core
@@ -382,8 +382,7 @@ carry an identical key set — a test enforces that.
 Coverage is in two layers, because **fallback is per key, not per file**:
 
 - the **shared report vocabulary** (31 keys — input, elements, errors, start time, …) is
-  translated in **all 35 languages**. It was lifted wholesale from `gaia-demo`'s
-  `GaiaHtmlReport`, which already carried a reviewed 35-language table;
+  translated in **all 35 languages**;
 - the **desktop chrome** (114 keys — menus, buttons, the builder, the options panel, the
   status line, the scanner status, the dialog bodies, the report's own layout labels) is
   translated in **all 35** as well.
@@ -452,24 +451,9 @@ change a value, and rebuild it.
 - **`model/ScanRecord`** — one capture: input, provenance, and the current result. Input and
   result are separate because re-parsing under new options replaces only the result.
 
-## Provenance
-
-Two files from `gaia-demo` were the templates:
-
-- `scanner/GaiaScannerDemo` → `scanner/ScannerService`. Same device wiring, minus the
-  parsing and printing — the service reports scans and lets the app decide.
-- `html/GaiaHtmlReportV2` → `html/GaiaDesktopReport`. Same design, with the theme pinned by
-  the caller instead of following `prefers-color-scheme`, a provenance line in the masthead
-  for scanner captures, and every label taken from the catalogue.
-- `html/GaiaHtmlReport`'s 35-language label table → `resources/i18n/ui_*.properties`,
-  extracted mechanically rather than retyped.
-
-They are copies, not a dependency: `gaia-demo` is a leaf module that nothing builds against,
-and the dependency direction in this repo runs one way into the core.
-
 ## Scanner configuration
 
-`src/main/resources/jpos.xml` is the JavaPOS device registry, copied from `gaia-demo`. Edit
+`src/main/resources/jpos.xml` is the JavaPOS device registry. Edit
 it to set the USB product ID for your scanner model. Common Zebra USB product IDs:
 
 | Model | PID | Model | PID |

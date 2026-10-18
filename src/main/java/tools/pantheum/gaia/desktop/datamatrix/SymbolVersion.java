@@ -15,10 +15,6 @@ package tools.pantheum.gaia.desktop.datamatrix;
  * {@link #getRegionRows()} x {@link #getRegionColumns()} of pure data, with its two-module L
  * finder and its clock track excluded, so a symbol holds
  * {@code (rows / (regionRows + 2)) * (columns / (regionColumns + 2))} regions.
- *
- * <p><b>Twin.</b> Copied verbatim from {@code gaia-demo}'s own Data Matrix decoder, package
- * line apart. The modules must not depend on one another (see {@code CLAUDE.md}), and this is
- * the same arrangement {@code scanner/Symbologies} uses. Fix a bug in both.
  */
 public final class SymbolVersion {
 

@@ -44,10 +44,7 @@ builder would reject.
 **Entry points:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (the JavaFX `Application`) and
 `tools.pantheum.gaia.desktop.Launcher` (the packaged jar's `Main-Class`).
 
-The module is a leaf: nothing depends on it, and it depends on no other downstream module. The
-two classes it started from were **copied** out of `gaia-demo` rather than depended on —
-`Symbologies` is still kept in step with its twin there by hand, and both carry a note saying
-so.
+The module is a leaf: nothing depends on it, and it depends on no other downstream module.
 
 ---
 
@@ -330,8 +327,7 @@ silent; close on another thread and the wrong apartment is uninitialized. Closin
 is the worst case, because JavaFX calls `OleInitialize` there and registers every window's drop
 target against it — a `CoUninitialize` on it kills drag and drop app-wide. This is JavaFX on
 Windows, not any one JavaFX version. `connect()` and `disconnect()` submit to that thread and
-wait, so `MainView` calls both from a short-lived background thread; the pattern is the viewer's
-`JposScannerSession`, where the drag-and-drop failure was first found.
+wait, so `MainView` calls both from a short-lived background thread.
 
 Two rules keep a misbehaving device from wedging the connection. **Teardown never stops early:**
 `closeQuietly` disables, releases and closes as separate steps, releases only when the claim is
@@ -423,12 +419,11 @@ useful the moment its first key lands. English is the contract: every key must e
 
 | Layer | Keys | Coverage |
 |---|---|---|
-| Shared report vocabulary, lifted from `gaia-demo`'s `GaiaHtmlReport` | 31 | all 35 languages |
+| Shared report vocabulary | 31 | all 35 languages |
 | Desktop chrome — menus, buttons, builder, options, status line, report layout, scanner status, dialog bodies | 114 | all 35 languages |
 
 Six of the shared terms (`generated`, `status`, `dlRole`, `interpretations`, `message`,
-`level`) are not used by this app's report. They are kept so the shared block stays a faithful
-copy of the demo vocabulary; the file header says so.
+`level`) are not used by this app's report. They are kept on purpose; the file header says so.
 
 ### The `--language` argument
 
@@ -538,7 +533,7 @@ today, because the real date was never written down.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tests, deliberately **free of the JavaFX toolkit**, which keeps them fast and headless. They
+198 tests, deliberately **free of the JavaFX toolkit**, which keeps them fast and headless. They
 cover the report renderer, the build logic and AI lookups, the `{GS}` conversion, the
 locale-derived defaults, both stores (including a `0x1D`-bearing round trip and deliberately
 damaged files), the symbology table, the scanner platform rule, the version stub, and the

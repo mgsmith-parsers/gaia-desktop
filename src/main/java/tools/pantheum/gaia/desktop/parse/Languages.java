@@ -6,9 +6,6 @@ import java.util.Locale;
 
 /**
  * Display names for the parser's error-message languages, for the language picker.
- *
- * <p>The native names mirror the demo module's {@code CliLanguage.displayName} so the
- * desktop and CLI front-ends label the same catalogue identically.
  */
 public final class Languages {
 
