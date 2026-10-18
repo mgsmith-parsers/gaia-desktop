@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+    Sample barcodes for GAIA Desktop: one per GS1 data carrier for Parse mode, and the three
+    GS1-128 barcodes of a legacy label for Combine mode. Every sample was run through the core
+    parser (and Combine's through ScanCombiner) and is valid; the element string, carrier and HRI
+    shown are what GAIA reported. Change a sample only after checking it the same way.
+
+    The barcode images are drawn by TEC-IT's online barcode service, so opening this page sends
+    the sample data to barcode.tec-it.com. FNC1 is written \F for TEC-IT (translate-esc=on), and
+    {GS} for GAIA Desktop's input bar.
+-->
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GAIA Desktop নমুনা</title>
+  <style>
+    :root {
+      --bg: #fbfbf9; --fg: #1d1f21; --muted: #5d6166; --rule: #dcdcd6;
+      --card: #ffffff; --link: #0b5cad; --accent: #2f7d4f; --chip: #eef3ef; --gs: #b4561b;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #16181a; --fg: #e6e6e3; --muted: #9da1a6; --rule: #33363a;
+        --card: #1e2124; --link: #7db4f0; --accent: #6cc28f; --chip: #23302a; --gs: #f0a36b;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--fg);
+      font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+    }
+    main { max-width: 64rem; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
+    h1 { font-size: 2rem; margin: 0 0 .25rem; }
+    h2 { font-size: 1.3rem; margin: 2.75rem 0 .5rem; padding-bottom: .35rem; border-bottom: 1px solid var(--rule); }
+    h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+    p { margin: .5rem 0; }
+    .lede, .note { color: var(--muted); }
+    .note { font-size: .9rem; }
+    a { color: var(--link); }
+    code, .mono { font: .88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem; display: flex; flex-direction: column; }
+    .symbol { background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center;
+              min-height: 9rem; padding: .75rem; margin-bottom: .8rem; }
+    .symbol img { max-width: 100%; max-height: 11rem; image-rendering: pixelated; }
+    .chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .6rem; }
+    .chip { font-size: .75rem; background: var(--chip); color: var(--accent); border-radius: 999px; padding: .05rem .55rem; }
+    dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .3rem .75rem; font-size: .9rem; }
+    dt { color: var(--muted); }
+    dd { margin: 0; min-width: 0; }
+    .aim { color: var(--accent); font-weight: 600; }
+    .gs { color: var(--gs); font-weight: 600; }
+    button.copy { margin-top: .8rem; align-self: flex-start; font: inherit; font-size: .85rem; cursor: pointer;
+                  background: transparent; color: var(--link); border: 1px solid var(--rule); border-radius: 6px; padding: .2rem .65rem; }
+    button.copy:hover { border-color: var(--link); }
+    .combine { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .arrow { text-align: center; color: var(--muted); font-size: 1.5rem; margin: .75rem 0; }
+    .result { max-width: 30rem; margin: 0 auto; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>GAIA Desktop নমুনা</h1>
+  <p class="lede">প্রতিটি GS1 ডেটা বাহকের জন্য একটি করে বারকোড, এবং সংযোজনের জন্য একটি প্রচলিত লেবেল। Zebra স্ক্যানার দিয়ে সরাসরি স্ক্রিন থেকে এগুলো স্ক্যান করুন, অথবা একটি উপাদান স্ট্রিং GAIA Desktop-এর ইনপুট বারে কপি করুন।</p>
+  <p class="note">প্রতিটি উপাদান স্ট্রিং তার AIM Code ID দিয়ে শুরু হয়, যা GAIA-কে জানায় স্ক্যানটি কোন ডেটা বাহক থেকে এসেছে। <span class="gs">{GS}</span> বলতে FNC1 বোঝায়, যা পরিবর্তনশীল দৈর্ঘ্যের AI-এর পরের বিভাজক; ইনপুট বার এটিকে আসল অক্ষরে রূপান্তর করে। বারকোডের ছবিগুলো আঁকে <a href="https://barcode.tec-it.com">TEC-IT-এর অনলাইন বারকোড জেনারেটর</a>, তাই এই পৃষ্ঠা খুললে নমুনা ডেটা সেখানে পাঠানো হয়। বেশি ব্যবহারের সময় বারকোডের বদলে অনুরোধ-সীমার একটি বিজ্ঞপ্তি দেখাতে পারে; পরে আবার লোড করুন।</p>
+
+  <h2>বিশ্লেষণ</h2>
+  <p><strong>বিশ্লেষণ</strong> মোডে প্রতিটি স্ক্যান বা পেস্ট তার Application Identifier-গুলোতে ভাগ করে পড়া হয়।</p>
+  <div class="grid" id="parse"></div>
+
+  <h2>সংযোজন</h2>
+  <p>একটি প্রচলিত লজিস্টিকস লেবেল তার ডেটা কয়েকটি GS1-128 বারকোডে রাখে। <strong>সংযোজন</strong> মোডে এগুলোর সর্বোচ্চ তিনটি স্ক্যান করুন, আর GAIA Desktop তাদের AI-গুলোকে একটি GS1 DataMatrix যে একক উপাদান স্ট্রিং বহন করত তাতে যুক্ত করে, এবং পুরোটা একসঙ্গে যাচাই করে। এই তিনটি ক্রমানুসারে স্ক্যান করুন:</p>
+  <div class="combine" id="combine-in"></div>
+  <div class="arrow" aria-hidden="true">↓</div>
+  <div class="result" id="combine-out"></div>
+</main>
+
+<script>
+  // FNC1 as it is written in each place.
+  const GS = '{GS}';
+
+  // Every sample here was checked against the GAIA parser: valid, with this carrier and HRI.
+  const parseSamples = [
+    { carrier: 'GS1-128', aim: ']C1', type: 'রৈখিক', tec: 'GS1-128',
+      data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
+      hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
+    { carrier: 'GS1 DataMatrix', aim: ']d2', type: '2D', tec: 'GS1DataMatrix',
+      data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
+      hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
+    { carrier: 'GS1 QR Code', aim: ']Q3', type: '2D', tec: 'GS1QRCode',
+      data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
+      hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
+    { carrier: 'GS1 DotCode', aim: ']J1', type: '2D', tec: 'DotCode', fnc1First: true,
+      data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
+      hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
+    { carrier: 'GS1 DataBar Expanded', aim: ']e0', type: 'রৈখিক', tec: 'GS1DataBarExpanded',
+      data: '0109506000134352' + '3103000750' + '15270630' + '10ABC123',
+      hri: '(01)09506000134352 (3103)000750 (15)270630 (10)ABC123' },
+    { carrier: 'QR Code — GS1 Digital Link', aim: ']Q1', type: '2D', tec: 'QRCode',
+      data: 'https://id.gs1.org/01/09506000134352/10/ABC123/21/SN0001?17=271231',
+      hri: '(01)09506000134352 (10)ABC123 (21)SN0001 (17)271231' },
+    { carrier: 'EAN-13', aim: ']E0', type: 'রৈখিক', tec: 'EAN13',
+      data: '9506000134352',
+      hri: '(01)09506000134352', note: 'শুধু একটি GTIN, AI (01) হিসেবে পড়া হয়।' },
+    { carrier: 'EAN-8', aim: ']E4', type: 'রৈখিক', tec: 'EAN8',
+      data: '95010014',
+      hri: '(01)00000095010014', note: 'শুধু একটি GTIN-8, ১৪ অঙ্কে পূরণ করে AI (01) হিসেবে পড়া হয়।' },
+    // TEC-IT has no ITF-14 symbology; ITF-14 is Interleaved 2 of 5 holding 14 digits.
+    { carrier: 'ITF-14', aim: ']I1', type: 'রৈখিক', tec: 'Code25IL',
+      data: '19506000134359',
+      hri: '(01)19506000134359', note: 'শুধু একটি GTIN-14, AI (01) হিসেবে পড়া হয়।' },
+  ];
+
+  const combineScans = [
+    { carrier: 'GS1-128', aim: ']C1', tec: 'GS1-128', label: 'বারকোড 1 — প্যালেটের SSCC',
+      data: '00095060001234567893', hri: '(00)095060001234567893' },
+    { carrier: 'GS1-128', aim: ']C1', tec: 'GS1-128', label: 'বারকোড 2 — এর বিষয়বস্তু ও সংখ্যা',
+      data: '0209506000134352' + '3724', hri: '(02)09506000134352 (37)24' },
+    { carrier: 'GS1-128', aim: ']C1', tec: 'GS1-128', label: 'বারকোড 3 — সর্বোত্তম ব্যবহারের তারিখ ও ব্যাচ',
+      data: '15271231' + '10ABC123', hri: '(15)271231 (10)ABC123' },
+  ];
+
+  // The combination GAIA Desktop produced from the three: FNC1 after (37), the one
+  // variable-length AI that is not last.
+  const combined = { carrier: 'GS1 DataMatrix', aim: ']d2', type: '2D', tec: 'GS1DataMatrix',
+    label: 'সংযোজিত',
+    data: '00095060001234567893' + '0209506000134352' + '3724' + GS + '15271231' + '10ABC123',
+    hri: '(00)095060001234567893 (02)09506000134352 (37)24 (15)271231 (10)ABC123' };
+
+  function tecUrl(s) {
+    // TEC-IT has no GS1 DotCode symbology: a DotCode becomes GS1 DotCode by starting with FNC1.
+    const data = (s.fnc1First ? '\\F' : '') + s.data.split(GS).join('\\F');
+    return 'https://barcode.tec-it.com/barcode.ashx?data=' + encodeURIComponent(data) +
+           '&code=' + encodeURIComponent(s.tec) + '&translate-esc=on&dpi=150';
+  }
+
+  function el(tag, attrs, ...children) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs || {})) e.setAttribute(k, v);
+    for (const c of children) e.append(c);
+    return e;
+  }
+
+  // The element string with its AIM Code ID and every {GS} picked out.
+  function elementString(s) {
+    const out = el('span', { class: 'mono' }, el('span', { class: 'aim' }, s.aim));
+    s.data.split(GS).forEach((part, i) => {
+      if (i > 0) out.append(el('span', { class: 'gs' }, GS));
+      out.append(part);
+    });
+    return out;
+  }
+
+  function card(s) {
+    const c = el('div', { class: 'card' });
+    c.append(el('div', { class: 'symbol' },
+      el('img', { src: tecUrl(s), alt: s.carrier + ' – বারকোড: ' + s.hri, loading: 'lazy' })));
+    c.append(el('h3', {}, s.label || s.carrier));
+    const chips = el('div', { class: 'chips' });
+    if (s.label) chips.append(el('span', { class: 'chip' }, s.carrier));
+    chips.append(el('span', { class: 'chip' }, s.aim));
+    if (s.type) chips.append(el('span', { class: 'chip' }, s.type));
+    c.append(chips);
+    c.append(el('dl', {},
+      el('dt', {}, 'ডেটা বাহক'), el('dd', {}, s.carrier + ' (' + s.aim + ')'),
+      el('dt', {}, 'উপাদান স্ট্রিং'), el('dd', {}, elementString(s)),
+      el('dt', {}, 'HRI'), el('dd', {}, el('span', { class: 'mono' }, s.hri))));
+    if (s.note) c.append(el('p', { class: 'note' }, s.note));
+    const b = el('button', { class: 'copy', type: 'button' }, 'GAIA Desktop-এর জন্য কপি করুন');
+    b.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(s.aim + s.data); b.textContent = 'কপি হয়েছে'; }
+      catch (e) { b.textContent = 'কপি করা যায়নি'; }
+      setTimeout(() => { b.textContent = 'GAIA Desktop-এর জন্য কপি করুন'; }, 1500);
+    });
+    c.append(b);
+    return c;
+  }
+
+  parseSamples.forEach(s => document.getElementById('parse').append(card(s)));
+  combineScans.forEach(s => document.getElementById('combine-in').append(card(s)));
+  document.getElementById('combine-out').append(card(combined));
+</script>
+</body>
+</html>
