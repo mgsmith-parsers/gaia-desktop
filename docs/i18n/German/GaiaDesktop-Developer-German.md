@@ -46,9 +46,6 @@ der Builder ablehnen würde.
 `tools.pantheum.gaia.desktop.Launcher` (die `Main-Class` des paketierten JARs).
 
 Das Modul ist ein Blatt: Nichts hängt von ihm ab, und es hängt von keinem anderen nachgelagerten Modul ab.
-Die beiden Klassen, mit denen es begann, wurden aus `gaia-demo` **kopiert**, statt sie als Abhängigkeit
-einzubinden — `Symbologies` wird noch immer von Hand mit seinem Zwilling dort abgeglichen, und beide
-tragen einen Hinweis darauf.
 
 ---
 
@@ -429,12 +426,12 @@ existieren.
 
 | Schicht | Schlüssel | Abdeckung |
 |---|---|---|
-| Gemeinsames Berichtsvokabular, übernommen aus `GaiaHtmlReport` in `gaia-demo` | 31 | alle 35 Sprachen |
+| Gemeinsames Berichtsvokabular | 31 | alle 35 Sprachen |
 | Desktop-Oberfläche — Menüs, Schaltflächen, Builder, Optionen, Statuszeile, Berichtslayout, Scannerstatus, Dialogtexte | 114 | alle 35 Sprachen |
 
 Sechs der gemeinsamen Begriffe (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`)
-verwendet der Bericht dieser App nicht. Sie bleiben erhalten, damit der gemeinsame Block eine getreue Kopie
-des Demo-Vokabulars bleibt; der Dateikopf sagt das.
+verwendet der Bericht dieser App nicht.
+Sie bleiben bewusst erhalten; der Dateikopf sagt das.
 
 ### Das Argument `--language`
 

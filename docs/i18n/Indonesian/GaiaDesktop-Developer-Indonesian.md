@@ -46,9 +46,6 @@ akan ditolak builder.
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` dari jar yang dikemas).
 
 Modul ini adalah daun: tidak ada yang bergantung padanya, dan modul ini tidak bergantung pada modul hilir lain.
-Dua kelas yang menjadi titik awalnya **disalin** dari `gaia-demo` alih-alih dijadikan dependensi —
-`Symbologies` masih diselaraskan secara manual dengan kembarannya di sana, dan keduanya membawa catatan yang
-menyatakan hal itu.
 
 ---
 
@@ -422,12 +419,12 @@ berguna sejak kunci pertamanya masuk. Bahasa Inggris adalah kontraknya: setiap k
 
 | Lapisan | Kunci | Cakupan |
 |---|---|---|
-| Kosakata laporan bersama, diambil dari `GaiaHtmlReport` milik `gaia-demo` | 31 | semua 35 bahasa |
+| Kosakata laporan bersama | 31 | semua 35 bahasa |
 | Kerangka desktop — menu, tombol, builder, opsi, baris status, tata letak laporan, status pemindai, isi dialog | 114 | semua 35 bahasa |
 
 Enam istilah bersama (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) tidak dipakai oleh
-laporan aplikasi ini. Istilah-istilah itu dipertahankan agar blok bersama tetap menjadi salinan setia kosakata
-demo; kepala berkas menyatakan hal itu.
+laporan aplikasi ini.
+Istilah-istilah itu sengaja dipertahankan; kepala berkas menyatakan hal itu.
 
 ### Argumen `--language`
 

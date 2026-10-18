@@ -45,10 +45,7 @@ avvisa.
 **Startpunkter:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (JavaFX-`Application`) och
 `tools.pantheum.gaia.desktop.Launcher` (den paketerade jar-filens `Main-Class`).
 
-Modulen är ett löv: inget är beroende av den, och den är inte beroende av någon annan nedströmsmodul. De två
-klasser den började från **kopierades** från `gaia-demo` i stället för att användas som beroende —
-`Symbologies` hålls fortfarande för hand i takt med sin tvilling där, och båda har en anteckning som säger
-det.
+Modulen är ett löv: inget är beroende av den, och den är inte beroende av någon annan nedströmsmodul.
 
 ---
 
@@ -409,12 +406,12 @@ från det ögonblick dess första nyckel kommer på plats. Engelska är kontrakt
 
 | Lager | Nycklar | Täckning |
 |---|---|---|
-| Delat rapportordförråd, hämtat från `gaia-demo`:s `GaiaHtmlReport` | 31 | alla 35 språk |
+| Delat rapportordförråd | 31 | alla 35 språk |
 | Skrivbordsramverk — menyer, knappar, byggare, alternativ, statusrad, rapportlayout, skannerstatus, dialogtexter | 114 | alla 35 språk |
 
 Sex av de delade termerna (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) används
-inte av den här appens rapport. De behålls så att det delade blocket förblir en trogen kopia av
-demoordförrådet; filens huvud säger det.
+inte av den här appens rapport.
+De behålls avsiktligt; filens huvud säger det.
 
 ### Argumentet `--language`
 

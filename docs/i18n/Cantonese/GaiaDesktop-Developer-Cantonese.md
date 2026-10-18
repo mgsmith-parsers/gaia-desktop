@@ -37,7 +37,7 @@ tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21
 
 **入口點：** `tools.pantheum.gaia.desktop.GaiaDesktopApp`（JavaFX 嘅 `Application`）同 `tools.pantheum.gaia.desktop.Launcher`（封裝好嘅 jar 嘅 `Main-Class`）。
 
-呢個模組係一塊葉：冇嘢依賴佢，佢亦唔依賴任何其他下游模組。佢最初嘅兩個類別係由 `gaia-demo` **複製**過嚟，而唔係當依賴引用——`Symbologies` 到而家仲係靠人手同嗰邊嘅孿生類別保持一致，兩個都有註釋講明呢點。
+呢個模組係一塊葉：冇嘢依賴佢，佢亦唔依賴任何其他下游模組。
 
 ---
 
@@ -223,10 +223,11 @@ Zebra 嘅 JavaPOS 服務淨係出 Windows 版，而喺其他平台冇嘢會早�
 
 | 層 | 鍵數 | 覆蓋範圍 |
 |---|---|---|
-| 共用報告詞彙，攞自 `gaia-demo` 嘅 `GaiaHtmlReport` | 31 | 全部 35 種語言 |
+| 共用報告詞彙 | 31 | 全部 35 種語言 |
 | 桌面外框 — 選單、按鈕、建立器、選項、狀態列、報告版面、掃描器狀態、對話框內文 | 114 | 全部 35 種語言 |
 
-共用詞語入面有六個（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）呢個程式嘅報告冇用到。保留佢哋係為咗等共用區塊忠實咁複製示範程式嘅詞彙；檔頭有講明。
+共用詞語入面有六個（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）呢個程式嘅報告冇用到。
+佢哋係刻意保留嘅；檔頭有講明。
 
 ### `--language` 參數
 

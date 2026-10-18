@@ -45,9 +45,7 @@ compositor rejeitaria.
 **Pontos de entrada:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (a `Application` JavaFX) e
 `tools.pantheum.gaia.desktop.Launcher` (a `Main-Class` do jar empacotado).
 
-O módulo é uma folha: nada depende dele, e ele não depende de nenhum outro módulo a jusante. As duas classes
-de que partiu foram **copiadas** de `gaia-demo` em vez de usadas como dependência — `Symbologies` continua a
-ser mantida à mão em sintonia com a sua gémea de lá, e ambas têm uma nota que o diz.
+O módulo é uma folha: nada depende dele, e ele não depende de nenhum outro módulo a jusante.
 
 ---
 
@@ -420,12 +418,12 @@ que chega a sua primeira chave. O inglês é o contrato: todas as chaves têm de
 
 | Camada | Chaves | Cobertura |
 |---|---|---|
-| Vocabulário partilhado do relatório, retirado de `GaiaHtmlReport` de `gaia-demo` | 31 | todos os 35 idiomas |
+| Vocabulário partilhado do relatório | 31 | todos os 35 idiomas |
 | Moldura do desktop — menus, botões, compositor, opções, linha de estado, paginação do relatório, estado do leitor, textos das caixas de diálogo | 114 | todos os 35 idiomas |
 
 Seis dos termos partilhados (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) não são
-usados pelo relatório desta aplicação. São mantidos para que o bloco partilhado continue a ser uma cópia fiel
-do vocabulário da demo; o cabeçalho do ficheiro di-lo.
+usados pelo relatório desta aplicação.
+São mantidos de propósito; o cabeçalho do ficheiro di-lo.
 
 ### O argumento `--language`
 

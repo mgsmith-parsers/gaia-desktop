@@ -43,9 +43,7 @@ kichaguzi cha mjenzi kinasoma sajili ya msingi yenyewe, kwa hivyo hakiwezi kutoa
 **Sehemu za kuingia:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (`Application` ya JavaFX) na
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` ya jar iliyofungashwa).
 
-Moduli ni jani: hakuna kinachoitegemea, na yenyewe haitegemei moduli nyingine yoyote ya chini. Madarasa mawili iliyoanzia
-**yalinakiliwa** kutoka `gaia-demo` badala ya kuitegemea — `Symbologies` bado inawekwa sawa na pacha wake huko kwa mkono,
-na yote mawili yana dokezo linalosema hivyo.
+Moduli ni jani: hakuna kinachoitegemea, na yenyewe haitegemei moduli nyingine yoyote ya chini.
 
 ---
 
@@ -402,12 +400,12 @@ manufaa tangu funguo yake ya kwanza inapofika. Kiingereza ndio mkataba: kila fun
 
 | Tabaka | Funguo | Ufikiaji |
 |---|---|---|
-| Msamiati wa ripoti unaoshirikiwa, uliochukuliwa kutoka `GaiaHtmlReport` ya `gaia-demo` | 31 | lugha zote 35 |
+| Msamiati wa ripoti unaoshirikiwa | 31 | lugha zote 35 |
 | Fremu ya eneo-kazi — menyu, vitufe, mjenzi, machaguo, mstari wa hali, mpangilio wa ripoti, hali ya skana, maudhui ya vidirisha | 114 | lugha zote 35 |
 
 Istilahi sita zinazoshirikiwa (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) hazitumiki na
-ripoti ya programu hii. Zinabakizwa ili sehemu inayoshirikiwa ibaki nakala aminifu ya msamiati wa demo; kichwa cha faili
-kinasema hivyo.
+ripoti ya programu hii.
+Zinabakizwa kwa makusudi; kichwa cha faili kinasema hivyo.
 
 ### Hoja ya `--language`
 

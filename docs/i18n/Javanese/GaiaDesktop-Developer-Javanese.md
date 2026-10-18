@@ -43,9 +43,7 @@ ing builder maca registri duweke inti dhewe, mula ora bisa nawakake AI sing baka
 **Titik mlebu:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (`Application` JavaFX) lan
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` saka jar sing wis dibungkus).
 
-Modul iki godhong: ora ana sing gumantung marang modul iki, lan modul iki ora gumantung marang modul hilir liyane. Rong
-kelas sing dadi wiwitane **disalin** saka `gaia-demo` tinimbang didadekake dependensi — `Symbologies` isih dijaga supaya
-padha karo kembarane ing kana kanthi tangan, lan kekarone nggawa cathetan sing nyebutake bab iku.
+Modul iki godhong: ora ana sing gumantung marang modul iki, lan modul iki ora gumantung marang modul hilir liyane.
 
 ---
 
@@ -391,12 +389,12 @@ wiwit kunci pisanane teka. Basa Inggris iku kontrake: saben kunci kudu ana ing k
 
 | Lapisan | Kunci | Jangkoan |
 |---|---|---|
-| Kosakata laporan bebarengan, dijupuk saka `GaiaHtmlReport` duweke `gaia-demo` | 31 | kabeh 35 basa |
+| Kosakata laporan bebarengan | 31 | kabeh 35 basa |
 | Kerangka desktop — menu, tombol, builder, pilihan, baris status, tata letak laporan, status scanner, isi dialog | 114 | kabeh 35 basa |
 
 Enem istilah bebarengan (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) ora dienggo laporan
-aplikasi iki. Istilah-istilah iku disimpen supaya blok bebarengan tetep dadi salinan setya saka kosakata demo; sirah
-berkas nyebutake bab iku.
+aplikasi iki.
+Istilah-istilah iku sengaja disimpen; sirah berkas nyebutake bab iku.
 
 ### Argumen `--language`
 

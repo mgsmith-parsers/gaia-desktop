@@ -45,8 +45,6 @@ reddedeceği bir AI'yı sunamaz.
 `tools.pantheum.gaia.desktop.Launcher` (paketlenmiş jar'ın `Main-Class`'ı).
 
 Modül bir yapraktır: hiçbir şey ona bağımlı değildir ve o da başka hiçbir aşağı akış modülüne bağımlı değildir.
-Başlangıç noktası olan iki sınıf, bağımlılık olarak alınmak yerine `gaia-demo`'dan **kopyalanmıştır** —
-`Symbologies` hâlâ oradaki ikiziyle elle uyumlu tutulur ve ikisi de bunu belirten bir not taşır.
 
 ---
 
@@ -410,12 +408,12 @@ itibaren işe yaramasını sağlayan budur. Sözleşme İngilizcedir: her anahta
 
 | Katman | Anahtar | Kapsam |
 |---|---|---|
-| Ortak rapor sözcük dağarcığı, `gaia-demo`'nun `GaiaHtmlReport`'undan alınmış | 31 | 35 dilin tümü |
+| Ortak rapor sözcük dağarcığı | 31 | 35 dilin tümü |
 | Masaüstü çerçevesi — menüler, düğmeler, oluşturucu, seçenekler, durum satırı, rapor düzeni, tarayıcı durumu, iletişim kutusu metinleri | 114 | 35 dilin tümü |
 
 Ortak terimlerden altısı (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) bu uygulamanın
-raporunda kullanılmaz. Ortak blok demo sözcük dağarcığının sadık bir kopyası olarak kalsın diye tutulmuşlardır;
-dosya başlığı bunu belirtir.
+raporunda kullanılmaz.
+Bilerek tutulmuşlardır; dosya başlığı bunu belirtir.
 
 ### `--language` argümanı
 

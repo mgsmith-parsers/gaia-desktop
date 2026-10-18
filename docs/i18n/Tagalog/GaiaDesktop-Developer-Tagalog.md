@@ -44,9 +44,7 @@ ng core, kaya hindi ito makapag-aalok ng AI na tatanggihan ng builder.
 **Mga entry point:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (ang JavaFX `Application`) at
 `tools.pantheum.gaia.desktop.Launcher` (ang `Main-Class` ng naka-package na jar).
 
-Isang dahon ang module: walang umaasa rito, at hindi ito umaasa sa ibang downstream module. Ang dalawang class na
-pinagmulan nito ay **kinopya** mula sa `gaia-demo` sa halip na gawing dependency — ang `Symbologies` ay pinananatili pa
-ring kapareho ng kambal nito roon nang mano-mano, at pareho silang may tala na nagsasabi nito.
+Isang dahon ang module: walang umaasa rito, at hindi ito umaasa sa ibang downstream module.
 
 ---
 
@@ -413,12 +411,12 @@ dumating ang unang key nito. Ingles ang kontrata: dapat umiiral doon ang bawat k
 
 | Layer | Mga key | Saklaw |
 |---|---|---|
-| Pinagsasaluhang bokabularyo ng ulat, hinango mula sa `GaiaHtmlReport` ng `gaia-demo` | 31 | lahat ng 35 wika |
+| Pinagsasaluhang bokabularyo ng ulat | 31 | lahat ng 35 wika |
 | Balangkas ng desktop — mga menu, button, builder, opsyon, status line, layout ng ulat, estado ng scanner, nilalaman ng dialog | 114 | lahat ng 35 wika |
 
 Anim sa mga pinagsasaluhang termino (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) ang hindi
-ginagamit ng ulat ng app na ito. Itinatabi sila para manatiling tapat na kopya ng bokabularyo ng demo ang
-pinagsasaluhang bloke; sinasabi ito ng header ng file.
+ginagamit ng ulat ng app na ito.
+Sadyang itinatabi sila; sinasabi ito ng header ng file.
 
 ### Ang argumentong `--language`
 

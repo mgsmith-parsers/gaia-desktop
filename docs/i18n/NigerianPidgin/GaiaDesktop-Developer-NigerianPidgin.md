@@ -43,9 +43,7 @@ builder picker dey read di core im own registry, so e no fit offer AI wey di bui
 **Entry points:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (di JavaFX `Application`) and
 `tools.pantheum.gaia.desktop.Launcher` (di packaged jar im `Main-Class`).
 
-Di module na leaf: nothing depend on am, and e no depend on any other downstream module. Di two classes wey e start
-from, dem **copy** dem comot from `gaia-demo` instead to depend on am — `Symbologies` still dey follow im twin for dere
-by hand, and both of dem carry note wey talk am.
+Di module na leaf: nothing depend on am, and e no depend on any other downstream module.
 
 ---
 
@@ -390,11 +388,12 @@ im first key land. English na di contract: every key must dey dere.
 
 | Layer | Keys | Coverage |
 |---|---|---|
-| Shared report vocabulary, wey dem carry from `gaia-demo` `GaiaHtmlReport` | 31 | all 35 languages |
+| Shared report vocabulary | 31 | all 35 languages |
 | Desktop frame — menus, buttons, builder, options, status line, report layout, scanner status, dialog bodies | 114 | all 35 languages |
 
 Six of di shared terms (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) no dey used for dis app
-report. Dem keep dem so di shared block go remain correct copy of di demo vocabulary; di file header talk am.
+report.
+Dem keep dem on purpose; di file header talk am.
 
 ### Di `--language` argument
 

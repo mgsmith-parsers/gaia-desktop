@@ -44,9 +44,7 @@ cibiya da kanta, don haka ba zai iya bayar da AI da mai ginawa zai ƙi ba.
 **Wuraren shiga:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (`Application` na JavaFX) da
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` na jar da aka tattara).
 
-Module ɗin ganye ne: babu abin da ya dogara da shi, kuma shi ma bai dogara da wani module na ƙasa ba. Azuzuwa biyu
-da ya fara daga gare su an **kwafe** su daga `gaia-demo` maimakon a dogara da shi — har yanzu ana daidaita
-`Symbologies` da tagwayensa a can da hannu, kuma dukansu suna da bayanin da ya faɗi haka.
+Module ɗin ganye ne: babu abin da ya dogara da shi, kuma shi ma bai dogara da wani module na ƙasa ba.
 
 ---
 
@@ -398,12 +396,12 @@ amfani daga lokacin da maɓallinsa na farko ya sauka. Turanci ne yarjejeniyar: d
 
 | Layi | Maɓallai | Ɗaukar hoto |
 |---|---|---|
-| Ƙamus na rahoto da aka raba, an ɗauko daga `GaiaHtmlReport` na `gaia-demo` | 31 | duk harsuna 35 |
+| Ƙamus na rahoto da aka raba | 31 | duk harsuna 35 |
 | Firam ɗin tebur — menus, maɓallai, mai ginawa, zaɓuɓɓuka, layin matsayi, tsarin rahoto, matsayin sikana, jikin akwatin magana | 114 | duk harsuna 35 |
 
 Shida daga cikin kalmomin da aka raba (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) ba a
-amfani da su a rahoton wannan manhaja ba. An ajiye su don toshe da aka raba ya kasance kwafin aminci na ƙamus na demo;
-kan fayil ɗin ya faɗi haka.
+amfani da su a rahoton wannan manhaja ba.
+An ajiye su da gangan; kan fayil ɗin ya faɗi haka.
 
 ### Hujjar `--language`
 

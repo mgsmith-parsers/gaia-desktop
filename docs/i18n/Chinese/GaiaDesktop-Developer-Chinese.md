@@ -37,7 +37,7 @@ tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21
 
 **入口点：** `tools.pantheum.gaia.desktop.GaiaDesktopApp`（JavaFX 的 `Application`）和 `tools.pantheum.gaia.desktop.Launcher`（打包后 jar 的 `Main-Class`）。
 
-本模块是一个叶子模块：没有任何模块依赖它，它也不依赖任何其他下游模块。它最初的两个类是从 `gaia-demo` 中**复制**过来的，而不是作为依赖引用——`Symbologies` 至今仍靠手工与那边的孪生类保持同步，两者都带有说明这一点的注释。
+本模块是一个叶子模块：没有任何模块依赖它，它也不依赖任何其他下游模块。
 
 ---
 
@@ -223,10 +223,11 @@ Zebra 只为 Windows 提供其 JavaPOS 服务，而在其他平台上不会有�
 
 | 层 | 键数 | 覆盖范围 |
 |---|---|---|
-| 共享的报告词汇，取自 `gaia-demo` 的 `GaiaHtmlReport` | 31 | 全部 35 种语言 |
+| 共享的报告词汇 | 31 | 全部 35 种语言 |
 | 桌面界面外框——菜单、按钮、构建器、选项、状态行、报告布局、扫描器状态、对话框正文 | 114 | 全部 35 种语言 |
 
-其中六个共享术语（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）并未被本应用的报告使用。保留它们是为了让共享部分忠实复制演示程序的词汇；文件头中对此有说明。
+其中六个共享术语（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）并未被本应用的报告使用。
+保留它们是有意为之；文件头中对此有说明。
 
 ### `--language` 参数
 

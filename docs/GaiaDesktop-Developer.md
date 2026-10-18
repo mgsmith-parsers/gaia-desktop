@@ -44,10 +44,7 @@ builder would reject.
 **Entry points:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (the JavaFX `Application`) and
 `tools.pantheum.gaia.desktop.Launcher` (the packaged jar's `Main-Class`).
 
-The module is a leaf: nothing depends on it, and it depends on no other downstream module. The
-two classes it started from were **copied** out of `gaia-demo` rather than depended on —
-`Symbologies` is still kept in step with its twin there by hand, and both carry a note saying
-so.
+The module is a leaf: nothing depends on it, and it depends on no other downstream module.
 
 ---
 
@@ -423,12 +420,11 @@ useful the moment its first key lands. English is the contract: every key must e
 
 | Layer | Keys | Coverage |
 |---|---|---|
-| Shared report vocabulary, lifted from `gaia-demo`'s `GaiaHtmlReport` | 31 | all 35 languages |
+| Shared report vocabulary | 31 | all 35 languages |
 | Desktop chrome — menus, buttons, builder, options, status line, report layout, scanner status, dialog bodies | 114 | all 35 languages |
 
 Six of the shared terms (`generated`, `status`, `dlRole`, `interpretations`, `message`,
-`level`) are not used by this app's report. They are kept so the shared block stays a faithful
-copy of the demo vocabulary; the file header says so.
+`level`) are not used by this app's report. They are kept on purpose; the file header says so.
 
 ### The `--language` argument
 

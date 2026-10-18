@@ -44,9 +44,7 @@ nástroj pro sestavení odmítl.
 **Vstupní body:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (JavaFX `Application`) a
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` zabaleného jaru).
 
-Modul je list: nic na něm nezávisí a sám nezávisí na žádném jiném navazujícím modulu. Dvě třídy, ze kterých
-vzešel, byly z `gaia-demo` **zkopírovány**, místo aby se použily jako závislost — `Symbologies` se dodnes ručně
-udržuje v souladu se svým dvojčetem tam a obě nesou poznámku, která to říká.
+Modul je list: nic na něm nezávisí a sám nezávisí na žádném jiném navazujícím modulu.
 
 ---
 
@@ -401,12 +399,12 @@ kdy dorazí jeho první klíč. Angličtina je smlouva: každý klíč v ní mus
 
 | Vrstva | Klíče | Pokrytí |
 |---|---|---|
-| Sdílený slovník sestavy, převzatý z `GaiaHtmlReport` v `gaia-demo` | 31 | všech 35 jazyků |
+| Sdílený slovník sestavy | 31 | všech 35 jazyků |
 | Rámec aplikace — nabídky, tlačítka, nástroj pro sestavení, možnosti, stavový řádek, rozvržení sestavy, stav skeneru, texty dialogů | 114 | všech 35 jazyků |
 
 Šest sdílených pojmů (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) sestava této
-aplikace nepoužívá. Jsou zachovány, aby sdílený blok zůstal věrnou kopií slovníku dema; hlavička souboru to
-uvádí.
+aplikace nepoužívá.
+Jsou zachovány záměrně; hlavička souboru to uvádí.
 
 ### Argument `--language`
 

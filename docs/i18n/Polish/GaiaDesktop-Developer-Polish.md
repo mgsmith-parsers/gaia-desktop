@@ -45,10 +45,7 @@ by odrzucił.
 **Punkty wejścia:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (`Application` JavaFX) oraz
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` spakowanego jara).
 
-Moduł jest liściem: nic od niego nie zależy, a on nie zależy od żadnego innego modułu dalej w łańcuchu. Dwie
-klasy, od których się zaczął, zostały **skopiowane** z `gaia-demo` zamiast użycia ich jako zależności —
-`Symbologies` jest nadal ręcznie utrzymywana w zgodzie ze swoją bliźniaczką stamtąd, a obie mają notatkę,
-która o tym mówi.
+Moduł jest liściem: nic od niego nie zależy, a on nie zależy od żadnego innego modułu dalej w łańcuchu.
 
 ---
 
@@ -414,12 +411,12 @@ nim istnieć.
 
 | Warstwa | Klucze | Pokrycie |
 |---|---|---|
-| Wspólne słownictwo raportu, przejęte z `GaiaHtmlReport` w `gaia-demo` | 31 | wszystkie 35 języków |
+| Wspólne słownictwo raportu | 31 | wszystkie 35 języków |
 | Obramowanie aplikacji — menu, przyciski, kreator, opcje, wiersz stanu, układ raportu, stan skanera, treści okien dialogowych | 114 | wszystkie 35 języków |
 
 Sześć wspólnych terminów (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) nie jest
-używanych przez raport tej aplikacji. Zachowano je, aby wspólny blok pozostał wierną kopią słownictwa dema;
-mówi o tym nagłówek pliku.
+używanych przez raport tej aplikacji.
+Zachowano je celowo; mówi o tym nagłówek pliku.
 
 ### Argument `--language`
 

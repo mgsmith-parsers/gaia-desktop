@@ -37,7 +37,7 @@ tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21
 
 **진입점:** `tools.pantheum.gaia.desktop.GaiaDesktopApp`(JavaFX `Application`)와 `tools.pantheum.gaia.desktop.Launcher`(패키징된 jar의 `Main-Class`).
 
-이 모듈은 말단(리프)입니다. 이 모듈에 의존하는 것은 없으며, 이 모듈도 다른 하위 모듈에 의존하지 않습니다. 시작점이 된 두 클래스는 의존성으로 참조하지 않고 `gaia-demo`에서 **복사**해 왔습니다. `Symbologies`는 지금도 그쪽의 쌍둥이 클래스와 손으로 맞춰 유지되며, 두 클래스 모두 그렇다는 주석을 달고 있습니다.
+이 모듈은 말단(리프)입니다. 이 모듈에 의존하는 것은 없으며, 이 모듈도 다른 하위 모듈에 의존하지 않습니다.
 
 ---
 
@@ -223,10 +223,11 @@ Zebra는 JavaPOS 서비스를 Windows용으로만 제공하며, 다른 곳에서
 
 | 계층 | 키 수 | 범위 |
 |---|---|---|
-| 공유 보고서 어휘. `gaia-demo`의 `GaiaHtmlReport`에서 가져옴 | 31 | 35개 언어 전부 |
+| 공유 보고서 어휘 | 31 | 35개 언어 전부 |
 | 데스크톱 화면 틀 — 메뉴, 버튼, 빌더, 옵션, 상태 줄, 보고서 레이아웃, 스캐너 상태, 대화 상자 본문 | 114 | 35개 언어 전부 |
 
-공유 용어 중 여섯 개(`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`)는 이 앱의 보고서에서 쓰이지 않습니다. 공유 블록을 데모 어휘의 충실한 사본으로 유지하기 위해 남겨 두었으며, 파일 머리글에 그렇게 적혀 있습니다.
+공유 용어 중 여섯 개(`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`)는 이 앱의 보고서에서 쓰이지 않습니다.
+이들은 의도적으로 남겨 두었으며, 파일 머리글에 그렇게 적혀 있습니다.
 
 ### `--language` 인수
 

@@ -46,9 +46,7 @@ aanbieden die de samensteller zou weigeren.
 `tools.pantheum.gaia.desktop.Launcher` (de `Main-Class` van de verpakte jar).
 
 De module is een blad: niets is ervan afhankelijk, en zelf hangt ze van geen enkele andere stroomafwaartse
-module af. De twee klassen waarmee ze begon zijn uit `gaia-demo` **gekopieerd** in plaats van als
-afhankelijkheid gebruikt — `Symbologies` wordt nog met de hand gelijk gehouden met zijn tweelingbroer daar,
-en beide dragen een opmerking die dat zegt.
+module af.
 
 ---
 
@@ -421,12 +419,12 @@ zodra haar eerste sleutel binnenkomt. Engels is het contract: elke sleutel moet 
 
 | Laag | Sleutels | Dekking |
 |---|---|---|
-| Gedeelde rapportwoordenschat, overgenomen uit `GaiaHtmlReport` van `gaia-demo` | 31 | alle 35 talen |
+| Gedeelde rapportwoordenschat | 31 | alle 35 talen |
 | Desktopomlijsting — menu's, knoppen, samensteller, opties, statusregel, rapportopmaak, scannerstatus, dialoogteksten | 114 | alle 35 talen |
 
 Zes van de gedeelde termen (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) worden
-niet gebruikt door het rapport van deze app. Ze blijven behouden zodat het gedeelde blok een getrouwe kopie
-van de demowoordenschat blijft; de kop van het bestand zegt dat.
+niet gebruikt door het rapport van deze app.
+Ze blijven bewust behouden; de kop van het bestand zegt dat.
 
 ### Het argument `--language`
 

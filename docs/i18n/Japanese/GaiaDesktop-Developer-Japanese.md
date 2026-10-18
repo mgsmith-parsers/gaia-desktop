@@ -37,7 +37,7 @@ tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21
 
 **エントリポイント：** `tools.pantheum.gaia.desktop.GaiaDesktopApp`（JavaFX の `Application`）と `tools.pantheum.gaia.desktop.Launcher`（パッケージ化された jar の `Main-Class`）。
 
-このモジュールは末端（リーフ）です。これに依存するものはなく、これも他の下流モジュールに依存しません。出発点となった 2 つのクラスは、依存関係として参照するのではなく `gaia-demo` から**コピー**されました。`Symbologies` は今でもあちらの双子のクラスと手作業で同期が取られており、両方にその旨の注記があります。
+このモジュールは末端（リーフ）です。これに依存するものはなく、これも他の下流モジュールに依存しません。
 
 ---
 
@@ -223,10 +223,11 @@ Zebra は JavaPOS サービスを Windows 向けにしか提供しておらず�
 
 | 層 | キー数 | 対応範囲 |
 |---|---|---|
-| 共有のレポート語彙。`gaia-demo` の `GaiaHtmlReport` から取り込んだもの | 31 | 全 35 言語 |
+| 共有のレポート語彙 | 31 | 全 35 言語 |
 | デスクトップの外枠 — メニュー、ボタン、ビルダー、オプション、ステータス行、レポートのレイアウト、スキャナーの状態、ダイアログ本文 | 114 | 全 35 言語 |
 
-共有の用語のうち 6 つ（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）は、このアプリのレポートでは使われません。共有ブロックをデモの語彙の忠実なコピーに保つために残してあり、ファイルのヘッダーにその旨が書かれています。
+共有の用語のうち 6 つ（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）は、このアプリのレポートでは使われません。
+これらは意図的に残してあり、ファイルのヘッダーにその旨が書かれています。
 
 ### `--language` 引数
 

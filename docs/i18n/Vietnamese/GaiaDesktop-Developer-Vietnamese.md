@@ -43,9 +43,7 @@ này — bộ chọn của trình tạo đọc chính sổ đăng ký của lõi
 **Điểm vào:** `tools.pantheum.gaia.desktop.GaiaDesktopApp` (`Application` của JavaFX) và
 `tools.pantheum.gaia.desktop.Launcher` (`Main-Class` của jar đã đóng gói).
 
-Mô-đun là một nút lá: không có gì phụ thuộc vào nó, và nó không phụ thuộc vào mô-đun hạ nguồn nào khác. Hai lớp mà nó
-khởi đầu từ đó đã được **sao chép** ra khỏi `gaia-demo` thay vì khai báo làm phụ thuộc — `Symbologies` vẫn được giữ
-đồng bộ thủ công với lớp song sinh ở đó, và cả hai đều có ghi chú nói như vậy.
+Mô-đun là một nút lá: không có gì phụ thuộc vào nó, và nó không phụ thuộc vào mô-đun hạ nguồn nào khác.
 
 ---
 
@@ -387,12 +385,12 @@ khóa đầu tiên của nó có mặt. Tiếng Anh là hợp đồng: mọi kh�
 
 | Tầng | Số khóa | Phạm vi |
 |---|---|---|
-| Từ vựng báo cáo dùng chung, lấy từ `GaiaHtmlReport` của `gaia-demo` | 31 | cả 35 ngôn ngữ |
+| Từ vựng báo cáo dùng chung | 31 | cả 35 ngôn ngữ |
 | Khung máy tính để bàn — menu, nút, trình tạo, tùy chọn, dòng trạng thái, bố cục báo cáo, trạng thái máy quét, nội dung hộp thoại | 114 | cả 35 ngôn ngữ |
 
 Sáu thuật ngữ dùng chung (`generated`, `status`, `dlRole`, `interpretations`, `message`, `level`) không được báo cáo
-của ứng dụng này sử dụng. Chúng được giữ lại để khối dùng chung vẫn là bản sao trung thành của từ vựng bản demo; phần
-đầu tệp có nói như vậy.
+của ứng dụng này sử dụng.
+Chúng được giữ lại có chủ ý; phần đầu tệp có nói như vậy.
 
 ### Đối số `--language`
 

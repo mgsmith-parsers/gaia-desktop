@@ -37,7 +37,7 @@ tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21
 
 **入口点：** `tools.pantheum.gaia.desktop.GaiaDesktopApp`（JavaFX 个 `Application`）搭 `tools.pantheum.gaia.desktop.Launcher`（打好包个 jar 个 `Main-Class`）。
 
-迭个模块是一片叶子：没物事依赖伊，伊也勿依赖别个下游模块。伊最早个两只类是从 `gaia-demo` **拷**过来个，勿是当依赖引用个——`Symbologies` 到现在还是靠手工搭那面个双胞胎类保持一致，两只里向侪有注释讲明迭桩事体。
+迭个模块是一片叶子：没物事依赖伊，伊也勿依赖别个下游模块。
 
 ---
 
@@ -223,10 +223,11 @@ Zebra 个 JavaPOS 服务只出 Windows 版，辣别个平台上没物事会早�
 
 | 层 | 键数 | 覆盖 |
 |---|---|---|
-| 共用报告词汇，拿自 `gaia-demo` 个 `GaiaHtmlReport` | 31 | 全部 35 种语言 |
+| 共用报告词汇 | 31 | 全部 35 种语言 |
 | 桌面外框 — 菜单、按钮、构建器、选项、状态栏、报告版面、扫描器状态、对话框正文 | 114 | 全部 35 种语言 |
 
-共用词语里有六只（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）迭个程序个报告用勿着。留牢伊拉是为了让共用区块忠实拷贝演示程序个词汇；文件头里有讲明。
+共用词语里有六只（`generated`、`status`、`dlRole`、`interpretations`、`message`、`level`）迭个程序个报告用勿着。
+留牢伊拉是特为个；文件头里有讲明。
 
 ### `--language` 参数
 
