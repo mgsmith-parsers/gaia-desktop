@@ -321,8 +321,7 @@ deinicjalizowany zostanie niewłaściwy apartament. Zamknięcie na wątku FX to 
 wywołuje tam `OleInitialize` i rejestruje na nim cel upuszczania każdego okna — `CoUninitialize` na nim
 zabija przeciąganie i upuszczanie w całej aplikacji. To JavaFX na Windows, a nie konkretna wersja JavaFX.
 `connect()` i `disconnect()` przekazują pracę do tego wątku i czekają, więc `MainView` wywołuje obie z
-krótko żyjącego wątku w tle; wzorcem jest `JposScannerSession` z przeglądarki, gdzie po raz pierwszy
-znaleziono awarię przeciągania i upuszczania.
+krótko żyjącego wątku w tle.
 
 Dwie zasady chronią przed tym, by źle zachowujące się urządzenie zablokowało połączenie. **Demontaż nigdy nie
 kończy się przedwcześnie:** `closeQuietly` wyłącza, zwalnia i zamyka w osobnych krokach, zwalnia tylko wtedy,
@@ -524,7 +523,7 @@ datą, bo prawdziwa data nigdy nie została zapisana.
 (cd gaia-desktop && mvn test)
 ```
 
-96 testów, celowo **niezależnych od toolkitu JavaFX**, co utrzymuje je szybkimi i bez interfejsu graficznego.
+198 testów, celowo **niezależnych od toolkitu JavaFX**, co utrzymuje je szybkimi i bez interfejsu graficznego.
 Obejmują generator raportu, logikę tworzenia i wyszukiwanie AI, konwersję `{GS}`, wartości domyślne
 wyprowadzone z ustawień regionalnych, oba magazyny (w tym przejście w obie strony z `0x1D` i celowo
 uszkodzone pliki), tabelę symbologii, zasadę platformy skanera, zaślepkę wersji oraz katalogi.

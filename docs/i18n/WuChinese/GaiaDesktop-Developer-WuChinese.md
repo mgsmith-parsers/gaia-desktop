@@ -185,7 +185,7 @@ JavaFX 个 `TextField` 会悄悄叫甩脱所有低于 `0x20` 个字符（`TextIn
 
 `ScannerService` 拥有 JavaPOS 个 `Scanner` 控件：打开 → 占用 → 启用，每趟扫描以后重新启动数据事件。逻辑设备名字来自 `src/main/resources/jpos.xml`。
 
-**每趟设备调用侪辣同一根线程 `gaia-scanner` 上跑，伊搭服务一样长命**——永远勿辣 FX 线程上，也永远勿辣调用好就结束个线程上。Zebra 个服务通过 CoreScanner COM API 用 JNI 碰着扫描器，COM 会拿伊设好个物事绑到调用线程个 apartment 上：辣一根后来会结束个线程上打开，扫描器占得牢但是一直没反应；辣另一根线程上关闭，就会解除错个 apartment 个初始化。辣 FX 线程上关闭是最坏个情况，因为 JavaFX 辣迭面调用 `OleInitialize`，还拿每只窗口个放置目标登记上去——辣迭面一趟 `CoUninitialize` 就会让整个程序个拖放侪坏脱。迭个是 Windows 上 JavaFX 个问题，勿是某一个 JavaFX 版本个问题。`connect()` 搭 `disconnect()` 会拿工作交给迭根线程再等，所以 `MainView` 辣一根短命个后台线程里调用两只；迭个模式来自查看器个 `JposScannerSession`，拖放故障最早就是辣迭面发现个。
+**每趟设备调用侪辣同一根线程 `gaia-scanner` 上跑，伊搭服务一样长命**——永远勿辣 FX 线程上，也永远勿辣调用好就结束个线程上。Zebra 个服务通过 CoreScanner COM API 用 JNI 碰着扫描器，COM 会拿伊设好个物事绑到调用线程个 apartment 上：辣一根后来会结束个线程上打开，扫描器占得牢但是一直没反应；辣另一根线程上关闭，就会解除错个 apartment 个初始化。辣 FX 线程上关闭是最坏个情况，因为 JavaFX 辣迭面调用 `OleInitialize`，还拿每只窗口个放置目标登记上去——辣迭面一趟 `CoUninitialize` 就会让整个程序个拖放侪坏脱。迭个是 Windows 上 JavaFX 个问题，勿是某一个 JavaFX 版本个问题。`connect()` 搭 `disconnect()` 会拿工作交给迭根线程再等，所以 `MainView` 辣一根短命个后台线程里调用两只。
 
 有两条规矩防止一部出毛病个设备拿连接卡死。**拆除永远勿会提早停：** `closeQuietly` 拿停用、释放搭关闭分开来做，只有占牢个辰光才释放，而且一定会试 `close()`——占用失败以后 `release()` 会抛"not claimed"，老早几只步骤合用一只 `try` 个辰光，就会因此跳过关闭，让设备辣 Zebra 服务里一直开牢。**数据事件辣 `finally` 里重新启动：** JavaPOS 每趟事件以后侪会停用伊，所以就算读取或者处理函数抛了异常也一定要重新启动，勿然扫描器会一直没反应，一直到重新连接为止。`ScannerLifecycleTest` 用一只预先编好剧本个 `jpos.Scanner` 测试两条规矩。
 
@@ -301,7 +301,7 @@ captured(ISO)              <TAB> source  <TAB> symbology   <TAB> input
 (cd gaia-desktop && mvn test)
 ```
 
-96 只测试，特为**勿靠 JavaFX 工具包**，所以又快又好没画面跑。伊拉覆盖报告渲染器、构建逻辑搭 AI 查询、`{GS}` 转换、从地区设置推出来个默认、两只存储（包括一只带 `0x1D` 个来回测试搭特为搞坏个文件）、条码制式表、扫描器平台规矩、版本桩，还有各只目录。
+198 只测试，特为**勿靠 JavaFX 工具包**，所以又快又好没画面跑。伊拉覆盖报告渲染器、构建逻辑搭 AI 查询、`{GS}` 转换、从地区设置推出来个默认、两只存储（包括一只带 `0x1D` 个来回测试搭特为搞坏个文件）、条码制式表、扫描器平台规矩、版本桩，还有各只目录。
 
 其中三只值得晓得，因为伊拉守个是合约勿是功能：
 

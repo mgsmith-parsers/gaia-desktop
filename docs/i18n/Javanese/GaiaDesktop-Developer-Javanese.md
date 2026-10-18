@@ -305,8 +305,7 @@ bakal ke-claim nanging meneng wae; close ing thread liya, apartemen sing salah s
 kasus paling ala, amarga JavaFX nyeluk `OleInitialize` ing kono lan ndhaptarake target drop saben jendhela marang iku —
 siji `CoUninitialize` ing kono mateni seret lan culke ing sakabehe aplikasi. Iki JavaFX ing Windows, dudu siji versi JavaFX
 tartamtu. `connect()` lan `disconnect()` ngirim gawean menyang thread iku lan ngenteni, mula `MainView` nyeluk kekarone
-saka thread latar mburi sing umure cendhak; pola iki saka `JposScannerSession` duweke viewer, panggonan kegagalan seret
-lan culke pisanan ditemokake.
+saka thread latar mburi sing umure cendhak.
 
 Rong aturan nyegah piranti sing tumindak ora bener supaya ora nyendhat sambungan. **Pambongkaran ora tau mandheg luwih
 dhisik:** `closeQuietly` nindakake disable, release lan close dadi langkah dhewe-dhewe, mung release yen claim lagi
@@ -493,7 +492,7 @@ temenan ora tau ditulis.
 (cd gaia-desktop && mvn test)
 ```
 
-96 uji, sengaja **tanpa toolkit JavaFX**, sing ndadekake cepet lan headless. Uji-uji iki nyakup perender laporan, logika
+198 uji, sengaja **tanpa toolkit JavaFX**, sing ndadekake cepet lan headless. Uji-uji iki nyakup perender laporan, logika
 gawe lan panggolekan AI, konversi `{GS}`, gawan sing diturunake saka locale, kekarone panyimpenan (kalebu round trip sing
 ngemot `0x1D` lan berkas sing sengaja dirusak), tabel simbologi, aturan platform scanner, stub versi, lan katalog-katalog.
 

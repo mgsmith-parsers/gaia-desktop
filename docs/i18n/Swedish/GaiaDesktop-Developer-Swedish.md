@@ -317,8 +317,7 @@ som sedan avslutas, och skannern reserveras men förblir tyst; stäng på en ann
 avinitieras. Att stänga på FX-tråden är det värsta fallet, eftersom JavaFX där anropar `OleInitialize` och
 registrerar varje fönsters släppmål mot den — ett `CoUninitialize` på den slår ut dra och släpp i hela appen.
 Detta är JavaFX på Windows, inte en viss JavaFX-version. `connect()` och `disconnect()` lämnar över till den
-tråden och väntar, så `MainView` anropar båda från en kortlivad bakgrundstråd; mönstret är visarens
-`JposScannerSession`, där felet med dra och släpp först upptäcktes.
+tråden och väntar, så `MainView` anropar båda från en kortlivad bakgrundstråd.
 
 Två regler hindrar en enhet som beter sig illa från att låsa anslutningen. **Nedmonteringen avbryts aldrig i
 förtid:** `closeQuietly` inaktiverar, släpper och stänger i separata steg, släpper bara när reserveringen
@@ -515,7 +514,7 @@ till i dag, eftersom det verkliga datumet aldrig skrevs ner.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tester, medvetet **fria från JavaFX-verktygslådan**, vilket håller dem snabba och körbara utan skärm. De
+198 tester, medvetet **fria från JavaFX-verktygslådan**, vilket håller dem snabba och körbara utan skärm. De
 täcker rapportrenderaren, bygglogiken och AI-uppslagningar, `{GS}`-konverteringen, de standardvärden som
 härleds ur språkinställningen, båda lagren (inklusive en tur och retur med `0x1D` och avsiktligt skadade
 filer), symbologitabellen, skannerns plattformsregel, versionsstubben och katalogerna.

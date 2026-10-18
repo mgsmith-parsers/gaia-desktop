@@ -329,8 +329,7 @@ stumm; schließen Sie auf einem anderen Thread, wird das falsche Apartment deini
 FX-Thread ist der schlimmste Fall, weil JavaFX dort `OleInitialize` aufruft und das Drop-Ziel jedes Fensters
 dagegen registriert — ein `CoUninitialize` darauf legt Drag & Drop in der ganzen App lahm. Das ist JavaFX
 unter Windows, nicht eine bestimmte JavaFX-Version. `connect()` und `disconnect()` übergeben an diesen
-Thread und warten, daher ruft `MainView` beide aus einem kurzlebigen Hintergrund-Thread auf; das Muster
-stammt aus `JposScannerSession` des Viewers, wo der Drag-&-Drop-Fehler zuerst gefunden wurde.
+Thread und warten, daher ruft `MainView` beide aus einem kurzlebigen Hintergrund-Thread auf.
 
 Zwei Regeln verhindern, dass ein sich fehlverhaltendes Gerät die Verbindung blockiert. **Der Abbau hört nie
 vorzeitig auf:** `closeQuietly` deaktiviert, gibt frei und schließt in getrennten Schritten, gibt nur frei,
@@ -539,7 +538,7 @@ weiterhin, auf heute datiert, weil das echte Datum nie festgehalten wurde.
 (cd gaia-desktop && mvn test)
 ```
 
-96 Tests, bewusst **frei vom JavaFX-Toolkit**, was sie schnell und ohne Anzeige lauffähig hält. Sie decken
+198 Tests, bewusst **frei vom JavaFX-Toolkit**, was sie schnell und ohne Anzeige lauffähig hält. Sie decken
 den Berichts-Renderer ab, die Erstellungslogik und AI-Abfragen, die `{GS}`-Umwandlung, die aus dem
 Gebietsschema abgeleiteten Standards, beide Speicher (einschließlich eines Hin- und Rückwegs mit `0x1D` und
 absichtlich beschädigter Dateien), die Symbologietabelle, die Plattformregel des Scanners, den

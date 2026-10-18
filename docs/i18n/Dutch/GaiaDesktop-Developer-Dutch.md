@@ -326,8 +326,7 @@ thread, en het verkeerde apartment wordt gedeïnitialiseerd. Sluiten op de FX-th
 omdat JavaFX daar `OleInitialize` aanroept en het neerzetdoel van elk venster ertegen registreert — een
 `CoUninitialize` erop schakelt slepen en neerzetten in de hele app uit. Dit is JavaFX op Windows, niet een
 bepaalde JavaFX-versie. `connect()` en `disconnect()` geven het werk aan die thread en wachten, dus roept
-`MainView` beide aan vanuit een kortlevende achtergrondthread; het patroon is de `JposScannerSession` van de
-viewer, waar de storing in slepen en neerzetten voor het eerst werd gevonden.
+`MainView` beide aan vanuit een kortlevende achtergrondthread.
 
 Twee regels voorkomen dat een zich misdragend apparaat de verbinding vastzet. **Het afbreken stopt nooit
 vroegtijdig:** `closeQuietly` schakelt uit, geeft vrij en sluit in afzonderlijke stappen, geeft alleen vrij
@@ -530,7 +529,7 @@ steeds, gedateerd op vandaag, omdat de echte datum nooit is genoteerd.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tests, bewust **vrij van de JavaFX-toolkit**, wat ze snel en zonder beeldscherm uitvoerbaar houdt. Ze
+198 tests, bewust **vrij van de JavaFX-toolkit**, wat ze snel en zonder beeldscherm uitvoerbaar houdt. Ze
 dekken de rapportrenderer, de samenstellogica en AI-opzoekingen, de `{GS}`-conversie, de uit de
 landinstelling afgeleide standaardwaarden, beide opslagplaatsen (inclusief een heen-en-terug met `0x1D` en
 opzettelijk beschadigde bestanden), de symbologietabel, de platformregel van de scanner, de versiestub en de

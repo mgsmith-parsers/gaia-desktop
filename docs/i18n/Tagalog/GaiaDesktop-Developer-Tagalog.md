@@ -320,8 +320,7 @@ tahimik; mag-close sa ibang thread, at maling apartment ang mauuninitialize. Ang
 pinakamasama, dahil tinatawag doon ng JavaFX ang `OleInitialize` at nirerehistro ang drop target ng bawat window laban
 dito — pinapatay ng isang `CoUninitialize` doon ang drag and drop sa buong app. Ito ang JavaFX sa Windows, hindi isang
 partikular na bersyon ng JavaFX. Nagsusumite ang `connect()` at `disconnect()` sa thread na iyon at naghihintay, kaya
-tinatawag silang dalawa ng `MainView` mula sa panandaliang background thread; ang pattern ay mula sa
-`JposScannerSession` ng viewer, kung saan unang natagpuan ang palya sa drag and drop.
+tinatawag silang dalawa ng `MainView` mula sa panandaliang background thread.
 
 Dalawang patakaran ang pumipigil sa maling-asal na device na barahan ang koneksiyon. **Hindi kailanman humihinto nang
 maaga ang teardown:** ginagawa ng `closeQuietly` ang disable, release at close bilang magkakahiwalay na hakbang, nagre-
@@ -524,7 +523,7 @@ araw, dahil hindi kailanman naisulat ang totoong petsa.
 (cd gaia-desktop && mvn test)
 ```
 
-96 na test, sadyang **walang JavaFX toolkit**, na nagpapanatiling mabilis at headless sa kanila. Saklaw nila ang
+198 na test, sadyang **walang JavaFX toolkit**, na nagpapanatiling mabilis at headless sa kanila. Saklaw nila ang
 renderer ng ulat, ang lohika ng pagbuo at mga paghahanap ng AI, ang conversion ng `{GS}`, ang mga default na hango sa
 locale, ang dalawang store (kasama ang round trip na may `0x1D` at mga sadyang sinirang file), ang talahanayan ng
 symbology, ang patakaran sa platform ng scanner, ang version stub, at ang mga katalogo.

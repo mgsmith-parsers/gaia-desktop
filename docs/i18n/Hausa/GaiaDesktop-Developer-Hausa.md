@@ -309,8 +309,7 @@ da zai ƙare daga baya kuma sikana tana mallaka amma tana yin shiru; rufe a kan 
 bai dace ba. Rufewa a kan zaren FX ita ce mafi muni, domin JavaFX yana kiran `OleInitialize` a can kuma yana rajistar
 manufar sakewa na kowace taga a kansa — `CoUninitialize` a kansa yana kashe ja da sakewa a dukan manhajar. Wannan JavaFX
 ne a Windows, ba wata sigar JavaFX ɗaya ba. `connect()` da `disconnect()` suna miƙa aiki ga wannan zaren kuma suna jira,
-don haka `MainView` yana kiran su duka daga zaren bango mai gajeren rai; tsarin daga `JposScannerSession` na mai kallo
-ne, inda aka fara gano gazawar ja da sakewa.
+don haka `MainView` yana kiran su duka daga zaren bango mai gajeren rai.
 
 Dokoki biyu suna hana na'urar da ke rashin ɗabi'a kulle haɗin. **Wargazawa ba ta taɓa tsayawa da wuri ba:**
 `closeQuietly` yana kashewa, sakewa da rufewa a matsayin matakai dabam, yana sakewa ne kawai lokacin da ake riƙe da
@@ -502,7 +501,7 @@ watan yau, domin ba a taɓa rubuta ainihin kwanan watan ba.
 (cd gaia-desktop && mvn test)
 ```
 
-Gwaje-gwaje 96, da gangan **ba tare da kayan aikin JavaFX ba**, wanda ke sa su sauri kuma marasa allo. Suna rufe mai zana
+Gwaje-gwaje 198, da gangan **ba tare da kayan aikin JavaFX ba**, wanda ke sa su sauri kuma marasa allo. Suna rufe mai zana
 rahoto, dabarar gini da neman AI, canjin `{GS}`, na asali da aka samo daga wuri, ma'ajiyoyi biyun (har da tafiya-da-dawowa
 mai ɗauke da `0x1D` da fayilolin da aka lalata da gangan), teburin lambobin ƙira, dokar dandalin sikana, kututturen siga,
 da kundin.

@@ -325,8 +325,7 @@ tutup di thread lain, maka apartemen yang salah di-uninitialize. Menutup di thre
 karena JavaFX memanggil `OleInitialize` di sana dan mendaftarkan target drop setiap jendela padanya — sebuah
 `CoUninitialize` di sana mematikan seret dan lepas di seluruh aplikasi. Ini perilaku JavaFX di Windows, bukan
 satu versi JavaFX tertentu. `connect()` dan `disconnect()` mengirim ke thread itu dan menunggu, sehingga
-`MainView` memanggil keduanya dari thread latar belakang berumur pendek; polanya berasal dari
-`JposScannerSession` milik viewer, tempat kegagalan seret dan lepas pertama kali ditemukan.
+`MainView` memanggil keduanya dari thread latar belakang berumur pendek.
 
 Dua aturan mencegah perangkat yang berulah mengunci koneksi. **Pembongkaran tidak pernah berhenti di tengah
 jalan:** `closeQuietly` menjalankan disable, release, dan close sebagai langkah terpisah, hanya melakukan
@@ -531,7 +530,7 @@ karena tanggal sebenarnya tidak pernah dituliskan.
 (cd gaia-desktop && mvn test)
 ```
 
-96 uji, sengaja **bebas dari toolkit JavaFX**, sehingga cepat dan headless. Uji-uji ini mencakup perender
+198 uji, sengaja **bebas dari toolkit JavaFX**, sehingga cepat dan headless. Uji-uji ini mencakup perender
 laporan, logika build dan pencarian AI, konversi `{GS}`, bawaan yang diturunkan dari locale, kedua penyimpanan
 (termasuk round trip yang mengandung `0x1D` dan berkas yang sengaja dirusak), tabel simbologi, aturan platform
 pemindai, stub versi, dan katalog.

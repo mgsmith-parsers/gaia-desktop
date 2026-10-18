@@ -320,8 +320,7 @@ bir thread'de açarsanız tarayıcı sahiplenilir ama sessiz kalır; başka bir 
 başlatması geri alınır. FX thread'inde kapatmak en kötü durumdur, çünkü JavaFX orada `OleInitialize` çağırır ve
 her pencerenin bırakma hedefini ona göre kaydeder — orada bir `CoUninitialize` uygulama genelinde sürükle-bırakı
 öldürür. Bu, belirli bir JavaFX sürümü değil, Windows'taki JavaFX'tir. `connect()` ve `disconnect()` o thread'e
-iş gönderip bekler, bu yüzden `MainView` ikisini de kısa ömürlü bir arka plan thread'inden çağırır; desen,
-sürükle-bırak hatasının ilk bulunduğu yer olan görüntüleyicinin `JposScannerSession`'ından gelir.
+iş gönderip bekler, bu yüzden `MainView` ikisini de kısa ömürlü bir arka plan thread'inden çağırır.
 
 İki kural, sorunlu bir aygıtın bağlantıyı kilitlemesini önler. **Kapatma işlemi asla erken durmaz:**
 `closeQuietly` devre dışı bırakma, bırakma ve kapatmayı ayrı adımlar olarak yapar, yalnızca sahiplenme
@@ -516,7 +515,7 @@ tarihini alırlar, çünkü gerçek tarih hiç yazılmamıştır.
 (cd gaia-desktop && mvn test)
 ```
 
-96 test, bilerek **JavaFX araç takımından bağımsız**; bu da onları hızlı ve başsız (headless) tutar. Rapor
+198 test, bilerek **JavaFX araç takımından bağımsız**; bu da onları hızlı ve başsız (headless) tutar. Rapor
 oluşturucuyu, oluşturma mantığını ve AI aramalarını, `{GS}` dönüşümünü, yerel ayardan türetilen varsayılanları,
 iki depoyu da (`0x1D` içeren bir gidiş-dönüş ve bilerek bozulmuş dosyalar dahil), semboloji tablosunu, tarayıcı
 platform kuralını, sürüm taslağını ve katalogları kapsarlar.

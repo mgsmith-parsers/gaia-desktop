@@ -331,8 +331,7 @@ en otro hilo y se desinicializa el apartamento equivocado. Cerrar en el hilo FX 
 JavaFX llama allí a `OleInitialize` y registra en él el destino de colocación de cada ventana — un
 `CoUninitialize` en ese hilo inutiliza arrastrar y soltar en toda la aplicación. Esto es JavaFX en Windows,
 no una versión concreta de JavaFX. `connect()` y `disconnect()` envían la tarea a ese hilo y esperan, así
-que `MainView` llama a ambas desde un hilo en segundo plano de corta duración; el patrón es el
-`JposScannerSession` del visor, donde se descubrió el fallo de arrastrar y soltar.
+que `MainView` llama a ambas desde un hilo en segundo plano de corta duración.
 
 Dos reglas impiden que un dispositivo que se porta mal bloquee la conexión. **El desmontaje nunca se
 detiene antes de tiempo:** `closeQuietly` deshabilita, libera y cierra en pasos separados, libera solo si
@@ -540,7 +539,7 @@ fechados hoy, porque la fecha real nunca se anotó.
 (cd gaia-desktop && mvn test)
 ```
 
-96 pruebas, deliberadamente **independientes del toolkit de JavaFX**, lo que las mantiene rápidas y sin
+198 pruebas, deliberadamente **independientes del toolkit de JavaFX**, lo que las mantiene rápidas y sin
 interfaz gráfica. Cubren el generador del informe, la lógica de composición y las búsquedas de AI, la
 conversión de `{GS}`, los valores predeterminados derivados de la configuración regional, ambos almacenes
 (incluido un viaje de ida y vuelta con `0x1D` y archivos dañados a propósito), la tabla de simbologías, la

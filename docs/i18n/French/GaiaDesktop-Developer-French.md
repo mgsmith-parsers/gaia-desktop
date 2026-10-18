@@ -334,8 +334,7 @@ fermez sur un autre fil et c'est le mauvais appartement qui est désinitialisé.
 pire cas, car JavaFX y appelle `OleInitialize` et y enregistre la cible de dépôt de chaque fenêtre — un
 `CoUninitialize` sur ce fil supprime le glisser-déposer dans toute l'application. C'est JavaFX sous
 Windows, et pas une version particulière de JavaFX. `connect()` et `disconnect()` soumettent à ce fil et
-attendent ; `MainView` les appelle donc toutes deux depuis un fil d'arrière-plan éphémère ; le modèle est
-le `JposScannerSession` du visualiseur, où la panne du glisser-déposer a été découverte.
+attendent ; `MainView` les appelle donc toutes deux depuis un fil d'arrière-plan éphémère.
 
 Deux règles empêchent un périphérique capricieux de bloquer la connexion. **Le démontage ne s'arrête
 jamais en route :** `closeQuietly` désactive, libère et ferme en étapes séparées, ne libère que si la
@@ -547,7 +546,7 @@ toujours, datés d'aujourd'hui, puisque la vraie date n'a jamais été notée.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tests, volontairement **indépendants de la boîte à outils JavaFX**, ce qui les garde rapides et sans
+198 tests, volontairement **indépendants de la boîte à outils JavaFX**, ce qui les garde rapides et sans
 interface graphique. Ils couvrent le moteur de rendu du rapport, la logique de composition et les
 recherches d'AI, la conversion `{GS}`, les valeurs par défaut issues de la locale, les deux magasins (y
 compris un aller-retour contenant `0x1D` et des fichiers volontairement abîmés), la table des

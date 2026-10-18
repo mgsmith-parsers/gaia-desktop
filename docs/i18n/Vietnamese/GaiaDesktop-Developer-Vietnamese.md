@@ -305,7 +305,7 @@ COM API, và COM gắn những gì nó thiết lập với apartment của luồ
 hợp tệ nhất, vì JavaFX gọi `OleInitialize` ở đó và đăng ký đích thả của mọi cửa sổ dựa trên nó — một `CoUninitialize`
 trên luồng đó làm hỏng kéo và thả trên toàn ứng dụng. Đây là JavaFX trên Windows, không phải một phiên bản JavaFX cụ
 thể nào. `connect()` và `disconnect()` gửi việc tới luồng đó rồi chờ, nên `MainView` gọi cả hai từ một luồng nền ngắn
-hạn; mẫu này lấy từ `JposScannerSession` của trình xem, nơi lỗi kéo và thả được phát hiện lần đầu.
+hạn.
 
 Hai quy tắc giữ cho một thiết bị trục trặc không làm kẹt kết nối. **Quá trình tháo dỡ không bao giờ dừng sớm:**
 `closeQuietly` tắt, nhả và đóng thành các bước riêng biệt, chỉ nhả khi đang giữ quyền chiếm giữ, và luôn thử `close()`
@@ -490,7 +490,7 @@ giờ được ghi xuống.
 (cd gaia-desktop && mvn test)
 ```
 
-96 bài kiểm thử, cố ý **không phụ thuộc bộ công cụ JavaFX**, giúp chúng nhanh và chạy không giao diện. Chúng bao phủ bộ
+198 bài kiểm thử, cố ý **không phụ thuộc bộ công cụ JavaFX**, giúp chúng nhanh và chạy không giao diện. Chúng bao phủ bộ
 kết xuất báo cáo, logic tạo và tra cứu AI, chuyển đổi `{GS}`, các mặc định suy ra từ locale, cả hai kho lưu trữ (gồm
 một vòng khứ hồi chứa `0x1D` và các tệp cố ý làm hỏng), bảng symbology, quy tắc nền tảng của máy quét, phần giữ chỗ
 phiên bản, và các danh mục.

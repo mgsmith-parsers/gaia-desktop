@@ -312,8 +312,7 @@ na skana inadaiwa lakini inakaa kimya; funga kwenye uzi mwingine na apartment is
 Kufunga kwenye uzi wa FX ndiyo hali mbaya zaidi, kwa sababu JavaFX huita `OleInitialize` hapo na kusajili lengo la
 kuachilia la kila dirisha dhidi yake — `CoUninitialize` moja juu yake huua kuburuta na kuachilia katika programu nzima.
 Hii ni JavaFX kwenye Windows, si toleo moja maalum la JavaFX. `connect()` na `disconnect()` hukabidhi kazi kwa uzi huo
-na kusubiri, kwa hivyo `MainView` huziita zote mbili kutoka uzi wa usuli wa muda mfupi; muundo huu unatoka
-`JposScannerSession` ya kitazamaji, ambapo hitilafu ya kuburuta na kuachilia iligunduliwa kwanza.
+na kusubiri, kwa hivyo `MainView` huziita zote mbili kutoka uzi wa usuli wa muda mfupi.
 
 Kanuni mbili huzuia kifaa kinachotenda vibaya kisikwamishe muunganisho. **Kubomoa kamwe hakusimami mapema:**
 `closeQuietly` huzima, huachilia na hufunga kama hatua tofauti, huachilia tu wakati udai umeshikiliwa, na daima hujaribu
@@ -508,7 +507,7 @@ tarehe halisi haikuwahi kuandikwa.
 (cd gaia-desktop && mvn test)
 ```
 
-Majaribio 96, kwa makusudi **bila zana za JavaFX**, jambo linalowafanya kuwa ya haraka na bila skrini. Yanafunika kionyeshi
+Majaribio 198, kwa makusudi **bila zana za JavaFX**, jambo linalowafanya kuwa ya haraka na bila skrini. Yanafunika kionyeshi
 cha ripoti, mantiki ya kutengeneza na utafutaji wa AI, ubadilishaji wa `{GS}`, chaguo-msingi zinazotokana na eneo, hifadhi
 zote mbili (pamoja na safari ya kwenda na kurudi yenye `0x1D` na faili zilizoharibiwa kwa makusudi), jedwali la
 simbolojia, kanuni ya jukwaa la skana, kishina cha toleo, na katalogi.

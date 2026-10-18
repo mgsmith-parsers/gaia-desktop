@@ -305,8 +305,7 @@ end later, di scanner go claim but e go dey quiet; close am for another thread, 
 uninitialize. To close for di FX thread na di worst one, because JavaFX dey call `OleInitialize` for dere and e dey
 register every window drop target against am — one `CoUninitialize` for dere go kill drag and drop for di whole app.
 Dis one na JavaFX for Windows, no be one particular JavaFX version. `connect()` and `disconnect()` dey submit to dat
-thread and wait, so `MainView` dey call both from short-lived background thread; di pattern na from di viewer
-`JposScannerSession`, where dem first find di drag-and-drop wahala.
+thread and wait, so `MainView` dey call both from short-lived background thread.
 
 Two rules dey stop device wey dey misbehave make e no jam di connection. **Teardown no dey ever stop early:**
 `closeQuietly` dey disable, release and close as separate steps, e dey release only when di claim dey hold, and e
@@ -493,7 +492,7 @@ because dem no ever write di real date down.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tests, on purpose **dem no need di JavaFX toolkit**, wey make dem fast and headless. Dem cover di report renderer,
+198 tests, on purpose **dem no need di JavaFX toolkit**, wey make dem fast and headless. Dem cover di report renderer,
 di build logic and AI lookups, di `{GS}` conversion, di defaults wey come from locale, both stores (including round
 trip wey carry `0x1D` and files wey dem spoil on purpose), di symbology table, di scanner platform rule, di version
 stub, and di catalogues.

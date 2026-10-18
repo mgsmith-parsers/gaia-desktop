@@ -314,8 +314,7 @@ skončí, a skener se obsadí, ale zůstane němý; zavřete v jiném vlákně a
 Zavření ve vlákně FX je nejhorší případ, protože JavaFX tam volá `OleInitialize` a registruje v něm cíl
 přetažení každého okna — `CoUninitialize` v něm vyřadí přetahování v celé aplikaci. Jde o JavaFX ve Windows,
 ne o určitou verzi JavaFX. `connect()` a `disconnect()` předají práci tomuto vláknu a čekají, takže `MainView`
-volá obě z krátce žijícího vlákna na pozadí; vzorem je `JposScannerSession` z prohlížeče, kde byla porucha
-přetahování poprvé nalezena.
+volá obě z krátce žijícího vlákna na pozadí.
 
 Dvě pravidla brání tomu, aby se spojení zaseklo kvůli zlobivému zařízení. **Rozebírání nikdy nekončí
 předčasně:** `closeQuietly` vypíná, uvolňuje a zavírá v oddělených krocích, uvolňuje jen tehdy, když je
@@ -508,7 +507,7 @@ protože skutečné datum nikdy zapsáno nebylo.
 (cd gaia-desktop && mvn test)
 ```
 
-96 testů, záměrně **nezávislých na sadě nástrojů JavaFX**, což je udržuje rychlé a bez potřeby displeje.
+198 testů, záměrně **nezávislých na sadě nástrojů JavaFX**, což je udržuje rychlé a bez potřeby displeje.
 Pokrývají vykreslovač sestavy, logiku sestavení a vyhledávání AI, převod `{GS}`, výchozí hodnoty odvozené z
 národního prostředí, obě úložiště (včetně cesty tam a zpět s `0x1D` a záměrně poškozených souborů), tabulku
 symbologií, pravidlo platformy skeneru, zástupnou verzi a katalogy.

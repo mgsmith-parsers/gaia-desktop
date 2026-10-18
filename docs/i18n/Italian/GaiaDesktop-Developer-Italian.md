@@ -328,8 +328,7 @@ deinizializzato l'apartment sbagliato. Chiudere sul thread FX è il caso peggior
 `OleInitialize` e vi registra la destinazione di rilascio di ogni finestra — un `CoUninitialize` su quel
 thread elimina il trascinamento in tutta l'app. È JavaFX su Windows, non una sua versione particolare.
 `connect()` e `disconnect()` inviano a quel thread e attendono, quindi `MainView` le chiama entrambe da un
-thread in background di breve durata; il modello è il `JposScannerSession` del visualizzatore, dove il guasto
-del trascinamento è stato scoperto per la prima volta.
+thread in background di breve durata.
 
 Due regole impediscono a un dispositivo che si comporta male di bloccare la connessione. **Lo smontaggio non
 si ferma mai prima del tempo:** `closeQuietly` disabilita, rilascia e chiude in passi separati, rilascia solo
@@ -532,7 +531,7 @@ oggi, perché la data vera non è mai stata annotata.
 (cd gaia-desktop && mvn test)
 ```
 
-96 test, di proposito **indipendenti dal toolkit JavaFX**, il che li mantiene veloci e senza interfaccia
+198 test, di proposito **indipendenti dal toolkit JavaFX**, il che li mantiene veloci e senza interfaccia
 grafica. Coprono il generatore del report, la logica di composizione e le ricerche di AI, la conversione di
 `{GS}`, i valori predefiniti derivati dalla locale, entrambi gli archivi (incluso un andata e ritorno con
 `0x1D` e file danneggiati di proposito), la tabella delle simbologie, la regola di piattaforma del lettore,

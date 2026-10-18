@@ -327,8 +327,7 @@ silent; close on another thread and the wrong apartment is uninitialized. Closin
 is the worst case, because JavaFX calls `OleInitialize` there and registers every window's drop
 target against it — a `CoUninitialize` on it kills drag and drop app-wide. This is JavaFX on
 Windows, not any one JavaFX version. `connect()` and `disconnect()` submit to that thread and
-wait, so `MainView` calls both from a short-lived background thread; the pattern is the viewer's
-`JposScannerSession`, where the drag-and-drop failure was first found.
+wait, so `MainView` calls both from a short-lived background thread.
 
 Two rules keep a misbehaving device from wedging the connection. **Teardown never stops early:**
 `closeQuietly` disables, releases and closes as separate steps, releases only when the claim is
@@ -534,7 +533,7 @@ today, because the real date was never written down.
 (cd gaia-desktop && mvn test)
 ```
 
-96 tests, deliberately **free of the JavaFX toolkit**, which keeps them fast and headless. They
+198 tests, deliberately **free of the JavaFX toolkit**, which keeps them fast and headless. They
 cover the report renderer, the build logic and AI lookups, the `{GS}` conversion, the
 locale-derived defaults, both stores (including a `0x1D`-bearing round trip and deliberately
 damaged files), the symbology table, the scanner platform rule, the version stub, and the

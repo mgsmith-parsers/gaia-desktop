@@ -325,8 +325,7 @@ desinicializado o apartment errado. Fechar no thread FX é o pior caso, porque o
 `OleInitialize` e regista nele o destino de largada de cada janela — um `CoUninitialize` nesse thread acaba
 com o arrastar e largar em toda a aplicação. Isto é o JavaFX em Windows, não uma versão concreta do JavaFX.
 `connect()` e `disconnect()` submetem a esse thread e esperam, pelo que `MainView` chama ambas a partir de
-um thread de segundo plano de curta duração; o padrão é o `JposScannerSession` do visualizador, onde a falha
-de arrastar e largar foi encontrada pela primeira vez.
+um thread de segundo plano de curta duração.
 
 Duas regras impedem que um dispositivo que se porta mal bloqueie a ligação. **O desmantelamento nunca pára
 antes do tempo:** `closeQuietly` desativa, liberta e fecha em passos separados, só liberta quando a reserva
@@ -531,7 +530,7 @@ hoje, porque a data real nunca foi anotada.
 (cd gaia-desktop && mvn test)
 ```
 
-96 testes, deliberadamente **independentes do toolkit JavaFX**, o que os mantém rápidos e sem interface
+198 testes, deliberadamente **independentes do toolkit JavaFX**, o que os mantém rápidos e sem interface
 gráfica. Cobrem o gerador do relatório, a lógica de composição e as pesquisas de AI, a conversão de `{GS}`,
 as predefinições derivadas da região, ambos os armazéns (incluindo uma ida e volta com `0x1D` e ficheiros
 danificados de propósito), a tabela de simbologias, a regra de plataforma do leitor, o stub de versão e os
