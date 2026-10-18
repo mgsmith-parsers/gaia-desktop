@@ -1,0 +1,567 @@
+{
+  "_comment": "Which revision of the English source each translation was made from. Compare the source hash against the file on disk: a difference means the translations below are behind and need review. This repo is not under git, so a content hash is the only marker that survives a copy.",
+  "GaiaDesktop-User.md": {
+    "sha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+    "translations": {
+      "Arabic": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "8533d8880252590bd08c7681d5563eaba62617517f44f4c90905a6c8e432f406"
+      },
+      "Bengali": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "920697ccb29b7f0efbff32499a31eb30c54c8e4bca7ded3d8a189be55be6b412"
+      },
+      "Cantonese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "6ec913d3616098f8f1340de47c48b6a008c124e53b405b037e95432f6a039cc6"
+      },
+      "Chinese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "558c50df5f3b0e71924df6159a3d18951fbdb87c65457506bbc67100b8793a39"
+      },
+      "Czech": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "dca999ee3638c8f48faf54b91e1888a49beb61899565e7def3f994f5ecadb9c6"
+      },
+      "Dutch": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "39e3e21a3c29e1f0ea9815405fc672f3af1e2bd9dc43d1daf8fb6971f4adcfd6"
+      },
+      "EgyptianArabic": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "b2e2ad84ae89c45de4a6aaf0f33fbd9941c85277ae0d22696f493e87af1aaeac"
+      },
+      "French": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "b3ff16d9b367339c4aad9a08eabfe30c0e6a42e5ebeb311e8c9e17ab9adf20c5"
+      },
+      "German": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "f7e3a39ec227670d382207e381721525f87e79a80b887e7b6eb0faa6759b62c0"
+      },
+      "Hausa": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "7ff0b5053385adbc4ff5cdd60986922af5ba5a4f3b81efcaf1b5b76eeda31f58"
+      },
+      "Hindi": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "a737778834169d9c12f76a85dab93cb6a9bd97452cdf06fbd2465d6224d8fa85"
+      },
+      "Indonesian": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "e9bd5e7a6c9b7b9d1cc69dedf47de14d2523fdb63f0b13925b0dcf644c3fea07"
+      },
+      "Italian": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "8e0ce42404cdb9a015127c5e271c511369ab7cfc33c930190afce927e60866e9"
+      },
+      "Japanese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "e7cea28da7003a878d7650ce01057e581389e8d516ca1b2dde3d7286ea109bd7"
+      },
+      "Javanese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "3154e19bbde8c0715a4456e621c319786aecc78f4bd5be7dcdc47f811e3fdc96"
+      },
+      "Korean": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "efbb918491fe2931ae83b4c35b4f32ba564e3684796caad298eaf98a5fca83a4"
+      },
+      "Marathi": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "95f3dc974dacfdfd117289e29a93514b965a4df7282ba127a8ee88042b608c0a"
+      },
+      "NigerianPidgin": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "e9b9cfdee57a9696e12b9a700ca5c621c6692a79fdd29d722162376eb353b45e"
+      },
+      "Persian": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "edd0a4d82b3b88f4d7c3d3797c08656838f8359c59b3192903932008d7fb34ec"
+      },
+      "Polish": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "f8d3e6ec419c646cb9d8c13dbde08db68ce184b5399d43c68cb07b62fc0db616"
+      },
+      "Portuguese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "51474f769606efcc85bcb9d8e94ff23522f48842d6115efb48acf889e787fed1"
+      },
+      "Punjabi": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "de2caffe61385f23f1a9c4ac9c35f4522c7b20118b9915f4d72afcc3c502ad45"
+      },
+      "Russian": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "f19f7aee44c48ca6ee68a45842d85ff8359993205619493092574193bd894afd"
+      },
+      "Spanish": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "8c5de4dcbcdf992abf2c255851bbe34abfa8506dcd2d645a13693b9c79dc7307"
+      },
+      "Swahili": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "789da95d6a1225ccbc2355ce5006f6ff5face6ae9317341b8a3473c3bf9850c4"
+      },
+      "Swedish": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "3199ec7b67ac25484f9928a464378ed22827a7d750971572041d366ee70e6ec9"
+      },
+      "Tagalog": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "8c50bde733bb80875b26cb2f9f8e7b7ffb22635378620a1bbf64b400104231e8"
+      },
+      "Tamil": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "38e35a045fec7e7073ba0ed7d6cf10d95f4833fbc8661ce7d4657fef231b3a83"
+      },
+      "Telugu": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "70126b2260d5b3c64b6f0eaa61074fbc5603e8042b50947093f046486ba7d097"
+      },
+      "Turkish": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "ef5a80ea621243840dec430ec3a6b6c3a4e476b49b19d3c2bc3ba4e2e78eadca"
+      },
+      "Ukrainian": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "714ea6af66df26412043f79ad264a3100e310ebabcc9132031b5e25c66100cd7"
+      },
+      "Urdu": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "58ef8f0c8d2b275ef0bb770b4b9b96c390eeaa65bc4115e723b8f256c3ca119e"
+      },
+      "Vietnamese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "3e24141fcf203c767591b5623c77ef0ccfdfce6df34a5a9c429a378315379710"
+      },
+      "WuChinese": {
+        "translatedFromSourceSha256": "790a8a983432d9fe59685e3fb17bffc60d189ec5a6deb7e3ae6e6af2d7588d45",
+        "sha256": "bd0455b7dff717d64e3e898c644b53cfd7f5a584402b08bfc4b9965b5f257897"
+      }
+    }
+  },
+  "GaiaDesktop-Zebra-Scanner-Windows.md": {
+    "translations": {
+      "Arabic": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "0589be97fa76e9d263433038fc039f18ec70ee8b99341db61d18872530e88164"
+      },
+      "Bengali": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "0e5682982bebb592995b0fe69c655db5646ffe0f41b751e974f6a977cd29635d"
+      },
+      "Cantonese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "7a6e0921078d0c439539f445b9391e5d6f4a516811e4168862571bb9da912d3a"
+      },
+      "Chinese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "cd292c5456489509b4b756ace0c0e4d276eb932dc000cc1049d42f441edd2f40"
+      },
+      "Czech": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "414d28b5796bf08839036a8b14ed03bbfe975fed1cd727ff1ac78e122fb10e3e"
+      },
+      "Dutch": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "6e3c7d330e9b8269f9881b21f298e0312c6b9cfcda120d784f32af472ee450b2"
+      },
+      "EgyptianArabic": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "418859b0c6c392264f93d6850cfcb78176f6ebc01ddc72454cbf1aa86726bf61"
+      },
+      "French": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "a4f7ed5f4b2f38794bd6fc20dc34adb4812d9a73ce71eb638a285e185fce1550"
+      },
+      "German": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "3e706c29b98877853aa0b0c85d7b3a81b704097dcf6b4bbca98895fe7ee839cc"
+      },
+      "Hausa": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "94b3dab91cff75f403c3faf71722a52081f05401033d8b1a6e8880b1d382d9c1"
+      },
+      "Hindi": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "466634f79cf8169e83c486235f4d3e8f6795eb7c06ae5d763fb48685b735b1da"
+      },
+      "Indonesian": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "5cc0ff638f94da49e683d75e048b907e3cafc6e16a981ef1334b8a23101e2507"
+      },
+      "Italian": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "459252ca8409553bc9141d1cb336145f2775b3059eafbbdb8e5df287416cc92c"
+      },
+      "Japanese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "a91d41c952e527d1f80afb37bb6966652f66c478ebfea5d5d84541f4950d075c"
+      },
+      "Javanese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "8cfb7ad05951e3d135cb056e627e407d736bb6b9e86ee9133a1ab6681e1b740a"
+      },
+      "Korean": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "aef832cb3345398923f2077d98745b7c405dfff7e0538b621ff1643e8d5dbd63"
+      },
+      "Marathi": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "ecdef9fa7c6b2dfc20ff22d3530942b8a174d9e6a00a5b6df387792be20fb5eb"
+      },
+      "NigerianPidgin": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "16bf511ac312d3364564e72bdaf6409f386bcbd86036f804939e25ed2f57cee2"
+      },
+      "Persian": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "3a90439cfdc4454be06e511efa253f4b0c41ca9739bfc058828a3f8e034ed741"
+      },
+      "Polish": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "e38a2af136459dd3db318254e041caa2624e828cb746104993c8e57da56647e1"
+      },
+      "Portuguese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "5fc89a6dacf10cc39f2585b3cc8404fb527b08a638b09494e2a2c4b8f93a8d20"
+      },
+      "Punjabi": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "cb8f9998267ff555aded3d4c19c9b7bd85f4ce68a236667dae0aff033310836c"
+      },
+      "Russian": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "ace8913c288856015312c0eb0188ded9d8125b2fd44fae4348f8db2d4a963198"
+      },
+      "Spanish": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "12e4e876395ceaeb1ad6a8b690f6226ad635ca73f65c13975b4f51e40efa9abc"
+      },
+      "Swahili": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "a1819f311699701a63111552e0c7c08f4ba30bfeeb501609679c31de2048fcdd"
+      },
+      "Swedish": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "2f772a2b55285172975d103707436d4379d6fcb011355553055cef632773b0d3"
+      },
+      "Tagalog": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "a9426946be287812858e27cf0c9e17e90c2f81caef626f67b5f441cda704d9ae"
+      },
+      "Tamil": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "cc14dcbfd52078187dce8ba32a80890474d0ed150a6b23e38dd103e4e1eb2d47"
+      },
+      "Telugu": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "4709173a6e0431b149f32ef69b5c3f5caab5d454902b75cac9ff7259ba8808f2"
+      },
+      "Turkish": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "5ed8786b5019c7d94f4ccd0beca1b081d754454282100e66527dd4aa499a7690"
+      },
+      "Ukrainian": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "6524f723077a84979028eaa0c503a80449987e7304e73d86c3291c68b88fd33f"
+      },
+      "Urdu": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "a2841f7b1998732442d352db6570f03a5c5729daacaa1cec906b7a135a31f7ef"
+      },
+      "Vietnamese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "61df2983b2017ee9a63d2a9b38eefdb3e6dc2d505f943a46e72791792c3a15c8"
+      },
+      "WuChinese": {
+        "translatedFromSourceSha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9",
+        "sha256": "885106178a5375b8f5fd501dc90d40f2d9df7d681fe8dc2e6489b84151a01031"
+      }
+    },
+    "sha256": "9ecb2cd643c2e530465b3bb4bcf9754d9617df5b64d896b61bcc8195419f86c9"
+  },
+  "GaiaDesktop-Developer.md": {
+    "translations": {
+      "Arabic": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "3ed6bc2ee9879c3b6e16ae93b17dadb004307dda5de87979349a2381826f6db6"
+      },
+      "Bengali": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "b7e8f5e7b16b58ef8eef93bcf105b9577c67c6f0c255090f3d0969d376b92c82"
+      },
+      "Cantonese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "72c0308c8a2542ea317dcfbf230fe917a641e02bddceefefc25d3e7e451ac9fb"
+      },
+      "Chinese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "8569807370ebac9392f0d640dc86909938abe6862a0f98aa9f42c9675d1d4d5c"
+      },
+      "Czech": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "4975f1b5f1b1847977b2671efa49e3811aa3f6ca6dbd97888e81530bbcd1d381"
+      },
+      "Dutch": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "5bbae78891564da316c1b16ebb24cfdaa54c4630914a311a330ee216582acdac"
+      },
+      "EgyptianArabic": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "be36ae8e38431ec6f88359e136a2b5df22dd2944c14ab5e40cd57773883df07d"
+      },
+      "French": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "c1ca9de1af9482b84381c0e85918c6151dcbf35ed3acc641361cc0303fbe96ce"
+      },
+      "German": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "5860b185919b2d2b7687e54cf6983eefe92b9d7fe7c3aa1e158e9c82880307b0"
+      },
+      "Hausa": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "94ecf24f8ff8f7c193d4b966753f9e8ff65e9952ed911f4adbc0d25218420d5b"
+      },
+      "Hindi": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "73f79ac5d2e1964cc68db4c8503986d2bafbfe8c7c1de57367f793dfb0e849a0"
+      },
+      "Indonesian": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "c24fa1702a5b9bc6d88b0168d0bcd5660016bbfcceff2e38789c7cbce16860d7"
+      },
+      "Italian": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "082d6b240ae2aba3f270c7139535e220322fcf8680580219a5e6e7d4b8d40e2c"
+      },
+      "Japanese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "aa0fec6f9714b15fcf2a10cc9d0ac12c52673ca97d5642fb72bbb6c76d6a9301"
+      },
+      "Javanese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "9a6b17436e064e7499076612c501d872efe100b4c2b43d3f530fdec33cc062e5"
+      },
+      "Korean": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "d57d4af66802ea607679c06eb3de9bd6dc9f285d98f5a7791528d5f7911937b1"
+      },
+      "Marathi": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "e8911b8c204ab42bfc2eefe36ef3710f730ea450ccb8dc3c87541e619c0f03fb"
+      },
+      "NigerianPidgin": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "a690dfbec69dc7ae9d557fc0992e3e04626744fb0f6cc41b78aef8f100cfb2e7"
+      },
+      "Persian": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "11b3102df3c303304150de6270173c64188320420b5f8d512203e087bb84d929"
+      },
+      "Polish": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "1120941430fe404bc37f808f1ad4843d658b473d32ff754cb3be6ff9a0943ee5"
+      },
+      "Portuguese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "b56ed3fefaf5ffc27b2832b56f58bd34f1eaf4bbe898bd9ccde156831485212a"
+      },
+      "Punjabi": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "2b759791140c5869b131efced65294f44a8fc95c4bcd49bac007e67fd1b8839a"
+      },
+      "Russian": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "d0fce6d27502a2638061d5f3b7a6f1a2e9d252e6a1333885016a4429ecf14ae7"
+      },
+      "Spanish": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "ee8fa9f2f36b41472c1ae55116874812bf8afbdba7cb4d5d5c5ef7cefe89bc20"
+      },
+      "Swahili": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "6914018aa8ead4131784269819bdb2b993f4a572e249a33fd4fd77dadb671501"
+      },
+      "Swedish": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "715fe227e4253466cd903f1ea65a512f18f1de83d559b15ce38a778d7527ff2d"
+      },
+      "Tagalog": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "ee6f7dd616e4c422d218da7bec4426ca123fce7966c01232b97cd29bcb384aff"
+      },
+      "Tamil": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "b633c3ebb821c434e516a82b7ccfcd944827293df1a479929c2276aec8043534"
+      },
+      "Telugu": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "8583e5d0142fe1a2109703c548ab7cb995d2789d6bc577a2f6e6d8f7480443fc"
+      },
+      "Turkish": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "2b2c589fe543c8f42ee1da3392a9827b4f4b9c59f1b443ed666786d438a6c11f"
+      },
+      "Ukrainian": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "66f1b127e7df0901f1f18efde195cecf9a6d71ee7070ccc4876f9a824dd9d065"
+      },
+      "Urdu": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "ebf537d280ecb8879c18992e2210b2eefcc02299f5449ebf577879c77f1a2c6e"
+      },
+      "Vietnamese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "c145756d98d5ae3f6b7fa43596aace58b307fff35ef89eee3eccc401d2c6df1d"
+      },
+      "WuChinese": {
+        "translatedFromSourceSha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9",
+        "sha256": "ca55fe27cb8eb04027500f9382f71809439d12a62ac2c2ffb3d261891d2d35a8"
+      }
+    },
+    "sha256": "f136700097727a13a9f136b8fc4f7935e54b3c2321a6ca1006a9d40b6ad4ace9"
+  },
+  "GaiaDesktop-Samples.html": {
+    "translations": {
+      "Arabic": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "a0f1e4806c2bb7036642bb09620f0833d8f5ce358a71d4b883f21d0992463e66"
+      },
+      "Bengali": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "016d7012f87aa77f9c9d258cdc7586ccb91fdc983a4b3d9edd6d4bd5c74ae9fc"
+      },
+      "Cantonese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "598745739b244c2ac06eb82da2914b86770b0d1980a1e72d4902204ac0be5b50"
+      },
+      "Chinese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "26ecf2334df9228a155a5fe78558eba0cc51e5c6d2832829fab023fae966d67d"
+      },
+      "Czech": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "d4ec7af5a7008504cb8ffef2fd32113a9b309571f4487eef374c323e09b8520d"
+      },
+      "Dutch": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "f5b880c89dbae0cb5c63de64a262e7c785335e4a650c87c0dead4aa924e0baf6"
+      },
+      "EgyptianArabic": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "3523d9ff4124c378f4be163748c1b79307b49fd2afb1de3fc47fff525f75d565"
+      },
+      "French": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "ebac87843ececb54e993e4adabf6396ddc117a4c2f83507789944647c2523629"
+      },
+      "German": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "5bda84e1d49b2db90f1e8ba002789ee0ae01fd3bece274f1358a0410e5abfb61"
+      },
+      "Hausa": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "3eb8528bcd43000b348c7a9a747c63b154501755bfe14e39b4835a2fe0f7e64c"
+      },
+      "Hindi": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "7388d55c82958d68e804ae536af135d53558200f24e39042dca4f348b2b63ed7"
+      },
+      "Indonesian": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "bd6da314ae615e61fd9c9f08faddf9d830c4fbe8809acb66648ba637a874d88b"
+      },
+      "Italian": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "4037309a7c48fb7acd76f9cbb3f15ff4fc982054b6b14e760affe2547cd75bc5"
+      },
+      "Japanese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "b7674a8303d1551034734e43a27c468c3fbe014f5e02442295cd79a03f8cb990"
+      },
+      "Javanese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "d0e54c25a4902128422e0dc3eabd942f471e410806e90124412a658712a30275"
+      },
+      "Korean": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "d0de1c03933b62445cbb19d13d1ffbf94715915e0c9aea5de33695f3707d5fd1"
+      },
+      "Marathi": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "ba1eb752dd8f465daa90560966b4ac133867d95357ca921941e0a8c6a8282ffb"
+      },
+      "NigerianPidgin": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "97439a35749b24739ce65a7f609f5dfb8ad345ceacfccd878c9682e79a2d3524"
+      },
+      "Persian": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "967416ccbd57143d024c4d86cb3d9cc3c734004fc119264e2e8917358c67973a"
+      },
+      "Polish": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "bf315f9f2c9b4a431590ccf02a0fc5227f42a46871f1138d352a72817498dad5"
+      },
+      "Portuguese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "6db5317e9c402df60cc1ff008ef8833f4fc34cf59bf72967b3aa537ee936b8b1"
+      },
+      "Punjabi": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "358804cbf97864bd81a64c70b732e19de2451d8a6d0fdbccdf11a9a9c16ecb3e"
+      },
+      "Russian": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "8cb135ff6e5987c87bf4f91db8ae4bef27be9532bdb928b7806914deb112d28e"
+      },
+      "Spanish": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "51dacf6b283c1e064f3466cf2cb21d026e853483b8d5f9a930afd017e4c3c5fd"
+      },
+      "Swahili": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "52d1280ae63d4885cf08eb0a1c5aa7ec80554665542bdaea66add73e052465de"
+      },
+      "Swedish": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "6a52ffa7e3396f877d428305d1d4e680cb40bf4862706d416115927299495422"
+      },
+      "Tagalog": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "c242f5ace7c6782257366e749e574bcd2a5fedf064a4359e91b3c8e872327b5c"
+      },
+      "Tamil": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "97f2aad474bddfad1b9cec50e3f119c47ee0b20b299938330549432a5575ad79"
+      },
+      "Telugu": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "205bcd76ab678e57b26278fe0e5aee8df5f3b7b1e71a718235a9fb74cde6b586"
+      },
+      "Turkish": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "d2dcafccb2263bab2a436b3c6202356485946bddb431227bdd0dbd8841f9b5e2"
+      },
+      "Ukrainian": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "20c6c028fc96c861fa6e60edfa38885e3891ca522812e81846d97fa5bd40776d"
+      },
+      "Urdu": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "3f4aef195982b2de23f6fd9e3778a7903eaf1649485177f3415830f5d2774911"
+      },
+      "Vietnamese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "8c7428d13ca863231240e290a67fffb5f2770bbcc3534636c5fd5d5f64b00ff0"
+      },
+      "WuChinese": {
+        "translatedFromSourceSha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1",
+        "sha256": "fd769c49edef43218da5b8ca335d2751637833f5e2e4c7a689fd0b4a50ca0141"
+      }
+    },
+    "sha256": "4c8d8a24de2c6684d742f1a51cdd47bc33421e30e4bb280251d84ebe7cae9bd1"
+  }
+}
