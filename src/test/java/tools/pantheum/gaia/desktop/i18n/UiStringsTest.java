@@ -54,7 +54,7 @@ class UiStringsTest {
         UiStrings fr = UiStrings.of(GaiaConstants.Language.FRENCH);
         assertEquals("Fichier", fr.get("menu.file"));
         assertEquals("Analyser", fr.get("act.parse"));
-        // From the shared table extracted from the demo module's report.
+        // From the shared report vocabulary block.
         assertEquals("Erreurs", fr.get("errors"));
     }
 

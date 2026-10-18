@@ -31,8 +31,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Owns the JavaPOS {@link Scanner} control and turns its events into {@link ScannerListener}
- * callbacks. The device wiring is the same as the CLI scanner front-end
- * ({@code tools.pantheum.gaia.demo.scanner.GaiaScannerDemo}) — open, claim, enable, then
+ * callbacks. The device wiring is the standard JavaPOS sequence — open, claim, enable, then
  * re-arm the data event after every scan — but nothing here parses, prints, or writes a
  * report: the desktop app decides what to do with a scan.
  *

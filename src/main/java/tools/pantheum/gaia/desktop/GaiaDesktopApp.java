@@ -16,10 +16,9 @@ import org.slf4j.LoggerFactory;
  *
  * <p>A JavaFX front-end over the GAIA GS1 parser ({@link tools.pantheum.gaia.GaiaParser}):
  * type, paste, open, or scan an input, and read the result as the same instrument-readout
- * HTML report the demo module writes to disk — rendered live in a {@code WebView} instead.
- * Scanner input comes from the JavaPOS control wired up in
- * {@link tools.pantheum.gaia.desktop.scanner.ScannerService}, the same SNAPI-over-USB-HID
- * path the CLI scanner front-end uses.
+ * HTML report, rendered live in a {@code WebView}. Scanner input comes from the JavaPOS
+ * control wired up in {@link tools.pantheum.gaia.desktop.scanner.ScannerService}, over
+ * SNAPI on USB HID.
  *
  * <p>Run it:
  * <pre>

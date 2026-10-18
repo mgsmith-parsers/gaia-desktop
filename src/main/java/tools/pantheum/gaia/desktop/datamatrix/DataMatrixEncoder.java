@@ -8,7 +8,7 @@ import tools.pantheum.gaia.gs1.constants.GS1Constants;
  * Encodes a GS1 element string as the module grid of a GS1 Data Matrix (ECC 200).
  *
  * <p>Written because no library in this project can do it. ZXing's {@code DataMatrixWriter} — the
- * obvious candidate, and already a {@code gaia-demo} dependency — writes the {@code 0x1D}
+ * obvious candidate — writes the {@code 0x1D}
  * separator as a <em>literal character</em> rather than the FNC1 codeword, so its symbols decode
  * as plain Data Matrix ({@code ]d1}) and never as GS1 ({@code ]d2}): its high-level encoder has no
  * mention of codeword 232 at all. A symbol like that looks right, scans, and is wrong, which is

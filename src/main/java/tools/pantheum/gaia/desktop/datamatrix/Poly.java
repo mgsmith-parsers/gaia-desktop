@@ -9,10 +9,6 @@ package tools.pantheum.gaia.desktop.datamatrix;
  * {@code length - 1}, with no special cases scattered through the algorithm.
  *
  * <p>Immutable — every operation returns a new polynomial.
- *
- * <p><b>Twin.</b> Copied verbatim from {@code gaia-demo}'s own Data Matrix decoder, package
- * line apart. The modules must not depend on one another (see {@code CLAUDE.md}), and this is
- * the same arrangement {@code scanner/Symbologies} uses. Fix a bug in both.
  */
 final class Poly {
 

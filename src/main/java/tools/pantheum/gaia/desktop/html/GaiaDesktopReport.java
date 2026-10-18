@@ -27,13 +27,12 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Renders a self-contained HTML report for a single {@link ParseResult} — the
- * instrument-readout design carried over from the demo module's
- * {@code GaiaHtmlReportV2}: a verdict banner, a decomposed element-string "tape",
+ * Renders a self-contained HTML report for a single {@link ParseResult} — an
+ * instrument-readout design: a verdict banner, a decomposed element-string "tape",
  * a parse-metadata grid, per-element cards, and error / warning detail with
  * remediation hints.
  *
- * <p>Three things differ from the demo renderer:
+ * <p>Three design choices are specific to the desktop:
  * <ul>
  *   <li>the colour scheme is <em>pinned</em> by the caller ({@link Theme}) instead of
  *       following {@code prefers-color-scheme}, because the report is displayed in a
@@ -451,8 +450,7 @@ public final class GaiaDesktopReport {
      * attribute.
      *
      * <p>The role itself is decided by the parser
-     * ({@link GS1AIObjectElement#getDigitalLinkAIType()}); this only translates it, the way
-     * the demo module's {@code GaiaHtmlReport} renders its "Digital Link role" column. The
+     * ({@link GS1AIObjectElement#getDigitalLinkAIType()}); this only translates it. The
      * English values match the core enum's own labels exactly, so the two never disagree.
      */
     static String roleLabel(GS1AIObjectElement e, UiStrings s) {
