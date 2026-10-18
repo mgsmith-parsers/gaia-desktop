@@ -141,6 +141,15 @@
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
             <version>${xerces.version}</version>
+            <!-- xml-apis re-ships org.w3c.dom / javax.xml.*, which the JDK's java.xml module
+                 already owns; Eclipse rejects the split package ("accessible from more than
+                 one module"). Everything Xerces needs from it is in java.xml. -->
+            <exclusions>
+                <exclusion>
+                    <groupId>xml-apis</groupId>
+                    <artifactId>xml-apis</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- JavaPOS contracts (interfaces) -->
