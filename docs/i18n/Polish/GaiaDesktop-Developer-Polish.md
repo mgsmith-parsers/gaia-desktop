@@ -123,7 +123,7 @@ sprawiają, że nie zgłaszają do niej roszczeń oba naraz.
 
 Każda dystrybucja zawiera też podręczniki: `docs/` skopiowany z zachowaniem struktury, tak by odnośniki
 między podręcznikami a tłumaczeniami nadal działały, bez narzędzi tłumaczeniowych (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); oraz `readme.html` w katalogu głównym, indeks z odnośnikami do
+`i18n-manifest.json`); oraz `readme.html` w katalogu głównym, indeks z odnośnikami do
 każdego z nich, z `src/main/dist/readme.html` z `@VERSION@` przefiltrowanym do wersji z pomu. Oba zapisuje
 krok antrun `pick-launch-script`, który najpierw usuwa `docs/`, żeby usunięty podręcznik nie pozostał.
 Odnośniki w readme są pisane ręcznie — przemianowany podręcznik lub tłumaczenie dodane w `docs/` wymaga

@@ -4,63 +4,110 @@ A JavaFX desktop front-end for the GAIA GS1 parser: type, paste, open, or scan a
 read the result as the instrument-readout HTML report — rendered live in a `WebView` rather
 than written to a file.
 
+- **Parse** element strings, GS1 Digital Link URIs, and raw scans carrying an AIM Code ID —
+  every AI split out, typed, validated, and explained, with errors and their remedies.
+- **Build** element strings and Digital Link URIs from AI/value pairs, picking from all 541 AIs.
+- **Combine** up to three GS1-128 barcodes from a legacy label — scanned or typed — into the one
+  element string a GS1 DataMatrix would carry, validated as a whole and, once valid, drawn as the
+  symbol. An AI repeated with the same value is kept once; one repeated with a different value is
+  flagged as a conflict.
+- **2D Zebra scanner support** on Windows — connect a Zebra scanner through JavaPOS (tested with
+  the DS8108) and every scan, linear or 2D such as GS1 DataMatrix and GS1 QR Code, is parsed as it
+  arrives.
+- **Runs on Windows, macOS and Linux** — a `GAIA Desktop.app` on macOS — with Java 21 or newer.
+- **35 languages** — the whole application, the report, and every guide.
+
+**GAIA Desktop 1.0.0**, built on **GAIA 1.1.0** — GS1 General Specifications Release 26.0 and GS1
+Digital Link URI Syntax Release 1.7.0.
+
 ```
 tools.pantheum:gaia-desktop:1.0.0   Java 21 · JavaFX 21   →  depends on tools.pantheum:gaia:1.1.0
 ```
 
-### The user guide in other languages
+## What are GS1 Application Identifiers?
 
-Translation is under way — see [`docs/i18n-plan.md`](docs/i18n-plan.md). English is the source
-of truth; [`docs/i18n-manifest.json`](docs/i18n-manifest.json) records which revision each
-translation was made from, and `python3 docs/check-i18n.py` checks them structurally.
+An Application Identifier is a short numeric prefix — two to four digits — that declares
+what the value after it means. `01` introduces a 14-digit GTIN, `10` a batch number, `17`
+an expiry date, and so on across 541 of them.
 
-| Language | | User guide |
-|---|---|---|
-| English | English | [GaiaDesktop-User.md](docs/GaiaDesktop-User.md) |
-| Arabic | العربية | [دليل المستخدم](docs/i18n/Arabic/GaiaDesktop-User-Arabic.md) |
-| Bengali | বাংলা | [ব্যবহারকারীর নির্দেশিকা](docs/i18n/Bengali/GaiaDesktop-User-Bengali.md) |
-| Cantonese | 廣東話 | [使用者指南](docs/i18n/Cantonese/GaiaDesktop-User-Cantonese.md) |
-| Chinese (Simplified) | 简体中文 | [用户指南](docs/i18n/Chinese/GaiaDesktop-User-Chinese.md) |
-| Czech | Čeština | [Uživatelská příručka](docs/i18n/Czech/GaiaDesktop-User-Czech.md) |
-| Dutch | Nederlands | [Gebruikershandleiding](docs/i18n/Dutch/GaiaDesktop-User-Dutch.md) |
-| Egyptian Arabic | مصري | [دليل المستخدم](docs/i18n/EgyptianArabic/GaiaDesktop-User-EgyptianArabic.md) |
-| French | Français | [Guide de l'utilisateur](docs/i18n/French/GaiaDesktop-User-French.md) |
-| German | Deutsch | [Benutzerhandbuch](docs/i18n/German/GaiaDesktop-User-German.md) |
-| Hausa | Hausa | [Jagorar mai amfani](docs/i18n/Hausa/GaiaDesktop-User-Hausa.md) |
-| Hindi | हिन्दी | [उपयोगकर्ता मार्गदर्शिका](docs/i18n/Hindi/GaiaDesktop-User-Hindi.md) |
-| Indonesian | Bahasa Indonesia | [Panduan Pengguna](docs/i18n/Indonesian/GaiaDesktop-User-Indonesian.md) |
-| Italian | Italiano | [Guida dell'utente](docs/i18n/Italian/GaiaDesktop-User-Italian.md) |
-| Japanese | 日本語 | [ユーザーガイド](docs/i18n/Japanese/GaiaDesktop-User-Japanese.md) |
-| Javanese | Basa Jawa | [Pandhuan panganggo](docs/i18n/Javanese/GaiaDesktop-User-Javanese.md) |
-| Korean | 한국어 | [사용자 안내서](docs/i18n/Korean/GaiaDesktop-User-Korean.md) |
-| Marathi | मराठी | [वापरकर्ता मार्गदर्शिका](docs/i18n/Marathi/GaiaDesktop-User-Marathi.md) |
-| Nigerian Pidgin | Naijá | [Guide for di person wey dey use am](docs/i18n/NigerianPidgin/GaiaDesktop-User-NigerianPidgin.md) |
-| Persian | فارسی | [راهنمای کاربر](docs/i18n/Persian/GaiaDesktop-User-Persian.md) |
-| Polish | Polski | [Podręcznik użytkownika](docs/i18n/Polish/GaiaDesktop-User-Polish.md) |
-| Portuguese | Português | [Guia do utilizador](docs/i18n/Portuguese/GaiaDesktop-User-Portuguese.md) |
-| Punjabi | ਪੰਜਾਬੀ | [ਵਰਤੋਂਕਾਰ ਗਾਈਡ](docs/i18n/Punjabi/GaiaDesktop-User-Punjabi.md) |
-| Russian | Русский | [Руководство пользователя](docs/i18n/Russian/GaiaDesktop-User-Russian.md) |
-| Spanish | Español | [Guía del usuario](docs/i18n/Spanish/GaiaDesktop-User-Spanish.md) |
-| Swahili | Kiswahili | [Mwongozo wa mtumiaji](docs/i18n/Swahili/GaiaDesktop-User-Swahili.md) |
-| Swedish | Svenska | [Användarhandbok](docs/i18n/Swedish/GaiaDesktop-User-Swedish.md) |
-| Tagalog | Tagalog | [Gabay ng gumagamit](docs/i18n/Tagalog/GaiaDesktop-User-Tagalog.md) |
-| Tamil | தமிழ் | [பயனர் வழிகாட்டி](docs/i18n/Tamil/GaiaDesktop-User-Tamil.md) |
-| Telugu | తెలుగు | [వినియోగదారు మార్గదర్శిని](docs/i18n/Telugu/GaiaDesktop-User-Telugu.md) |
-| Turkish | Türkçe | [Kullanıcı Kılavuzu](docs/i18n/Turkish/GaiaDesktop-User-Turkish.md) |
-| Ukrainian | Українська | [Посібник користувача](docs/i18n/Ukrainian/GaiaDesktop-User-Ukrainian.md) |
-| Urdu | اردو | [صارف گائیڈ](docs/i18n/Urdu/GaiaDesktop-User-Urdu.md) |
-| Vietnamese | Tiếng Việt | [Hướng dẫn người dùng](docs/i18n/Vietnamese/GaiaDesktop-User-Vietnamese.md) |
-| Wu Chinese | 吴语 | [用户指南](docs/i18n/WuChinese/GaiaDesktop-User-WuChinese.md) |
+Because every value announces its own meaning, one barcode can carry several unrelated
+fields in a single unbroken string, and anything reading it can pick out the parts it
+cares about without knowing what the product is:
+
+| | |
+|---|---|
+| `01` | an Application Identifier — a 14-digit GTIN follows |
+| `09506000134352` | the GTIN |
+| `10` | an Application Identifier — a batch number follows |
+| `LOT-ABC` | the batch number |
+
+Concatenated, that is `010950600013435210LOT-ABC` — one string, two fields, no separators
+needed because `01` is defined as fixed-length. GAIA reads strings like this, splits them
+into typed values, and checks each one against the rules GS1 defines for that AI.
+
+## Multi-language support
+
+The application itself runs in 35 languages (see [Languages](#languages)), and every guide —
+the user guide, the samples, the Zebra scanner setup guide and the developer guide — is
+translated into the 34 languages below. Each distribution's `readme.html` links the same table.
+
+| Language | | User guide | Samples | Zebra scanner | Developer guide |
+|---|---|---|---|---|---|
+| English | English | [User guide](docs/GaiaDesktop-User.md) | [Samples](docs/GaiaDesktop-Samples.html) | [Zebra scanner](docs/GaiaDesktop-Zebra-Scanner-Windows.md) | [Developer guide](docs/GaiaDesktop-Developer.md) |
+| Arabic | العربية | [دليل المستخدم](docs/i18n/Arabic/GaiaDesktop-User-Arabic.md) | [نماذج](docs/i18n/Arabic/GaiaDesktop-Samples-Arabic.html) | [ماسح Zebra](docs/i18n/Arabic/GaiaDesktop-Zebra-Scanner-Windows-Arabic.md) | [دليل المطوّر](docs/i18n/Arabic/GaiaDesktop-Developer-Arabic.md) |
+| Bengali | বাংলা | [ব্যবহারকারীর নির্দেশিকা](docs/i18n/Bengali/GaiaDesktop-User-Bengali.md) | [নমুনা](docs/i18n/Bengali/GaiaDesktop-Samples-Bengali.html) | [Zebra স্ক্যানার](docs/i18n/Bengali/GaiaDesktop-Zebra-Scanner-Windows-Bengali.md) | [ডেভেলপার নির্দেশিকা](docs/i18n/Bengali/GaiaDesktop-Developer-Bengali.md) |
+| Cantonese | 廣東話 | [使用者指南](docs/i18n/Cantonese/GaiaDesktop-User-Cantonese.md) | [範例](docs/i18n/Cantonese/GaiaDesktop-Samples-Cantonese.html) | [Zebra 掃描器](docs/i18n/Cantonese/GaiaDesktop-Zebra-Scanner-Windows-Cantonese.md) | [開發者指南](docs/i18n/Cantonese/GaiaDesktop-Developer-Cantonese.md) |
+| Chinese (Simplified) | 简体中文 | [用户指南](docs/i18n/Chinese/GaiaDesktop-User-Chinese.md) | [示例](docs/i18n/Chinese/GaiaDesktop-Samples-Chinese.html) | [Zebra 扫描器](docs/i18n/Chinese/GaiaDesktop-Zebra-Scanner-Windows-Chinese.md) | [开发者指南](docs/i18n/Chinese/GaiaDesktop-Developer-Chinese.md) |
+| Czech | Čeština | [Uživatelská příručka](docs/i18n/Czech/GaiaDesktop-User-Czech.md) | [Ukázky](docs/i18n/Czech/GaiaDesktop-Samples-Czech.html) | [Skener Zebra](docs/i18n/Czech/GaiaDesktop-Zebra-Scanner-Windows-Czech.md) | [Příručka pro vývojáře](docs/i18n/Czech/GaiaDesktop-Developer-Czech.md) |
+| Dutch | Nederlands | [Gebruikershandleiding](docs/i18n/Dutch/GaiaDesktop-User-Dutch.md) | [Voorbeelden](docs/i18n/Dutch/GaiaDesktop-Samples-Dutch.html) | [Zebra-scanner](docs/i18n/Dutch/GaiaDesktop-Zebra-Scanner-Windows-Dutch.md) | [Ontwikkelaarshandleiding](docs/i18n/Dutch/GaiaDesktop-Developer-Dutch.md) |
+| Egyptian Arabic | مصري | [دليل المستخدم](docs/i18n/EgyptianArabic/GaiaDesktop-User-EgyptianArabic.md) | [نماذج](docs/i18n/EgyptianArabic/GaiaDesktop-Samples-EgyptianArabic.html) | [ماسح Zebra](docs/i18n/EgyptianArabic/GaiaDesktop-Zebra-Scanner-Windows-EgyptianArabic.md) | [دليل المطوّر](docs/i18n/EgyptianArabic/GaiaDesktop-Developer-EgyptianArabic.md) |
+| French | Français | [Guide de l'utilisateur](docs/i18n/French/GaiaDesktop-User-French.md) | [Exemples](docs/i18n/French/GaiaDesktop-Samples-French.html) | [Lecteur Zebra](docs/i18n/French/GaiaDesktop-Zebra-Scanner-Windows-French.md) | [Guide du développeur](docs/i18n/French/GaiaDesktop-Developer-French.md) |
+| German | Deutsch | [Benutzerhandbuch](docs/i18n/German/GaiaDesktop-User-German.md) | [Beispiele](docs/i18n/German/GaiaDesktop-Samples-German.html) | [Zebra-Scanner](docs/i18n/German/GaiaDesktop-Zebra-Scanner-Windows-German.md) | [Entwicklerhandbuch](docs/i18n/German/GaiaDesktop-Developer-German.md) |
+| Hausa | Hausa | [Jagorar mai amfani](docs/i18n/Hausa/GaiaDesktop-User-Hausa.md) | [Misalai](docs/i18n/Hausa/GaiaDesktop-Samples-Hausa.html) | [Sikanan Zebra](docs/i18n/Hausa/GaiaDesktop-Zebra-Scanner-Windows-Hausa.md) | [Jagorar mai haɓakawa](docs/i18n/Hausa/GaiaDesktop-Developer-Hausa.md) |
+| Hindi | हिन्दी | [उपयोगकर्ता मार्गदर्शिका](docs/i18n/Hindi/GaiaDesktop-User-Hindi.md) | [नमूने](docs/i18n/Hindi/GaiaDesktop-Samples-Hindi.html) | [Zebra स्कैनर](docs/i18n/Hindi/GaiaDesktop-Zebra-Scanner-Windows-Hindi.md) | [डेवलपर मार्गदर्शिका](docs/i18n/Hindi/GaiaDesktop-Developer-Hindi.md) |
+| Indonesian | Bahasa Indonesia | [Panduan Pengguna](docs/i18n/Indonesian/GaiaDesktop-User-Indonesian.md) | [Contoh](docs/i18n/Indonesian/GaiaDesktop-Samples-Indonesian.html) | [Pemindai Zebra](docs/i18n/Indonesian/GaiaDesktop-Zebra-Scanner-Windows-Indonesian.md) | [Panduan Pengembang](docs/i18n/Indonesian/GaiaDesktop-Developer-Indonesian.md) |
+| Italian | Italiano | [Guida dell'utente](docs/i18n/Italian/GaiaDesktop-User-Italian.md) | [Esempi](docs/i18n/Italian/GaiaDesktop-Samples-Italian.html) | [Lettore Zebra](docs/i18n/Italian/GaiaDesktop-Zebra-Scanner-Windows-Italian.md) | [Guida per sviluppatori](docs/i18n/Italian/GaiaDesktop-Developer-Italian.md) |
+| Japanese | 日本語 | [ユーザーガイド](docs/i18n/Japanese/GaiaDesktop-User-Japanese.md) | [サンプル](docs/i18n/Japanese/GaiaDesktop-Samples-Japanese.html) | [Zebra スキャナー](docs/i18n/Japanese/GaiaDesktop-Zebra-Scanner-Windows-Japanese.md) | [開発者ガイド](docs/i18n/Japanese/GaiaDesktop-Developer-Japanese.md) |
+| Javanese | Basa Jawa | [Pandhuan panganggo](docs/i18n/Javanese/GaiaDesktop-User-Javanese.md) | [Conto](docs/i18n/Javanese/GaiaDesktop-Samples-Javanese.html) | [Scanner Zebra](docs/i18n/Javanese/GaiaDesktop-Zebra-Scanner-Windows-Javanese.md) | [Pandhuan pangembang](docs/i18n/Javanese/GaiaDesktop-Developer-Javanese.md) |
+| Korean | 한국어 | [사용자 안내서](docs/i18n/Korean/GaiaDesktop-User-Korean.md) | [샘플](docs/i18n/Korean/GaiaDesktop-Samples-Korean.html) | [Zebra 스캐너](docs/i18n/Korean/GaiaDesktop-Zebra-Scanner-Windows-Korean.md) | [개발자 가이드](docs/i18n/Korean/GaiaDesktop-Developer-Korean.md) |
+| Marathi | मराठी | [वापरकर्ता मार्गदर्शिका](docs/i18n/Marathi/GaiaDesktop-User-Marathi.md) | [नमुने](docs/i18n/Marathi/GaiaDesktop-Samples-Marathi.html) | [Zebra स्कॅनर](docs/i18n/Marathi/GaiaDesktop-Zebra-Scanner-Windows-Marathi.md) | [विकसक मार्गदर्शिका](docs/i18n/Marathi/GaiaDesktop-Developer-Marathi.md) |
+| Nigerian Pidgin | Naijá | [Guide for di person wey dey use am](docs/i18n/NigerianPidgin/GaiaDesktop-User-NigerianPidgin.md) | [Samples](docs/i18n/NigerianPidgin/GaiaDesktop-Samples-NigerianPidgin.html) | [Zebra scanner](docs/i18n/NigerianPidgin/GaiaDesktop-Zebra-Scanner-Windows-NigerianPidgin.md) | [Guide for Developer](docs/i18n/NigerianPidgin/GaiaDesktop-Developer-NigerianPidgin.md) |
+| Persian | فارسی | [راهنمای کاربر](docs/i18n/Persian/GaiaDesktop-User-Persian.md) | [نمونه‌ها](docs/i18n/Persian/GaiaDesktop-Samples-Persian.html) | [اسکنر Zebra](docs/i18n/Persian/GaiaDesktop-Zebra-Scanner-Windows-Persian.md) | [راهنمای توسعه‌دهنده](docs/i18n/Persian/GaiaDesktop-Developer-Persian.md) |
+| Polish | Polski | [Podręcznik użytkownika](docs/i18n/Polish/GaiaDesktop-User-Polish.md) | [Przykłady](docs/i18n/Polish/GaiaDesktop-Samples-Polish.html) | [Skaner Zebra](docs/i18n/Polish/GaiaDesktop-Zebra-Scanner-Windows-Polish.md) | [Podręcznik programisty](docs/i18n/Polish/GaiaDesktop-Developer-Polish.md) |
+| Portuguese | Português | [Guia do utilizador](docs/i18n/Portuguese/GaiaDesktop-User-Portuguese.md) | [Exemplos](docs/i18n/Portuguese/GaiaDesktop-Samples-Portuguese.html) | [Leitor Zebra](docs/i18n/Portuguese/GaiaDesktop-Zebra-Scanner-Windows-Portuguese.md) | [Guia do programador](docs/i18n/Portuguese/GaiaDesktop-Developer-Portuguese.md) |
+| Punjabi | ਪੰਜਾਬੀ | [ਵਰਤੋਂਕਾਰ ਗਾਈਡ](docs/i18n/Punjabi/GaiaDesktop-User-Punjabi.md) | [ਨਮੂਨੇ](docs/i18n/Punjabi/GaiaDesktop-Samples-Punjabi.html) | [Zebra ਸਕੈਨਰ](docs/i18n/Punjabi/GaiaDesktop-Zebra-Scanner-Windows-Punjabi.md) | [ਡਿਵੈਲਪਰ ਗਾਈਡ](docs/i18n/Punjabi/GaiaDesktop-Developer-Punjabi.md) |
+| Russian | Русский | [Руководство пользователя](docs/i18n/Russian/GaiaDesktop-User-Russian.md) | [Примеры](docs/i18n/Russian/GaiaDesktop-Samples-Russian.html) | [Сканер Zebra](docs/i18n/Russian/GaiaDesktop-Zebra-Scanner-Windows-Russian.md) | [Руководство разработчика](docs/i18n/Russian/GaiaDesktop-Developer-Russian.md) |
+| Spanish | Español | [Guía del usuario](docs/i18n/Spanish/GaiaDesktop-User-Spanish.md) | [Ejemplos](docs/i18n/Spanish/GaiaDesktop-Samples-Spanish.html) | [Lector Zebra](docs/i18n/Spanish/GaiaDesktop-Zebra-Scanner-Windows-Spanish.md) | [Guía del desarrollador](docs/i18n/Spanish/GaiaDesktop-Developer-Spanish.md) |
+| Swahili | Kiswahili | [Mwongozo wa mtumiaji](docs/i18n/Swahili/GaiaDesktop-User-Swahili.md) | [Mifano](docs/i18n/Swahili/GaiaDesktop-Samples-Swahili.html) | [Skana ya Zebra](docs/i18n/Swahili/GaiaDesktop-Zebra-Scanner-Windows-Swahili.md) | [Mwongozo wa msanidi](docs/i18n/Swahili/GaiaDesktop-Developer-Swahili.md) |
+| Swedish | Svenska | [Användarhandbok](docs/i18n/Swedish/GaiaDesktop-User-Swedish.md) | [Exempel](docs/i18n/Swedish/GaiaDesktop-Samples-Swedish.html) | [Zebra-skanner](docs/i18n/Swedish/GaiaDesktop-Zebra-Scanner-Windows-Swedish.md) | [Utvecklarhandbok](docs/i18n/Swedish/GaiaDesktop-Developer-Swedish.md) |
+| Tagalog | Tagalog | [Gabay ng gumagamit](docs/i18n/Tagalog/GaiaDesktop-User-Tagalog.md) | [Mga sample](docs/i18n/Tagalog/GaiaDesktop-Samples-Tagalog.html) | [Zebra scanner](docs/i18n/Tagalog/GaiaDesktop-Zebra-Scanner-Windows-Tagalog.md) | [Gabay ng developer](docs/i18n/Tagalog/GaiaDesktop-Developer-Tagalog.md) |
+| Tamil | தமிழ் | [பயனர் வழிகாட்டி](docs/i18n/Tamil/GaiaDesktop-User-Tamil.md) | [மாதிரிகள்](docs/i18n/Tamil/GaiaDesktop-Samples-Tamil.html) | [Zebra ஸ்கேனர்](docs/i18n/Tamil/GaiaDesktop-Zebra-Scanner-Windows-Tamil.md) | [உருவாக்குநர் வழிகாட்டி](docs/i18n/Tamil/GaiaDesktop-Developer-Tamil.md) |
+| Telugu | తెలుగు | [వినియోగదారు మార్గదర్శిని](docs/i18n/Telugu/GaiaDesktop-User-Telugu.md) | [నమూనాలు](docs/i18n/Telugu/GaiaDesktop-Samples-Telugu.html) | [Zebra స్కానర్](docs/i18n/Telugu/GaiaDesktop-Zebra-Scanner-Windows-Telugu.md) | [డెవలపర్ మార్గదర్శిని](docs/i18n/Telugu/GaiaDesktop-Developer-Telugu.md) |
+| Turkish | Türkçe | [Kullanıcı Kılavuzu](docs/i18n/Turkish/GaiaDesktop-User-Turkish.md) | [Örnekler](docs/i18n/Turkish/GaiaDesktop-Samples-Turkish.html) | [Zebra tarayıcı](docs/i18n/Turkish/GaiaDesktop-Zebra-Scanner-Windows-Turkish.md) | [Geliştirici Kılavuzu](docs/i18n/Turkish/GaiaDesktop-Developer-Turkish.md) |
+| Ukrainian | Українська | [Посібник користувача](docs/i18n/Ukrainian/GaiaDesktop-User-Ukrainian.md) | [Приклади](docs/i18n/Ukrainian/GaiaDesktop-Samples-Ukrainian.html) | [Сканер Zebra](docs/i18n/Ukrainian/GaiaDesktop-Zebra-Scanner-Windows-Ukrainian.md) | [Посібник розробника](docs/i18n/Ukrainian/GaiaDesktop-Developer-Ukrainian.md) |
+| Urdu | اردو | [صارف گائیڈ](docs/i18n/Urdu/GaiaDesktop-User-Urdu.md) | [نمونے](docs/i18n/Urdu/GaiaDesktop-Samples-Urdu.html) | [Zebra اسکینر](docs/i18n/Urdu/GaiaDesktop-Zebra-Scanner-Windows-Urdu.md) | [ڈویلپر گائیڈ](docs/i18n/Urdu/GaiaDesktop-Developer-Urdu.md) |
+| Vietnamese | Tiếng Việt | [Hướng dẫn người dùng](docs/i18n/Vietnamese/GaiaDesktop-User-Vietnamese.md) | [Mẫu](docs/i18n/Vietnamese/GaiaDesktop-Samples-Vietnamese.html) | [Máy quét Zebra](docs/i18n/Vietnamese/GaiaDesktop-Zebra-Scanner-Windows-Vietnamese.md) | [Hướng dẫn dành cho nhà phát triển](docs/i18n/Vietnamese/GaiaDesktop-Developer-Vietnamese.md) |
+| Wu Chinese | 吴语 | [用户指南](docs/i18n/WuChinese/GaiaDesktop-User-WuChinese.md) | [样例](docs/i18n/WuChinese/GaiaDesktop-Samples-WuChinese.html) | [Zebra 扫描器](docs/i18n/WuChinese/GaiaDesktop-Zebra-Scanner-Windows-WuChinese.md) | [开发者指南](docs/i18n/WuChinese/GaiaDesktop-Developer-WuChinese.md) |
+
+English is the source of truth.
+[`docs/i18n-manifest.json`](docs/i18n-manifest.json) records which English revision each
+translation was made from, and `python3 docs/check-i18n.py` checks them all: structure, code
+blocks, links and UI labels for the guides, the sample barcode data for the samples page, and which
+translations are behind their English. After updating a translation, record it with
+`python3 docs/check-i18n.py --record <document> [Language …]`.
 
 > **Full guides:**
 > [`docs/GaiaDesktop-User.md`](docs/GaiaDesktop-User.md) — the UI in detail: parsing, the
-> builder, the report, options, languages, shortcuts and troubleshooting.
+> builder, Combine, the report, options, languages, shortcuts and troubleshooting.
 > [`docs/GaiaDesktop-Developer.md`](docs/GaiaDesktop-Developer.md) — packaging, architecture,
 > the `{GS}` token, the scanner gate, the localization contract, the state file formats and
 > testing.
 > [`docs/GaiaDesktop-Zebra-Scanner-Windows.md`](docs/GaiaDesktop-Zebra-Scanner-Windows.md) —
-> installing and configuring a Zebra scanner on Windows (tested with the DS8108): Java, the Zebra
-> Scanner SDK, the scanner's USB mode and GS1 settings, connecting, and troubleshooting.
+> installing and configuring a Zebra scanner on Windows: Java, the Zebra Scanner SDK, 123Scan,
+> the scanner's firmware, USB mode and GS1 settings, the supported 2D models, connecting, and
+> troubleshooting.
+> [`docs/GaiaDesktop-Samples.html`](docs/GaiaDesktop-Samples.html) — sample barcodes, one per GS1
+> data carrier and a three-barcode label for Combine, drawn by TEC-IT's online generator.
 > Every distribution carries all of `docs/` (the guides and their translations), indexed by
 > `readme.html` at its root.
 > This page is the short build-and-run note.
@@ -73,7 +120,7 @@ local repository.
 ```bash
 (cd gaia && mvn -q install -DskipTests)     # publish the core
 (cd gaia-desktop && mvn -q javafx:run)      # run it
-(cd gaia-desktop && mvn -q package)         # target/dist/gaia-desktop-<version>-<platform>/ — jar (~290 KB), lib/, run.sh (run.bat on win) — and the same, zipped
+(cd gaia-desktop && mvn -q package)         # target/dist/gaia-desktop-<version>-<platform>/ — jar (~340 KB), lib/, run.sh (run.bat on win) — and the same, zipped
 (cd gaia-desktop && mvn -q -Pfat package)   # target/dist/gaia-desktop-<version>-<platform>/ — one ~50 MB jar, run.sh (run.bat on win)
 (cd gaia-desktop && mvn -q package -Dfx.platform=win)   # another platform's; see below
 java -jar gaia-desktop/target/dist/gaia-desktop-1.0.0-mac-aarch64/gaia-desktop.jar
@@ -92,6 +139,8 @@ nothing else is, so the directory can be zipped or copied as a set without picki
 target/dist/gaia-desktop-1.0.0-win/
 ├── gaia-desktop.jar
 ├── lib/                    17 Maven jars (absent in -Pfat)
+├── docs/                   the guides, the samples and their translations
+├── readme.html             the index to docs/, version filled in from the pom
 └── run.bat                 (run.sh in the mac, mac-aarch64 and linux distributions)
 ```
 
@@ -268,7 +317,7 @@ copy.
 
 | | Default | `-Pfat` |
 |---|---|---|
-| `gaia-desktop.jar` | ~290 KB, this module's classes and resources only | ~50 MB, dependencies unpacked into it |
+| `gaia-desktop.jar` | ~340 KB, this module's classes and resources only | ~50 MB, dependencies unpacked into it |
 | `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, ~46–55 MB by platform, named one by one on the jar's manifest `Class-Path` | — |
 | Ship | the jar **and** `lib/` beside it | one file |
 
@@ -298,9 +347,10 @@ platform-specific** — build one per target with `-Dfx.platform`, from any mach
 
 | Area | Behaviour |
 |------|-----------|
-| **Modes** | **Parse** (the default) and **Build**, switched by the segmented control at the left of the toolbar. Build hides the capture-side controls (input bar, `{GS}`, Parse, and — where they exist — the scanner and its device picker) and shows the AI editor instead; history, report, options and export serve both. A connected scanner keeps working — *Scanner → Connect/disconnect* (<kbd>⌘K</kbd>) still toggles it and the status bar still reports it. The mode is remembered between runs. |
+| **Modes** | **Parse** (the default), **Build** and **Combine**, switched by the segmented control at the left of the toolbar. Build hides the capture-side controls (input bar, `{GS}`, Parse, and — where they exist — the scanner and its device picker) and shows the AI editor instead; history, report, options and export serve Parse and Build alike. A connected scanner keeps working — *Scanner → Connect/disconnect* (<kbd>⌘K</kbd>) still toggles it and the status bar still reports it. The mode is remembered between runs. |
+| **Combine** | Up to three GS1-128 barcodes, scanned or typed into the Combine strip at the bottom of the window (FNC1 written as `{GS}`), joined into one element string and judged as a whole. The scanner pair stays, since a scan is the main way in, but the parse input bar and the capture history step aside — Combine scans never enter the history. A barcode that is empty, is not GS1-128 by its AIM Code ID, carries no AIs, or was already scanned is refused with the reason, as is a fourth. The Combine report shows the combined input tape, the element string, its HRI and length, the element cards, the duplicates kept once and the conflicts, the validation of the combination, and — once it is valid — the GS1 DataMatrix symbol, drawn by the app itself. *Add*, *Remove Last* and *Reset* manage the scans; a changed option or language re-parses them. |
 | **Input bar** | Element strings, GS1 Digital Link URIs, and raw scans with an AIM Code ID prefix. `{GS}` inserts a real FNC1 (0x1D) at the caret. <kbd>Enter</kbd> parses. |
-| **Scanner** | **Windows only** — Zebra ships its JavaPOS services for Windows, so on macOS and Linux no scanner control is built at all (no toggle, no device picker, no Scanner menu, no state in the status bar). Where it is supported: connect/disconnect a JavaPOS scanner and every scan is parsed and appended to the history, with the logical device name from the picker (defaults to `ZebraAllScanners`). The rule is one `os.name` test, `ScannerService.isSupportedPlatform()`. |
+| **Scanner** | **Windows only** — Zebra ships its JavaPOS services for Windows, so on macOS and Linux no scanner control is built at all (no toggle, no device picker, no Scanner menu, no state in the status bar). Where it is supported: connect/disconnect a JavaPOS scanner and every scan is parsed and appended to the history (or, in Combine mode, added to the combination). The device picker lists every `Scanner` entry in `jpos.xml`, `ZebraAllScanners` first. The rule is one `os.name` test, `ScannerService.isSupportedPlatform()`. Setting up the scanner itself is the [Zebra scanner guide](docs/GaiaDesktop-Zebra-Scanner-Windows.md). |
 | **File** | *File → Open text file…* parses each non-blank line as its own capture. Read as ISO-8859-1 so a raw 0x1D separator survives the round trip. |
 | **History** | Every capture, newest first, with a valid/invalid dot, HRI, source, and AI count. Right-click to copy the input or HRI, send it back to the input bar, or remove it. |
 | **Report** | The selected capture as a full parse report: verdict, element-string tape, parse metadata, per-AI cards with interpretations, and errors/warnings with remediation. |
@@ -383,8 +433,8 @@ Coverage is in two layers, because **fallback is per key, not per file**:
 
 - the **shared report vocabulary** (31 keys — input, elements, errors, start time, …) is
   translated in **all 35 languages**;
-- the **desktop chrome** (114 keys — menus, buttons, the builder, the options panel, the
-  status line, the scanner status, the dialog bodies, the report's own layout labels) is
+- the **desktop chrome** (160 keys — menus, buttons, the builder, Combine, the options panel,
+  the status line, the scanner status, the dialog bodies, the report's own layout labels) is
   translated in **all 35** as well.
 
 The per-key fallback is now a safety net rather than something a user meets: it catches a key
@@ -442,25 +492,68 @@ change a value, and rebuild it.
   `build/AiPair` is one editable row; `ui/BuilderPane` is the editor.
 - **`i18n/UiStrings`** — the label catalogue, with per-key fallback to English.
 - **`store/`** — `AppPaths` (where state lives), `OptionsStore`, `CaptureStore`.
+- **`combine/ScanCombiner`** — Combine mode's model, JavaFX-free: holds up to three GS1-128
+  scans, refuses the ones that cannot join, merges their AIs (duplicates kept once, conflicts
+  flagged) and parses the combination. `ui/CombinePane` is its strip; `MainView` owns the
+  combiner, so a scanned barcode and a typed one take the same path.
 - **`scanner/ScannerService`** — the JavaPOS control: open → claim → enable, re-arming the
   data event after each scan. Every device call runs on its own long-lived **`gaia-scanner`**
   thread (Zebra's COM layer binds to the thread that opened the device); callbacks arrive on the
   **JavaPOS event thread**, and `MainView.FxScannerListener` hops them to the FX thread.
+  `logicalNames()` reads the device picker out of the JavaPOS registry.
+- **`scanner/JposConfig`** — points JavaPOS at the bundled `jpos.xml` and the JDK's SAX parser
+  before the first open, unless the machine already configures it; without it every Connect
+  fails with error 109, *"Service does not exist in loaded JCL registry"*.
 - **`html/GaiaDesktopReport`** — the report renderer. A pure function of its arguments and
-  free of JavaFX, so it is unit-tested without starting the toolkit.
+  free of JavaFX, so it is unit-tested without starting the toolkit. `html/GaiaCombineReport`
+  is the Combine report, built from the same shell, tape and element cards.
+- **`datamatrix/`** — the app's own GS1 DataMatrix (ECC 200) encoder and its SVG drawing, for
+  the Combine symbol. ZXing cannot write one (it has no FNC1 codeword, so its symbols read as
+  plain Data Matrix, `]d1`); it is a test-scope dependency only, decoding every symbol the encoder
+  writes and checking it reads as GS1, `]d2`.
+- **`update/UpdateChecker`** — the once-a-day GitHub release check.
 - **`model/ScanRecord`** — one capture: input, provenance, and the current result. Input and
   result are separate because re-parsing under new options replaces only the result.
 
 ## Scanner configuration
 
-`src/main/resources/jpos.xml` is the JavaPOS device registry. Edit
-it to set the USB product ID for your scanner model. Common Zebra USB product IDs:
+`src/main/resources/jpos.xml` is the JavaPOS device registry, bundled in the jar. Each
+`<JposEntry>` is a logical device — `ZebraAllScanners` (any Zebra scanner the SDK can see, the
+default), `ZebraScannerUSB`, `ZebraUSBHandHeld`, `ZebraUSBTableTop`, `ZebraScannerSNAPI` and so
+on — naming the Zebra service class that drives it and its properties, such as `ScannerType`.
+The device picker is **generated from it**: every entry whose category is `Scanner` is offered,
+`ZebraAllScanners` first and the rest alphabetically, so adding an entry adds it to the picker
+with no code change. The same file also lists Zebra's scales, which the picker leaves out.
 
-| Model | PID | Model | PID |
-|-------|-----|-------|-----|
-| DS2208 | 0105 | DS2278 | 0121 |
-| DS4608 | 0300 | DS8178 | 0400 |
-| LI4278 | 1300 | | |
+`JposConfig` points JavaPOS at this file only when nothing else is configured: a
+`jpos.properties` on the class path, or `jpos.config.*` system properties set on the command
+line, win. The [Zebra scanner guide](docs/GaiaDesktop-Zebra-Scanner-Windows.md#10-configuration-reference)
+has the configuration reference.
 
 Scanner bytes are read as ISO-8859-1 (each byte maps 1:1) so the AIM Code ID prefix and
 every FNC1 separator reach the parser intact.
+
+## Reporting issues
+
+Bugs and feature requests go to
+[GitHub Issues](https://github.com/mgsmith-parsers/gaia-desktop/issues). Include the input string,
+what you expected, what GAIA Desktop showed — and, most importantly, a reference to the standard, with its release number and section.
+
+## Licence
+
+[Apache License 2.0](LICENSE) — this covers GAIA Desktop's own source code and documentation only.
+
+## GS1 standards
+
+All GS1 standards, specifications and identification keys are owned by GS1 and remain the
+property of GS1. This includes the GS1 General Specifications, GS1 Digital Link, the
+Application Identifiers, and identification keys such as GTIN, SSCC, GLN, GRAI and GIAI.
+"GS1" and the identification key names are trademarks of GS1 AISBL.
+
+GAIA Desktop is an independent implementation of those published standards. It is not affiliated
+with, endorsed by, or certified by GS1. The Apache licence above applies to this application,
+not to the standards it implements — for the standards themselves, and for permission to
+use them, refer to [gs1.org](https://www.gs1.org/standards).
+
+Using GS1 identification keys in your own products generally requires membership of a GS1
+Member Organisation. This application does not grant any such right.

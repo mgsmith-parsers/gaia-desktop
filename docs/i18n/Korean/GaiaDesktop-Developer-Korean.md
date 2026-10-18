@@ -91,7 +91,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | `dist/gaia-desktop-<version>-<platform>/`에 추가로 | `run.bat`(win) 또는 `run.sh`(기타) | 동일 |
 | 그리고 | `readme.html`과 `docs/`(모든 플랫폼) | 동일 |
 
-모든 배포본에는 가이드도 들어 있습니다. `docs/`는 구조를 유지한 채 복사되므로 가이드와 번역 사이의 링크가 그대로 작동하며, 번역 도구(`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`)는 제외됩니다. 그리고 루트에는 각 가이드로 연결되는 색인인 `readme.html`이 있으며, `src/main/dist/readme.html`에서 만들어지고 `@VERSION@`은 pom 버전으로 치환됩니다. 둘 다 `pick-launch-script` antrun 단계가 쓰며, 이 단계는 먼저 `docs/`를 삭제하므로 제거된 가이드가 남지 않습니다. readme의 링크는 손으로 작성되어 있습니다. `docs/` 아래에서 가이드 이름을 바꾸거나 번역을 추가하면 그곳에도 행을 추가해야 합니다.
+모든 배포본에는 가이드도 들어 있습니다. `docs/`는 구조를 유지한 채 복사되므로 가이드와 번역 사이의 링크가 그대로 작동하며, 번역 도구(`check-i18n.py`, `i18n-manifest.json`)는 제외됩니다. 그리고 루트에는 각 가이드로 연결되는 색인인 `readme.html`이 있으며, `src/main/dist/readme.html`에서 만들어지고 `@VERSION@`은 pom 버전으로 치환됩니다. 둘 다 `pick-launch-script` antrun 단계가 쓰며, 이 단계는 먼저 `docs/`를 삭제하므로 제거된 가이드가 남지 않습니다. readme의 링크는 손으로 작성되어 있습니다. `docs/` 아래에서 가이드 이름을 바꾸거나 번역을 추가하면 그곳에도 행을 추가해야 합니다.
 
 매니페스트 `Class-Path`와 `lib/`는 한 가지의 두 반쪽입니다. jar는 모든 런타임 의존성에 대해 `lib/<artifact>-<version>.jar`를 나열하고, `copy-dependencies`는 정확히 그 이름들로 `lib/`를 채웁니다. 이것이 `java -jar`가 작동하는 이유입니다.
 

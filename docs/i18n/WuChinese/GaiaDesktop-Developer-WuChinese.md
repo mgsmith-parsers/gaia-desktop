@@ -91,7 +91,7 @@ pom 里有两只细节让迭桩事体做得成，两只看上去侪好像好删�
 | `dist/gaia-desktop-<version>-<platform>/` 里还有 | `run.bat`（win）或者 `run.sh`（别个） | 一样 |
 | 还有 | `readme.html` 搭 `docs/`（所有平台） | 一样 |
 
-每个发布包侪会带上各份指南：`docs/` 保留原来布局拷过去，让指南搭翻译之间个链接照样好用，只是勿带翻译工具（`check-i18n.py`、`i18n-manifest.json`、`i18n-plan.md`）；还有根目录个 `readme.html`，是一张链到每份指南个索引，来自 `src/main/dist/readme.html`，里向个 `@VERSION@` 会换成 pom 版本。两样侪是 `pick-launch-script` 迭只 antrun 步骤写出来个，伊会先删脱 `docs/`，免得已经拿脱个指南还留辣海。readme 个链接是手写个——辣 `docs/` 下头改指南名字或者加翻译，迭面也要加上伊个一行。
+每个发布包侪会带上各份指南：`docs/` 保留原来布局拷过去，让指南搭翻译之间个链接照样好用，只是勿带翻译工具（`check-i18n.py`、`i18n-manifest.json`）；还有根目录个 `readme.html`，是一张链到每份指南个索引，来自 `src/main/dist/readme.html`，里向个 `@VERSION@` 会换成 pom 版本。两样侪是 `pick-launch-script` 迭只 antrun 步骤写出来个，伊会先删脱 `docs/`，免得已经拿脱个指南还留辣海。readme 个链接是手写个——辣 `docs/` 下头改指南名字或者加翻译，迭面也要加上伊个一行。
 
 清单个 `Class-Path` 搭 `lib/` 是同一样物事个两半：jar 会为每只运行期依赖列出 `lib/<artifact>-<version>.jar`，`copy-dependencies` 就正好用迭眼名字填 `lib/`。`java -jar` 跑得起来靠个就是迭个。
 

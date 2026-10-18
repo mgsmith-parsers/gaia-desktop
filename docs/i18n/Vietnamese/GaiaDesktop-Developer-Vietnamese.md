@@ -120,7 +120,7 @@ nó.
 | Và | `readme.html` và `docs/` (mọi nền tảng) | như trên |
 
 Mỗi bản phân phối cũng mang theo các hướng dẫn: `docs/` được sao chép giữ nguyên bố cục, để các liên kết giữa hướng dẫn
-và bản dịch vẫn hoạt động, trừ công cụ dịch (`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`); và `readme.html`
+và bản dịch vẫn hoạt động, trừ công cụ dịch (`check-i18n.py`, `i18n-manifest.json`); và `readme.html`
 ở thư mục gốc, một trang mục lục liên kết đến từng hướng dẫn, lấy từ `src/main/dist/readme.html` với `@VERSION@` được
 thay bằng phiên bản trong pom. Cả hai đều được ghi bởi bước antrun `pick-launch-script`, bước này xóa `docs/` trước để
 hướng dẫn đã bị gỡ bỏ không còn sót lại. Các liên kết trong readme được viết tay — một hướng dẫn được đổi tên hoặc một

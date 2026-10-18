@@ -91,7 +91,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | `dist/gaia-desktop-<version>-<platform>/` にはほかに | `run.bat`（win）または `run.sh`（その他） | 同じ |
 | さらに | `readme.html` と `docs/`（全プラットフォーム） | 同じ |
 
-すべての配布物にはガイドも含まれます。`docs/` は構成を保ったままコピーされるため、ガイドと翻訳の間のリンクはそのまま機能します。ただし翻訳用ツール（`check-i18n.py`、`i18n-manifest.json`、`i18n-plan.md`）は除かれます。そしてルートには `readme.html` があり、各ガイドへのリンクを並べた索引です。これは `src/main/dist/readme.html` から作られ、`@VERSION@` が pom のバージョンに置き換えられます。どちらも `pick-launch-script` antrun ステップが書き出し、このステップは最初に `docs/` を削除するので、削除されたガイドが残ることはありません。readme のリンクは手書きです。`docs/` の下でガイドの名前を変えたり翻訳を追加したりしたら、そちらにも行を追加する必要があります。
+すべての配布物にはガイドも含まれます。`docs/` は構成を保ったままコピーされるため、ガイドと翻訳の間のリンクはそのまま機能します。ただし翻訳用ツール（`check-i18n.py`、`i18n-manifest.json`）は除かれます。そしてルートには `readme.html` があり、各ガイドへのリンクを並べた索引です。これは `src/main/dist/readme.html` から作られ、`@VERSION@` が pom のバージョンに置き換えられます。どちらも `pick-launch-script` antrun ステップが書き出し、このステップは最初に `docs/` を削除するので、削除されたガイドが残ることはありません。readme のリンクは手書きです。`docs/` の下でガイドの名前を変えたり翻訳を追加したりしたら、そちらにも行を追加する必要があります。
 
 マニフェストの `Class-Path` と `lib/` は 1 つのものの 2 つの半分です。jar はすべての実行時依存関係について `lib/<artifact>-<version>.jar` を記載し、`copy-dependencies` はまさにその名前で `lib/` を埋めます。これが `java -jar` が動作する理由です。
 

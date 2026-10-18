@@ -121,8 +121,7 @@ aby si ji nárokovala obě.
 | A | `readme.html` a `docs/` (každá platforma) | totéž |
 
 Každá distribuce obsahuje i příručky: `docs/` zkopírovaný se zachovanou strukturou, aby odkazy mezi
-příručkami a překlady dál fungovaly, bez překladových nástrojů (`check-i18n.py`, `i18n-manifest.json`,
-`i18n-plan.md`); a `readme.html` v kořeni, rejstřík s odkazem na každou z nich, ze
+příručkami a překlady dál fungovaly, bez překladových nástrojů (`check-i18n.py`, `i18n-manifest.json`); a `readme.html` v kořeni, rejstřík s odkazem na každou z nich, ze
 `src/main/dist/readme.html` s `@VERSION@` nahrazeným verzí z pomu. Oboje zapisuje krok antrun
 `pick-launch-script`, který nejprve smaže `docs/`, aby odstraněná příručka nezůstala. Odkazy v readme jsou
 psané ručně — přejmenovaná příručka nebo překlad přidaný do `docs/` potřebuje i svůj řádek tam.

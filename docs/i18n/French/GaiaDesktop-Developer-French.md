@@ -126,7 +126,7 @@ empêchent de le revendiquer toutes les deux.
 
 Chaque distribution embarque aussi les guides : `docs/` copié avec sa structure, pour que les liens entre
 guides et traductions restent valides, moins l'outillage de traduction (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`) ; et `readme.html` à la racine, un index qui pointe vers chacun
+`i18n-manifest.json`) ; et `readme.html` à la racine, un index qui pointe vers chacun
 d'eux, tiré de `src/main/dist/readme.html` avec `@VERSION@` filtré en version du pom. Les deux sont écrits
 par l'étape antrun `pick-launch-script`, qui supprime d'abord `docs/` pour qu'un guide retiré ne traîne
 pas. Les liens du readme sont écrits à la main — un guide renommé ou une traduction ajoutée sous `docs/`

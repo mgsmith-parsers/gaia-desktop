@@ -126,7 +126,7 @@ o que impede que ambas o reclamem.
 
 Cada distribuição leva também os guias: `docs/` copiada mantendo a estrutura, para que as ligações entre
 guias e traduções continuem a funcionar, sem as ferramentas de tradução (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); e `readme.html` na raiz, um índice com ligações para cada um, a
+`i18n-manifest.json`); e `readme.html` na raiz, um índice com ligações para cada um, a
 partir de `src/main/dist/readme.html` com `@VERSION@` filtrado para a versão do pom. Ambos são escritos pelo
 passo antrun `pick-launch-script`, que apaga primeiro `docs/` para que um guia removido não fique para trás.
 As ligações do readme são escritas à mão — um guia renomeado ou uma tradução adicionada em `docs/` precisa

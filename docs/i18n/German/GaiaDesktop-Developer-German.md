@@ -125,7 +125,7 @@ dass beide ihn beanspruchen.
 
 Jede Distribution enthält außerdem die Handbücher: `docs/` mit erhaltener Struktur kopiert, damit die Links
 zwischen Handbüchern und Übersetzungen weiterhin funktionieren, ohne die Übersetzungswerkzeuge
-(`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`); und `readme.html` im Wurzelverzeichnis, ein Index
+(`check-i18n.py`, `i18n-manifest.json`); und `readme.html` im Wurzelverzeichnis, ein Index
 mit Links zu jedem davon, aus `src/main/dist/readme.html` mit `@VERSION@` auf die POM-Version gefiltert.
 Beides schreibt der antrun-Schritt `pick-launch-script`, der `docs/` zuerst löscht, damit ein entferntes
 Handbuch nicht liegen bleibt. Die Links der Readme sind von Hand geschrieben — ein umbenanntes Handbuch oder

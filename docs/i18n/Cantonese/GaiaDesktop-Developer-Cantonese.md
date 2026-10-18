@@ -91,7 +91,7 @@ pom 入面有兩個細節令呢樣嘢行得通，而兩樣睇落都好似可以�
 | `dist/gaia-desktop-<version>-<platform>/` 入面仲有 | `run.bat`（win）或者 `run.sh`（其他） | 一樣 |
 | 同埋 | `readme.html` 同 `docs/`（所有平台） | 一樣 |
 
-每個發佈版都會帶埋各份指南：`docs/` 保留原本佈局咁複製，等指南同翻譯之間嘅連結繼續用得，不過唔包翻譯工具（`check-i18n.py`、`i18n-manifest.json`、`i18n-plan.md`）；仲有根目錄嘅 `readme.html`，係一個連去每份指南嘅索引，嚟自 `src/main/dist/readme.html`，入面嘅 `@VERSION@` 會換成 pom 版本。兩樣都係由 `pick-launch-script` 呢個 antrun 步驟寫出，佢會先刪走 `docs/`，等已經移除咗嘅指南唔會殘留。readme 嘅連結係人手寫嘅——喺 `docs/` 底下改指南名或者加翻譯，嗰度都要加返佢嗰行。
+每個發佈版都會帶埋各份指南：`docs/` 保留原本佈局咁複製，等指南同翻譯之間嘅連結繼續用得，不過唔包翻譯工具（`check-i18n.py`、`i18n-manifest.json`）；仲有根目錄嘅 `readme.html`，係一個連去每份指南嘅索引，嚟自 `src/main/dist/readme.html`，入面嘅 `@VERSION@` 會換成 pom 版本。兩樣都係由 `pick-launch-script` 呢個 antrun 步驟寫出，佢會先刪走 `docs/`，等已經移除咗嘅指南唔會殘留。readme 嘅連結係人手寫嘅——喺 `docs/` 底下改指南名或者加翻譯，嗰度都要加返佢嗰行。
 
 清單嘅 `Class-Path` 同 `lib/` 係同一樣嘢嘅兩半：jar 會為每個執行期依賴列出 `lib/<artifact>-<version>.jar`，而 `copy-dependencies` 就正正用呢啲名去填 `lib/`。`java -jar` 行得到就係靠呢樣。
 

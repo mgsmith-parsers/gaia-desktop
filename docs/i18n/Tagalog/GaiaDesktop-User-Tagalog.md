@@ -19,27 +19,35 @@ Ingles). Orihinal na dokumento: [GaiaDesktop-User.md](../../GaiaDesktop-User.md)
    - [Ang hindi tinatanggap ng editor](#ang-hindi-tinatanggap-ng-editor)
    - [Element string o Digital Link](#element-string-o-digital-link)
    - [Pagbabago ng umiiral na capture](#pagbabago-ng-umiiral-na-capture)
-6. [Ang ulat](#ang-ulat)
+6. [Mode ng pagsasama](#mode-ng-pagsasama)
+   - [Ang bar ng pagsasama](#ang-bar-ng-pagsasama)
+   - [Ang hindi tinatanggap ng pagsasama](#ang-hindi-tinatanggap-ng-pagsasama)
+   - [Mga duplicate at salungatan](#mga-duplicate-at-salungatan)
+   - [Ang ulat ng pagsasama](#ang-ulat-ng-pagsasama)
+7. [Ang ulat](#ang-ulat)
    - [Pag-export](#pag-export)
-7. [Mga opsyon sa pagsusuri](#mga-opsyon-sa-pagsusuri)
+8. [Mga opsyon sa pagsusuri](#mga-opsyon-sa-pagsusuri)
    - [Unang pagpapatakbo](#unang-pagpapatakbo)
-8. [Mga wika](#mga-wika)
-9. [Ang naaalala](#ang-naaalala)
-10. [Mga keyboard shortcut](#mga-keyboard-shortcut)
-11. [Pag-aayos ng problema](#pag-aayos-ng-problema)
-12. [Mga limitasyon](#mga-limitasyon)
+9. [Mga wika](#mga-wika)
+10. [Ang naaalala](#ang-naaalala)
+11. [Mga keyboard shortcut](#mga-keyboard-shortcut)
+12. [Pag-aayos ng problema](#pag-aayos-ng-problema)
+13. [Mga limitasyon](#mga-limitasyon)
 
 ---
 
 ## Ano ito
 
-Dalawang bagay ang ginagawa ng GAIA Desktop sa datos ng GS1:
+Tatlong bagay ang ginagawa ng GAIA Desktop sa datos ng GS1:
 
 - **Pagsusuri** — mag-type ng element string ng GS1 o ng Digital Link URI, o i-paste ito, o
   buksan ito mula sa file, o i-scan ito, at basahin ang resulta bilang buong ulat: ano ang ibig
   sabihin ng bawat Application Identifier (AI), nasaan ang mali, at bakit;
 - **Pagbuo** — pagsasama-sama ng mga pares na AI at halaga upang makalikha ng element string o ng
-  Digital Link URI.
+  Digital Link URI;
+- **Pagsamahin** — pagsasama ng hanggang tatlong GS1-128 barcode mula sa iisang label tungo sa
+  iisang element string na dadalhin ng isang GS1 DataMatrix, pagsuri nito nang buo, at pagguhit ng
+  simbolo.
 
 Lahat ng alam ng programang ito tungkol sa GS1 — ang kahulugan ng bawat AI, bawat panuntunan sa
 pagsusuri, bawat mensahe ng error at bawat detalye ng pagsasawika — ay nagmumula sa makina ng
@@ -88,7 +96,7 @@ ulat ng depekto.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -100,7 +108,7 @@ ulat ng depekto.
 ```
 
 > Tulad ng lahat ng ibang code block sa dokumentong ito, nananatiling Ingles ang mga label ng
-> dayagram na ito. Sa screen ay makikita mo ang *Suriin* / *Bumuo*, *Mga capture*,
+> dayagram na ito. Sa screen ay makikita mo ang *Suriin* / *Bumuo* / *Pagsamahin*, *Mga capture*,
 > *I-save ang ulat*, *Mga opsyon*, *scanner: patay* at *Tungkol*.
 
 **Sa macOS at Linux ay wala talaga ang linya ng scanner sa dayagram na ito** — walang button sa
@@ -110,10 +118,19 @@ toolbar, walang listahan ng pagpili ng device, walang menu na *Scanner*, at wala
 Ang switch na **Suriin ⇄ Bumuo** ay nagpapalit lamang ng bar sa ilalim ng toolbar at ng mga
 kontrol na may kinalaman sa capture. Ang kasaysayan, ang ulat, ang panel ng mga opsyon at lahat ng
 aksyon ng pag-export ay gumagana sa parehong mode, dahil ang matagumpay na pagbuo ay nagiging isa
-ring capture lamang.
+ring capture lamang. Iba ang ayos ng mode na **Pagsamahin**: tingnan ang [Mode ng pagsasama](#mode-ng-pagsasama).
 
 **Sarado ang panel ng mga opsyon sa unang pagpapatakbo.** Ang mode, ang pagpapakita o pagtatago ng
 panel, ang tema at ang scanner na huling ginamit — lahat ay naaalala para sa susunod.
+
+**Mga bagong bersyon.** Ilang segundo matapos magsimula, hindi hihigit sa isang beses sa isang araw,
+tinatanong ng application ang GitHub kung may inilabas nang mas bagong GAIA Desktop. Kung mayroon,
+lalabas sa status bar ang isang link — *Available na ang GAIA Desktop 1.1.0* — na nagbubukas ng pahina ng
+release sa iyong browser; walang dina-download o ini-install para sa iyo. Itinatago ng
+*Laktawan ang bersyong ito* ang abiso hanggang sa susunod na release. Tahimik ang pagsusuri kapag walang bago
+o kapag hindi maabot ang GitHub. Agad na sumusuri at nag-uulat ang
+*Tulong → Tingnan kung may update…*; pinapatay at muling binubuhay ng
+*Tulong → Awtomatikong tingnan kung may update* ang araw-araw na pagsusuri.
 
 ---
 
@@ -159,9 +176,12 @@ na FNC1 ay dumarating sa parser sa parehong anyo na ipinadala ng scanner.
 
 Sa mode ng pagbuo ay itinatago ang mga kontrol ng scanner, ngunit patuloy sa paggana ang nakakonektang
 scanner: binabago pa rin ito ng *Scanner → Ikonekta / Idiskonekta* (<kbd>⌘K</kbd>), nag-uulat pa
-rin ang status bar, at ang scan na dumarating habang bukas ang editor ay nakukuha rin.
+rin ang status bar, at ang scan na dumarating habang bukas ang editor ay nakukuha rin. Sa mode na Pagsamahin, nananatili ang mga kontrol na ito, at idinaragdag ang bawat scan sa
+pagsasama sa halip na sa kasaysayan.
 
-Kung walang device na kumokonekta, tingnan ang [Pag-aayos ng problema](#pag-aayos-ng-problema).
+Ang unang pag-set up ng scanner — ang Zebra Scanner SDK, ang USB mode ng scanner, at ang mga setting ng
+GS1 — ay ipinapaliwanag nang hakbang-hakbang sa
+[gabay sa pag-set up ng Zebra scanner](GaiaDesktop-Zebra-Scanner-Windows-Tagalog.md), na kasama sa bawat zip sa ilalim ng `docs/`. Kung walang device na kumokonekta, tingnan ang [Pag-aayos ng problema](#pag-aayos-ng-problema).
 
 ### Pagbubukas ng file
 
@@ -249,6 +269,121 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 Ang pag-right-click sa isang capture → **Bumuo** ay nagdadala nito sa editor ng AI. Baguhin ang
 isang halaga, bumuo muli, at lilitaw ang resulta bilang bagong capture — nananatiling buo ang
 orihinal na capture.
+
+---
+
+## Mode ng pagsasama
+
+Madalas na hinahati ng mga lumang label ang kanilang datos sa **ilang GS1-128 barcode** — ang GTIN sa
+isa, ang petsa ng pagkapaso at ang batch sa iba — dahil hindi kayang dalhin ng iisang linear barcode
+ang lahat. Kumukuha ang mode na Pagsamahin ng hanggang **tatlo** sa mga barcode na iyon,
+pinagsasama ang mga ito tungo sa iisang element string na dadalhin ng isang **GS1 DataMatrix**, at
+sinusuri ang resulta nang buo. Kapag wasto na ito, iginuguhit ng application ang simbolong DataMatrix.
+
+Hindi kailangang kumpleto nang mag-isa ang alinman sa mga barcode na iyon. Ang batch number na walang
+sariling GTIN ay bumabagsak nang mag-isa sa `GE-S005`, pero normal iyon para sa isang barcode ng isang
+set, kaya sinusuri ito ng mode na Pagsamahin sa pagsasama.
+
+### Ang bar ng pagsasama
+
+Kapag lumipat sa **Pagsamahin**, napapalitan ang input bar ng isang bar sa ibabang gilid ng
+bintana. Tumatabi ang kasaysayan ng mga capture, dahil hindi capture ang mga scan sa mode na
+Pagsamahin at hindi kailanman pumapasok doon. Ang ulat ng pagsasama ang ipinapakita ng bahagi ng
+ulat sa halip:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+May dalawang paraan para magpasok ng barcode:
+
+- **I-scan ito.** Sa Windows, nananatili sa toolbar ang mga kontrol ng scanner sa mode na
+  Pagsamahin, at diretso sa pagsasama ang bawat scan, hindi sa kasaysayan.
+- **I-type o i-paste ito** sa field na *Barcode* at pindutin ang <kbd>Enter</kbd> o
+  ang **Idagdag**. Isulat ang FNC1 bilang **`{GS}`**, gaya sa input bar. Ang barcode na
+  ini-type nang walang AIM Code ID ay itinuturing na GS1-128.
+
+| Button | Ginagawa |
+|---|---|
+| **Idagdag** | Idinaragdag ang barcode na nasa field |
+| **Alisin ang huli** | Inaalis ang pinakabagong barcode (hindi magagamit kapag wala pa) |
+| **I-reset** | Inaalis ang lahat ng barcode, nililinis ang field at anumang pagtanggi, at nagsisimulang muli |
+
+Laging sinasabi ng status bar kung ilang barcode ang hawak (*2 sa 3 GS1-128 barcode*), o kung bakit
+tinanggihan ang huli.
+
+### Ang hindi tinatanggap ng pagsasama
+
+Hindi idinaragdag ang tinanggihang barcode. Parehong sinasabi ng ulat at ng status bar ang dahilan:
+
+| Barcode | Tinanggihan dahil |
+|---|---|
+| Walang lamang field | Walang idaragdag |
+| Ikaapat na barcode | Pinagsasama ang isang label mula sa hanggang tatlo lamang. Alisin ang huli, o i-reset |
+| Ibang symbology, ayon sa AIM Code ID nito | GS1-128 lamang ang pinagsasama, kaya tinatanggihan ang GS1 DataMatrix (`]d2`) o QR Code, kasama ang pangalan nito |
+| Mga AI na hindi mabasa | Error sa syntax; ipinapakita ang error code at mensahe ng engine |
+| Walang anumang AI | Walang pagsasamahin |
+| Na-scan na | Ang parehong element string nang dalawang beses, halimbawa ang parehong barcode na na-scan ulit; sinasabi ng ulat kung aling naunang barcode ang inuulit nito |
+
+Tinatanggihan lamang ng mode na Pagsamahin ang hindi talaga nito magagamit. Ang lahat ng iba pa
+(maling check digit, maling petsa, nawawalang kasamang AI) ay tinatanggap at hinuhusgahan sa pagsasama.
+
+### Mga duplicate at salungatan
+
+Pinagsasama ang mga AI ayon sa pagkakasunod ng pag-scan. Kapag may parehong AI ang dalawang barcode:
+
+- **na may parehong halaga**, isang beses itong itinatago at inililista sa ilalim ng
+  *Mga duplicate — itinago nang isang beses*, kasama ang mga barcode kung saan ito nabasa;
+- **na may magkaibang halaga**, isa itong **salungatan**. Ang hatol ay *SALUNGATAN*,
+  inililista ang nagbabanggaang halaga bawat barcode, at **walang pinagsasama** hanggang malutas ito.
+  Alisin ang may-maling barcode, o i-reset.
+
+### Ang ulat ng pagsasama
+
+Mula itaas hanggang ibaba:
+
+1. **Ang hatol**: *walang scan*, *SALUNGATAN*, wasto o hindi wasto, at kung ilang
+   barcode ang hawak.
+2. **Ang mga scan**: bawat barcode kung paano ito dumating, ang symbology nito, at ang element string na
+   natitira kapag inalis ang AIM Code ID. Ang problemang tanging pagsasama lamang ang makapagpapasya ay
+   ipinapakita sa barcode na iyon, may markang *hinuhusgahan sa pagsasama*.
+3. **Mga duplicate** at **salungatan**, kung mayroon.
+4. **Pinagsama**: ang element string, ang HRI at haba nito, pagkatapos ang pinagsamang input
+   bilang tape na may label at isang card bawat AI, parehong nakaayos gaya sa
+   [ulat ng pagsusuri](#ang-ulat). Pagkatapos ay inililista sa ilalim ng *Pagsusuri* ang
+   bawat error at babala sa pagsasama.
+5. **Ang simbolong GS1 DataMatrix**, kasama ang HRI nito sa ilalim. Iginuguhit lamang ito kapag wasto
+   ang pagsasama. Kung hindi, sinasabi ng ulat kung bakit hindi ito iginuhit, para hindi ma-print nang
+   hindi sinasadya ang isang di-wastong simbolo.
+
+Halimbawa, isang label na may dalawang barcode:
+
+| Barcode | Dala | Mag-isa |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | wasto |
+| `]C11726123110LOT-ABC` | (17) petsa ng pagkapaso, (10) batch | `GE-S005` para sa dalawang AI, hinuhusgahan sa pagsasama |
+
+Napagsasama ang mga ito tungo sa `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, na wasto, kaya iginuguhit ang simbolo. Nakapirmi ang haba
+ng AI `17`, kaya hindi kailangan ng FNC1 pagkatapos nito. Naglalagay ang mode na Pagsamahin ng isa
+saanman ito hinihingi ng pamantayan.
+
+Sa sandaling may hawak nang isang barcode, ine-export ng **I-save ang ulat** ang ulat ng pagsasama
+bilang HTML o PDF, gaya ng isang ulat ng pagsusuri (tingnan ang [Pag-export](#pag-export)). Nagsisimula sa
+`gaia-combine-` ang pangalan ng HTML file.
+
+Sinusunod ng ulat ang napiling wika at tema. Kapag binago ang isang opsyon sa pagsusuri o ang wika,
+muling sinusuri ang mga barcode na hawak. Nananatili rin ang mga ito kapag lumipat sa Suriin o
+Bumuo at bumalik, pero hindi pagkatapos mag-restart: hindi sine-save ang mga barcode ng mode na
+Pagsamahin.
 
 ---
 
@@ -354,7 +489,7 @@ Dalawang file sa `.gaia-desktop` sa loob ng iyong home directory:
 
 | File | Ang laman |
 |---|---|
-| `options.properties` | Lahat ng opsyon sa pagsusuri, ang tema, kung bukas ba ang panel ng mga opsyon, ang scanner na huling ginamit, at kung anong mode iniwan ang bintana |
+| `options.properties` | Lahat ng opsyon sa pagsusuri, ang tema, kung bukas ba ang panel ng mga opsyon, ang scanner na huling ginamit, kung anong mode iniwan ang bintana, at ang mga setting ng pagsusuri ng update — bukas o patay, kailan ito huling tumakbo, at anumang bersyong pinili mong laktawan |
 | `captures.tsv` | Ang kasaysayan ng mga capture, pinakabago muna, hanggang 500 |
 
 Sa tuwing binabago mo ang isang opsyon ay naisusulat ito; sa tuwing nagbabago ang kasaysayan ay
@@ -369,6 +504,9 @@ lalampas sa linyang iyon.
 Ang input ang iniingatan ng kasaysayan, hindi ang pagsusuri. Muli itong sinusuri sa pag-load, ibig
 sabihin ay sinasalamin ng naibalik na capture ang mga opsyong ipinapatupad **ngayon**, hindi ang
 mga ipinapatupad noong ito ay nakuha.
+
+Hindi sine-save ang mga barcode na hawak sa mode na Pagsamahin: pagkatapos mag-restart,
+nagsisimulang walang laman ang mode na Pagsamahin.
 
 ---
 
@@ -388,6 +526,10 @@ mga ipinapatupad noong ito ay nakuha.
 Sa editor: ang <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> ay gumagalaw sa pagitan ng mga
 patlang na maaaring i-edit, kinukumpirma ng <kbd>Enter</kbd>, kinakansela ng <kbd>Esc</kbd>.
 
+Sa mode na Pagsamahin: idinaragdag ng <kbd>Enter</kbd> sa field na *Barcode* ang
+barcode. Doon, i-type ang FNC1 bilang `{GS}`; ang <kbd>⌘G</kbd> ay para sa input bar ng mode na
+Suriin.
+
 ---
 
 ## Pag-aayos ng problema
@@ -398,7 +540,7 @@ patlang na maaaring i-edit, kinukumpirma ng <kbd>Enter</kbd>, kinakansela ng <kb
 | Sa console sa pagsisimula ay *“Unsupported JavaFX configuration…”* | Inaasahan at walang pinsala — sinasabi lamang ng toolkit kung paano ito na-load. Gumagana ang programa gaya ng dati |
 | Mukhang nawala ang separator na ipinaste | Ganoon nga dapat: nagiging nakikitang token na `{GS}` ito, at ang mismong tunay na character ang natatanggap ng parser. Tingnan ang [token na {GS}](#input-bar-at-ang-token-na-gs) |
 | Wala talaga ang button na *Ikonekta ang scanner* | Nasa macOS o Linux ka, kung saan walang driver ng scanner. Tingnan ang [Pag-scan](#pag-scan) |
-| Hindi kumokonekta ang scanner | Tingnan kung tugma sa modelo mo ang lohikal na pangalan sa listahan, kung nakasaksak ang scanner, at kung walang ibang programang humahawak dito |
+| Hindi kumokonekta ang scanner | Tingnan kung tugma sa modelo mo ang lohikal na pangalan sa listahan, kung nakasaksak ang scanner, at kung walang ibang programang humahawak dito. Inililista ng [gabay sa pag-set up ng Zebra scanner](GaiaDesktop-Zebra-Scanner-Windows-Tagalog.md#11-pag-aayos-ng-problema) ang bawat error code. |
 | Sinasabi ng pag-export sa PDF na walang patutunguhan | Walang naka-configure na printer o patutunguhan ng PDF sa makina mo. Magdagdag ng isa, o mag-export bilang HTML at ilimbag mula sa browser |
 | May lumalabas na tulad ng `act.hri` sa isang item ng menu | May label na nalimutan — mangyaring iulat ito; hindi ito setting kundi depekto noong ginawa ang build |
 
@@ -412,3 +554,5 @@ patlang na maaaring i-edit, kinukumpirma ng <kbd>Enter</kbd>, kinakansela ng <kb
   dagdag na query parameter o fragment.
 - **Isang beses lamang lumilitaw ang AI** sa isang element string — panuntunan ito ng GS1, hindi
   limitasyon ng programa.
+- **GS1-128 barcode lamang ang tinatanggap ng mode na Pagsamahin, tatlo ang pinakamarami**, at
+  hindi nito itinatago ang mga ito sa pagitan ng mga pagpapatakbo.

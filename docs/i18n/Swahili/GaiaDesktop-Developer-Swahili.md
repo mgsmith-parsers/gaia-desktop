@@ -120,7 +120,7 @@ mawili yasiidai.
 | Na | `readme.html` na `docs/` (kila jukwaa) | vivyo hivyo |
 
 Kila usambazaji pia hubeba miongozo: `docs/` inanakiliwa pamoja na mpangilio wake, ili viungo kati ya miongozo na
-tafsiri viendelee kufanya kazi, bila zana za tafsiri (`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`); na
+tafsiri viendelee kufanya kazi, bila zana za tafsiri (`check-i18n.py`, `i18n-manifest.json`); na
 `readme.html` kwenye mzizi, faharasa inayounganisha kwa kila mmoja, kutoka `src/main/dist/readme.html` ambapo
 `@VERSION@` hubadilishwa kuwa toleo la pom. Zote mbili huandikwa na hatua ya antrun ya `pick-launch-script`, inayofuta
 `docs/` kwanza ili mwongozo ulioondolewa usibaki. Viungo vya readme vimeandikwa kwa mkono — mwongozo uliobadilishwa

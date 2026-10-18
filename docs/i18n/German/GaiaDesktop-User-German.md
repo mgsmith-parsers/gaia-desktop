@@ -19,28 +19,36 @@ Wie die Anwendung benutzt wird. Zum Bauen, Ändern oder Hinzufügen einer Sprach
    - [Was der Editor ablehnt](#was-der-editor-ablehnt)
    - [Elementkette oder Digital Link](#elementkette-oder-digital-link)
    - [Eine vorhandene Erfassung bearbeiten](#eine-vorhandene-erfassung-bearbeiten)
-6. [Der Bericht](#der-bericht)
+6. [Modus Kombinieren](#modus-kombinieren)
+   - [Der Streifen Kombinieren](#der-streifen-kombinieren)
+   - [Was Kombinieren ablehnt](#was-kombinieren-ablehnt)
+   - [Duplikate und Konflikte](#duplikate-und-konflikte)
+   - [Der Kombinationsbericht](#der-kombinationsbericht)
+7. [Der Bericht](#der-bericht)
    - [Exportieren](#exportieren)
-7. [Analyseoptionen](#analyseoptionen)
+8. [Analyseoptionen](#analyseoptionen)
    - [Erster Start](#erster-start)
-8. [Sprachen](#sprachen)
-9. [Was gespeichert bleibt](#was-gespeichert-bleibt)
-10. [Tastenkürzel](#tastenkürzel)
-11. [Fehlerbehebung](#fehlerbehebung)
-12. [Grenzen](#grenzen)
+9. [Sprachen](#sprachen)
+10. [Was gespeichert bleibt](#was-gespeichert-bleibt)
+11. [Tastenkürzel](#tastenkürzel)
+12. [Fehlerbehebung](#fehlerbehebung)
+13. [Grenzen](#grenzen)
 
 ---
 
 ## Was es ist
 
-GAIA Desktop erledigt zwei Aufgaben mit GS1-Daten:
+GAIA Desktop erledigt drei Aufgaben mit GS1-Daten:
 
 - **Analysieren** — geben Sie eine GS1-Elementkette oder einen Digital-Link-URI ein, fügen Sie
   sie ein, öffnen Sie sie aus einer Datei oder scannen Sie sie, und lesen Sie das Ergebnis als
   vollständigen Bericht: was jeder Anwendungsidentifikator (AI) bedeutet, was nicht stimmt und
   warum;
 - **Erstellen** — AI-/Wert-Paare zu einer Elementkette oder einem Digital-Link-URI
-  zusammensetzen.
+  zusammensetzen;
+- **Kombinieren** — bis zu drei GS1-128-Strichcodes eines Etiketts zu der einen
+  Elementkette zusammenführen, die ein GS1 DataMatrix tragen würde, sie als Ganzes prüfen und
+  das Symbol zeichnen.
 
 Alles, was die Anwendung über GS1 weiß — jede AI-Definition, jede Prüfregel, jede Fehlermeldung
 und jede lokalisierte Beschreibung — stammt aus der darunterliegenden GAIA-Engine. Die Anwendung
@@ -87,7 +95,7 @@ Version der Engine aus. Genau diese Zeile gehört in einen Fehlerbericht.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -99,7 +107,7 @@ Version der Engine aus. Genau diese Zeile gehört in einen Fehlerbericht.
 ```
 
 > Die Skizze behält die englischen Beschriftungen, wie alle Codeblöcke in dieser Dokumentation.
-> Auf dem Bildschirm sehen Sie *Analysieren* / *Erstellen*, *Erfassungen*, *Bericht speichern*,
+> Auf dem Bildschirm sehen Sie *Analysieren* / *Erstellen* / *Kombinieren*, *Erfassungen*, *Bericht speichern*,
 > *Optionen*, *Scanner: aus* und *Über*.
 
 **Unter macOS und Linux gibt es die Scanner-Zeile in diesem Bild nicht** — weder Schalter noch
@@ -108,10 +116,19 @@ Siehe [Scannen](#scannen).
 
 Der Umschalter **Analysieren ⇄ Erstellen** ändert nur den Streifen unter der Werkzeugleiste und
 die Bedienelemente zur Erfassung. Verlauf, Bericht, Optionsbereich und Exportbefehle dienen
-beiden Modi, denn eine gelungene Erstellung wird einfach zu einer weiteren Erfassung.
+beiden Modi, denn eine gelungene Erstellung wird einfach zu einer weiteren Erfassung. Der Modus **Kombinieren** ist anders aufgebaut: siehe [Modus Kombinieren](#modus-kombinieren).
 
 Der Optionsbereich ist **beim ersten Start geschlossen**. Modus, Sichtbarkeit des Bereichs,
 Design und der zuletzt verwendete Scanner bleiben von Lauf zu Lauf erhalten.
+
+**Neue Versionen.** Einige Sekunden nach dem Start, höchstens einmal am Tag, fragt die Anwendung
+bei GitHub nach, ob eine neuere Version von GAIA Desktop veröffentlicht wurde. Wenn ja, erscheint
+in der Statuszeile ein Link — *GAIA Desktop 1.1.0 ist verfügbar* —, der die Seite der Version in
+Ihrem Browser öffnet; nichts wird für Sie heruntergeladen oder installiert.
+*Diese Version überspringen* blendet den Hinweis bis zu einer späteren Version aus. Die Prüfung bleibt
+stumm, wenn es nichts Neues gibt oder GitHub nicht erreichbar ist.
+*Hilfe → Nach Updates suchen…* prüft sofort und meldet das Ergebnis;
+*Hilfe → Automatisch nach Updates suchen* schaltet die tägliche Prüfung aus und wieder ein.
 
 ---
 
@@ -157,9 +174,13 @@ FNC1-Trennzeichen genau so beim Parser ankommen, wie der Scanner sie gesendet ha
 Im Modus Erstellen sind die Scanner-Bedienelemente ausgeblendet, ein verbundener Scanner
 arbeitet aber weiter: *Scanner → Verbinden / Trennen* (<kbd>⌘K</kbd>) schaltet ihn weiterhin um,
 die Statuszeile meldet ihn weiterhin, und ein Scan, der bei geöffnetem Editor eintrifft, wird
-trotzdem erfasst.
+trotzdem erfasst. Im Modus Kombinieren bleiben die Bedienelemente sichtbar, und jeder Scan wird der
+Kombination statt dem Verlauf hinzugefügt.
 
-Lässt sich ein Gerät nicht verbinden, siehe [Fehlerbehebung](#fehlerbehebung).
+Die erste Einrichtung eines Scanners — das Zebra Scanner SDK, der USB-Modus des Scanners und die
+GS1-Einstellungen — beschreibt die
+[Einrichtungsanleitung für Zebra-Scanner](GaiaDesktop-Zebra-Scanner-Windows-German.md) Schritt für Schritt; sie liegt jedem Zip
+unter `docs/` bei. Lässt sich ein Gerät nicht verbinden, siehe [Fehlerbehebung](#fehlerbehebung).
 
 ### Eine Datei öffnen
 
@@ -243,6 +264,125 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 Rechtsklick auf eine Erfassung → **Erstellen** lädt ihre AIs in den Editor. Ändern Sie einen
 Wert, erstellen Sie neu, und das Ergebnis landet als neue Erfassung — die ursprüngliche bleibt
 unangetastet.
+
+---
+
+## Modus Kombinieren
+
+Ältere Etiketten verteilen ihre Daten oft auf **mehrere GS1-128-Strichcodes** — die GTIN in
+einem, Verfallsdatum und Charge in einem anderen —, weil ein einzelner linearer Strichcode nicht
+alles fassen kann. Kombinieren nimmt bis zu **drei** dieser Strichcodes, führt sie zu der
+einen Elementkette zusammen, die ein **GS1 DataMatrix** tragen würde, und prüft das Ergebnis als
+Ganzes. Sobald es gültig ist, zeichnet die Anwendung das DataMatrix-Symbol.
+
+Keiner dieser Strichcodes muss für sich allein vollständig sein. Eine Chargennummer ohne ihre
+GTIN scheitert allein mit `GE-S005`, doch für einen Strichcode aus einem Satz ist das normal;
+deshalb prüft Kombinieren sie stattdessen an der Kombination.
+
+### Der Streifen Kombinieren
+
+Der Wechsel zu **Kombinieren** ersetzt die Eingabezeile durch einen Streifen am unteren
+Fensterrand. Der Erfassungsverlauf tritt zur Seite, denn Scans im Modus Kombinieren sind keine
+Erfassungen und gelangen nie in ihn. Im Berichtsbereich erscheint stattdessen der
+Kombinationsbericht:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Ein Strichcode kommt auf zwei Wegen hinein:
+
+- **Scannen.** Unter Windows bleiben die Scanner-Bedienelemente im Modus Kombinieren in der
+  Werkzeugleiste, und jeder Scan geht direkt in die Kombination statt in den Verlauf.
+- **Eingeben oder einfügen** in das Feld *Strichcode* und <kbd>Eingabe</kbd> oder
+  **Hinzufügen** drücken. Schreiben Sie FNC1 als **`{GS}`**, wie in der Eingabezeile. Ein
+  ohne AIM Code ID eingegebener Strichcode gilt als GS1-128.
+
+| Schaltfläche | Wirkung |
+|---|---|
+| **Hinzufügen** | Fügt den Strichcode aus dem Feld hinzu |
+| **Letzten entfernen** | Entfernt den zuletzt hinzugefügten Strichcode (nicht verfügbar, wenn keiner da ist) |
+| **Zurücksetzen** | Entfernt alle Strichcodes, leert das Feld und jede Ablehnung und beginnt von vorn |
+
+Die Statuszeile zeigt stets, wie viele Strichcodes gehalten werden (*2 von 3 GS1-128-Strichcodes*), oder
+warum der letzte abgelehnt wurde.
+
+### Was Kombinieren ablehnt
+
+Ein abgelehnter Strichcode wird nicht hinzugefügt. Bericht und Statuszeile nennen beide den
+Grund:
+
+| Strichcode | Abgelehnt, weil |
+|---|---|
+| Ein leeres Feld | Es gibt nichts hinzuzufügen |
+| Ein vierter Strichcode | Ein Etikett wird aus höchstens drei kombiniert. Entfernen Sie den letzten, oder setzen Sie zurück |
+| Eine andere Symbologie, laut AIM Code ID | Nur GS1-128 wird kombiniert; ein GS1 DataMatrix (`]d2`) oder ein QR Code wird mit seinem Namen abgelehnt |
+| Nicht lesbare AIs | Ein Syntaxfehler; Fehlercode und Meldung der Engine werden angezeigt |
+| Gar keine AIs | Es gibt nichts zu kombinieren |
+| Ein bereits gescannter | Dieselbe Elementkette zweimal, etwa derselbe Strichcode erneut gescannt; der Bericht sagt, welchen früheren Strichcode er wiederholt |
+
+Kombinieren lehnt nur ab, was es überhaupt nicht verwenden kann. Alles andere (eine falsche
+Prüfziffer, ein ungültiges Datum, ein fehlender Begleit-AI) wird angenommen und an der
+Kombination beurteilt.
+
+### Duplikate und Konflikte
+
+Die AIs werden in der Reihenfolge kombiniert, in der sie gescannt wurden. Tragen zwei
+Strichcodes denselben AI:
+
+- **mit demselben Wert**, wird er einmal behalten und unter *Duplikate — einmal behalten* aufgeführt,
+  zusammen mit den Strichcodes, in denen er gelesen wurde;
+- **mit unterschiedlichen Werten**, ist es ein **Konflikt**. Das Ergebnis lautet
+  *KONFLIKT*, die widersprüchlichen Werte werden Strichcode für Strichcode aufgeführt,
+  und **nichts wird kombiniert**, bis er gelöst ist. Entfernen Sie den fehlerhaften Strichcode,
+  oder setzen Sie zurück.
+
+### Der Kombinationsbericht
+
+Von oben nach unten:
+
+1. **Das Ergebnis**: *keine Scans*, *KONFLIKT*, gültig oder ungültig, und wie
+   viele Strichcodes gehalten werden.
+2. **Die Scans**: jeder Strichcode, wie er ankam, seine Symbologie und die Elementkette, die nach
+   Entfernen der AIM Code ID übrig bleibt. Ein Problem, das nur die Kombination entscheiden kann,
+   steht beim Strichcode, markiert mit *an der Kombination beurteilt*.
+3. **Duplikate** und **Konflikte**, falls vorhanden.
+4. **Kombiniert**: die Elementkette, ihre HRI und ihre Länge, dann die kombinierte
+   Eingabe als beschriftetes Band und je eine Karte pro AI, beide so dargestellt wie im
+   [Analysebericht](#der-bericht). Jeder Fehler und jede Warnung zur Kombination wird danach unter
+   *Validierung* aufgeführt.
+5. **Das GS1-DataMatrix-Symbol**, mit seiner HRI darunter. Es wird nur gezeichnet, wenn die
+   Kombination gültig ist. Andernfalls sagt der Bericht, warum es nicht gezeichnet wurde, damit
+   kein ungültiges Symbol versehentlich gedruckt werden kann.
+
+Zum Beispiel ein Etikett mit zwei Strichcodes:
+
+| Strichcode | Enthält | Für sich allein |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | gültig |
+| `]C11726123110LOT-ABC` | (17) Verfallsdatum, (10) Charge | `GE-S005` für beide AIs, an der Kombination beurteilt |
+
+Sie ergeben zusammen `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, was gültig ist; also wird das Symbol gezeichnet. AI
+`17` hat eine feste Länge, daher ist danach kein FNC1 nötig. Kombinieren fügt überall dort
+eines ein, wo der Standard es verlangt.
+
+**Bericht speichern** exportiert den Kombinationsbericht als HTML oder PDF, genauso wie einen
+Analysebericht (siehe [Exportieren](#exportieren)), sobald ein Strichcode gehalten wird. Der Name
+der HTML-Datei beginnt mit `gaia-combine-`.
+
+Der Bericht folgt der gewählten Sprache und dem Design. Eine geänderte Analyseoption oder Sprache
+prüft die bereits gehaltenen Strichcodes neu. Sie überstehen auch einen Wechsel zu
+Analysieren oder Erstellen und zurück, aber keinen Neustart: Strichcodes im Modus
+Kombinieren werden nicht gespeichert.
 
 ---
 
@@ -347,7 +487,7 @@ Zwei Dateien in `.gaia-desktop` in Ihrem Benutzerverzeichnis:
 
 | Datei | Inhalt |
 |---|---|
-| `options.properties` | Alle Analyseoptionen, das Design, ob der Optionsbereich offen ist, der zuletzt verwendete Scanner und der Modus, in dem das Fenster verlassen wurde |
+| `options.properties` | Alle Analyseoptionen, das Design, ob der Optionsbereich offen ist, der zuletzt verwendete Scanner, der Modus, in dem das Fenster verlassen wurde, und die Einstellungen der Update-Prüfung — an oder aus, wann sie zuletzt lief und jede Version, die Sie überspringen wollten |
 | `captures.tsv` | Der Erfassungsverlauf, die neuesten zuerst, begrenzt auf 500 Einträge |
 
 Die Optionen werden bei jeder Änderung geschrieben, der Verlauf bei jeder Änderung des Verlaufs.
@@ -361,6 +501,9 @@ zurück, eine fehlerhafte Zeile kostet also nur diese Zeile.
 Der Verlauf speichert die Eingabe, nicht die Analyse. Sie wird beim Laden neu analysiert — eine
 wiederhergestellte Erfassung spiegelt also die **jetzt** geltenden Optionen wider, nicht die zum
 Zeitpunkt der Erfassung.
+
+Die im Modus Kombinieren gehaltenen Strichcodes werden nicht gespeichert: Nach einem Neustart
+beginnt Kombinieren leer.
 
 ---
 
@@ -380,6 +523,10 @@ Zeitpunkt der Erfassung.
 Im Editor: <kbd>Tab</kbd> / <kbd>Umschalt</kbd>+<kbd>Tab</kbd> wechseln zwischen bearbeitbaren
 Zellen, <kbd>Eingabe</kbd> übernimmt, <kbd>Esc</kbd> bricht ab.
 
+Im Modus Kombinieren: <kbd>Eingabe</kbd> im Feld *Strichcode* fügt den
+Strichcode hinzu. Dort schreiben Sie FNC1 als `{GS}`; <kbd>⌘G</kbd> gehört zur Eingabezeile des
+Modus Analysieren.
+
 ---
 
 ## Fehlerbehebung
@@ -390,7 +537,7 @@ Zellen, <kbd>Eingabe</kbd> übernimmt, <kbd>Esc</kbd> bricht ab.
 | *„Unsupported JavaFX configuration…“* beim Start in der Konsole | Erwartet und harmlos — das Toolkit vermerkt nur, wie es geladen wurde. Die Anwendung läuft normal |
 | Ein eingefügtes Trennzeichen scheint zu verschwinden | So gewollt: Es wird in das sichtbare Token `{GS}` umgeschrieben, der Parser erhält weiterhin das echte Zeichen. Siehe [das {GS}-Token](#die-eingabezeile-und-das-gs-token) |
 | Es gibt keine Schaltfläche *Scanner verbinden* | Sie sind unter macOS oder Linux, wo es die Scanner-Treiber nicht gibt. Siehe [Scannen](#scannen) |
-| Der Scanner verbindet sich nicht | Prüfen Sie, ob der logische Name in der Auswahl zu Ihrem Modell passt, ob der Scanner angeschlossen ist und ob ihn keine andere Anwendung belegt |
+| Der Scanner verbindet sich nicht | Prüfen Sie, ob der logische Name in der Auswahl zu Ihrem Modell passt, ob der Scanner angeschlossen ist und ob ihn keine andere Anwendung belegt. Die [Einrichtungsanleitung für Zebra-Scanner](GaiaDesktop-Zebra-Scanner-Windows-German.md#11-fehlerbehebung) listet jeden Fehlercode auf. |
 | Der PDF-Export meldet, es gebe kein Ziel | Ihr Rechner hat weder Drucker noch PDF-Ziel eingerichtet. Richten Sie eines ein, oder exportieren Sie HTML und drucken Sie aus einem Browser |
 | Ein Menüeintrag zeigt so etwas wie `act.hri` | Eine fehlende Beschriftung — bitte melden; das ist ein Fehler im Build, keine Einstellung |
 
@@ -404,3 +551,5 @@ Zellen, <kbd>Eingabe</kbd> übernimmt, <kbd>Esc</kbd> bricht ab.
   Abfrageparameter und kein Fragment.
 - **Ein AI darf nur einmal vorkommen** in einer Elementkette — das ist die GS1-Regel, keine
   Grenze der Anwendung.
+- **Kombinieren nimmt nur GS1-128-Strichcodes an, höchstens drei**, und behält sie nicht
+  über einen Neustart hinaus.

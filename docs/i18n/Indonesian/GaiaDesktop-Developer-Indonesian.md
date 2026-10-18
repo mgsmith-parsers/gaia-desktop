@@ -125,7 +125,7 @@ keduanya sama-sama mengklaimnya.
 
 Setiap distribusi juga membawa panduan: `docs/` disalin dengan tata letaknya dipertahankan, sehingga tautan
 antara panduan dan terjemahan tetap berfungsi, tanpa perkakas terjemahan (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); dan `readme.html` di akar, indeks yang menautkan ke masing-masing,
+`i18n-manifest.json`); dan `readme.html` di akar, indeks yang menautkan ke masing-masing,
 dari `src/main/dist/readme.html` dengan `@VERSION@` diganti versi pom. Keduanya ditulis oleh langkah antrun
 `pick-launch-script`, yang menghapus `docs/` lebih dulu agar panduan yang dihapus tidak tertinggal. Tautan di
 readme ditulis tangan — panduan yang diganti namanya atau terjemahan yang ditambahkan di bawah `docs/` juga

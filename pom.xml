@@ -448,7 +448,7 @@
                                 <delete dir="${dist.dir}/docs"/>
                                 <copy todir="${dist.dir}/docs">
                                     <fileset dir="${project.basedir}/docs"
-                                             excludes="check-i18n.py,i18n-manifest.json,i18n-plan.md"/>
+                                             excludes="check-i18n.py,i18n-manifest.json"/>
                                 </copy>
                                 <copy file="${project.basedir}/src/main/dist/readme.html" todir="${dist.dir}"
                                       overwrite="true" encoding="UTF-8" outputencoding="UTF-8">

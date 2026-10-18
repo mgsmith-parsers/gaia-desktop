@@ -19,26 +19,34 @@ Como usar a aplicação. Para a compilar, alterar ou acrescentar um idioma, cons
    - [O que o editor recusa](#o-que-o-editor-recusa)
    - [Cadeia de elementos ou Digital Link](#cadeia-de-elementos-ou-digital-link)
    - [Editar uma captura existente](#editar-uma-captura-existente)
-6. [O relatório](#o-relatório)
+6. [Modo Combinar](#modo-combinar)
+   - [A faixa Combinar](#a-faixa-combinar)
+   - [O que Combinar recusa](#o-que-combinar-recusa)
+   - [Duplicados e conflitos](#duplicados-e-conflitos)
+   - [O relatório de combinação](#o-relatório-de-combinação)
+7. [O relatório](#o-relatório)
    - [Exportar](#exportar)
-7. [Opções de análise](#opções-de-análise)
+8. [Opções de análise](#opções-de-análise)
    - [Primeiro arranque](#primeiro-arranque)
-8. [Idiomas](#idiomas)
-9. [O que é memorizado](#o-que-é-memorizado)
-10. [Atalhos de teclado](#atalhos-de-teclado)
-11. [Resolução de problemas](#resolução-de-problemas)
-12. [Limites](#limites)
+9. [Idiomas](#idiomas)
+10. [O que é memorizado](#o-que-é-memorizado)
+11. [Atalhos de teclado](#atalhos-de-teclado)
+12. [Resolução de problemas](#resolução-de-problemas)
+13. [Limites](#limites)
 
 ---
 
 ## O que é
 
-O GAIA Desktop faz duas coisas com dados GS1:
+O GAIA Desktop faz três coisas com dados GS1:
 
 - **Analisar** — escreva, cole, abra ou leia com um leitor uma cadeia de elementos GS1 ou um URI
   Digital Link e leia o resultado como um relatório completo: o que significa cada identificador
   de aplicação (AI), o que está errado e porquê;
-- **Compor** — juntar pares AI / valor numa cadeia de elementos ou num URI Digital Link.
+- **Compor** — juntar pares AI / valor numa cadeia de elementos ou num URI Digital Link;
+- **Combinar** — juntar até três códigos de barras GS1-128 de uma mesma etiqueta na
+  única cadeia de elementos que um GS1 DataMatrix transportaria, verificá-la como um todo e
+  desenhar o símbolo.
 
 Tudo o que a aplicação sabe sobre GS1 — cada definição de AI, cada regra de validação, cada
 mensagem de erro e cada descrição localizada — vem do motor GAIA que está por baixo. A aplicação
@@ -85,7 +93,7 @@ versão do motor. É essa a linha a citar num relatório de erro.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -97,7 +105,7 @@ versão do motor. É essa a linha a citar num relatório de erro.
 ```
 
 > O esquema mantém as etiquetas em inglês, tal como todos os blocos de código desta
-> documentação. No ecrã verá *Analisar* / *Compor*, *Capturas*, *Guardar relatório*, *Opções*,
+> documentação. No ecrã verá *Analisar* / *Compor* / *Combinar*, *Capturas*, *Guardar relatório*, *Opções*,
 > *leitor: desligado* e *Acerca*.
 
 **No macOS e no Linux não existe a linha do leitor**: não há botão nem seletor de dispositivo na
@@ -107,10 +115,19 @@ Consulte [Leitura com leitor](#leitura-com-leitor).
 O seletor **Analisar ⇄ Compor** muda apenas a faixa por baixo da barra de ferramentas e os
 controlos de captura. O histórico, o relatório, o painel de opções e as ações de exportação
 servem os dois modos, porque uma composição bem-sucedida passa a ser simplesmente mais uma
-captura.
+captura. O modo **Combinar** tem outra disposição: consulte [Modo Combinar](#modo-combinar).
 
 O painel de opções está **fechado no primeiro arranque**. O modo, a visibilidade do painel, o
 tema e o último leitor usado são memorizados entre execuções.
+
+**Novas versões.** Alguns segundos depois de arrancar, no máximo uma vez por dia, a aplicação
+pergunta ao GitHub se foi publicada uma versão mais recente do GAIA Desktop. Se foi, aparece na
+barra de estado uma ligação — *O GAIA Desktop 1.1.0 está disponível* — que abre a página da versão no
+seu navegador; nada é transferido nem instalado por si. *Ignorar esta versão* oculta o aviso até
+uma versão posterior. A verificação é silenciosa quando não há nada de novo ou quando não
+consegue chegar ao GitHub. *Ajuda → Procurar atualizações…* verifica de imediato e diz o
+que encontrou; *Ajuda → Procurar atualizações automaticamente* desliga e volta a ligar a verificação
+diária.
 
 ---
 
@@ -154,9 +171,12 @@ chegam ao analisador exatamente como o leitor os enviou.
 
 No modo Compor os controlos do leitor ficam ocultos, mas um leitor ligado continua a funcionar:
 *Leitor → Ligar / Desligar* (<kbd>⌘K</kbd>) continua a alterná-lo, a barra de estado continua a
-indicá-lo, e uma leitura que chegue com o editor aberto é capturada na mesma.
+indicá-lo, e uma leitura que chegue com o editor aberto é capturada na mesma. No modo Combinar os controlos mantêm-se, e cada leitura é acrescentada à combinação em
+vez de ao histórico.
 
-Se um dispositivo não ligar, consulte [Resolução de problemas](#resolução-de-problemas).
+A primeira configuração de um leitor — o Zebra Scanner SDK, o modo USB do leitor e as
+definições GS1 — é explicada passo a passo no
+[guia de configuração do leitor Zebra](GaiaDesktop-Zebra-Scanner-Windows-Portuguese.md), incluído em cada zip em `docs/`. Se um dispositivo não ligar, consulte [Resolução de problemas](#resolução-de-problemas).
 
 ### Abrir um ficheiro
 
@@ -236,6 +256,123 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Clique com o botão direito numa captura → **Compor** carrega os seus AI no editor. Altere um
 valor, componha de novo, e o resultado surge como uma captura nova — a original fica intacta.
+
+---
+
+## Modo Combinar
+
+As etiquetas mais antigas repartem muitas vezes os seus dados por **vários códigos de barras
+GS1-128** — o GTIN num, a data de validade e o lote noutro — porque um único código de barras
+linear não consegue conter tudo. Combinar recebe até **três** desses códigos de barras,
+junta-os na única cadeia de elementos que um **GS1 DataMatrix** transportaria e verifica o
+resultado como um todo. Quando é válido, a aplicação desenha o símbolo DataMatrix.
+
+Nenhum desses códigos de barras precisa de estar completo por si só. Um número de lote sem o seu
+GTIN falha sozinho com `GE-S005`, mas isso é normal num código de barras de um conjunto, por isso
+Combinar verifica-o na combinação.
+
+### A faixa Combinar
+
+Ao mudar para **Combinar**, a barra de entrada é substituída por uma faixa ao longo da
+parte inferior da janela. O histórico de capturas sai de cena, porque as leituras do modo
+Combinar não são capturas e nunca entram nele. A área do relatório mostra em vez disso o
+relatório de combinação:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Há duas formas de introduzir um código de barras:
+
+- **Lendo-o.** No Windows, os controlos do leitor ficam na barra de ferramentas no modo
+  Combinar, e cada leitura vai diretamente para a combinação em vez do histórico.
+- **Escrevendo-o ou colando-o** no campo *Código de barras* e premindo <kbd>Enter</kbd>
+  ou **Adicionar**. Escreva o FNC1 como **`{GS}`**, tal como na barra de entrada. Um código
+  de barras escrito sem AIM Code ID é tratado como GS1-128.
+
+| Botão | O que faz |
+|---|---|
+| **Adicionar** | Acrescenta o código de barras do campo |
+| **Remover o último** | Retira o código de barras mais recente (indisponível quando não há nenhum) |
+| **Repor** | Retira todos os códigos de barras, limpa o campo e qualquer recusa, e recomeça |
+
+A barra de estado diz sempre quantos códigos de barras estão presentes (*2 de 3 códigos de barras GS1-128*),
+ou porque foi recusado o último.
+
+### O que Combinar recusa
+
+Um código de barras recusado não é acrescentado. O relatório e a barra de estado dizem ambos
+porquê:
+
+| Código de barras | Recusado porque |
+|---|---|
+| Um campo vazio | Não há nada para acrescentar |
+| Um quarto código de barras | Uma etiqueta combina-se a partir de três, no máximo. Retire o último, ou reponha |
+| Outra simbologia, pelo seu AIM Code ID | Só o GS1-128 é combinado, por isso um GS1 DataMatrix (`]d2`) ou um QR Code é recusado, com o seu nome |
+| AI que não se conseguem ler | Um erro de sintaxe; são mostrados o código de erro e a mensagem do motor |
+| Nenhum AI | Não há nada para combinar |
+| Um já lido | A mesma cadeia de elementos duas vezes, por exemplo o mesmo código de barras lido de novo; o relatório diz que código de barras anterior repete |
+
+Combinar só recusa o que não consegue usar de todo. Tudo o resto (um dígito de controlo
+errado, uma data inválida, um AI acompanhante em falta) é aceite e avaliado na combinação.
+
+### Duplicados e conflitos
+
+Os AI são combinados pela ordem em que foram lidos. Quando dois códigos de barras levam o mesmo
+AI:
+
+- **com o mesmo valor**, é mantido uma vez e listado em *Duplicados — mantidos uma vez*, com os códigos
+  de barras em que foi lido;
+- **com valores diferentes**, é um **conflito**. O veredito diz *CONFLITO*, os
+  valores em desacordo são listados código de barras a código de barras, e **nada é combinado**
+  até que seja resolvido. Retire o código de barras em falta, ou reponha.
+
+### O relatório de combinação
+
+De cima para baixo:
+
+1. **O veredito**: *sem leituras*, *CONFLITO*, válido ou inválido, e quantos
+   códigos de barras estão presentes.
+2. **As leituras**: cada código de barras tal como chegou, a sua simbologia e a cadeia de
+   elementos que resta depois de retirado o AIM Code ID. Um problema que só a combinação pode
+   decidir é mostrado no código de barras, marcado *avaliado na combinação*.
+3. **Duplicados** e **conflitos**, quando os há.
+4. **Combinação**: a cadeia de elementos, o seu HRI e o seu comprimento; depois, a
+   entrada combinada como fita etiquetada e um cartão por AI, ambos dispostos como no
+   [relatório de análise](#o-relatório). Cada erro e cada aviso sobre a combinação é depois listado
+   em *Validação*.
+5. **O símbolo GS1 DataMatrix**, com o seu HRI por baixo. Só é desenhado quando a combinação é
+   válida. Caso contrário, o relatório diz porque não foi desenhado, para que um símbolo inválido
+   não possa ser impresso por engano.
+
+Por exemplo, uma etiqueta com dois códigos de barras:
+
+| Código de barras | Contém | Sozinho |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | válido |
+| `]C11726123110LOT-ABC` | (17) data de validade, (10) lote | `GE-S005` para ambos os AI, avaliado na combinação |
+
+Combinam-se em `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, que é válido, por isso o símbolo é desenhado. O AI
+`17` tem comprimento fixo, por isso não é preciso um FNC1 depois dele. Combinar insere
+um sempre que a norma o exige.
+
+**Guardar relatório** exporta o relatório de combinação em HTML ou PDF, tal como um relatório de
+análise (consulte [Exportar](#exportar)), assim que houver um código de barras. O nome do
+ficheiro HTML começa por `gaia-combine-`.
+
+O relatório segue o idioma e o tema escolhidos. Mudar uma opção de análise ou o idioma volta a
+verificar os códigos de barras já presentes. Também sobrevivem a uma passagem para
+Analisar ou Compor e regresso, mas não a um reinício: os códigos de barras do modo
+Combinar não são guardados.
 
 ---
 
@@ -338,7 +475,7 @@ Dois ficheiros em `.gaia-desktop`, dentro da sua pasta pessoal:
 
 | Ficheiro | Contém |
 |---|---|
-| `options.properties` | Todas as opções de análise, o tema, se o painel de opções está aberto, o último leitor usado e o modo em que a janela ficou |
+| `options.properties` | Todas as opções de análise, o tema, se o painel de opções está aberto, o último leitor usado, o modo em que a janela ficou, e as definições da verificação de atualizações — ligada ou desligada, quando correu pela última vez e qualquer versão que tenha escolhido ignorar |
 | `captures.tsv` | O histórico de capturas, as mais recentes primeiro, limitado a 500 entradas |
 
 As opções são escritas sempre que altera uma; o histórico sempre que muda. Ambos são reescritos
@@ -352,6 +489,9 @@ linha errada só custa essa linha.
 O histórico guarda a entrada, não a análise. Esta é refeita ao carregar, o que significa que uma
 captura restaurada reflete as opções em vigor **agora**, e não as que vigoravam quando foi
 capturada.
+
+Os códigos de barras do modo Combinar não são guardados: depois de um reinício,
+Combinar começa vazio.
 
 ---
 
@@ -371,6 +511,10 @@ capturada.
 No editor: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> movem entre células editáveis,
 <kbd>Enter</kbd> confirma, <kbd>Esc</kbd> cancela.
 
+No modo Combinar: <kbd>Enter</kbd> no campo *Código de barras* acrescenta o
+código de barras. Aí, escreva o FNC1 como `{GS}`; <kbd>⌘G</kbd> pertence à barra de entrada do
+modo Analisar.
+
 ---
 
 ## Resolução de problemas
@@ -381,7 +525,7 @@ No editor: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> movem entre células
 | *«Unsupported JavaFX configuration…»* na consola ao arrancar | Esperado e inofensivo — o conjunto de ferramentas apenas regista como foi carregado. A aplicação funciona normalmente |
 | Um separador que colou parece desaparecer | É o esperado: é reescrito como o token visível `{GS}` e o analisador continua a receber o carácter verdadeiro. Consulte [o token {GS}](#a-barra-de-entrada-e-o-token-gs) |
 | Não há botão *Ligar leitor* | Está no macOS ou no Linux, onde os controladores do leitor não existem. Consulte [Leitura com leitor](#leitura-com-leitor) |
-| O leitor não liga | Verifique se o nome lógico no seletor corresponde ao seu modelo, se o leitor está ligado e se nenhuma outra aplicação o está a ocupar |
+| O leitor não liga | Verifique se o nome lógico no seletor corresponde ao seu modelo, se o leitor está ligado e se nenhuma outra aplicação o está a ocupar. O [guia de configuração do leitor Zebra](GaiaDesktop-Zebra-Scanner-Windows-Portuguese.md#11-resolução-de-problemas) lista cada código de erro. |
 | A exportação para PDF diz que não há destino | A sua máquina não tem impressora nem destino PDF configurado. Acrescente um, ou exporte em HTML e imprima a partir de um navegador |
 | Um item de menu mostra algo como `act.hri` | Falta uma etiqueta — comunique, por favor; é um defeito de compilação, não uma definição |
 
@@ -395,3 +539,5 @@ No editor: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> movem entre células
   consulta adicionais nem um fragmento.
 - **Um AI só pode aparecer uma vez** numa cadeia de elementos — é a regra GS1, não um limite da
   aplicação.
+- **Combinar só aceita códigos de barras GS1-128, três no máximo**, e não os guarda
+  entre execuções.

@@ -19,26 +19,34 @@ Hur du använder programmet. För att bygga, ändra eller lägga till ett språk
    - [Vad redigeraren avvisar](#vad-redigeraren-avvisar)
    - [Elementsträng eller Digital Link](#elementsträng-eller-digital-link)
    - [Redigera en befintlig registrering](#redigera-en-befintlig-registrering)
-6. [Rapporten](#rapporten)
+6. [Läget Kombinera](#läget-kombinera)
+   - [Remsan Kombinera](#remsan-kombinera)
+   - [Vad Kombinera avvisar](#vad-kombinera-avvisar)
+   - [Dubbletter och konflikter](#dubbletter-och-konflikter)
+   - [Kombinationsrapporten](#kombinationsrapporten)
+7. [Rapporten](#rapporten)
    - [Exportera](#exportera)
-7. [Tolkningsalternativ](#tolkningsalternativ)
+8. [Tolkningsalternativ](#tolkningsalternativ)
    - [Första starten](#första-starten)
-8. [Språk](#språk)
-9. [Vad som kommer ihåg](#vad-som-kommer-ihåg)
-10. [Tangentbordsgenvägar](#tangentbordsgenvägar)
-11. [Felsökning](#felsökning)
-12. [Begränsningar](#begränsningar)
+9. [Språk](#språk)
+10. [Vad som kommer ihåg](#vad-som-kommer-ihåg)
+11. [Tangentbordsgenvägar](#tangentbordsgenvägar)
+12. [Felsökning](#felsökning)
+13. [Begränsningar](#begränsningar)
 
 ---
 
 ## Vad det är
 
-GAIA Desktop gör två saker med GS1-data:
+GAIA Desktop gör tre saker med GS1-data:
 
 - **Tolkar** — skriv, klistra in, öppna eller skanna en GS1-elementsträng eller en
   Digital Link-URI och läs resultatet som en fullständig rapport: vad varje
   applikationsidentifierare (AI) betyder, vad som är fel och varför;
-- **Bygger** — sätter samman AI/värde-par till en elementsträng eller en Digital Link-URI.
+- **Bygger** — sätter samman AI/värde-par till en elementsträng eller en Digital Link-URI;
+- **Kombinera** — slå ihop upp till tre GS1-128-streckkoder från en etikett till den enda
+  elementsträng som en GS1 DataMatrix skulle bära, kontrollera den som en helhet och rita
+  symbolen.
 
 Allt programmet vet om GS1 — varje AI-definition, varje valideringsregel, varje felmeddelande
 och varje översatt beskrivning — kommer från GAIA-motorn under det. Programmet lägger inte till
@@ -84,7 +92,7 @@ den raden du bör citera i en felrapport.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -96,7 +104,7 @@ den raden du bör citera i en felrapport.
 ```
 
 > Skissen behåller de engelska etiketterna, liksom alla kodblock i den här dokumentationen. På
-> skärmen ser du *Tolka* / *Bygg*, *Registreringar*, *Spara rapport*, *Alternativ*,
+> skärmen ser du *Tolka* / *Bygg* / *Kombinera*, *Registreringar*, *Spara rapport*, *Alternativ*,
 > *skanner: av* och *Om*.
 
 **På macOS och Linux finns inte skannerraden i bilden** — ingen växlingsknapp eller enhetsväljare
@@ -105,10 +113,18 @@ i verktygsfältet, ingen *Skanner*-meny och inget *skanner: av* i statusfältet.
 
 Växlaren **Tolka ⇄ Bygg** ändrar bara remsan under verktygsfältet och kontrollerna för
 registrering. Historiken, rapporten, alternativpanelen och exportkommandona tjänar båda lägena,
-eftersom ett lyckat bygge helt enkelt blir ännu en registrering.
+eftersom ett lyckat bygge helt enkelt blir ännu en registrering. Läget **Kombinera** är upplagt på ett annat sätt: se [Läget Kombinera](#läget-kombinera).
 
 Alternativpanelen är **stängd vid första starten**. Läget, panelens synlighet, temat och den
 senast använda skannern kommer ihåg mellan körningar.
+
+**Nya versioner.** Några sekunder efter starten, högst en gång om dagen, frågar programmet GitHub
+om en nyare GAIA Desktop har släppts. Om så är fallet visas en länk i statusfältet —
+*GAIA Desktop 1.1.0 finns tillgänglig* — som öppnar versionssidan i din webbläsare; ingenting laddas ned
+eller installeras åt dig. *Hoppa över den här versionen* döljer meddelandet till en senare version.
+Kontrollen är tyst när det inte finns något nytt eller när den inte når GitHub.
+*Hjälp → Sök efter uppdateringar…* kontrollerar direkt och säger vad den hittade;
+*Hjälp → Sök efter uppdateringar automatiskt* slår av och på den dagliga kontrollen.
 
 ---
 
@@ -151,9 +167,12 @@ exakt som skannern skickade dem.
 
 I läget Bygg är skannerkontrollerna dolda, men en ansluten skanner fortsätter att fungera:
 *Skanner → Anslut / Koppla från* (<kbd>⌘K</kbd>) växlar den fortfarande, statusfältet rapporterar
-den fortfarande, och en skanning som kommer in medan redigeraren är öppen registreras ändå.
+den fortfarande, och en skanning som kommer in medan redigeraren är öppen registreras ändå. I läget Kombinera finns kontrollerna kvar, och varje skanning läggs till i kombinationen
+i stället för i historiken.
 
-Om en enhet inte ansluter, se [Felsökning](#felsökning).
+Att ställa in en skanner första gången — Zebra Scanner SDK, skannerns USB-läge och
+GS1-inställningarna — beskrivs steg för steg i
+[installationsguiden för Zebra-skannrar](GaiaDesktop-Zebra-Scanner-Windows-Swedish.md), som följer med i varje zip under `docs/`. Om en enhet inte ansluter, se [Felsökning](#felsökning).
 
 ### Öppna en fil
 
@@ -233,6 +252,121 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Högerklicka på en registrering → **Bygg** läser in dess AI:er i redigeraren. Ändra ett värde,
 bygg om, och resultatet landar som en ny registrering — originalet lämnas orört.
+
+---
+
+## Läget Kombinera
+
+Äldre etiketter sprider ofta sina data över **flera GS1-128-streckkoder** — GTIN i en,
+bäst före-datum och batch i en annan — eftersom en enda linjär streckkod inte rymmer allt.
+Kombinera tar upp till **tre** av de streckkoderna, slår ihop dem till den enda
+elementsträng som en **GS1 DataMatrix** skulle bära och kontrollerar resultatet som en helhet.
+När det är giltigt ritar programmet DataMatrix-symbolen.
+
+Ingen av de streckkoderna behöver vara komplett för sig. Ett batchnummer utan sitt GTIN
+underkänns ensamt med `GE-S005`, men det är normalt för en streckkod i en uppsättning, så
+Kombinera kontrollerar det mot kombinationen i stället.
+
+### Remsan Kombinera
+
+Ett byte till **Kombinera** ersätter inmatningsfältet med en remsa längs fönstrets
+nederkant. Registreringshistoriken kliver åt sidan, eftersom skanningar i läget Kombinera
+inte är registreringar och aldrig hamnar där. Rapportytan visar i stället
+kombinationsrapporten:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+En streckkod kan komma in på två sätt:
+
+- **Skanna den.** I Windows ligger skannerkontrollerna kvar i verktygsfältet i läget
+  Kombinera, och varje skanning går direkt in i kombinationen i stället för i historiken.
+- **Skriv eller klistra in den** i fältet *Streckkod* och tryck på
+  <kbd>Retur</kbd> eller **Lägg till**. Skriv FNC1 som **`{GS}`**, som i inmatningsfältet.
+  En streckkod som skrivs utan AIM Code ID tolkas som GS1-128.
+
+| Knapp | Gör |
+|---|---|
+| **Lägg till** | Lägger till streckkoden i fältet |
+| **Ta bort sista** | Tar bort den senaste streckkoden (inte tillgänglig när det inte finns några) |
+| **Återställ** | Tar bort alla streckkoder, tömmer fältet och eventuella avvisningar, och börjar om |
+
+Statusfältet säger alltid hur många streckkoder som finns (*2 av 3 GS1-128-streckkoder*), eller varför
+den senaste avvisades.
+
+### Vad Kombinera avvisar
+
+En avvisad streckkod läggs inte till. Både rapporten och statusfältet säger varför:
+
+| Streckkod | Avvisas eftersom |
+|---|---|
+| Ett tomt fält | Det finns inget att lägga till |
+| En fjärde streckkod | En etikett kombineras från högst tre. Ta bort den senaste, eller återställ |
+| En annan symbologi, enligt dess AIM Code ID | Bara GS1-128 kombineras, så en GS1 DataMatrix (`]d2`) eller en QR Code avvisas, med sitt namn |
+| AI som inte går att läsa | Ett syntaxfel; motorns felkod och meddelande visas |
+| Inga AI alls | Det finns inget att kombinera |
+| En som redan skannats | Samma elementsträng två gånger, till exempel samma streckkod skannad igen; rapporten säger vilken tidigare streckkod den upprepar |
+
+Kombinera avvisar bara det den inte kan använda alls. Allt annat (en felaktig
+kontrollsiffra, ett ogiltigt datum, en saknad följe-AI) tas emot och bedöms på kombinationen.
+
+### Dubbletter och konflikter
+
+AI:erna kombineras i den ordning de skannades. När två streckkoder bär samma AI:
+
+- **med samma värde** behålls den en gång och listas under *Dubbletter — behålls en gång*, tillsammans
+  med de streckkoder den lästes i;
+- **med olika värden** är det en **konflikt**. Utlåtandet lyder *KONFLIKT*, de
+  motstridiga värdena listas streckkod för streckkod, och **ingenting kombineras** förrän den är
+  löst. Ta bort den felaktiga streckkoden, eller återställ.
+
+### Kombinationsrapporten
+
+Uppifrån och ned:
+
+1. **Utlåtandet**: *inga skanningar*, *KONFLIKT*, giltig eller ogiltig, och hur
+   många streckkoder som finns.
+2. **Skanningarna**: varje streckkod som den kom in, dess symbologi och den elementsträng som
+   återstår när AIM Code ID har tagits bort. Ett problem som bara kombinationen kan avgöra visas
+   vid streckkoden, märkt *bedöms på kombinationen*.
+3. **Dubbletter** och **konflikter**, om det finns några.
+4. **Kombinerad**: elementsträngen, dess HRI och dess längd, sedan den kombinerade
+   inmatningen som ett märkt band och ett kort per AI, båda upplagda som i
+   [tolkningsrapporten](#rapporten). Varje fel och varje varning om kombinationen listas sedan
+   under *Validering*.
+5. **GS1 DataMatrix-symbolen**, med sin HRI under. Den ritas bara när kombinationen är giltig.
+   Annars säger rapporten varför den inte ritades, så att en ogiltig symbol inte kan skrivas ut
+   av misstag.
+
+Till exempel en etikett med två streckkoder:
+
+| Streckkod | Bär | För sig |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | giltig |
+| `]C11726123110LOT-ABC` | (17) bäst före-datum, (10) batch | `GE-S005` för båda AI, bedömd på kombinationen |
+
+De slås ihop till `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, som är giltig, så symbolen ritas. AI `17` har fast
+längd, så inget FNC1 behövs efter den. Kombinera infogar ett överallt där standarden
+kräver det.
+
+**Spara rapport** exporterar kombinationsrapporten som HTML eller PDF, på samma sätt som en
+tolkningsrapport (se [Exportera](#exportera)), så snart en streckkod finns. HTML-filens namn
+börjar med `gaia-combine-`.
+
+Rapporten följer valt språk och tema. Ett ändrat tolkningsalternativ eller språk kontrollerar
+om de streckkoder som redan finns. De överlever också ett byte till Tolka eller
+Bygg och tillbaka, men inte en omstart: streckkoder i läget Kombinera sparas
+inte.
 
 ---
 
@@ -335,7 +469,7 @@ Två filer i `.gaia-desktop` i din hemkatalog:
 
 | Fil | Innehåller |
 |---|---|
-| `options.properties` | Alla tolkningsalternativ, temat, om alternativpanelen är öppen, den senast använda skannern och det läge fönstret lämnades i |
+| `options.properties` | Alla tolkningsalternativ, temat, om alternativpanelen är öppen, den senast använda skannern, det läge fönstret lämnades i, och uppdateringskontrollens inställningar — på eller av, när den senast kördes och eventuell version du valt att hoppa över |
 | `captures.tsv` | Registreringshistoriken, nyast först, med högst 500 poster |
 
 Alternativen skrivs varje gång du ändrar ett; historiken varje gång den ändras. Båda skrivs om
@@ -349,6 +483,9 @@ rad kostar bara den raden.
 Historiken sparar indatan, inte analysen. Den tolkas om vid inläsning, vilket betyder att en
 återställd registrering speglar de alternativ som gäller **nu**, inte de som gällde när den
 gjordes.
+
+Streckkoderna i läget Kombinera sparas inte: efter en omstart börjar Kombinera
+tomt.
 
 ---
 
@@ -368,6 +505,10 @@ gjordes.
 I redigeraren: <kbd>Tabb</kbd> / <kbd>Skift</kbd>+<kbd>Tabb</kbd> flyttar mellan redigerbara
 celler, <kbd>Retur</kbd> bekräftar, <kbd>Esc</kbd> avbryter.
 
+I läget Kombinera: <kbd>Retur</kbd> i fältet *Streckkod* lägger till
+streckkoden. Där skriver du FNC1 som `{GS}`; <kbd>⌘G</kbd> hör till inmatningsfältet i läget
+Tolka.
+
 ---
 
 ## Felsökning
@@ -378,7 +519,7 @@ celler, <kbd>Retur</kbd> bekräftar, <kbd>Esc</kbd> avbryter.
 | *”Unsupported JavaFX configuration…”* i konsolen vid start | Förväntat och harmlöst — verktygslådan noterar bara hur den lästes in. Programmet fungerar normalt |
 | En inklistrad avgränsare verkar försvinna | Så ska det vara: den skrivs om till den synliga token `{GS}`, och tolken får fortfarande det riktiga tecknet. Se [{GS}-token](#inmatningsfältet-och-gs-token) |
 | Det finns ingen *Anslut skanner*-knapp | Du kör macOS eller Linux, där skannerdrivrutinerna inte finns. Se [Skanning](#skanning) |
-| Skannern ansluter inte | Kontrollera att det logiska namnet i väljaren stämmer med din modell, att skannern är ansluten och att inget annat program håller den |
+| Skannern ansluter inte | Kontrollera att det logiska namnet i väljaren stämmer med din modell, att skannern är ansluten och att inget annat program håller den. [Installationsguiden för Zebra-skannrar](GaiaDesktop-Zebra-Scanner-Windows-Swedish.md#11-felsökning) listar varje felkod. |
 | PDF-exporten säger att det inte finns någon destination | Datorn har varken skrivare eller PDF-destination konfigurerad. Lägg till en, eller exportera HTML och skriv ut från en webbläsare |
 | Ett menyalternativ visar något i stil med `act.hri` | En etikett saknas — rapportera det gärna; det är ett byggfel, inte en inställning |
 
@@ -392,3 +533,5 @@ celler, <kbd>Retur</kbd> bekräftar, <kbd>Esc</kbd> avbryter.
   ett fragment.
 - **En AI får bara förekomma en gång** i en elementsträng — det är GS1:s regel, inte en
   begränsning i programmet.
+- **Kombinera tar bara GS1-128-streckkoder, högst tre**, och sparar dem inte mellan
+  körningar.

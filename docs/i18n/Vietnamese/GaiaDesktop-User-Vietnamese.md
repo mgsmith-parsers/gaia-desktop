@@ -19,26 +19,33 @@ Cách sử dụng ứng dụng. Về việc biên dịch, sửa đổi hay thêm
    - [Những gì trình soạn từ chối](#những-gì-trình-soạn-từ-chối)
    - [Chuỗi phần tử hay Digital Link](#chuỗi-phần-tử-hay-digital-link)
    - [Sửa một bản ghi đã có](#sửa-một-bản-ghi-đã-có)
-6. [Báo cáo](#báo-cáo)
+6. [Chế độ Kết hợp](#chế-độ-kết-hợp)
+   - [Dải Kết hợp](#dải-kết-hợp)
+   - [Những gì Kết hợp từ chối](#những-gì-kết-hợp-từ-chối)
+   - [Trùng lặp và mâu thuẫn](#trùng-lặp-và-mâu-thuẫn)
+   - [Báo cáo kết hợp](#báo-cáo-kết-hợp)
+7. [Báo cáo](#báo-cáo)
    - [Xuất ra tệp](#xuất-ra-tệp)
-7. [Tùy chọn phân tích](#tùy-chọn-phân-tích)
+8. [Tùy chọn phân tích](#tùy-chọn-phân-tích)
    - [Lần chạy đầu tiên](#lần-chạy-đầu-tiên)
-8. [Ngôn ngữ](#ngôn-ngữ)
-9. [Những gì được ghi nhớ](#những-gì-được-ghi-nhớ)
-10. [Phím tắt](#phím-tắt)
-11. [Khắc phục sự cố](#khắc-phục-sự-cố)
-12. [Giới hạn](#giới-hạn)
+9. [Ngôn ngữ](#ngôn-ngữ)
+10. [Những gì được ghi nhớ](#những-gì-được-ghi-nhớ)
+11. [Phím tắt](#phím-tắt)
+12. [Khắc phục sự cố](#khắc-phục-sự-cố)
+13. [Giới hạn](#giới-hạn)
 
 ---
 
 ## Đây là gì
 
-GAIA Desktop làm hai việc với dữ liệu GS1:
+GAIA Desktop làm ba việc với dữ liệu GS1:
 
 - **Phân tích** — gõ, dán, mở hoặc quét một chuỗi phần tử GS1 hay một URI Digital Link rồi đọc
   kết quả dưới dạng báo cáo đầy đủ: mỗi mã định danh ứng dụng (AI) có nghĩa gì, chỗ nào sai và
   vì sao;
-- **Tạo** — ghép các cặp AI / giá trị thành một chuỗi phần tử hoặc một URI Digital Link.
+- **Tạo** — ghép các cặp AI / giá trị thành một chuỗi phần tử hoặc một URI Digital Link;
+- **Kết hợp** — ghép tối đa ba mã vạch GS1-128 trên cùng một nhãn thành một chuỗi phần
+  tử duy nhất mà một GS1 DataMatrix sẽ mang, kiểm tra nó như một tổng thể, rồi vẽ ký hiệu.
 
 Mọi hiểu biết của ứng dụng về GS1 — từng định nghĩa AI, từng quy tắc kiểm tra, từng thông báo
 lỗi và từng phần mô tả đã bản địa hóa — đều đến từ bộ máy GAIA bên dưới. Ứng dụng không thêm quy
@@ -84,7 +91,7 @@ máy. Đó chính là dòng nên trích dẫn trong một báo cáo lỗi.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -96,7 +103,7 @@ máy. Đó chính là dòng nên trích dẫn trong một báo cáo lỗi.
 ```
 
 > Sơ đồ giữ nguyên nhãn tiếng Anh, giống như mọi khối mã trong tài liệu này. Trên màn hình bạn
-> sẽ thấy *Phân tích* / *Tạo*, *Bản ghi*, *Lưu báo cáo*, *Tùy chọn*, *máy quét: tắt* và
+> sẽ thấy *Phân tích* / *Tạo* / *Kết hợp*, *Bản ghi*, *Lưu báo cáo*, *Tùy chọn*, *máy quét: tắt* và
 > *Giới thiệu*.
 
 **Trên macOS và Linux, hàng liên quan đến máy quét trong hình không tồn tại** — không có nút bật
@@ -105,10 +112,18 @@ tắt hay ô chọn thiết bị trên thanh công cụ, không có trình đơn
 
 Nút chuyển **Phân tích ⇄ Tạo** chỉ thay đổi dải nằm dưới thanh công cụ và các điều khiển liên
 quan tới việc thu nhận. Lịch sử, báo cáo, bảng tùy chọn và các lệnh xuất phục vụ cả hai chế độ,
-bởi một lần tạo thành công chẳng qua là thêm một bản ghi nữa.
+bởi một lần tạo thành công chẳng qua là thêm một bản ghi nữa. Chế độ **Kết hợp** được bố trí khác: xem [Chế độ Kết hợp](#chế-độ-kết-hợp).
 
 Bảng tùy chọn **đóng trong lần chạy đầu tiên**. Chế độ, việc bảng có hiện hay không, giao diện và
 máy quét dùng lần cuối đều được nhớ giữa các lần chạy.
+
+**Phiên bản mới.** Vài giây sau khi khởi động, tối đa mỗi ngày một lần, ứng dụng hỏi GitHub xem
+đã có GAIA Desktop mới hơn được phát hành chưa. Nếu có, một liên kết hiện trên thanh trạng thái —
+*Đã có GAIA Desktop 1.1.0* — để mở trang phát hành trong trình duyệt của bạn; không có gì
+được tải về hay cài đặt thay bạn. *Bỏ qua phiên bản này* ẩn thông báo cho đến bản phát hành sau.
+Việc kiểm tra im lặng khi không có gì mới hoặc khi không kết nối được GitHub.
+*Trợ giúp → Kiểm tra bản cập nhật…* kiểm tra ngay và cho biết kết quả;
+*Trợ giúp → Tự động kiểm tra bản cập nhật* tắt và bật lại việc kiểm tra hằng ngày.
 
 ---
 
@@ -152,9 +167,12 @@ Dữ liệu máy quét được đọc theo từng byte, nên tiền tố AIM Co
 
 Ở chế độ Tạo, các điều khiển máy quét bị ẩn đi, nhưng máy quét đang kết nối vẫn hoạt động:
 *Máy quét → Kết nối / Ngắt kết nối* (<kbd>⌘K</kbd>) vẫn bật tắt được, thanh trạng thái vẫn báo,
-và một lần quét đến trong khi trình soạn đang mở vẫn được ghi lại.
+và một lần quét đến trong khi trình soạn đang mở vẫn được ghi lại. Ở chế độ Kết hợp, các điều khiển vẫn ở lại, và mỗi lần quét được thêm vào phần kết hợp
+thay vì vào lịch sử.
 
-Nếu thiết bị không kết nối được, xem [Khắc phục sự cố](#khắc-phục-sự-cố).
+Việc thiết lập máy quét lần đầu — Zebra Scanner SDK, chế độ USB của máy quét và các thiết lập
+GS1 — được hướng dẫn từng bước trong
+[hướng dẫn thiết lập máy quét Zebra](GaiaDesktop-Zebra-Scanner-Windows-Vietnamese.md), đi kèm trong mọi tệp zip dưới `docs/`. Nếu thiết bị không kết nối được, xem [Khắc phục sự cố](#khắc-phục-sự-cố).
 
 ### Mở tệp
 
@@ -232,6 +250,117 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Nhấn chuột phải vào một bản ghi → **Tạo** sẽ nạp các AI của nó vào trình soạn. Đổi một giá trị,
 tạo lại, và kết quả xuất hiện như một bản ghi mới — bản gốc vẫn nguyên.
+
+---
+
+## Chế độ Kết hợp
+
+Các nhãn cũ thường chia dữ liệu ra **nhiều mã vạch GS1-128** — GTIN ở một mã, hạn sử dụng và số
+lô ở mã khác — vì một mã vạch tuyến tính không chứa hết được. Kết hợp nhận tối đa **ba**
+mã vạch như vậy, ghép chúng thành một chuỗi phần tử duy nhất mà một **GS1 DataMatrix** sẽ mang,
+và kiểm tra kết quả như một tổng thể. Khi kết quả hợp lệ, ứng dụng vẽ ký hiệu DataMatrix.
+
+Không mã vạch nào trong số đó phải tự đầy đủ. Một số lô không có GTIN của nó sẽ tự thất bại với
+`GE-S005`, nhưng điều đó bình thường với một mã vạch trong một bộ, nên Kết hợp kiểm tra
+nó trên phần kết hợp.
+
+### Dải Kết hợp
+
+Chuyển sang **Kết hợp** sẽ thay thanh nhập bằng một dải dọc theo cạnh dưới cửa sổ. Lịch
+sử bản ghi lui sang một bên, vì các lần quét ở chế độ Kết hợp không phải bản ghi và không
+bao giờ vào đó. Vùng báo cáo thay vào đó hiển thị báo cáo kết hợp:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Có hai cách đưa một mã vạch vào:
+
+- **Quét nó.** Trên Windows, các điều khiển máy quét vẫn ở trên thanh công cụ trong chế độ
+  Kết hợp, và mỗi lần quét đi thẳng vào phần kết hợp thay vì vào lịch sử.
+- **Gõ hoặc dán nó** vào ô *Mã vạch* rồi nhấn <kbd>Enter</kbd> hoặc
+  **Thêm**. Viết FNC1 là **`{GS}`**, như ở thanh nhập. Mã vạch được gõ không có
+  AIM Code ID được coi là GS1-128.
+
+| Nút | Tác dụng |
+|---|---|
+| **Thêm** | Thêm mã vạch trong ô |
+| **Gỡ mã cuối** | Bỏ mã vạch gần nhất (không dùng được khi chưa có mã nào) |
+| **Đặt lại** | Bỏ mọi mã vạch, xóa ô và mọi lần từ chối, rồi bắt đầu lại |
+
+Thanh trạng thái luôn cho biết đang giữ bao nhiêu mã vạch (*2/3 mã vạch GS1-128*), hoặc vì
+sao mã cuối bị từ chối.
+
+### Những gì Kết hợp từ chối
+
+Mã vạch bị từ chối sẽ không được thêm. Cả báo cáo lẫn thanh trạng thái đều nêu lý do:
+
+| Mã vạch | Bị từ chối vì |
+|---|---|
+| Ô trống | Không có gì để thêm |
+| Mã vạch thứ tư | Một nhãn được ghép từ tối đa ba mã. Hãy bỏ mã cuối, hoặc đặt lại |
+| Loại mã khác, theo AIM Code ID của nó | Chỉ GS1-128 được ghép, nên GS1 DataMatrix (`]d2`) hay QR Code bị từ chối, kèm tên của nó |
+| AI không đọc được | Lỗi cú pháp; mã lỗi và thông báo của bộ máy được hiển thị |
+| Không có AI nào | Không có gì để ghép |
+| Mã đã quét rồi | Cùng một chuỗi phần tử hai lần, chẳng hạn quét lại cùng một mã vạch; báo cáo cho biết nó lặp lại mã vạch nào trước đó |
+
+Kết hợp chỉ từ chối những gì hoàn toàn không dùng được. Mọi thứ khác (chữ số kiểm tra
+sai, ngày không hợp lệ, thiếu AI đi kèm) đều được nhận và đánh giá trên phần kết hợp.
+
+### Trùng lặp và mâu thuẫn
+
+Các AI được ghép theo thứ tự quét. Khi hai mã vạch mang cùng một AI:
+
+- **với cùng giá trị**, AI đó được giữ một lần và liệt kê dưới *Trùng lặp — giữ một lần*, kèm các
+  mã vạch đã đọc ra nó;
+- **với giá trị khác nhau**, đó là một **mâu thuẫn**. Kết luận ghi *MÂU THUẪN*, các
+  giá trị xung đột được liệt kê theo từng mã vạch, và **không có gì được ghép** cho đến khi giải
+  quyết xong. Hãy bỏ mã vạch có lỗi, hoặc đặt lại.
+
+### Báo cáo kết hợp
+
+Từ trên xuống dưới:
+
+1. **Kết luận**: *chưa quét*, *MÂU THUẪN*, hợp lệ hay không hợp lệ, và đang
+   giữ bao nhiêu mã vạch.
+2. **Các lần quét**: mỗi mã vạch đúng như khi nhận được, loại mã của nó, và chuỗi phần tử còn lại
+   sau khi bỏ AIM Code ID. Vấn đề mà chỉ phần kết hợp mới phân xử được sẽ hiện trên mã vạch đó,
+   kèm dấu *đánh giá trên kết quả kết hợp*.
+3. **Trùng lặp** và **mâu thuẫn**, nếu có.
+4. **Kết quả kết hợp**: chuỗi phần tử, HRI và độ dài của nó, rồi đầu vào kết hợp dưới dạng
+   một dải có nhãn và mỗi AI một thẻ, cả hai được trình bày như trong
+   [báo cáo phân tích](#báo-cáo). Mọi lỗi và cảnh báo về phần kết hợp sau đó được liệt kê dưới
+   *Xác thực*.
+5. **Ký hiệu GS1 DataMatrix**, với HRI bên dưới. Ký hiệu chỉ được vẽ khi phần kết hợp hợp lệ.
+   Nếu không, báo cáo cho biết vì sao không vẽ, để không thể in nhầm một ký hiệu không hợp lệ.
+
+Ví dụ, một nhãn có hai mã vạch:
+
+| Mã vạch | Mang | Khi đứng riêng |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | hợp lệ |
+| `]C11726123110LOT-ABC` | (17) hạn sử dụng, (10) số lô | `GE-S005` cho cả hai AI, đánh giá trên phần kết hợp |
+
+Chúng ghép thành `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, là hợp lệ, nên ký hiệu được vẽ. AI `17` có độ dài
+cố định, nên không cần FNC1 sau nó. Kết hợp chèn một FNC1 ở mọi chỗ tiêu chuẩn yêu cầu.
+
+**Lưu báo cáo** xuất báo cáo kết hợp ra HTML hoặc PDF, giống như một báo cáo phân tích
+(xem [Xuất ra tệp](#xuất-ra-tệp)), ngay khi có một mã vạch. Tên tệp HTML bắt đầu bằng
+`gaia-combine-`.
+
+Báo cáo theo ngôn ngữ và giao diện đã chọn. Đổi một tùy chọn phân tích hoặc ngôn ngữ sẽ kiểm tra
+lại các mã vạch đang giữ. Chúng cũng còn nguyên khi chuyển sang Phân tích hoặc
+Tạo rồi quay lại, nhưng không còn sau khi khởi động lại: mã vạch của chế độ
+Kết hợp không được lưu.
 
 ---
 
@@ -334,7 +463,7 @@ Hai tệp trong `.gaia-desktop` nằm ở thư mục cá nhân của bạn:
 
 | Tệp | Chứa |
 |---|---|
-| `options.properties` | Mọi tùy chọn phân tích, giao diện, việc bảng tùy chọn có mở hay không, máy quét dùng lần cuối, và chế độ khi đóng cửa sổ |
+| `options.properties` | Mọi tùy chọn phân tích, giao diện, việc bảng tùy chọn có mở hay không, máy quét dùng lần cuối, chế độ khi đóng cửa sổ, và thiết lập kiểm tra cập nhật — bật hay tắt, lần chạy gần nhất, và phiên bản bạn đã chọn bỏ qua |
 | `captures.tsv` | Lịch sử bản ghi, mới nhất trước, giới hạn 500 mục |
 
 Tùy chọn được ghi mỗi khi bạn đổi một mục; lịch sử được ghi mỗi khi nó thay đổi. Cả hai đều được
@@ -347,6 +476,9 @@ về mặc định riêng lẻ, nên một dòng sai chỉ tốn đúng dòng đ
 Lịch sử lưu dữ liệu vào, chứ không lưu kết quả phân tích. Nó được phân tích lại khi nạp, nghĩa là
 một bản ghi khôi phục phản ánh các tùy chọn đang có hiệu lực **lúc này**, không phải các tùy chọn
 lúc nó được ghi.
+
+Các mã vạch đang giữ ở chế độ Kết hợp không được lưu: sau khi khởi động lại,
+Kết hợp bắt đầu trống.
 
 ---
 
@@ -366,6 +498,9 @@ lúc nó được ghi.
 Trong trình soạn: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> di chuyển giữa các ô sửa
 được, <kbd>Enter</kbd> xác nhận, <kbd>Esc</kbd> hủy.
 
+Ở chế độ Kết hợp: <kbd>Enter</kbd> trong ô *Mã vạch* thêm mã vạch.
+Tại đó, gõ FNC1 là `{GS}`; <kbd>⌘G</kbd> thuộc về thanh nhập của chế độ Phân tích.
+
 ---
 
 ## Khắc phục sự cố
@@ -376,7 +511,7 @@ Trong trình soạn: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> di chuyể
 | *“Unsupported JavaFX configuration…”* trong bảng điều khiển lúc khởi động | Bình thường và vô hại — bộ công cụ chỉ ghi nhận cách nó được nạp. Ứng dụng vẫn chạy bình thường |
 | Dấu ngăn cách bạn dán vào có vẻ biến mất | Đúng như thiết kế: nó được viết lại thành mã nhìn thấy được `{GS}`, còn bộ phân tích vẫn nhận ký tự thật. Xem [mã {GS}](#thanh-nhập-và-mã-gs) |
 | Không có nút *Kết nối máy quét* | Bạn đang dùng macOS hoặc Linux, nơi không có trình điều khiển máy quét. Xem [Quét mã](#quét-mã) |
-| Máy quét không kết nối được | Hãy kiểm tra tên lô-gic trong ô chọn có khớp với mẫu máy của bạn không, máy quét đã cắm chưa, và có ứng dụng nào khác đang giữ nó không |
+| Máy quét không kết nối được | Hãy kiểm tra tên lô-gic trong ô chọn có khớp với mẫu máy của bạn không, máy quét đã cắm chưa, và có ứng dụng nào khác đang giữ nó không. [Hướng dẫn thiết lập máy quét Zebra](GaiaDesktop-Zebra-Scanner-Windows-Vietnamese.md#11-khắc-phục-sự-cố) liệt kê từng mã lỗi. |
 | Xuất PDF báo là không có đích | Máy bạn chưa cấu hình máy in hay đích PDF nào. Hãy thêm một cái, hoặc xuất HTML rồi in từ trình duyệt |
 | Một mục trình đơn hiện ra thứ gì đó như `act.hri` | Thiếu một nhãn — xin hãy báo lại; đó là lỗi khi dựng bản, không phải một thiết lập |
 
@@ -390,3 +525,5 @@ Trong trình soạn: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> di chuyể
   hay đoạn phân mảnh.
 - **Một AI chỉ được xuất hiện một lần** trong một chuỗi phần tử — đó là quy tắc GS1, không phải
   giới hạn của ứng dụng.
+- **Kết hợp chỉ nhận mã vạch GS1-128, tối đa ba mã**, và không giữ chúng giữa các lần
+  chạy.

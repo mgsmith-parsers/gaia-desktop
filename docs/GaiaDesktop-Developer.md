@@ -124,7 +124,7 @@ claiming it.
 
 Every distribution also carries the guides: `docs/` copied with its layout kept, so the links
 between guides and translations still resolve, minus the translation tooling (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); and `readme.html` at the root, an index linking to each
+`i18n-manifest.json`); and `readme.html` at the root, an index linking to each
 of them, from `src/main/dist/readme.html` with `@VERSION@` filtered to the pom version. Both are
 written by the `pick-launch-script` antrun step, which deletes `docs/` first so a removed guide
 does not linger. The readme's links are written out by hand — a guide renamed or a translation

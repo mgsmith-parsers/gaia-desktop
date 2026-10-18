@@ -118,7 +118,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | و | `readme.html` و`docs/` (كل المنصات) | الشيء نفسه |
 
 تحمل كل حزمة توزيع الأدلة أيضًا: `docs/` منسوخًا مع الحفاظ على تخطيطه، حتى تبقى الروابط بين الأدلة
-والترجمات صالحة، باستثناء أدوات الترجمة (`check-i18n.py` و`i18n-manifest.json` و`i18n-plan.md`)؛ و
+والترجمات صالحة، باستثناء أدوات الترجمة (`check-i18n.py` و`i18n-manifest.json`)؛ و
 `readme.html` في الجذر، وهو فهرس يربط بكل منها، مأخوذ من `src/main/dist/readme.html` مع استبدال
 `@VERSION@` بإصدار pom. يكتبهما معًا خطوة antrun المسماة `pick-launch-script`، التي تحذف `docs/` أولًا
 حتى لا يبقى دليل أُزيل. روابط ملف readme مكتوبة يدويًا — فالدليل الذي يُعاد تسميته أو الترجمة التي

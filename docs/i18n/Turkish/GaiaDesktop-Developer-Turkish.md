@@ -123,8 +123,7 @@ ve `mdep.skip`'tir.
 | Ve | `readme.html` ve `docs/` (her platform) | aynı |
 
 Her dağıtım kılavuzları da taşır: `docs/` düzeni korunarak kopyalanır, böylece kılavuzlar ve çeviriler
-arasındaki bağlantılar çalışmaya devam eder; çeviri araçları (`check-i18n.py`, `i18n-manifest.json`,
-`i18n-plan.md`) hariç tutulur. Kökte de `readme.html` bulunur; her birine bağlantı veren bir dizindir,
+arasındaki bağlantılar çalışmaya devam eder; çeviri araçları (`check-i18n.py`, `i18n-manifest.json`) hariç tutulur. Kökte de `readme.html` bulunur; her birine bağlantı veren bir dizindir,
 `src/main/dist/readme.html`'den gelir ve içindeki `@VERSION@` pom sürümüyle değiştirilir. İkisini de
 `pick-launch-script` antrun adımı yazar; bu adım önce `docs/`'u siler, böylece kaldırılmış bir kılavuz geride
 kalmaz. Readme'deki bağlantılar elle yazılmıştır — `docs/` altında adı değiştirilen bir kılavuz veya eklenen bir

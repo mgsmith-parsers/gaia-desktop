@@ -125,7 +125,7 @@ het allebei claimen.
 
 Elke distributie bevat ook de handleidingen: `docs/` gekopieerd met behoud van de indeling, zodat de links
 tussen handleidingen en vertalingen blijven werken, zonder de vertaalgereedschappen (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); en `readme.html` in de hoofdmap, een index met een link naar elk
+`i18n-manifest.json`); en `readme.html` in de hoofdmap, een index met een link naar elk
 ervan, uit `src/main/dist/readme.html` met `@VERSION@` gefilterd naar de pom-versie. Beide worden geschreven
 door de antrun-stap `pick-launch-script`, die eerst `docs/` verwijdert zodat een verwijderde handleiding niet
 blijft hangen. De links in de readme zijn met de hand geschreven — een hernoemde handleiding of een onder

@@ -19,26 +19,33 @@ takardar: [GaiaDesktop-User.md](../../GaiaDesktop-User.md).
    - [Abin da edita ba ya karɓa](#abin-da-edita-ba-ya-karɓa)
    - [Igiyar abubuwa ko Digital Link](#igiyar-abubuwa-ko-digital-link)
    - [Gyara rikodin da yake nan](#gyara-rikodin-da-yake-nan)
-6. [Rahoto](#rahoto)
+6. [Yanayin haɗa](#yanayin-haɗa)
+   - [Mashayar haɗa](#mashayar-haɗa)
+   - [Abin da haɗa ba ya karɓa](#abin-da-haɗa-ba-ya-karɓa)
+   - [Maimaitattu da karo](#maimaitattu-da-karo)
+   - [Rahoton haɗi](#rahoton-haɗi)
+7. [Rahoto](#rahoto)
    - [Fitarwa](#fitarwa)
-7. [Zaɓuɓɓukan bincike](#zaɓuɓɓukan-bincike)
+8. [Zaɓuɓɓukan bincike](#zaɓuɓɓukan-bincike)
    - [Gudanarwa ta farko](#gudanarwa-ta-farko)
-8. [Harsuna](#harsuna)
-9. [Abin da ake tunawa](#abin-da-ake-tunawa)
-10. [Gajerun hanyoyin madannai](#gajerun-hanyoyin-madannai)
-11. [Warware matsaloli](#warware-matsaloli)
-12. [Iyaka](#iyaka)
+9. [Harsuna](#harsuna)
+10. [Abin da ake tunawa](#abin-da-ake-tunawa)
+11. [Gajerun hanyoyin madannai](#gajerun-hanyoyin-madannai)
+12. [Warware matsaloli](#warware-matsaloli)
+13. [Iyaka](#iyaka)
 
 ---
 
 ## Menene wannan
 
-GAIA Desktop yana yin abubuwa biyu da bayanan GS1:
+GAIA Desktop yana yin abubuwa uku da bayanan GS1:
 
 - **Bincike** — rubuta igiyar abubuwa ta GS1 ko URI na Digital Link, ko liƙa ta, ko buɗe ta daga
   fayil, ko sikanta ta, sa'an nan karanta sakamakon a matsayin cikakken rahoto: ma'anar kowane
   mai gano aikace-aikace (AI), inda kuskuren yake, da kuma dalilin sa;
-- **Gina** — haɗa ma'auratan AI da ƙima don samar da igiyar abubuwa ko URI na Digital Link.
+- **Gina** — haɗa ma'auratan AI da ƙima don samar da igiyar abubuwa ko URI na Digital Link;
+- **Haɗa** — haɗa har barkod GS1-128 uku na lakabi ɗaya cikin igiyar abubuwa ɗaya da GS1
+  DataMatrix zai ɗauka, duba ta gaba ɗaya, da zana alamar.
 
 Duk abin da manhajar ta sani game da GS1 — ma'anar kowane AI, kowace ƙa'idar bincike, kowane
 saƙon kuskure da kowane cikakken bayanin gida — daga injin GAIA da ke gudana ƙarƙashinta yake
@@ -86,7 +93,7 @@ injin. Wannan layin ne ya kamata a haɗa a kowane rahoton matsala.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -98,7 +105,7 @@ injin. Wannan layin ne ya kamata a haɗa a kowane rahoton matsala.
 ```
 
 > Kamar sauran shingayen lamba a wannan takarda, wannan zane yana riƙe da lakabin Turanci. A kan
-> allon za ka ga *Tantance* / *Gina*, *Rikodi*, *Ajiye rahoto*, *Zaɓuɓɓuka*, *Sikana: kashe* da
+> allon za ka ga *Tantance* / *Gina* / *Haɗa*, *Rikodi*, *Ajiye rahoto*, *Zaɓuɓɓuka*, *Sikana: kashe* da
 > *Game da*.
 
 **A kan macOS da Linux layin sikana na wannan zane ba ya nan ko kaɗan** — babu maɓalli a mashayar
@@ -107,10 +114,18 @@ matsayi. Duba [Sikanin](#sikanin).
 
 Maɓallin **Tantance ⇄ Gina** yana canza mashayar da ke ƙarƙashin mashayar kayan aiki da kayan
 aikin da suka shafi rikodi kaɗai. Tarihi, rahoto, fanel ɗin zaɓuɓɓuka da dukan ayyukan fitarwa
-suna aiki a yanayi biyun, domin gina mai nasara ma ya zama rikodi guda kawai.
+suna aiki a yanayi biyun, domin gina mai nasara ma ya zama rikodi guda kawai. Yanayin **Haɗa** yana da tsari daban: duba [Yanayin haɗa](#yanayin-haɗa).
 
 Fanel ɗin zaɓuɓɓuka **a rufe yake a gudanarwa ta farko**. Yanayin, ganin fanel ko ɓoye shi, jigon
 da sikanan da aka yi amfani da shi na ƙarshe — duk ana tuna su don lokaci na gaba.
+
+**Sababbin sigogi.** Daƙiƙu kaɗan bayan farawa, sau ɗaya a rana a mafi yawa, manhajar tana tambayar
+GitHub ko an fitar da sabuwar GAIA Desktop. Idan an fitar, hanyar haɗi tana bayyana a mashayar
+matsayi — *Akwai GAIA Desktop 1.1.0* — wadda take buɗe shafin fitarwar a burauzarka; ba a sauke
+ko shigar da komai a madadinka. *Tsallake wannan sigar* yana ɓoye sanarwar har zuwa fitarwa ta gaba.
+Dubawar tana yin shiru idan babu sabon abu ko idan ba a iya isa GitHub ba.
+*Taimako → Duba sabuntawa…* yana dubawa nan take ya faɗi abin da ya samu;
+*Taimako → Duba sabuntawa ta atomatik* yana kashe dubawar yau da kullum ya sake kunna ta.
 
 ---
 
@@ -153,9 +168,12 @@ na FNC1 suna isa ga mai tantancewa daidai kamar yadda sikanan ya aika su.
 
 A yanayin gina ana ɓoye kayan aikin sikana, amma sikanan da aka haɗa yana ci gaba da aiki:
 *Sikana → Haɗa / Cire* (<kbd>⌘K</kbd>) yana nan yana canza shi, mashayar matsayi tana nan tana
-sanarwa, kuma sikanan da ya iso yayin da edita a buɗe yake ana rikodin sa.
+sanarwa, kuma sikanan da ya iso yayin da edita a buɗe yake ana rikodin sa. A yanayin Haɗa waɗannan kayan sarrafawa suna nan, kuma kowane sikani ana ƙara shi cikin
+haɗin maimakon tarihi.
 
-Idan babu na'urar da ta haɗu, duba [Warware matsaloli](#warware-matsaloli).
+Saita sikana a karon farko — Zebra Scanner SDK, yanayin USB na sikana, da saitunan GS1 — an bayyana
+shi mataki-mataki a cikin [jagorar saita sikanan Zebra](GaiaDesktop-Zebra-Scanner-Windows-Hausa.md), wadda ke cikin kowane zip ƙarƙashin
+`docs/`. Idan babu na'urar da ta haɗu, duba [Warware matsaloli](#warware-matsaloli).
 
 ### Buɗe fayil
 
@@ -238,6 +256,120 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 Danna maɓallin dama a kan rikodi → **Gina** yana kawo shi cikin editan AI. Canza wata ƙima, sake
 gina, sai sakamakon ya bayyana a matsayin sabon rikodi — rikodin asali ya kasance kamar yadda
 yake.
+
+---
+
+## Yanayin haɗa
+
+Tsofaffin lakabi sau da yawa suna raba bayanansu cikin **barkod GS1-128 da yawa** — GTIN a ɗaya,
+ranar ƙarewa da batch a wani — saboda barkod mai layi ɗaya ba zai iya ɗaukar komai ba. Yanayin
+Haɗa yana ɗaukar har **uku** na irin waɗannan barkod, ya haɗa su cikin igiyar abubuwa ɗaya
+da **GS1 DataMatrix** zai ɗauka, sannan ya duba sakamakon gaba ɗaya. Da zarar ya inganta, manhajar tana
+zana alamar DataMatrix.
+
+Babu ɗaya daga cikin waɗannan barkod da ake buƙatar ya cika shi kaɗai. Lambar batch ba tare da GTIN
+ɗinta ba tana kasawa ita kaɗai da `GE-S005`, amma wannan al'ada ce ga barkod ɗaya na saiti, don haka
+yanayin Haɗa yana duba ta a kan haɗin.
+
+### Mashayar haɗa
+
+Komawa zuwa **Haɗa** yana maye gurbin layin shigarwa da mashaya a gefen ƙasa na taga.
+Tarihin rikodi yana kaucewa, domin sikanin yanayin Haɗa ba rikodi ba ne kuma ba sa shiga
+cikinsa. Wurin rahoto yana nuna rahoton haɗi a maimakon haka:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Akwai hanyoyi biyu na shigar da barkod:
+
+- **Sikanin sa.** A Windows, kayan sarrafa sikana suna zama a mashayar kayan aiki a yanayin
+  Haɗa, kuma kowane sikani yana tafiya kai tsaye cikin haɗin, ba tarihi ba.
+- **Rubuta ko liƙa shi** a filin *Barkod* sannan ka danna <kbd>Enter</kbd> ko
+  **Ƙara**. Rubuta FNC1 a matsayin **`{GS}`**, kamar a layin shigarwa. Barkod da aka
+  rubuta ba tare da AIM Code ID ba ana ɗaukarsa GS1-128.
+
+| Maɓalli | Aiki |
+|---|---|
+| **Ƙara** | Yana ƙara barkod da ke cikin filin |
+| **Cire na ƙarshe** | Yana cire barkod na baya-bayan nan (ba ya samuwa idan babu ko ɗaya) |
+| **Sake saiti** | Yana cire duk barkod, ya share filin da duk wani ƙi, ya sake farawa |
+
+Mashayar matsayi koyaushe tana faɗin barkod nawa ake riƙe da su (*Barkod GS1-128 2 cikin 3*), ko dalilin
+da ya sa aka ƙi na ƙarshe.
+
+### Abin da haɗa ba ya karɓa
+
+Barkod da aka ƙi ba a ƙara shi. Rahoton da mashayar matsayi duka suna faɗin dalili:
+
+| Barkod | An ƙi saboda |
+|---|---|
+| Fili mara komai | Babu abin da za a ƙara |
+| Barkod na huɗu | Ana haɗa lakabi daga uku a mafi yawa. Cire na ƙarshe, ko sake saiti |
+| Wata alama dabam, bisa AIM Code ID ɗinta | GS1-128 kaɗai ake haɗawa, don haka ana ƙin GS1 DataMatrix (`]d2`) ko QR Code, tare da sunansa |
+| AI da ba a iya karantawa | Kuskuren tsari; ana nuna lambar kuskure da saƙon injin |
+| Babu AI ko kaɗan | Babu abin da za a haɗa |
+| Wanda aka riga aka yi wa sikani | Igiyar abubuwa ɗaya sau biyu, misali an sake sikanin barkod ɗaya; rahoton yana faɗin wane barkod na baya yake maimaitawa |
+
+Yanayin Haɗa yana ƙin abin da ba zai iya amfani da shi ko kaɗan ba kawai. Duk sauran (lambar
+duba da ba daidai ba, kwanan wata mara inganci, AI abokin tafiya da ya ɓace) ana karɓa kuma a yanke
+hukunci a kan haɗin.
+
+### Maimaitattu da karo
+
+Ana haɗa AI bisa tsarin sikanin su. Idan barkod biyu suna ɗauke da AI ɗaya:
+
+- **da ƙima ɗaya**, ana riƙe shi sau ɗaya kuma a jera shi ƙarƙashin *Maimaitattu — an riƙe sau ɗaya*, tare da
+  barkod da aka karanta shi a ciki;
+- **da ƙimomi dabam-dabam**, wannan **karo** ne. Hukuncin yana cewa *KARO*, ana jera
+  ƙimomin da suka saɓa barkod bayan barkod, kuma **ba a haɗa komai** har sai an warware shi. Cire barkod
+  mai laifi, ko sake saiti.
+
+### Rahoton haɗi
+
+Daga sama zuwa ƙasa:
+
+1. **Hukunci**: *babu sikani*, *KARO*, ingantacce ko mara inganci, da barkod
+   nawa ake riƙe da su.
+2. **Sikanin**: kowane barkod kamar yadda ya iso, alamarsa, da igiyar abubuwa da ta rage bayan an cire
+   AIM Code ID. Matsalar da haɗin kaɗai zai iya yanke hukunci a kanta ana nuna ta a kan barkod ɗin,
+   da alamar *ana tantance shi a kan haɗin*.
+3. **Maimaitattu** da **karo**, idan akwai.
+4. **Sakamakon haɗi**: igiyar abubuwa, HRI ɗinta da tsawonta, sannan shigarwar da aka haɗa a
+   matsayin tef mai lakabi da kati ɗaya ga kowane AI, duka an tsara su kamar a cikin
+   [rahoton bincike](#rahoto). Sannan kowane kuskure da gargaɗi a kan haɗin ana jera su ƙarƙashin
+   *Tabbatarwa*.
+5. **Alamar GS1 DataMatrix**, tare da HRI ɗinta a ƙasa. Ana zana ta ne kawai idan haɗin ya inganta. In
+   ba haka ba, rahoton yana faɗin dalilin da ya sa ba a zana ta ba, don kada a buga alama mara inganci
+   bisa kuskure.
+
+Misali, lakabi mai barkod biyu:
+
+| Barkod | Abin da yake ɗauke da shi | Shi kaɗai |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | ingantacce |
+| `]C11726123110LOT-ABC` | (17) ranar ƙarewa, (10) batch | `GE-S005` ga AI duka biyu, ana tantance shi a kan haɗin |
+
+Suna haɗuwa zuwa `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, wanda yake ingantacce, don haka ana zana alamar. AI `17`
+yana da tsayayyen tsawo, don haka ba a buƙatar FNC1 bayansa. Yanayin Haɗa yana saka ɗaya
+duk inda ma'aunin ya buƙata.
+
+Da zarar ana riƙe da barkod ɗaya, **Ajiye rahoto** yana fitar da rahoton haɗi a matsayin HTML ko
+PDF, kamar rahoton bincike (duba [Fitarwa](#fitarwa)). Sunan fayil ɗin HTML yana farawa da
+`gaia-combine-`.
+
+Rahoton yana bin harshe da jigon da aka zaɓa. Canza zaɓin bincike ko harshe yana sake duba barkod da
+ake riƙe da su. Suna nan ko bayan an koma Tantance ko Gina kuma aka dawo, amma ba bayan
+sake farawa ba: ba a ajiye barkod na yanayin Haɗa.
 
 ---
 
@@ -339,7 +471,7 @@ Fayiloli biyu a cikin `.gaia-desktop` a cikin babban fayil ɗinka na gida:
 
 | Fayil | Abin da ke ciki |
 |---|---|
-| `options.properties` | Dukan zaɓuɓɓukan bincike, jigo, ko fanel ɗin zaɓuɓɓuka a buɗe yake, sikanan da aka yi amfani da shi na ƙarshe, da yanayin da aka bar taga a ciki |
+| `options.properties` | Dukan zaɓuɓɓukan bincike, jigo, ko fanel ɗin zaɓuɓɓuka a buɗe yake, sikanan da aka yi amfani da shi na ƙarshe, yanayin da aka bar taga a ciki, da saitunan duba sabuntawa — a kunne ko a kashe, yaushe ya gudana na ƙarshe, da duk sigar da ka zaɓi tsallakewa |
 | `captures.tsv` | Tarihin rikodi, sabbi da farko, iyaka 500 |
 
 Duk lokacin da ka canza wani zaɓi ana rubuta shi; duk lokacin da tarihi ya canza ana rubuta shi.
@@ -353,6 +485,9 @@ shi kaɗai, don haka farashin layi ɗaya mara kyau bai wuce wannan layi ba.
 Tarihi yana ajiye shigarwa ba bincike ba. Ana sake tantance shi lokacin ɗaukewa, wato rikodin da
 aka dawo da shi yana nuna zaɓuɓɓukan da ke aiki **yanzu**, ba waɗanda suke aiki lokacin da aka
 rikodin sa ba.
+
+Ba a ajiye barkod da ake riƙe da su a yanayin Haɗa: bayan sake farawa, yanayin
+Haɗa yana farawa babu komai.
 
 ---
 
@@ -372,6 +507,9 @@ rikodin sa ba.
 A cikin edita: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> suna motsawa tsakanin filayen da
 ake gyarawa, <kbd>Enter</kbd> yana tabbatarwa, <kbd>Esc</kbd> yana sokewa.
 
+A yanayin Haɗa: <kbd>Enter</kbd> a filin *Barkod* yana ƙara barkod. A
+can, rubuta FNC1 a matsayin `{GS}`; <kbd>⌘G</kbd> na layin shigarwa na yanayin Tantance ne.
+
 ---
 
 ## Warware matsaloli
@@ -382,7 +520,7 @@ ake gyarawa, <kbd>Enter</kbd> yana tabbatarwa, <kbd>Esc</kbd> yana sokewa.
 | A na'urar wasiƙa lokacin farawa *“Unsupported JavaFX configuration…”* | Ana tsammaninsa kuma ba shi da illa — kayan aikin kawai yana faɗi yadda aka ɗauke shi. Manhajar tana aiki kamar yadda aka saba |
 | Mai rabawa da ka liƙa kamar ya ɓace | Haka ya kamata: yana juyawa zuwa alamar da ake gani `{GS}`, kuma mai tantancewa yana samun ainihin harafin. Duba [alamar {GS}](#layin-shigarwa-da-alamar-gs) |
 | Maɓallin *Haɗa sikana* ba ya nan ko kaɗan | Kana kan macOS ko Linux, inda babu direban sikana. Duba [Sikanin](#sikanin) |
-| Sikanan ba ya haɗuwa | Duba ko sunan da ke jerin ya dace da samfurinka, ko sikanan a haɗe yake, kuma ko wata manhaja ba ta riƙe shi ba |
+| Sikanan ba ya haɗuwa | Duba ko sunan da ke jerin ya dace da samfurinka, ko sikanan a haɗe yake, kuma ko wata manhaja ba ta riƙe shi ba. [Jagorar saita sikanan Zebra](GaiaDesktop-Zebra-Scanner-Windows-Hausa.md#11-magance-matsaloli) tana jera kowace lambar kuskure. |
 | Fitarwar PDF tana cewa babu inda za a je | Babu na'urar buga ko wurin PDF a na'urarka. Ƙara ɗaya, ko fitar da HTML ka buga daga mai bincike |
 | A wani abu na menu ana ganin wani abu kamar `act.hri` | Lakabi ya ɓace — don Allah ka bayar da rahoto; wannan ba saiti ba ne, matsala ce ta lokacin gina |
 
@@ -396,3 +534,5 @@ ake gyarawa, <kbd>Enter</kbd> yana tabbatarwa, <kbd>Esc</kbd> yana sokewa.
   tambaya ko sassa.
 - **AI yana bayyana sau ɗaya kaɗai** a cikin igiyar abubuwa — wannan ƙa'idar GS1 ce, ba iyakar
   manhajar ba.
+- **Yanayin Haɗa yana karɓar barkod GS1-128 kaɗai, uku a mafi yawa**, kuma ba ya riƙe su
+  daga wannan gudu zuwa wani.

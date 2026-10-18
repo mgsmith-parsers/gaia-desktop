@@ -19,27 +19,34 @@ angalia [mwongozo wa msanidi](../../GaiaDesktop-Developer.md) (kwa Kiingereza). 
    - [Kile ambacho kihariri hakikubali](#kile-ambacho-kihariri-hakikubali)
    - [Mfuatano wa elementi au Digital Link](#mfuatano-wa-elementi-au-digital-link)
    - [Kuhariri rekodi iliyopo](#kuhariri-rekodi-iliyopo)
-6. [Ripoti](#ripoti)
+6. [Hali ya kuunganisha](#hali-ya-kuunganisha)
+   - [Upau wa kuunganisha](#upau-wa-kuunganisha)
+   - [Kile ambacho kuunganisha hakukubali](#kile-ambacho-kuunganisha-hakukubali)
+   - [Nakala na migongano](#nakala-na-migongano)
+   - [Ripoti ya muunganiko](#ripoti-ya-muunganiko)
+7. [Ripoti](#ripoti)
    - [Uhamishaji](#uhamishaji)
-7. [Machaguo ya uchanganuzi](#machaguo-ya-uchanganuzi)
+8. [Machaguo ya uchanganuzi](#machaguo-ya-uchanganuzi)
    - [Kuendesha kwa mara ya kwanza](#kuendesha-kwa-mara-ya-kwanza)
-8. [Lugha](#lugha)
-9. [Kile kinachokumbukwa](#kile-kinachokumbukwa)
-10. [Njia za mkato za kibodi](#njia-za-mkato-za-kibodi)
-11. [Kutatua matatizo](#kutatua-matatizo)
-12. [Mipaka](#mipaka)
+9. [Lugha](#lugha)
+10. [Kile kinachokumbukwa](#kile-kinachokumbukwa)
+11. [Njia za mkato za kibodi](#njia-za-mkato-za-kibodi)
+12. [Kutatua matatizo](#kutatua-matatizo)
+13. [Mipaka](#mipaka)
 
 ---
 
 ## Hii ni nini
 
-GAIA Desktop hufanya mambo mawili na data ya GS1:
+GAIA Desktop hufanya mambo matatu na data ya GS1:
 
 - **Uchanganuzi** — andika mfuatano wa elementi wa GS1 au URI ya Digital Link, au ubandike, au
   uifungue kutoka faili, au uiskani, kisha usome matokeo kama ripoti kamili: kila kitambulisho
   cha programu (AI) kinamaanisha nini, hitilafu iko wapi, na kwa nini;
 - **Kutengeneza** — kuunganisha jozi za AI na thamani ili kupata mfuatano wa elementi au URI ya
-  Digital Link.
+  Digital Link;
+- **Unganisha** — kuunganisha hadi misimbopau mitatu ya GS1-128 ya lebo moja kuwa mfuatano
+  mmoja wa elementi ambao GS1 DataMatrix ingebeba, kuukagua kwa ujumla, na kuchora alama.
 
 Kila kitu ambacho programu hii inajua kuhusu GS1 — maana ya kila AI, kila kanuni ya ukaguzi, kila
 ujumbe wa hitilafu na kila undani wa lugha — hutoka kwenye injini ya GAIA inayoendesha chini yake.
@@ -86,7 +93,7 @@ toleo la injini. Mstari huohuo ndio unaopaswa kuambatishwa katika ripoti yoyote 
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -98,7 +105,7 @@ toleo la injini. Mstari huohuo ndio unaopaswa kuambatishwa katika ripoti yoyote 
 ```
 
 > Kama vitalu vingine vyote vya msimbo katika hati hii, mchoro huu unabaki na lebo za Kiingereza.
-> Kwenye skrini utaona *Changanua* / *Tengeneza*, *Rekodi*, *Hifadhi ripoti*, *Machaguo*,
+> Kwenye skrini utaona *Changanua* / *Tengeneza* / *Unganisha*, *Rekodi*, *Hifadhi ripoti*, *Machaguo*,
 > *skana: imezimwa* na *Kuhusu*.
 
 **Kwenye macOS na Linux mstari wa skana wa mchoro huu haupo kabisa** — hakuna kitufe kwenye upau
@@ -108,11 +115,19 @@ kwenye upau wa hali. Angalia [Kuskani](#kuskani).
 Kibadilishi cha **Changanua ⇄ Tengeneza** hubadilisha tu upau ulio chini ya upau wa vidhibiti na
 vidhibiti vinavyohusu rekodi. Historia, ripoti, paneli ya machaguo na vitendo vyote vya uhamishaji
 hufanya kazi katika hali zote mbili, kwa sababu utengenezaji uliofaulu nao huwa rekodi nyingine
-tu.
+tu. Hali ya **Unganisha** ina mpangilio tofauti: angalia [Hali ya kuunganisha](#hali-ya-kuunganisha).
 
 Paneli ya machaguo **imefungwa wakati wa kuendesha kwa mara ya kwanza**. Hali, kuonekana au
 kutoonekana kwa paneli, mandhari na skana iliyotumika mara ya mwisho — vyote hukumbukwa kwa mara
 ijayo.
+
+**Matoleo mapya.** Sekunde chache baada ya kuanza, mara moja kwa siku zaidi, programu huiuliza GitHub
+kama GAIA Desktop mpya zaidi imetolewa. Ikiwa imetolewa, kiungo huonekana kwenye upau wa hali —
+*GAIA Desktop 1.1.0 inapatikana* — ambacho hufungua ukurasa wa toleo kwenye kivinjari chako; hakuna
+kinachopakuliwa wala kusakinishwa kwa niaba yako. *Ruka toleo hili* huficha arifa hadi toleo la
+baadaye. Ukaguzi hubaki kimya wakati hakuna jipya au GitHub haifikiki.
+*Msaada → Angalia masasisho…* hukagua papo hapo na kueleza kilichopatikana;
+*Msaada → Angalia masasisho kiotomatiki* huzima na kuwasha tena ukaguzi wa kila siku.
 
 ---
 
@@ -158,9 +173,12 @@ cha FNC1 hufika kwa kichanganuzi kwa sura ileile skana ilivyovituma.
 
 Katika hali ya kutengeneza vidhibiti vya skana hufichwa, lakini skana iliyounganishwa huendelea
 kufanya kazi: *Skana → Unganisha / Tenganisha* (<kbd>⌘K</kbd>) bado huibadilisha, upau wa hali
-bado huarifu, na skani inayowasili wakati kihariri kimefunguliwa nayo hurekodiwa.
+bado huarifu, na skani inayowasili wakati kihariri kimefunguliwa nayo hurekodiwa. Katika hali ya Unganisha vidhibiti hivi hubaki, na kila skani huongezwa kwenye muunganiko badala
+ya historia.
 
-Ikiwa hakuna kifaa kinachounganishwa, angalia [Kutatua matatizo](#kutatua-matatizo).
+Kuweka skana kwa mara ya kwanza — Zebra Scanner SDK, hali ya USB ya skana, na mipangilio ya GS1 —
+kumeelezwa hatua kwa hatua katika [mwongozo wa kuweka skana ya Zebra](GaiaDesktop-Zebra-Scanner-Windows-Swahili.md), unaokuja katika kila
+zip chini ya `docs/`. Ikiwa hakuna kifaa kinachounganishwa, angalia [Kutatua matatizo](#kutatua-matatizo).
 
 ### Kufungua faili
 
@@ -243,6 +261,118 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Kubofya kulia rekodi → **Tengeneza** huileta kwenye kihariri cha AI. Badilisha thamani, tengeneza
 tena, na matokeo huonekana kama rekodi mpya — rekodi asilia hubaki kama ilivyo.
+
+---
+
+## Hali ya kuunganisha
+
+Lebo za zamani mara nyingi hugawa data zao katika **misimbopau kadhaa ya GS1-128** — GTIN katika
+mmoja, tarehe ya kuisha na bechi katika mwingine — kwa sababu msimbopau mmoja wa mstari hauwezi kubeba
+kila kitu. Hali ya Unganisha huchukua hadi misimbopau **mitatu** ya aina hiyo, kuiunganisha kuwa
+mfuatano mmoja wa elementi ambao **GS1 DataMatrix** ingebeba, na kukagua matokeo kwa ujumla. Matokeo
+yakiwa halali, programu huchora alama ya DataMatrix.
+
+Hakuna msimbopau kati ya hiyo unaohitaji kukamilika peke yake. Nambari ya bechi bila GTIN yake hushindwa
+peke yake kwa `GE-S005`, lakini hilo ni kawaida kwa msimbopau mmoja wa seti, kwa hiyo hali ya
+Unganisha huikagua kwenye muunganiko.
+
+### Upau wa kuunganisha
+
+Kuhamia **Unganisha** hubadilisha upau wa ingizo kwa upau ulio kando ya chini ya dirisha.
+Historia ya rekodi hukaa pembeni, kwa sababu skani za hali ya Unganisha si rekodi na kamwe
+haziingii humo. Eneo la ripoti huonyesha ripoti ya muunganiko badala yake:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Kuna njia mbili za kuingiza msimbopau:
+
+- **Kuuskani.** Kwenye Windows, vidhibiti vya skana hubaki kwenye upau wa vidhibiti katika hali ya
+  Unganisha, na kila skani huenda moja kwa moja kwenye muunganiko, si kwenye historia.
+- **Kuuandika au kuubandika** katika sehemu ya *Msimbopau* kisha kubonyeza
+  <kbd>Enter</kbd> au **Ongeza**. Andika FNC1 kama **`{GS}`**, kama kwenye upau wa ingizo.
+  Msimbopau ulioandikwa bila AIM Code ID huchukuliwa kuwa GS1-128.
+
+| Kitufe | Kazi |
+|---|---|
+| **Ongeza** | Huongeza msimbopau ulio katika sehemu |
+| **Ondoa wa mwisho** | Huondoa msimbopau wa hivi karibuni zaidi (haupatikani wakati hakuna) |
+| **Weka upya** | Huondoa misimbopau yote, husafisha sehemu na kukataliwa kokote, na kuanza upya |
+
+Upau wa hali daima huonyesha misimbopau mingapi imeshikiliwa (*Misimbopau 2 kati ya 3 ya GS1-128*), au kwa nini
+wa mwisho ulikataliwa.
+
+### Kile ambacho kuunganisha hakukubali
+
+Msimbopau uliokataliwa hauongezwi. Ripoti na upau wa hali vyote hueleza sababu:
+
+| Msimbopau | Hukataliwa kwa sababu |
+|---|---|
+| Sehemu tupu | Hakuna cha kuongeza |
+| Msimbopau wa nne | Lebo huunganishwa kutoka mitatu zaidi. Ondoa wa mwisho, au weka upya |
+| Alama nyingine, kwa AIM Code ID yake | GS1-128 pekee ndiyo huunganishwa, kwa hiyo GS1 DataMatrix (`]d2`) au QR Code hukataliwa, pamoja na jina lake |
+| AI zisizosomeka | Hitilafu ya sintaksia; msimbo wa hitilafu na ujumbe wa injini huonyeshwa |
+| Hakuna AI kabisa | Hakuna cha kuunganisha |
+| Uliokwisha kuskaniwa | Mfuatano uleule wa elementi mara mbili, kwa mfano msimbopau uleule umeskaniwa tena; ripoti hueleza unarudia msimbopau upi wa awali |
+
+Hali ya Unganisha hukataa tu kile isichoweza kutumia kabisa. Kila kitu kingine (tarakimu hundi
+isiyo sahihi, tarehe batili, AI mwandamani inayokosekana) hukubaliwa na kupimwa kwenye muunganiko.
+
+### Nakala na migongano
+
+AI huunganishwa kwa mpangilio zilivyoskaniwa. Misimbopau miwili inapobeba AI ileile:
+
+- **yenye thamani ileile**, huwekwa mara moja na kuorodheshwa chini ya *Nakala — zimewekwa mara moja*,
+  pamoja na misimbopau ilimosomwa;
+- **yenye thamani tofauti**, huo ni **mgongano**. Uamuzi husema *MGONGANO*, thamani
+  zinazogongana huorodheshwa msimbopau kwa msimbopau, na **hakuna kinachounganishwa** hadi utatuliwe.
+  Ondoa msimbopau wenye kosa, au weka upya.
+
+### Ripoti ya muunganiko
+
+Kutoka juu hadi chini:
+
+1. **Uamuzi**: *hakuna skani*, *MGONGANO*, halali au batili, na misimbopau mingapi
+   imeshikiliwa.
+2. **Skani**: kila msimbopau kama ulivyofika, alama yake, na mfuatano wa elementi unaobaki baada ya
+   kuondoa AIM Code ID. Tatizo ambalo muunganiko pekee unaweza kuamua huonyeshwa kwenye msimbopau huo,
+   likiwa na alama *inapimwa kwenye muunganiko*.
+3. **Nakala** na **migongano**, ikiwa ipo.
+4. **Muunganiko**: mfuatano wa elementi, HRI yake na urefu wake, kisha ingizo lililounganishwa
+   kama utepe wenye lebo na kadi moja kwa kila AI, vyote vimepangwa kama katika
+   [ripoti ya uchanganuzi](#ripoti). Kisha kila hitilafu na onyo juu ya muunganiko huorodheshwa
+   chini ya *Uthibitisho*.
+5. **Alama ya GS1 DataMatrix**, pamoja na HRI yake chini. Huchorwa tu muunganiko ukiwa halali. Vinginevyo
+   ripoti hueleza kwa nini haikuchorwa, ili alama batili isichapishwe kwa makosa.
+
+Kwa mfano, lebo yenye misimbopau miwili:
+
+| Msimbopau | Hubeba | Peke yake |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | halali |
+| `]C11726123110LOT-ABC` | (17) tarehe ya kuisha, (10) bechi | `GE-S005` kwa AI zote mbili, inapimwa kwenye muunganiko |
+
+Hiyo huunganika kuwa `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, ambao ni halali, kwa hiyo alama huchorwa. AI `17` ina urefu
+maalum, kwa hiyo hakuna FNC1 inayohitajika baada yake. Hali ya Unganisha huingiza moja popote
+kiwango kinapotaka.
+
+Mara tu msimbopau mmoja unaposhikiliwa, **Hifadhi ripoti** husafirisha ripoti ya muunganiko kama HTML
+au PDF, sawa na ripoti ya uchanganuzi (angalia [Kusafirisha](#uhamishaji)). Jina la faili ya HTML huanza
+na `gaia-combine-`.
+
+Ripoti hufuata lugha na mandhari uliyochagua. Kubadilisha chaguo la uchanganuzi au lugha hukagua upya
+misimbopau iliyoshikiliwa. Hudumu pia baada ya kuhamia Changanua au Tengeneza na kurudi,
+lakini si baada ya kuanzisha upya: misimbopau ya hali ya Unganisha haihifadhiwi.
 
 ---
 
@@ -345,7 +475,7 @@ Faili mbili katika `.gaia-desktop` ndani ya saraka yako ya nyumbani:
 
 | Faili | Kilichomo |
 |---|---|
-| `options.properties` | Machaguo yote ya uchanganuzi, mandhari, iwapo paneli ya machaguo imefunguliwa, skana iliyotumika mara ya mwisho, na hali ambayo dirisha liliachwa nayo |
+| `options.properties` | Machaguo yote ya uchanganuzi, mandhari, iwapo paneli ya machaguo imefunguliwa, skana iliyotumika mara ya mwisho, hali ambayo dirisha liliachwa nayo, na mipangilio ya ukaguzi wa masasisho — umewashwa au la, ulipoendeshwa mara ya mwisho, na toleo lolote ulilochagua kuruka |
 | `captures.tsv` | Historia ya rekodi, mpya kwanza, kikomo 500 |
 
 Kila unapobadilisha chaguo huandikwa; kila historia inapobadilika huandikwa. Zote mbili huandikwa
@@ -359,6 +489,9 @@ chaguo-msingi lake peke yake, kwa hivyo gharama ya mstari mmoja mbovu haizidi ms
 Historia huhifadhi ingizo, si uchanganuzi. Huchanganuliwa upya wakati wa kupakia, yaani rekodi
 iliyorejeshwa huakisi machaguo yanayotumika **sasa**, si yale yaliyokuwa yakitumika wakati
 ilirekodiwa.
+
+Misimbopau iliyoshikiliwa katika hali ya Unganisha haihifadhiwi: baada ya kuanzisha upya, hali ya
+Unganisha huanza tupu.
 
 ---
 
@@ -378,6 +511,10 @@ ilirekodiwa.
 Katika kihariri: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> husogea kati ya sehemu
 zinazohirikika, <kbd>Enter</kbd> huthibitisha, <kbd>Esc</kbd> hughairi.
 
+Katika hali ya Unganisha: <kbd>Enter</kbd> katika sehemu ya *Msimbopau* huongeza
+msimbopau. Hapo, andika FNC1 kama `{GS}`; <kbd>⌘G</kbd> ni ya upau wa ingizo wa hali ya
+Changanua.
+
 ---
 
 ## Kutatua matatizo
@@ -388,7 +525,7 @@ zinazohirikika, <kbd>Enter</kbd> huthibitisha, <kbd>Esc</kbd> hughairi.
 | Kwenye konsoli wakati wa kuanza *“Unsupported JavaFX configuration…”* | Inatarajiwa na haina madhara — kifaa cha zana kinaeleza tu jinsi kilivyopakiwa. Programu hufanya kazi kama kawaida |
 | Kitenganishi ulichobandika kinaonekana kimepotea | Ndivyo inavyopaswa kuwa: hubadilika kuwa tokeni inayoonekana `{GS}`, na kichanganuzi hupokea herufi halisi yenyewe. Angalia [tokeni ya {GS}](#upau-wa-ingizo-na-tokeni-gs) |
 | Kitufe cha *Unganisha skana* hakipo kabisa | Uko kwenye macOS au Linux, ambako hakuna kiendeshi cha skana. Angalia [Kuskani](#kuskani) |
-| Skana haiunganishi | Angalia kama jina la kimantiki lililo kwenye orodha linalingana na modeli yako, kama skana imechomekwa, na kama hakuna programu nyingine iliyoishikilia |
+| Skana haiunganishi | Angalia kama jina la kimantiki lililo kwenye orodha linalingana na modeli yako, kama skana imechomekwa, na kama hakuna programu nyingine iliyoishikilia. [Mwongozo wa kuweka skana ya Zebra](GaiaDesktop-Zebra-Scanner-Windows-Swahili.md#11-utatuzi-wa-matatizo) huorodhesha kila msimbo wa hitilafu. |
 | Uhamishaji wa PDF unasema hakuna lengo | Hakuna printa wala lengo la PDF lililosanidiwa kwenye mashine yako. Ongeza moja, au hamisha kama HTML na uchapishe kutoka kivinjari |
 | Katika kipengee cha menyu kinaonekana kitu kama `act.hri` | Lebo imesahaulika — tafadhali toa taarifa; hili si mpangilio, ni kasoro ya wakati wa kujenga |
 
@@ -402,3 +539,5 @@ zinazohirikika, <kbd>Enter</kbd> huthibitisha, <kbd>Esc</kbd> hughairi.
   hoja vya ziada wala vipande.
 - **AI hutokea mara moja tu** katika mfuatano wa elementi — hii ni kanuni ya GS1, si kikomo cha
   programu.
+- **Hali ya Unganisha hukubali misimbopau ya GS1-128 pekee, mitatu zaidi**, na haiihifadhi
+  kati ya uendeshaji mmoja na mwingine.

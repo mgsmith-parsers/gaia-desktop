@@ -123,8 +123,7 @@ sa kanilang dalawa na angkinin ito.
 | At | `readme.html` at `docs/` (bawat platform) | pareho |
 
 Dala rin ng bawat distribution ang mga gabay: kinokopya ang `docs/` nang buo ang layout nito, kaya gumagana pa rin ang
-mga link sa pagitan ng mga gabay at salin, maliban sa mga tool sa pagsasalin (`check-i18n.py`, `i18n-manifest.json`,
-`i18n-plan.md`); at ang `readme.html` sa root, isang index na naka-link sa bawat isa, mula sa
+mga link sa pagitan ng mga gabay at salin, maliban sa mga tool sa pagsasalin (`check-i18n.py`, `i18n-manifest.json`); at ang `readme.html` sa root, isang index na naka-link sa bawat isa, mula sa
 `src/main/dist/readme.html` na ang `@VERSION@` ay pinapalitan ng bersyon ng pom. Pareho silang isinusulat ng antrun
 step na `pick-launch-script`, na unang binubura ang `docs/` para hindi maiwan ang gabay na inalis na. Mano-manong
 isinulat ang mga link ng readme — ang gabay na pinalitan ng pangalan o saling idinagdag sa ilalim ng `docs/` ay

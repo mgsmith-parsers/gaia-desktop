@@ -19,26 +19,33 @@ Jak aplikaci používat. O sestavení, úpravách a přidání jazyka pojednáv�
    - [Co editor odmítá](#co-editor-odmítá)
    - [Řetězec prvků, nebo Digital Link](#řetězec-prvků-nebo-digital-link)
    - [Úprava existujícího záznamu](#úprava-existujícího-záznamu)
-6. [Report](#report)
+6. [Režim Spojení](#režim-spojení)
+   - [Pruh Spojení](#pruh-spojení)
+   - [Co Spojení odmítá](#co-spojení-odmítá)
+   - [Duplicity a rozpory](#duplicity-a-rozpory)
+   - [Report spojení](#report-spojení)
+7. [Report](#report)
    - [Export](#export)
-7. [Možnosti analýzy](#možnosti-analýzy)
+8. [Možnosti analýzy](#možnosti-analýzy)
    - [První spuštění](#první-spuštění)
-8. [Jazyky](#jazyky)
-9. [Co se pamatuje](#co-se-pamatuje)
-10. [Klávesové zkratky](#klávesové-zkratky)
-11. [Řešení potíží](#řešení-potíží)
-12. [Omezení](#omezení)
+9. [Jazyky](#jazyky)
+10. [Co se pamatuje](#co-se-pamatuje)
+11. [Klávesové zkratky](#klávesové-zkratky)
+12. [Řešení potíží](#řešení-potíží)
+13. [Omezení](#omezení)
 
 ---
 
 ## Co to je
 
-GAIA Desktop dělá s daty GS1 dvě věci:
+GAIA Desktop dělá s daty GS1 tři věci:
 
 - **Analyzuje** — napište, vložte, otevřete nebo naskenujte řetězec prvků GS1 či URI
   Digital Link a přečtěte si výsledek jako úplný report: co který aplikační identifikátor (AI)
   znamená, co je špatně a proč;
-- **Sestavuje** — skládá dvojice AI / hodnota do řetězce prvků nebo do URI Digital Link.
+- **Sestavuje** — skládá dvojice AI / hodnota do řetězce prvků nebo do URI Digital Link;
+- **Spojení** — spojit až tři čárové kódy GS1-128 z jedné etikety do jediného řetězce
+  prvků, který by nesl GS1 DataMatrix, zkontrolovat jej jako celek a vykreslit symbol.
 
 Všechno, co aplikace o GS1 ví — každou definici AI, každé pravidlo kontroly, každou chybovou
 zprávu i každý lokalizovaný popis — přebírá od jádra GAIA pod sebou. Aplikace nepřidává vlastní
@@ -84,7 +91,7 @@ patří do hlášení chyby.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -96,7 +103,7 @@ patří do hlášení chyby.
 ```
 
 > Schéma ponechává anglické popisky, stejně jako všechny bloky kódu v této dokumentaci. Na
-> obrazovce uvidíte *Analýza* / *Sestavení*, *Záznamy*, *Uložit report*, *Možnosti*,
+> obrazovce uvidíte *Analýza* / *Sestavení* / *Spojení*, *Záznamy*, *Uložit report*, *Možnosti*,
 > *skener: vypnuto* a *O aplikaci*.
 
 **V macOS a Linuxu řádek se skenerem na tomto obrázku vůbec není** — na panelu nástrojů není
@@ -105,10 +112,18 @@ přepínač ani výběr zařízení, chybí nabídka *Skener* i *skener: vypnuto
 
 Přepínač **Analýza ⇄ Sestavení** mění pouze pruh pod panelem nástrojů a ovládací prvky pro
 snímání. Historie, report, panel možností i příkazy exportu slouží oběma režimům, protože úspěšné
-sestavení se prostě stane dalším záznamem.
+sestavení se prostě stane dalším záznamem. Režim **Spojení** je uspořádán jinak: viz [Režim Spojení](#režim-spojení).
 
 Panel možností je **při prvním spuštění zavřený**. Režim, viditelnost panelu, motiv i naposledy
 použitý skener se mezi spuštěními pamatují.
+
+**Nové verze.** Několik sekund po spuštění, nejvýše jednou denně, se aplikace zeptá GitHubu, zda
+vyšla novější verze GAIA Desktop. Pokud ano, objeví se ve stavovém řádku odkaz —
+*K dispozici je GAIA Desktop 1.1.0* —, který otevře stránku vydání ve vašem prohlížeči; nic se za vás
+nestahuje ani neinstaluje. *Přeskočit tuto verzi* skryje upozornění až do pozdějšího vydání.
+Kontrola mlčí, když není nic nového nebo když se ke GitHubu nedostane.
+*Nápověda → Zkontrolovat aktualizace…* zkontroluje hned a oznámí, co našla;
+*Nápověda → Kontrolovat aktualizace automaticky* denní kontrolu vypíná a zapíná.
 
 ---
 
@@ -151,9 +166,12 @@ dorazí k analyzátoru přesně tak, jak je skener odeslal.
 
 V režimu Sestavení jsou ovládací prvky skeneru skryté, ale připojený skener dál pracuje:
 *Skener → Připojit / Odpojit* (<kbd>⌘K</kbd>) jej stále přepíná, stavový řádek o něm stále
-informuje a snímek, který dorazí při otevřeném editoru, se stejně zaznamená.
+informuje a snímek, který dorazí při otevřeném editoru, se stejně zaznamená. V režimu Spojení ovládací prvky zůstávají a každý snímek se přidá do spojení místo do
+historie.
 
-Pokud se zařízení nepřipojí, viz [Řešení potíží](#řešení-potíží).
+První nastavení skeneru — Zebra Scanner SDK, režim USB skeneru a nastavení GS1 — popisuje krok
+za krokem [průvodce nastavením skeneru Zebra](GaiaDesktop-Zebra-Scanner-Windows-Czech.md), přiložený v každém zipu ve složce
+`docs/`. Pokud se zařízení nepřipojí, viz [Řešení potíží](#řešení-potíží).
 
 ### Otevření souboru
 
@@ -231,6 +249,117 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Klepnutí pravým tlačítkem na záznam → **Sestavení** načte jeho AI do editoru. Změňte hodnotu,
 sestavte znovu a výsledek přibude jako nový záznam — původní zůstane nedotčen.
+
+---
+
+## Režim Spojení
+
+Starší etikety často rozkládají svá data do **několika čárových kódů GS1-128** — GTIN v jednom,
+datum spotřeby a šarži v jiném — protože jediný lineární čárový kód všechno neunese. Režim
+Spojení vezme až **tři** takové čárové kódy, spojí je do jediného řetězce prvků, který
+by nesl **GS1 DataMatrix**, a zkontroluje výsledek jako celek. Jakmile je platný, aplikace
+vykreslí symbol DataMatrix.
+
+Žádný z těchto čárových kódů nemusí být sám o sobě úplný. Číslo šarže bez svého GTIN samo
+neprojde s chybou `GE-S005`, ale u jednoho čárového kódu ze sady je to normální, proto jej režim
+Spojení posuzuje až na spojení.
+
+### Pruh Spojení
+
+Přepnutí do režimu **Spojení** nahradí vstupní řádek pruhem u dolního okraje okna.
+Historie záznamů ustoupí stranou, protože snímky v režimu Spojení nejsou záznamy a nikdy
+do ní nevstupují. Oblast reportu místo toho ukazuje report spojení:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Čárový kód lze přidat dvěma způsoby:
+
+- **Naskenovat jej.** Ve Windows zůstávají ovládací prvky skeneru v režimu Spojení na
+  panelu nástrojů a každý snímek jde rovnou do spojení, ne do historie.
+- **Napsat nebo vložit jej** do pole *Čárový kód* a stisknout <kbd>Enter</kbd> nebo
+  **Přidat**. FNC1 se píše jako **`{GS}`**, stejně jako ve vstupním řádku. Čárový kód
+  napsaný bez AIM Code ID se bere jako GS1-128.
+
+| Tlačítko | Co dělá |
+|---|---|
+| **Přidat** | Přidá čárový kód z pole |
+| **Odebrat poslední** | Odebere poslední čárový kód (nedostupné, když žádný není) |
+| **Obnovit** | Odebere všechny čárové kódy, vyprázdní pole i případné odmítnutí a začne znovu |
+
+Stavový řádek vždy říká, kolik čárových kódů je drženo (*2 z 3 čárových kódů GS1-128*), nebo proč byl
+poslední odmítnut.
+
+### Co Spojení odmítá
+
+Odmítnutý čárový kód se nepřidá. Report i stavový řádek uvádějí proč:
+
+| Čárový kód | Odmítnut, protože |
+|---|---|
+| Prázdné pole | Není co přidat |
+| Čtvrtý čárový kód | Etiketa se spojuje nejvýše ze tří. Odeberte poslední, nebo obnovte |
+| Jiná symbologie podle AIM Code ID | Spojuje se jen GS1-128, takže GS1 DataMatrix (`]d2`) nebo QR Code se odmítne i s názvem |
+| Nečitelná AI | Syntaktická chyba; zobrazí se chybový kód a zpráva jádra |
+| Žádná AI | Není co spojit |
+| Už naskenovaný | Tentýž řetězec prvků dvakrát, například tentýž čárový kód naskenovaný znovu; report uvede, který dřívější čárový kód opakuje |
+
+Režim Spojení odmítá jen to, co vůbec nemůže použít. Vše ostatní (chybná kontrolní
+číslice, neplatné datum, chybějící doprovodné AI) se přijme a posoudí na spojení.
+
+### Duplicity a rozpory
+
+AI se spojují v pořadí, v jakém byla naskenována. Když dva čárové kódy nesou stejné AI:
+
+- **se stejnou hodnotou**, ponechá se jednou a uvede pod *Duplicity — ponechány jednou* spolu
+  s čárovými kódy, v nichž bylo přečteno;
+- **s různými hodnotami**, jde o **rozpor**. Verdikt zní *ROZPOR*, neshodné
+  hodnoty se vypíší čárový kód po čárovém kódu a **nic se nespojí**, dokud se rozpor nevyřeší.
+  Odeberte vadný čárový kód, nebo obnovte.
+
+### Report spojení
+
+Shora dolů:
+
+1. **Verdikt**: *žádné skeny*, *ROZPOR*, platné nebo neplatné a kolik
+   čárových kódů je drženo.
+2. **Snímky**: každý čárový kód, jak dorazil, jeho symbologie a řetězec prvků, který zbude po
+   odstranění AIM Code ID. Problém, který může rozhodnout jen spojení, je uveden u čárového kódu
+   s označením *posuzováno na spojení*.
+3. **Duplicity** a **rozpory**, pokud nějaké jsou.
+4. **Spojeno**: řetězec prvků, jeho HRI a délka, pak spojený vstup jako popsaný pás
+   a jedna karta na každé AI, obojí uspořádané jako v [reportu analýzy](#report). Každá chyba
+   a každé varování ke spojení se pak vypíše pod *Ověření*.
+5. **Symbol GS1 DataMatrix** s HRI pod ním. Vykreslí se jen tehdy, je-li spojení platné. Jinak
+   report uvede, proč vykreslen nebyl, aby se neplatný symbol nedal omylem vytisknout.
+
+Například etiketa se dvěma čárovými kódy:
+
+| Čárový kód | Nese | Sám o sobě |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | platný |
+| `]C11726123110LOT-ABC` | (17) datum spotřeby, (10) šarže | `GE-S005` pro obě AI, posuzováno na spojení |
+
+Spojí se do `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, což je platné, a symbol se proto vykreslí. AI `17`
+má pevnou délku, takže za ním není potřeba FNC1. Režim Spojení jej vloží všude, kde to
+standard vyžaduje.
+
+**Uložit report** exportuje report spojení do HTML nebo PDF stejně jako report analýzy (viz
+[Export](#export)), jakmile je držen jeden čárový kód. Název souboru HTML začíná
+`gaia-combine-`.
+
+Report se řídí zvoleným jazykem a motivem. Změna možnosti analýzy nebo jazyka znovu zkontroluje
+již držené čárové kódy. Přežijí i přepnutí do režimu Analýza či Sestavení a zpět,
+ale ne restart: čárové kódy režimu Spojení se neukládají.
 
 ---
 
@@ -332,7 +461,7 @@ Dva soubory v adresáři `.gaia-desktop` ve vašem domovském adresáři:
 
 | Soubor | Obsahuje |
 |---|---|
-| `options.properties` | Všechny možnosti analýzy, motiv, zda je panel možností otevřený, naposledy použitý skener a režim, v němž bylo okno opuštěno |
+| `options.properties` | Všechny možnosti analýzy, motiv, zda je panel možností otevřený, naposledy použitý skener, režim, v němž bylo okno opuštěno, a nastavení kontroly aktualizací — zapnuto či vypnuto, kdy naposledy proběhla a případná verze, kterou jste se rozhodli přeskočit |
 | `captures.tsv` | Historii záznamů, nejnovější nahoře, nejvýše 500 položek |
 
 Možnosti se zapisují při každé změně, historie při každé své změně. Oba soubory se znovu zapíší
@@ -345,6 +474,9 @@ oddělené proto, aby vás poškozená historie nepřipravila o nastavení. Ani 
 
 Historie ukládá vstup, nikoli výsledek analýzy. Při načtení se analyzuje znovu, což znamená, že
 obnovený záznam odráží možnosti platné **nyní**, ne ty, které platily při jeho pořízení.
+
+Čárové kódy držené v režimu Spojení se neukládají: po restartu začíná režim
+Spojení prázdný.
 
 ---
 
@@ -364,6 +496,9 @@ obnovený záznam odráží možnosti platné **nyní**, ne ty, které platily p
 V editoru: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> přecházejí mezi upravitelnými
 buňkami, <kbd>Enter</kbd> potvrzuje, <kbd>Esc</kbd> ruší.
 
+V režimu Spojení: <kbd>Enter</kbd> v poli *Čárový kód* přidá čárový kód.
+Tam pište FNC1 jako `{GS}`; <kbd>⌘G</kbd> patří ke vstupnímu řádku režimu Analýza.
+
 ---
 
 ## Řešení potíží
@@ -374,7 +509,7 @@ buňkami, <kbd>Enter</kbd> potvrzuje, <kbd>Esc</kbd> ruší.
 | *„Unsupported JavaFX configuration…“* v konzoli při startu | Očekávané a neškodné — knihovna jen uvádí, jak byla načtena. Aplikace běží normálně |
 | Vložený oddělovač jako by zmizel | Tak to má být: je přepsán na viditelný token `{GS}` a analyzátor stále dostává skutečný znak. Viz [token {GS}](#vstupní-řádek-a-token-gs) |
 | Chybí tlačítko *Připojit skener* | Jste v macOS nebo Linuxu, kde ovladače skeneru neexistují. Viz [Snímání](#snímání) |
-| Skener se nepřipojí | Ověřte, že logický název ve výběru odpovídá vašemu modelu, že je skener připojen a že jej nedrží jiná aplikace |
+| Skener se nepřipojí | Ověřte, že logický název ve výběru odpovídá vašemu modelu, že je skener připojen a že jej nedrží jiná aplikace. [Průvodce nastavením skeneru Zebra](GaiaDesktop-Zebra-Scanner-Windows-Czech.md#11-řešení-potíží) uvádí každý chybový kód. |
 | Export do PDF hlásí, že není žádný cíl | Počítač nemá nastavenou tiskárnu ani cíl PDF. Přidejte jej, nebo exportujte do HTML a vytiskněte z prohlížeče |
 | Položka nabídky ukazuje něco jako `act.hri` | Chybí popisek — nahlaste to prosím; jde o vadu sestavení, ne o nastavení |
 
@@ -387,3 +522,5 @@ buňkami, <kbd>Enter</kbd> potvrzuje, <kbd>Esc</kbd> ruší.
 - **Cíle Digital Link přijímají doménu a předponu cesty**, nikoli další parametry dotazu ani
   fragment.
 - **AI se smí vyskytnout jen jednou** v řetězci prvků — to je pravidlo GS1, ne omezení aplikace.
+- **Režim Spojení přijímá jen čárové kódy GS1-128, nejvýše tři**, a mezi spuštěními je
+  neuchovává.

@@ -19,26 +19,33 @@ asli: [GaiaDesktop-User.md](../../GaiaDesktop-User.md).
    - [Sing ora ditampa panyunting](#sing-ora-ditampa-panyunting)
    - [String elemen utawa Digital Link](#string-elemen-utawa-digital-link)
    - [Ngowahi rekaman sing wis ana](#ngowahi-rekaman-sing-wis-ana)
-6. [Laporan](#laporan)
+6. [Mode gabung](#mode-gabung)
+   - [Wilah gabung](#wilah-gabung)
+   - [Sing ora ditampa gabung](#sing-ora-ditampa-gabung)
+   - [Dobel lan pasulayan](#dobel-lan-pasulayan)
+   - [Laporan gabungan](#laporan-gabungan)
+7. [Laporan](#laporan)
    - [Ekspor](#ekspor)
-7. [Pilihan analisis](#pilihan-analisis)
+8. [Pilihan analisis](#pilihan-analisis)
    - [Mlakokake sepisanan](#mlakokake-sepisanan)
-8. [Basa](#basa)
-9. [Sing diélingi](#sing-diélingi)
-10. [Trabasan keyboard](#trabasan-keyboard)
-11. [Ngatasi masalah](#ngatasi-masalah)
-12. [Watesan](#watesan)
+9. [Basa](#basa)
+10. [Sing diélingi](#sing-diélingi)
+11. [Trabasan keyboard](#trabasan-keyboard)
+12. [Ngatasi masalah](#ngatasi-masalah)
+13. [Watesan](#watesan)
 
 ---
 
 ## Iki apa
 
-GAIA Desktop nindakake rong prakara marang data GS1:
+GAIA Desktop nindakake telung prakara marang data GS1:
 
 - **Analisis** — ketikna string elemen GS1 utawa URI Digital Link, utawa tempelna, utawa bukaken
   saka berkas, utawa pindaien, banjur wacanen asile minangka laporan jangkep: saben Application
   Identifier (AI) iku tegese apa, kaluputane ana ing ngendi, lan apa sababe;
-- **Gawe** — nggandhengake pasangan AI lan nilai supaya dadi string elemen utawa URI Digital Link.
+- **Gawe** — nggandhengake pasangan AI lan nilai supaya dadi string elemen utawa URI Digital Link;
+- **Gabung** — nggabungake nganti telung kode bar GS1-128 saka siji label dadi siji string
+  elemen sing bakal digawa GS1 DataMatrix, mriksa kanthi wutuh, lan nggambar simbole.
 
 Kabeh sing dimangerteni aplikasi iki bab GS1 — teges saben AI, saben aturan pamriksan, saben pesen
 kaluputan lan saben rincian basa — kabeh saka mesin GAIA sing mlaku ing sangisore. Aplikasi ora
@@ -84,7 +91,7 @@ mesin. Baris iku uga sing kudu disertakake ing saben laporan masalah.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -96,7 +103,7 @@ mesin. Baris iku uga sing kudu disertakake ing saben laporan masalah.
 ```
 
 > Kaya kabeh blok kode liyane ing dokumen iki, gambar iki tetep nganggo label basa Inggris. Ing
-> layar sing bakal kokdeleng yaiku *Urai* / *Gawe*, *Rekaman*, *Simpen laporan*, *Pilihan*,
+> layar sing bakal kokdeleng yaiku *Urai* / *Gawe* / *Gabung*, *Rekaman*, *Simpen laporan*, *Pilihan*,
 > *scanner: mati* lan *Bab*.
 
 **Ing macOS lan Linux baris scanner ing gambar iki pancen ora ana** — ora ana tombol ing wilah
@@ -105,10 +112,18 @@ ing wilah status. Delengen [Mindai](#mindai).
 
 Saklar **Urai ⇄ Gawe** mung ngganti wilah ing sangisore wilah piranti lan kontrol sing gegayutan
 karo rekaman. Riwayat, laporan, panel pilihan lan kabeh tumindak ekspor mlaku ing rong mode
-kasebut, amarga panggawean sing kasil iya mung dadi rekaman liyane.
+kasebut, amarga panggawean sing kasil iya mung dadi rekaman liyane. Mode **Gabung** tata letake beda: delengen [Mode gabung](#mode-gabung).
 
 Panel pilihan **ketutup nalika dilakokake sepisanan**. Mode, katon utawa ora katone panel, tema
 lan scanner sing pungkasan dienggo — kabeh diélingi kanggo mengko.
+
+**Versi anyar.** Sawetara detik sawise diwiwiti, paling akeh sepisan sedina, aplikasi takon marang
+GitHub apa ana GAIA Desktop sing luwih anyar wis dirilis. Yen ana, ing wilah status metu pranala —
+*GAIA Desktop 1.1.0 wis kasedhiya* — sing mbukak kaca rilis ing panjelajahmu; ora ana sing diundhuh utawa
+dipasang kanggo kowe. *Lewati versi iki* ndhelikake kabar iku nganti rilis sabanjure. Pamriksan iki
+meneng wae yen ora ana sing anyar utawa GitHub ora bisa digayuh.
+*Pitulung → Priksa nganyari…* langsung mriksa lan ngandhani asile;
+*Pitulung → Priksa nganyari kanthi otomatis* mateni lan nguripake maneh pamriksan saben dina.
 
 ---
 
@@ -151,9 +166,12 @@ pangurai persis kaya nalika dikirim scanner.
 
 Ing mode gawe kontrol scanner didhelikake, nanging scanner sing kasambung tetep mlaku:
 *Scanner → Sambungake / Pedhot* (<kbd>⌘K</kbd>) isih ngganti, wilah status isih ngabari, lan asil
-pindai sing teka nalika panyunting menga uga direkam.
+pindai sing teka nalika panyunting menga uga direkam. Ing mode Gabung kontrol iki tetep ana, lan saben pindaian ditambahake menyang gabungan, dudu
+menyang riwayat.
 
-Yen ora ana piranti sing nyambung, delengen [Ngatasi masalah](#ngatasi-masalah).
+Nyetel scanner sepisanan — Zebra Scanner SDK, mode USB scanner, lan setelan GS1 — dijlentrehake langkah
+saben langkah ing [pandhuan nyetel scanner Zebra](GaiaDesktop-Zebra-Scanner-Windows-Javanese.md), sing ana ing saben zip ing sangisore
+`docs/`. Yen ora ana piranti sing nyambung, delengen [Ngatasi masalah](#ngatasi-masalah).
 
 ### Mbukak berkas
 
@@ -234,6 +252,117 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Klik tengen ing rekaman → **Gawe** nggawa rekaman mau menyang panyunting AI. Owahana sawijining
 nilai, gawenen maneh, lan asile metu minangka rekaman anyar — rekaman asline tetep kaya mau.
+
+---
+
+## Mode gabung
+
+Label-label lawas kerep mbagi datane menyang **sawetara kode bar GS1-128** — GTIN ing siji, tanggal
+kadaluwarsa lan batch ing liyane — amarga siji kode bar linear ora cukup kanggo kabeh. Mode
+Gabung njupuk nganti **telu** kode bar kaya mangkono, nggabungake dadi siji string elemen sing
+bakal digawa **GS1 DataMatrix**, lan mriksa asile kanthi wutuh. Sawise asile sah, aplikasi nggambar simbol
+DataMatrix.
+
+Ora ana siji-sijia kode bar iku sing kudu jangkep dhewe. Nomer batch tanpa GTIN-e gagal dhewe kanthi
+`GE-S005`, nanging iku lumrah kanggo siji kode bar saka sakumpulan, mula mode Gabung mriksa
+ing gabungan.
+
+### Wilah gabung
+
+Ngalih menyang **Gabung** ngganti kolom input nganggo wilah ing pinggir ngisor jendhela.
+Riwayat rekaman nyingkir, amarga pindaian mode Gabung dudu rekaman lan ora tau mlebu ing kono.
+Bageyan laporan nuduhake laporan gabungan minangka gantine:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Ana rong cara nglebokake kode bar:
+
+- **Mindai.** Ing Windows, kontrol scanner tetep ana ing wilah piranti ing mode Gabung, lan
+  saben pindaian langsung mlebu gabungan, dudu riwayat.
+- **Ngetik utawa nempelake** ing kolom *Kode bar* banjur mencet <kbd>Enter</kbd> utawa
+  **Tambah**. Tulisen FNC1 dadi **`{GS}`**, padha kaya ing kolom input. Kode bar sing diketik
+  tanpa AIM Code ID dianggep GS1-128.
+
+| Tombol | Gunane |
+|---|---|
+| **Tambah** | Nambahake kode bar sing ana ing kolom |
+| **Busak pungkasan** | Mbusak kode bar sing paling anyar (ora kasedhiya yen durung ana) |
+| **Setel ulang** | Mbusak kabeh kode bar, ngresiki kolom lan panolakan apa wae, lan miwiti maneh |
+
+Wilah status tansah ngandhani pira kode bar sing dicekel (*2 saka 3 kode bar GS1-128*), utawa kenapa sing
+pungkasan ditolak.
+
+### Sing ora ditampa gabung
+
+Kode bar sing ditolak ora ditambahake. Laporan lan wilah status padha ngandhani sababe:
+
+| Kode bar | Ditolak amarga |
+|---|---|
+| Kolom kosong | Ora ana sing ditambahake |
+| Kode bar kaping papat | Siji label digabung saka paling akeh telu. Busaken sing pungkasan, utawa setel ulang |
+| Simbologi liya, miturut AIM Code ID-ne | Mung GS1-128 sing digabung, mula GS1 DataMatrix (`]d2`) utawa QR Code ditolak, kanthi jenenge |
+| AI sing ora bisa diwaca | Kasalahan sintaksis; kode kasalahan lan pesen mesin ditampilake |
+| Ora ana AI babar pisan | Ora ana sing digabung |
+| Sing wis tau dipindai | String elemen sing padha kaping pindho, upamane kode bar sing padha dipindai maneh; laporan ngandhani kode bar sadurunge endi sing dibaleni |
+
+Mode Gabung mung nolak apa sing babar pisan ora bisa dienggo. Liyane kabeh (digit priksa sing
+salah, tanggal sing ora bener, AI pendamping sing ilang) ditampa lan ditaksir ing gabungan.
+
+### Dobel lan pasulayan
+
+AI digabung miturut urutan pindaian. Yen loro kode bar nggawa AI sing padha:
+
+- **kanthi nilai sing padha**, AI iku disimpen sapisan lan dicathet ing sangisore
+  *Dobel — disimpen sapisan*, bebarengan karo kode bar sing diwaca;
+- **kanthi nilai sing beda**, iku **pasulayan**. Putusane muni *PASULAYAN*, nilai sing
+  pasulayan dicathet saben kode bar, lan **ora ana sing digabung** nganti rampung. Busaken kode bar sing
+  salah, utawa setel ulang.
+
+### Laporan gabungan
+
+Saka dhuwur mudhun:
+
+1. **Putusan**: *durung ana pindaian*, *PASULAYAN*, sah utawa ora sah, lan pira kode bar
+   sing dicekel.
+2. **Pindaian**: saben kode bar kaya tekane, simbologine, lan string elemen sing kari sawise AIM Code ID
+   dicopot. Masalah sing mung bisa diputus dening gabungan dituduhake ing kode bar iku, ditandhani
+   *ditaksir ing gabungan*.
+3. **Dobel** lan **pasulayan**, yen ana.
+4. **Asil gabungan**: string elemen, HRI-ne lan dawane, banjur input gabungan minangka pita
+   mawa label lan siji kertu saben AI, loro-lorone ditata kaya ing [laporan analisis](#laporan).
+   Sabanjure saben kasalahan lan pepéling ing gabungan dicathet ing sangisore
+   *Validasi*.
+5. **Simbol GS1 DataMatrix**, kanthi HRI-ne ing ngisor. Mung digambar yen gabungane sah. Yen ora,
+   laporan ngandhani kenapa ora digambar, supaya simbol sing ora sah ora kecithak kanthi ora sengaja.
+
+Contone, label kanthi rong kode bar:
+
+| Kode bar | Nggawa | Dhewe |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | sah |
+| `]C11726123110LOT-ABC` | (17) tanggal kadaluwarsa, (10) batch | `GE-S005` kanggo loro AI, ditaksir ing gabungan |
+
+Kode bar iku digabung dadi `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, sing sah, mula simbole digambar. AI `17` dawane tetep,
+mula ora perlu FNC1 sawise. Mode Gabung nglebokake siji ing ngendi wae standar mbutuhake.
+
+Sanalika ana siji kode bar sing dicekel, **Simpen laporan** ngekspor laporan gabungan dadi HTML utawa
+PDF, padha kaya laporan analisis (delengen [Ngekspor](#ekspor)). Jeneng berkas HTML-e diwiwiti
+`gaia-combine-`.
+
+Laporan ngetutake basa lan tema sing dipilih. Ngganti pilihan analisis utawa basa mriksa maneh kode bar
+sing dicekel. Kode bar iku uga tetep ana sawise ngalih menyang Urai utawa Gawe lan
+bali, nanging ora sawise diwiwiti ulang: kode bar mode Gabung ora disimpen.
 
 ---
 
@@ -335,7 +464,7 @@ Rong berkas ing `.gaia-desktop` sajrone direktori omahmu:
 
 | Berkas | Isine |
 |---|---|
-| `options.properties` | Kabeh pilihan analisis, tema, panel pilihan menga apa ora, scanner sing pungkasan dienggo, lan jendhela ditinggal ing mode apa |
+| `options.properties` | Kabeh pilihan analisis, tema, panel pilihan menga apa ora, scanner sing pungkasan dienggo, jendhela ditinggal ing mode apa, lan setelan pamriksan nganyari — urip utawa mati, kapan pungkasan mlaku, lan versi apa wae sing kokpilih dilewati |
 | `captures.tsv` | Riwayat rekaman, sing anyar dhisik, wates 500 |
 
 Saben kowe ngowahi sawijining pilihan, pilihan mau ditulis; saben riwayat owah, riwayat mau
@@ -348,6 +477,9 @@ standare dhewe-dhewe, mula regane sabaris sing salah ora luwih saka baris iku.
 
 Riwayat nyimpen input, dudu analisise. Nalika dimuat, input mau diurai maneh, tegese rekaman sing
 dibalekake nggambarake pilihan sing lumaku **saiki**, dudu sing lumaku nalika rekaman mau dijupuk.
+
+Kode bar sing dicekel ing mode Gabung ora disimpen: sawise diwiwiti ulang, mode
+Gabung wiwit kosong.
 
 ---
 
@@ -367,6 +499,9 @@ dibalekake nggambarake pilihan sing lumaku **saiki**, dudu sing lumaku nalika re
 Ing panyunting: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> lumaku ing antarane kolom sing
 bisa disunting, <kbd>Enter</kbd> mesthekake, <kbd>Esc</kbd> mbatalake.
 
+Ing mode Gabung: <kbd>Enter</kbd> ing kolom *Kode bar* nambahake kode bar.
+Ing kono, ketiken FNC1 dadi `{GS}`; <kbd>⌘G</kbd> kagungane kolom input mode Urai.
+
 ---
 
 ## Ngatasi masalah
@@ -377,7 +512,7 @@ bisa disunting, <kbd>Enter</kbd> mesthekake, <kbd>Esc</kbd> mbatalake.
 | Ing konsol nalika wiwitan metu *“Unsupported JavaFX configuration…”* | Wis samesthine lan ora mbebayani — piranti mung ngandhakake carane dimuat. Aplikasi mlaku kaya adate |
 | Pamisah sing ditempelake katon ilang | Pancen kudune ngono: pamisah mau malih dadi token sing katon `{GS}`, lan pangurai nampa aksara asline. Delengen [token {GS}](#kolom-input-lan-token-gs) |
 | Tombol *Sambungake scanner* pancen ora ana | Kowe ana ing macOS utawa Linux, sing ora ana panggerak scanner. Delengen [Mindai](#mindai) |
-| Scanner ora nyambung | Priksanen apa jeneng logis ing dhaftar cocog karo modelmu, apa scanner wis dicolokake, lan apa ora ana aplikasi liya sing nyekel |
+| Scanner ora nyambung | Priksanen apa jeneng logis ing dhaftar cocog karo modelmu, apa scanner wis dicolokake, lan apa ora ana aplikasi liya sing nyekel. [Pandhuan nyetel scanner Zebra](GaiaDesktop-Zebra-Scanner-Windows-Javanese.md#11-ngatasi-masalah) nyathet saben kode kasalahan. |
 | Ekspor PDF kandha ora ana tujuan | Ing mesinmu durung ana printer utawa tujuan PDF. Tambahna siji, utawa ekspor minangka HTML banjur cithaken saka browser |
 | Ing salah sawijining item menu katon kaya `act.hri` | Ana label sing kliwatan — mangga laporna; iki dudu setelan, nanging cacad nalika mbangun |
 
@@ -390,3 +525,5 @@ bisa disunting, <kbd>Enter</kbd> mesthekake, <kbd>Esc</kbd> mbatalake.
 - **Target Digital Link mung nampa domain lan ater-ater path**; ora ana parameter pitakon
   tambahan utawa fragmen.
 - **AI mung metu sepisan** ing sawijining string elemen — iki aturan GS1, dudu watesan aplikasi.
+- **Mode Gabung mung nampa kode bar GS1-128, paling akeh telu**, lan ora nyimpen ing antarane
+  saben mlaku.

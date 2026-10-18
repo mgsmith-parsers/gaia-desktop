@@ -119,7 +119,7 @@ claim am.
 | And | `readme.html` and `docs/` (every platform) | di same |
 
 Every distribution also carry di guides: `docs/` wey dem copy with im layout, so di links between guides and
-translations still dey work, minus di translation tools (`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`); and
+translations still dey work, minus di translation tools (`check-i18n.py`, `i18n-manifest.json`); and
 `readme.html` for di root, one index wey link to each of dem, from `src/main/dist/readme.html` with `@VERSION@` changed
 to di pom version. Na di `pick-launch-script` antrun step dey write both, and e dey delete `docs/` first so guide wey
 dem remove no go still dey hang. Dem write di readme links by hand — if you rename guide or add translation under

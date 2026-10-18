@@ -892,7 +892,9 @@ public final class MainView extends BorderPane {
 
         FileChooser chooser = new FileChooser();
         chooser.setTitle(strings.get("act.saveHtml"));
-        chooser.setInitialFileName(GaiaDesktopReport.suggestedFileName(".html"));
+        chooser.setInitialFileName(combineMode.isSelected()
+                ? GaiaCombineReport.suggestedFileName(".html")
+                : GaiaDesktopReport.suggestedFileName(".html"));
         chooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("HTML", "*.html", "*.htm"));
         File file = chooser.showSaveDialog(window());
         if (file == null) return;
@@ -927,8 +929,9 @@ public final class MainView extends BorderPane {
             return;
         }
 
-        ScanRecord r = selected();
-        job.getJobSettings().setJobName("GAIA " + r.time());
+        job.getJobSettings().setJobName(combineMode.isSelected()
+                ? "GAIA " + strings.get("mode.combine")
+                : "GAIA " + selected().time());
 
         // Choose the destination — and, for a PDF destination, the file name — in the
         // system dialog. Cancelling there must cancel the job, or it stays open.
@@ -949,9 +952,17 @@ public final class MainView extends BorderPane {
         }
     }
 
-    /** True when there is a rendered report to export; sets the status line when there is not. */
+    /**
+     * True when there is a rendered report to export; sets the status line when there is not.
+     *
+     * <p>In Combine mode the report on screen is the Combine report, whatever the hidden history
+     * has selected, so it is exportable once a barcode is held. The idle page, with none, is not.
+     */
     private boolean hasReport() {
-        if (currentHtml.isEmpty() || selected() == null) {
+        boolean exportable = combineMode.isSelected()
+                ? combiner != null && !combiner.scans().isEmpty()
+                : selected() != null;
+        if (currentHtml.isEmpty() || !exportable) {
             status.setText(strings.get("st.nothingToSave"));
             return false;
         }

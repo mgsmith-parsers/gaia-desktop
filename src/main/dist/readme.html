@@ -45,7 +45,14 @@
     th, td { text-align: start; padding: .4rem .6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
     thead th { color: var(--muted); font-weight: 600; font-size: .85rem; }
     tbody th { font-weight: 500; white-space: nowrap; }
+    /* Samples and Zebra Scanner are short names: keep each on one line; the guide titles may wrap. */
+    tbody td:nth-child(4), tbody td:nth-child(5) { white-space: nowrap; }
     .note { color: var(--muted); font-size: .9rem; }
+    .viewer { background: var(--card); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 8px; padding: .9rem 1.1rem; margin-top: 1rem; }
+    .viewer h3 { font-size: 1.05rem; margin: 0 0 .4rem; }
+    .viewer ul { margin: .4rem 0; padding-inline-start: 1.25rem; }
+    .viewer li { margin: .25rem 0; }
+    kbd { font: .85em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3rem; background: var(--bg); }
   </style>
 </head>
 <body>
@@ -73,6 +80,10 @@ java -jar gaia-desktop.jar --language=FR</code></pre>
       <p>Parsing, the builder, the report, options, languages, keyboard shortcuts and troubleshooting.</p>
     </div>
     <div class="guide">
+      <a href="docs/GaiaDesktop-Samples.html">Samples</a>
+      <p>Sample barcodes to scan or type: one for each GS1 data carrier in Parse mode, and the three GS1-128 barcodes of a legacy label for Combine mode. The barcode images load from barcode.tec-it.com, so the page needs an internet connection.</p>
+    </div>
+    <div class="guide">
       <a href="docs/GaiaDesktop-Zebra-Scanner-Windows.md">Zebra Scanner Setup</a><span class="tag">Windows</span>
       <p>Installing and configuring a Zebra scanner (tested with the DS8108): Java, the Zebra Scanner SDK, USB mode and GS1 settings, connecting, and troubleshooting.</p>
     </div>
@@ -81,220 +92,301 @@ java -jar gaia-desktop.jar --language=FR</code></pre>
       <p>Building and packaging, architecture, the <code>{GS}</code> token, the scanner gate, localization, state file formats and testing.</p>
     </div>
   </div>
-  <p class="note">The guides are Markdown files: they open as plain text in a browser, or formatted in any Markdown viewer.
-    Links in the Developer Guide that point into the source tree (outside <code>docs/</code>) only work in a source checkout.</p>
+  <div class="viewer">
+    <h3>Reading the guides: use a Markdown viewer</h3>
+    <p>The guides are Markdown files (<code>.md</code>). Opened directly in a browser they show as plain text,
+      with the tables, headings and links unformatted, so open them in a <strong>Markdown viewer</strong> instead.
+      Any of these free options will do:</p>
+    <ul>
+      <li><strong>Visual Studio Code</strong> (Windows, macOS, Linux): open the <code>.md</code> file and press
+        <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> (<kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd> on macOS) for the preview.</li>
+      <li><strong>A Markdown viewer extension for your browser</strong> (Chrome, Edge or Firefox), for example
+        <em>Markdown Viewer</em>. Allow it access to file URLs in the extension's settings, then click a guide's link on this page.</li>
+      <li><strong>A desktop Markdown app</strong>, such as Typora, MarkText or Obsidian.</li>
+    </ul>
+    <p class="note">The Samples pages are HTML and open in any browser without a viewer.
+      Links in the Developer Guide that point into the source tree (outside <code>docs/</code>) only work in a source checkout.</p>
+  </div>
 
   <h2>In other languages</h2>
-  <p>English is the source of truth; each translation was made from it. The scanner guide is translated into some of them.</p>
+  <p>English is the source of truth; each translation was made from it. Every guide, and the samples, is translated into each language below. The translated guides are Markdown too — open them in the same viewer.</p>
   <div class="table-wrap">
     <table>
       <thead>
-        <tr><th scope="col">Language</th><th scope="col"></th><th scope="col">User Guide</th><th scope="col">Zebra Scanner Setup</th></tr>
+        <tr><th scope="col">Language</th><th scope="col"></th><th scope="col">User Guide</th><th scope="col">Samples</th><th scope="col">Zebra Scanner</th><th scope="col">Developer Guide</th></tr>
       </thead>
       <tbody>
         <tr>
           <th scope="row">Arabic</th>
           <td lang="ar" dir="rtl">العربية</td>
           <td><a href="docs/i18n/Arabic/GaiaDesktop-User-Arabic.md" lang="ar" dir="rtl">دليل المستخدم</a></td>
-          <td><a href="docs/i18n/Arabic/GaiaDesktop-Zebra-Scanner-Windows-Arabic.md" lang="ar" dir="rtl">إعداد ماسح Zebra — GAIA Desktop لنظام Windows</a></td>
+          <td><a href="docs/i18n/Arabic/GaiaDesktop-Samples-Arabic.html" lang="ar" dir="rtl">نماذج</a></td>
+          <td><a href="docs/i18n/Arabic/GaiaDesktop-Zebra-Scanner-Windows-Arabic.md" lang="ar" dir="rtl">ماسح Zebra</a></td>
+          <td><a href="docs/i18n/Arabic/GaiaDesktop-Developer-Arabic.md" lang="ar" dir="rtl">دليل المطوّر</a></td>
         </tr>
         <tr>
           <th scope="row">Bengali</th>
           <td lang="bn">বাংলা</td>
           <td><a href="docs/i18n/Bengali/GaiaDesktop-User-Bengali.md" lang="bn">ব্যবহারকারীর নির্দেশিকা</a></td>
-          <td><a href="docs/i18n/Bengali/GaiaDesktop-Zebra-Scanner-Windows-Bengali.md" lang="bn">Zebra স্ক্যানার সেটআপ — Windows-এর জন্য GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Bengali/GaiaDesktop-Samples-Bengali.html" lang="bn">নমুনা</a></td>
+          <td><a href="docs/i18n/Bengali/GaiaDesktop-Zebra-Scanner-Windows-Bengali.md" lang="bn">Zebra স্ক্যানার</a></td>
+          <td><a href="docs/i18n/Bengali/GaiaDesktop-Developer-Bengali.md" lang="bn">ডেভেলপার নির্দেশিকা</a></td>
         </tr>
         <tr>
           <th scope="row">Cantonese</th>
           <td lang="yue">廣東話</td>
           <td><a href="docs/i18n/Cantonese/GaiaDesktop-User-Cantonese.md" lang="yue">使用者指南</a></td>
-          <td><a href="docs/i18n/Cantonese/GaiaDesktop-Zebra-Scanner-Windows-Cantonese.md" lang="yue">Zebra 掃描器設定 — Windows 版 GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Cantonese/GaiaDesktop-Samples-Cantonese.html" lang="yue">範例</a></td>
+          <td><a href="docs/i18n/Cantonese/GaiaDesktop-Zebra-Scanner-Windows-Cantonese.md" lang="yue">Zebra 掃描器</a></td>
+          <td><a href="docs/i18n/Cantonese/GaiaDesktop-Developer-Cantonese.md" lang="yue">開發者指南</a></td>
         </tr>
         <tr>
           <th scope="row">Chinese (Simplified)</th>
           <td lang="zh-Hans">简体中文</td>
           <td><a href="docs/i18n/Chinese/GaiaDesktop-User-Chinese.md" lang="zh-Hans">用户指南</a></td>
-          <td><a href="docs/i18n/Chinese/GaiaDesktop-Zebra-Scanner-Windows-Chinese.md" lang="zh-Hans">Zebra 扫描器设置 — Windows 版 GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Chinese/GaiaDesktop-Samples-Chinese.html" lang="zh-Hans">示例</a></td>
+          <td><a href="docs/i18n/Chinese/GaiaDesktop-Zebra-Scanner-Windows-Chinese.md" lang="zh-Hans">Zebra 扫描器</a></td>
+          <td><a href="docs/i18n/Chinese/GaiaDesktop-Developer-Chinese.md" lang="zh-Hans">开发者指南</a></td>
         </tr>
         <tr>
           <th scope="row">Czech</th>
           <td lang="cs">Čeština</td>
           <td><a href="docs/i18n/Czech/GaiaDesktop-User-Czech.md" lang="cs">Uživatelská příručka</a></td>
-          <td><a href="docs/i18n/Czech/GaiaDesktop-Zebra-Scanner-Windows-Czech.md" lang="cs">Nastavení skeneru Zebra — GAIA Desktop pro Windows</a></td>
+          <td><a href="docs/i18n/Czech/GaiaDesktop-Samples-Czech.html" lang="cs">Ukázky</a></td>
+          <td><a href="docs/i18n/Czech/GaiaDesktop-Zebra-Scanner-Windows-Czech.md" lang="cs">Skener Zebra</a></td>
+          <td><a href="docs/i18n/Czech/GaiaDesktop-Developer-Czech.md" lang="cs">Příručka pro vývojáře</a></td>
         </tr>
         <tr>
           <th scope="row">Dutch</th>
           <td lang="nl">Nederlands</td>
           <td><a href="docs/i18n/Dutch/GaiaDesktop-User-Dutch.md" lang="nl">Gebruikershandleiding</a></td>
-          <td><a href="docs/i18n/Dutch/GaiaDesktop-Zebra-Scanner-Windows-Dutch.md" lang="nl">Een Zebra-scanner instellen — GAIA Desktop voor Windows</a></td>
+          <td><a href="docs/i18n/Dutch/GaiaDesktop-Samples-Dutch.html" lang="nl">Voorbeelden</a></td>
+          <td><a href="docs/i18n/Dutch/GaiaDesktop-Zebra-Scanner-Windows-Dutch.md" lang="nl">Zebra-scanner</a></td>
+          <td><a href="docs/i18n/Dutch/GaiaDesktop-Developer-Dutch.md" lang="nl">Ontwikkelaarshandleiding</a></td>
         </tr>
         <tr>
           <th scope="row">Egyptian Arabic</th>
           <td lang="arz" dir="rtl">مصري</td>
           <td><a href="docs/i18n/EgyptianArabic/GaiaDesktop-User-EgyptianArabic.md" lang="arz" dir="rtl">دليل المستخدم</a></td>
-          <td><a href="docs/i18n/EgyptianArabic/GaiaDesktop-Zebra-Scanner-Windows-EgyptianArabic.md" lang="arz" dir="rtl">إعداد ماسح Zebra — GAIA Desktop على Windows</a></td>
+          <td><a href="docs/i18n/EgyptianArabic/GaiaDesktop-Samples-EgyptianArabic.html" lang="arz" dir="rtl">نماذج</a></td>
+          <td><a href="docs/i18n/EgyptianArabic/GaiaDesktop-Zebra-Scanner-Windows-EgyptianArabic.md" lang="arz" dir="rtl">ماسح Zebra</a></td>
+          <td><a href="docs/i18n/EgyptianArabic/GaiaDesktop-Developer-EgyptianArabic.md" lang="arz" dir="rtl">دليل المطوّر</a></td>
         </tr>
         <tr>
           <th scope="row">French</th>
           <td lang="fr">Français</td>
           <td><a href="docs/i18n/French/GaiaDesktop-User-French.md" lang="fr">Guide de l&#x27;utilisateur</a></td>
-          <td><a href="docs/i18n/French/GaiaDesktop-Zebra-Scanner-Windows-French.md" lang="fr">Configuration d&#x27;un lecteur Zebra — GAIA Desktop pour Windows</a></td>
+          <td><a href="docs/i18n/French/GaiaDesktop-Samples-French.html" lang="fr">Exemples</a></td>
+          <td><a href="docs/i18n/French/GaiaDesktop-Zebra-Scanner-Windows-French.md" lang="fr">Lecteur Zebra</a></td>
+          <td><a href="docs/i18n/French/GaiaDesktop-Developer-French.md" lang="fr">Guide du développeur</a></td>
         </tr>
         <tr>
           <th scope="row">German</th>
           <td lang="de">Deutsch</td>
           <td><a href="docs/i18n/German/GaiaDesktop-User-German.md" lang="de">Benutzerhandbuch</a></td>
-          <td><a href="docs/i18n/German/GaiaDesktop-Zebra-Scanner-Windows-German.md" lang="de">Einrichtung eines Zebra-Scanners — GAIA Desktop für Windows</a></td>
+          <td><a href="docs/i18n/German/GaiaDesktop-Samples-German.html" lang="de">Beispiele</a></td>
+          <td><a href="docs/i18n/German/GaiaDesktop-Zebra-Scanner-Windows-German.md" lang="de">Zebra-Scanner</a></td>
+          <td><a href="docs/i18n/German/GaiaDesktop-Developer-German.md" lang="de">Entwicklerhandbuch</a></td>
         </tr>
         <tr>
           <th scope="row">Hausa</th>
           <td lang="ha">Hausa</td>
           <td><a href="docs/i18n/Hausa/GaiaDesktop-User-Hausa.md" lang="ha">Jagorar mai amfani</a></td>
-          <td><a href="docs/i18n/Hausa/GaiaDesktop-Zebra-Scanner-Windows-Hausa.md" lang="ha">Saitin sikanan Zebra — GAIA Desktop don Windows</a></td>
+          <td><a href="docs/i18n/Hausa/GaiaDesktop-Samples-Hausa.html" lang="ha">Misalai</a></td>
+          <td><a href="docs/i18n/Hausa/GaiaDesktop-Zebra-Scanner-Windows-Hausa.md" lang="ha">Sikanan Zebra</a></td>
+          <td><a href="docs/i18n/Hausa/GaiaDesktop-Developer-Hausa.md" lang="ha">Jagorar mai haɓakawa</a></td>
         </tr>
         <tr>
           <th scope="row">Hindi</th>
           <td lang="hi">हिन्दी</td>
           <td><a href="docs/i18n/Hindi/GaiaDesktop-User-Hindi.md" lang="hi">उपयोगकर्ता मार्गदर्शिका</a></td>
-          <td><a href="docs/i18n/Hindi/GaiaDesktop-Zebra-Scanner-Windows-Hindi.md" lang="hi">Zebra स्कैनर सेटअप — Windows के लिए GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Hindi/GaiaDesktop-Samples-Hindi.html" lang="hi">नमूने</a></td>
+          <td><a href="docs/i18n/Hindi/GaiaDesktop-Zebra-Scanner-Windows-Hindi.md" lang="hi">Zebra स्कैनर</a></td>
+          <td><a href="docs/i18n/Hindi/GaiaDesktop-Developer-Hindi.md" lang="hi">डेवलपर मार्गदर्शिका</a></td>
         </tr>
         <tr>
           <th scope="row">Indonesian</th>
           <td lang="id">Bahasa Indonesia</td>
           <td><a href="docs/i18n/Indonesian/GaiaDesktop-User-Indonesian.md" lang="id">Panduan Pengguna</a></td>
-          <td><a href="docs/i18n/Indonesian/GaiaDesktop-Zebra-Scanner-Windows-Indonesian.md" lang="id">Penyiapan pemindai Zebra — GAIA Desktop untuk Windows</a></td>
+          <td><a href="docs/i18n/Indonesian/GaiaDesktop-Samples-Indonesian.html" lang="id">Contoh</a></td>
+          <td><a href="docs/i18n/Indonesian/GaiaDesktop-Zebra-Scanner-Windows-Indonesian.md" lang="id">Pemindai Zebra</a></td>
+          <td><a href="docs/i18n/Indonesian/GaiaDesktop-Developer-Indonesian.md" lang="id">Panduan Pengembang</a></td>
         </tr>
         <tr>
           <th scope="row">Italian</th>
           <td lang="it">Italiano</td>
           <td><a href="docs/i18n/Italian/GaiaDesktop-User-Italian.md" lang="it">Guida dell&#x27;utente</a></td>
-          <td><a href="docs/i18n/Italian/GaiaDesktop-Zebra-Scanner-Windows-Italian.md" lang="it">Configurazione di un lettore Zebra — GAIA Desktop per Windows</a></td>
+          <td><a href="docs/i18n/Italian/GaiaDesktop-Samples-Italian.html" lang="it">Esempi</a></td>
+          <td><a href="docs/i18n/Italian/GaiaDesktop-Zebra-Scanner-Windows-Italian.md" lang="it">Lettore Zebra</a></td>
+          <td><a href="docs/i18n/Italian/GaiaDesktop-Developer-Italian.md" lang="it">Guida per sviluppatori</a></td>
         </tr>
         <tr>
           <th scope="row">Japanese</th>
           <td lang="ja">日本語</td>
           <td><a href="docs/i18n/Japanese/GaiaDesktop-User-Japanese.md" lang="ja">ユーザーガイド</a></td>
-          <td><a href="docs/i18n/Japanese/GaiaDesktop-Zebra-Scanner-Windows-Japanese.md" lang="ja">Zebra スキャナーのセットアップ — Windows 版 GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Japanese/GaiaDesktop-Samples-Japanese.html" lang="ja">サンプル</a></td>
+          <td><a href="docs/i18n/Japanese/GaiaDesktop-Zebra-Scanner-Windows-Japanese.md" lang="ja">Zebra スキャナー</a></td>
+          <td><a href="docs/i18n/Japanese/GaiaDesktop-Developer-Japanese.md" lang="ja">開発者ガイド</a></td>
         </tr>
         <tr>
           <th scope="row">Javanese</th>
           <td lang="jv">Basa Jawa</td>
           <td><a href="docs/i18n/Javanese/GaiaDesktop-User-Javanese.md" lang="jv">Pandhuan panganggo</a></td>
-          <td><a href="docs/i18n/Javanese/GaiaDesktop-Zebra-Scanner-Windows-Javanese.md" lang="jv">Nyetel scanner Zebra — GAIA Desktop kanggo Windows</a></td>
+          <td><a href="docs/i18n/Javanese/GaiaDesktop-Samples-Javanese.html" lang="jv">Conto</a></td>
+          <td><a href="docs/i18n/Javanese/GaiaDesktop-Zebra-Scanner-Windows-Javanese.md" lang="jv">Scanner Zebra</a></td>
+          <td><a href="docs/i18n/Javanese/GaiaDesktop-Developer-Javanese.md" lang="jv">Pandhuan pangembang</a></td>
         </tr>
         <tr>
           <th scope="row">Korean</th>
           <td lang="ko">한국어</td>
           <td><a href="docs/i18n/Korean/GaiaDesktop-User-Korean.md" lang="ko">사용자 안내서</a></td>
-          <td><a href="docs/i18n/Korean/GaiaDesktop-Zebra-Scanner-Windows-Korean.md" lang="ko">Zebra 스캐너 설정 — Windows용 GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Korean/GaiaDesktop-Samples-Korean.html" lang="ko">샘플</a></td>
+          <td><a href="docs/i18n/Korean/GaiaDesktop-Zebra-Scanner-Windows-Korean.md" lang="ko">Zebra 스캐너</a></td>
+          <td><a href="docs/i18n/Korean/GaiaDesktop-Developer-Korean.md" lang="ko">개발자 가이드</a></td>
         </tr>
         <tr>
           <th scope="row">Marathi</th>
           <td lang="mr">मराठी</td>
           <td><a href="docs/i18n/Marathi/GaiaDesktop-User-Marathi.md" lang="mr">वापरकर्ता मार्गदर्शिका</a></td>
-          <td><a href="docs/i18n/Marathi/GaiaDesktop-Zebra-Scanner-Windows-Marathi.md" lang="mr">Zebra स्कॅनर सेटअप — Windows साठी GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Marathi/GaiaDesktop-Samples-Marathi.html" lang="mr">नमुने</a></td>
+          <td><a href="docs/i18n/Marathi/GaiaDesktop-Zebra-Scanner-Windows-Marathi.md" lang="mr">Zebra स्कॅनर</a></td>
+          <td><a href="docs/i18n/Marathi/GaiaDesktop-Developer-Marathi.md" lang="mr">विकसक मार्गदर्शिका</a></td>
         </tr>
         <tr>
           <th scope="row">Nigerian Pidgin</th>
           <td lang="pcm">Naijá</td>
           <td><a href="docs/i18n/NigerianPidgin/GaiaDesktop-User-NigerianPidgin.md" lang="pcm">Guide for di person wey dey use am</a></td>
-          <td><a href="docs/i18n/NigerianPidgin/GaiaDesktop-Zebra-Scanner-Windows-NigerianPidgin.md" lang="pcm">How to set up Zebra scanner — GAIA Desktop for Windows</a></td>
+          <td><a href="docs/i18n/NigerianPidgin/GaiaDesktop-Samples-NigerianPidgin.html" lang="pcm">Samples</a></td>
+          <td><a href="docs/i18n/NigerianPidgin/GaiaDesktop-Zebra-Scanner-Windows-NigerianPidgin.md" lang="pcm">Zebra scanner</a></td>
+          <td><a href="docs/i18n/NigerianPidgin/GaiaDesktop-Developer-NigerianPidgin.md" lang="pcm">Guide for Developer</a></td>
         </tr>
         <tr>
           <th scope="row">Persian</th>
           <td lang="fa" dir="rtl">فارسی</td>
           <td><a href="docs/i18n/Persian/GaiaDesktop-User-Persian.md" lang="fa" dir="rtl">راهنمای کاربر</a></td>
-          <td><a href="docs/i18n/Persian/GaiaDesktop-Zebra-Scanner-Windows-Persian.md" lang="fa" dir="rtl">راه‌اندازی اسکنر Zebra — GAIA Desktop برای Windows</a></td>
+          <td><a href="docs/i18n/Persian/GaiaDesktop-Samples-Persian.html" lang="fa" dir="rtl">نمونه‌ها</a></td>
+          <td><a href="docs/i18n/Persian/GaiaDesktop-Zebra-Scanner-Windows-Persian.md" lang="fa" dir="rtl">اسکنر Zebra</a></td>
+          <td><a href="docs/i18n/Persian/GaiaDesktop-Developer-Persian.md" lang="fa" dir="rtl">راهنمای توسعه‌دهنده</a></td>
         </tr>
         <tr>
           <th scope="row">Polish</th>
           <td lang="pl">Polski</td>
           <td><a href="docs/i18n/Polish/GaiaDesktop-User-Polish.md" lang="pl">Podręcznik użytkownika</a></td>
-          <td><a href="docs/i18n/Polish/GaiaDesktop-Zebra-Scanner-Windows-Polish.md" lang="pl">Konfiguracja skanera Zebra — GAIA Desktop dla Windows</a></td>
+          <td><a href="docs/i18n/Polish/GaiaDesktop-Samples-Polish.html" lang="pl">Przykłady</a></td>
+          <td><a href="docs/i18n/Polish/GaiaDesktop-Zebra-Scanner-Windows-Polish.md" lang="pl">Skaner Zebra</a></td>
+          <td><a href="docs/i18n/Polish/GaiaDesktop-Developer-Polish.md" lang="pl">Podręcznik programisty</a></td>
         </tr>
         <tr>
           <th scope="row">Portuguese</th>
           <td lang="pt">Português</td>
           <td><a href="docs/i18n/Portuguese/GaiaDesktop-User-Portuguese.md" lang="pt">Guia do utilizador</a></td>
-          <td><a href="docs/i18n/Portuguese/GaiaDesktop-Zebra-Scanner-Windows-Portuguese.md" lang="pt">Configuração de um leitor Zebra — GAIA Desktop para Windows</a></td>
+          <td><a href="docs/i18n/Portuguese/GaiaDesktop-Samples-Portuguese.html" lang="pt">Exemplos</a></td>
+          <td><a href="docs/i18n/Portuguese/GaiaDesktop-Zebra-Scanner-Windows-Portuguese.md" lang="pt">Leitor Zebra</a></td>
+          <td><a href="docs/i18n/Portuguese/GaiaDesktop-Developer-Portuguese.md" lang="pt">Guia do programador</a></td>
         </tr>
         <tr>
           <th scope="row">Punjabi</th>
           <td lang="pa">ਪੰਜਾਬੀ</td>
           <td><a href="docs/i18n/Punjabi/GaiaDesktop-User-Punjabi.md" lang="pa">ਵਰਤੋਂਕਾਰ ਗਾਈਡ</a></td>
-          <td><a href="docs/i18n/Punjabi/GaiaDesktop-Zebra-Scanner-Windows-Punjabi.md" lang="pa">Zebra ਸਕੈਨਰ ਸੈੱਟਅੱਪ — Windows ਲਈ GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Punjabi/GaiaDesktop-Samples-Punjabi.html" lang="pa">ਨਮੂਨੇ</a></td>
+          <td><a href="docs/i18n/Punjabi/GaiaDesktop-Zebra-Scanner-Windows-Punjabi.md" lang="pa">Zebra ਸਕੈਨਰ</a></td>
+          <td><a href="docs/i18n/Punjabi/GaiaDesktop-Developer-Punjabi.md" lang="pa">ਡਿਵੈਲਪਰ ਗਾਈਡ</a></td>
         </tr>
         <tr>
           <th scope="row">Russian</th>
           <td lang="ru">Русский</td>
           <td><a href="docs/i18n/Russian/GaiaDesktop-User-Russian.md" lang="ru">Руководство пользователя</a></td>
-          <td><a href="docs/i18n/Russian/GaiaDesktop-Zebra-Scanner-Windows-Russian.md" lang="ru">Настройка сканера Zebra — GAIA Desktop для Windows</a></td>
+          <td><a href="docs/i18n/Russian/GaiaDesktop-Samples-Russian.html" lang="ru">Примеры</a></td>
+          <td><a href="docs/i18n/Russian/GaiaDesktop-Zebra-Scanner-Windows-Russian.md" lang="ru">Сканер Zebra</a></td>
+          <td><a href="docs/i18n/Russian/GaiaDesktop-Developer-Russian.md" lang="ru">Руководство разработчика</a></td>
         </tr>
         <tr>
           <th scope="row">Spanish</th>
           <td lang="es">Español</td>
           <td><a href="docs/i18n/Spanish/GaiaDesktop-User-Spanish.md" lang="es">Guía del usuario</a></td>
-          <td><a href="docs/i18n/Spanish/GaiaDesktop-Zebra-Scanner-Windows-Spanish.md" lang="es">Configuración de un lector Zebra — GAIA Desktop para Windows</a></td>
+          <td><a href="docs/i18n/Spanish/GaiaDesktop-Samples-Spanish.html" lang="es">Ejemplos</a></td>
+          <td><a href="docs/i18n/Spanish/GaiaDesktop-Zebra-Scanner-Windows-Spanish.md" lang="es">Lector Zebra</a></td>
+          <td><a href="docs/i18n/Spanish/GaiaDesktop-Developer-Spanish.md" lang="es">Guía del desarrollador</a></td>
         </tr>
         <tr>
           <th scope="row">Swahili</th>
           <td lang="sw">Kiswahili</td>
           <td><a href="docs/i18n/Swahili/GaiaDesktop-User-Swahili.md" lang="sw">Mwongozo wa mtumiaji</a></td>
-          <td><a href="docs/i18n/Swahili/GaiaDesktop-Zebra-Scanner-Windows-Swahili.md" lang="sw">Kuweka skana ya Zebra — GAIA Desktop kwa Windows</a></td>
+          <td><a href="docs/i18n/Swahili/GaiaDesktop-Samples-Swahili.html" lang="sw">Mifano</a></td>
+          <td><a href="docs/i18n/Swahili/GaiaDesktop-Zebra-Scanner-Windows-Swahili.md" lang="sw">Skana ya Zebra</a></td>
+          <td><a href="docs/i18n/Swahili/GaiaDesktop-Developer-Swahili.md" lang="sw">Mwongozo wa msanidi</a></td>
         </tr>
         <tr>
           <th scope="row">Swedish</th>
           <td lang="sv">Svenska</td>
           <td><a href="docs/i18n/Swedish/GaiaDesktop-User-Swedish.md" lang="sv">Användarhandbok</a></td>
-          <td><a href="docs/i18n/Swedish/GaiaDesktop-Zebra-Scanner-Windows-Swedish.md" lang="sv">Ställa in en Zebra-skanner — GAIA Desktop för Windows</a></td>
+          <td><a href="docs/i18n/Swedish/GaiaDesktop-Samples-Swedish.html" lang="sv">Exempel</a></td>
+          <td><a href="docs/i18n/Swedish/GaiaDesktop-Zebra-Scanner-Windows-Swedish.md" lang="sv">Zebra-skanner</a></td>
+          <td><a href="docs/i18n/Swedish/GaiaDesktop-Developer-Swedish.md" lang="sv">Utvecklarhandbok</a></td>
         </tr>
         <tr>
           <th scope="row">Tagalog</th>
           <td lang="tl">Tagalog</td>
           <td><a href="docs/i18n/Tagalog/GaiaDesktop-User-Tagalog.md" lang="tl">Gabay ng gumagamit</a></td>
-          <td><a href="docs/i18n/Tagalog/GaiaDesktop-Zebra-Scanner-Windows-Tagalog.md" lang="tl">Pag-set up ng Zebra scanner — GAIA Desktop para sa Windows</a></td>
+          <td><a href="docs/i18n/Tagalog/GaiaDesktop-Samples-Tagalog.html" lang="tl">Mga sample</a></td>
+          <td><a href="docs/i18n/Tagalog/GaiaDesktop-Zebra-Scanner-Windows-Tagalog.md" lang="tl">Zebra scanner</a></td>
+          <td><a href="docs/i18n/Tagalog/GaiaDesktop-Developer-Tagalog.md" lang="tl">Gabay ng developer</a></td>
         </tr>
         <tr>
           <th scope="row">Tamil</th>
           <td lang="ta">தமிழ்</td>
           <td><a href="docs/i18n/Tamil/GaiaDesktop-User-Tamil.md" lang="ta">பயனர் வழிகாட்டி</a></td>
-          <td><a href="docs/i18n/Tamil/GaiaDesktop-Zebra-Scanner-Windows-Tamil.md" lang="ta">Zebra ஸ்கேனர் அமைப்பு — Windows-க்கான GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Tamil/GaiaDesktop-Samples-Tamil.html" lang="ta">மாதிரிகள்</a></td>
+          <td><a href="docs/i18n/Tamil/GaiaDesktop-Zebra-Scanner-Windows-Tamil.md" lang="ta">Zebra ஸ்கேனர்</a></td>
+          <td><a href="docs/i18n/Tamil/GaiaDesktop-Developer-Tamil.md" lang="ta">உருவாக்குநர் வழிகாட்டி</a></td>
         </tr>
         <tr>
           <th scope="row">Telugu</th>
           <td lang="te">తెలుగు</td>
           <td><a href="docs/i18n/Telugu/GaiaDesktop-User-Telugu.md" lang="te">వినియోగదారు మార్గదర్శిని</a></td>
-          <td><a href="docs/i18n/Telugu/GaiaDesktop-Zebra-Scanner-Windows-Telugu.md" lang="te">Zebra స్కానర్ సెటప్ — Windows కోసం GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Telugu/GaiaDesktop-Samples-Telugu.html" lang="te">నమూనాలు</a></td>
+          <td><a href="docs/i18n/Telugu/GaiaDesktop-Zebra-Scanner-Windows-Telugu.md" lang="te">Zebra స్కానర్</a></td>
+          <td><a href="docs/i18n/Telugu/GaiaDesktop-Developer-Telugu.md" lang="te">డెవలపర్ మార్గదర్శిని</a></td>
         </tr>
         <tr>
           <th scope="row">Turkish</th>
           <td lang="tr">Türkçe</td>
           <td><a href="docs/i18n/Turkish/GaiaDesktop-User-Turkish.md" lang="tr">Kullanıcı Kılavuzu</a></td>
-          <td><a href="docs/i18n/Turkish/GaiaDesktop-Zebra-Scanner-Windows-Turkish.md" lang="tr">Zebra tarayıcı kurulumu — Windows için GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Turkish/GaiaDesktop-Samples-Turkish.html" lang="tr">Örnekler</a></td>
+          <td><a href="docs/i18n/Turkish/GaiaDesktop-Zebra-Scanner-Windows-Turkish.md" lang="tr">Zebra tarayıcı</a></td>
+          <td><a href="docs/i18n/Turkish/GaiaDesktop-Developer-Turkish.md" lang="tr">Geliştirici Kılavuzu</a></td>
         </tr>
         <tr>
           <th scope="row">Ukrainian</th>
           <td lang="uk">Українська</td>
           <td><a href="docs/i18n/Ukrainian/GaiaDesktop-User-Ukrainian.md" lang="uk">Посібник користувача</a></td>
-          <td><a href="docs/i18n/Ukrainian/GaiaDesktop-Zebra-Scanner-Windows-Ukrainian.md" lang="uk">Налаштування сканера Zebra — GAIA Desktop для Windows</a></td>
+          <td><a href="docs/i18n/Ukrainian/GaiaDesktop-Samples-Ukrainian.html" lang="uk">Приклади</a></td>
+          <td><a href="docs/i18n/Ukrainian/GaiaDesktop-Zebra-Scanner-Windows-Ukrainian.md" lang="uk">Сканер Zebra</a></td>
+          <td><a href="docs/i18n/Ukrainian/GaiaDesktop-Developer-Ukrainian.md" lang="uk">Посібник розробника</a></td>
         </tr>
         <tr>
           <th scope="row">Urdu</th>
           <td lang="ur" dir="rtl">اردو</td>
           <td><a href="docs/i18n/Urdu/GaiaDesktop-User-Urdu.md" lang="ur" dir="rtl">صارف گائیڈ</a></td>
-          <td><a href="docs/i18n/Urdu/GaiaDesktop-Zebra-Scanner-Windows-Urdu.md" lang="ur" dir="rtl">Zebra اسکینر کا سیٹ اپ — Windows کے لیے GAIA Desktop</a></td>
+          <td><a href="docs/i18n/Urdu/GaiaDesktop-Samples-Urdu.html" lang="ur" dir="rtl">نمونے</a></td>
+          <td><a href="docs/i18n/Urdu/GaiaDesktop-Zebra-Scanner-Windows-Urdu.md" lang="ur" dir="rtl">Zebra اسکینر</a></td>
+          <td><a href="docs/i18n/Urdu/GaiaDesktop-Developer-Urdu.md" lang="ur" dir="rtl">ڈویلپر گائیڈ</a></td>
         </tr>
         <tr>
           <th scope="row">Vietnamese</th>
           <td lang="vi">Tiếng Việt</td>
           <td><a href="docs/i18n/Vietnamese/GaiaDesktop-User-Vietnamese.md" lang="vi">Hướng dẫn người dùng</a></td>
-          <td><a href="docs/i18n/Vietnamese/GaiaDesktop-Zebra-Scanner-Windows-Vietnamese.md" lang="vi">Thiết lập máy quét Zebra — GAIA Desktop cho Windows</a></td>
+          <td><a href="docs/i18n/Vietnamese/GaiaDesktop-Samples-Vietnamese.html" lang="vi">Mẫu</a></td>
+          <td><a href="docs/i18n/Vietnamese/GaiaDesktop-Zebra-Scanner-Windows-Vietnamese.md" lang="vi">Máy quét Zebra</a></td>
+          <td><a href="docs/i18n/Vietnamese/GaiaDesktop-Developer-Vietnamese.md" lang="vi">Hướng dẫn dành cho nhà phát triển</a></td>
         </tr>
         <tr>
           <th scope="row">Wu Chinese</th>
           <td lang="wuu">吴语</td>
           <td><a href="docs/i18n/WuChinese/GaiaDesktop-User-WuChinese.md" lang="wuu">用户指南</a></td>
-          <td><a href="docs/i18n/WuChinese/GaiaDesktop-Zebra-Scanner-Windows-WuChinese.md" lang="wuu">Zebra 扫描器设置 — Windows 版 GAIA Desktop</a></td>
+          <td><a href="docs/i18n/WuChinese/GaiaDesktop-Samples-WuChinese.html" lang="wuu">样例</a></td>
+          <td><a href="docs/i18n/WuChinese/GaiaDesktop-Zebra-Scanner-Windows-WuChinese.md" lang="wuu">Zebra 扫描器</a></td>
+          <td><a href="docs/i18n/WuChinese/GaiaDesktop-Developer-WuChinese.md" lang="wuu">开发者指南</a></td>
         </tr>
       </tbody>
     </table>

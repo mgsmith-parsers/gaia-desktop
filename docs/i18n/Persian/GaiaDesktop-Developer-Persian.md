@@ -118,7 +118,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | و | `readme.html` و `docs/` (همهٔ سکوها) | همان |
 
 هر توزیع راهنماها را هم دارد: `docs/` با حفظ چیدمانش کپی می‌شود تا پیوندهای میان راهنماها و ترجمه‌ها کار کنند، بجز
-ابزارهای ترجمه (`check-i18n.py`، `i18n-manifest.json`، `i18n-plan.md`)؛ و `readme.html` در ریشه، نمایه‌ای که به هر
+ابزارهای ترجمه (`check-i18n.py`، `i18n-manifest.json`)؛ و `readme.html` در ریشه، نمایه‌ای که به هر
 کدام پیوند می‌دهد، برگرفته از `src/main/dist/readme.html` که `@VERSION@` در آن با نسخهٔ pom جایگزین می‌شود. هر دو را
 گام antrun به نام `pick-launch-script` می‌نویسد که اول `docs/` را پاک می‌کند تا راهنمای حذف‌شده باقی نماند. پیوندهای
 readme دستی نوشته شده‌اند — راهنمایی که زیر `docs/` تغییر نام بدهد یا ترجمه‌ای که اضافه شود، در آنجا هم به سطر خودش نیاز

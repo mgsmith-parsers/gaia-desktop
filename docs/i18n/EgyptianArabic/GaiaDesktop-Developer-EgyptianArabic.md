@@ -117,7 +117,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | و | `readme.html` و`docs/` (كل المنصات) | نفس الحاجة |
 
 كل توزيعة فيها الأدلة كمان: `docs/` بيتنسخ بترتيبه زي ما هو، عشان الروابط بين الأدلة والترجمات تفضل شغالة، من غير
-أدوات الترجمة (`check-i18n.py` و`i18n-manifest.json` و`i18n-plan.md`)؛ و`readme.html` في الجذر، وده فهرس بيربط بكل
+أدوات الترجمة (`check-i18n.py` و`i18n-manifest.json`)؛ و`readme.html` في الجذر، وده فهرس بيربط بكل
 واحد منهم، جاي من `src/main/dist/readme.html` و`@VERSION@` فيه بيتغير لإصدار الـ pom. الاتنين بيكتبهم خطوة antrun
 اسمها `pick-launch-script`، وهي بتمسح `docs/` الأول عشان أي دليل اتشال ما يفضلش قاعد. روابط الـ readme مكتوبة بالإيد
 — لو غيّرت اسم دليل أو ضفت ترجمة تحت `docs/` لازم تضيف السطر بتاعها هناك كمان.

@@ -91,7 +91,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | `dist/gaia-desktop-<version>-<platform>/` 中还有 | `run.bat`（win）或 `run.sh`（其他平台） | 相同 |
 | 以及 | `readme.html` 和 `docs/`（所有平台） | 相同 |
 
-每个分发包还带有各份指南：`docs/` 按原有结构复制，使指南与译文之间的链接仍然有效，但不含翻译工具（`check-i18n.py`、`i18n-manifest.json`、`i18n-plan.md`）；以及位于根目录的 `readme.html`，它是一个链接到每份指南的索引，来自 `src/main/dist/readme.html`，其中的 `@VERSION@` 会被替换为 pom 版本。两者都由 `pick-launch-script` antrun 步骤写出，该步骤会先删除 `docs/`，以免已删除的指南残留下来。readme 中的链接是手工写的——在 `docs/` 下重命名一份指南或添加一份译文时，也需要在那里加上对应的行。
+每个分发包还带有各份指南：`docs/` 按原有结构复制，使指南与译文之间的链接仍然有效，但不含翻译工具（`check-i18n.py`、`i18n-manifest.json`）；以及位于根目录的 `readme.html`，它是一个链接到每份指南的索引，来自 `src/main/dist/readme.html`，其中的 `@VERSION@` 会被替换为 pom 版本。两者都由 `pick-launch-script` antrun 步骤写出，该步骤会先删除 `docs/`，以免已删除的指南残留下来。readme 中的链接是手工写的——在 `docs/` 下重命名一份指南或添加一份译文时，也需要在那里加上对应的行。
 
 清单的 `Class-Path` 和 `lib/` 是同一件事的两半：jar 为每个运行时依赖列出 `lib/<artifact>-<version>.jar`，而 `copy-dependencies` 正好用这些名字填充 `lib/`。这就是 `java -jar` 能够工作的原因。
 

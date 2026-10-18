@@ -18,26 +18,33 @@ How to use the application. For building it, changing it, or adding a language, 
    - [What the editor refuses](#what-the-editor-refuses)
    - [Element string or Digital Link](#element-string-or-digital-link)
    - [Editing an existing capture](#editing-an-existing-capture)
-6. [The report](#the-report)
+6. [Combine mode](#combine-mode)
+   - [The Combine strip](#the-combine-strip)
+   - [What Combine refuses](#what-combine-refuses)
+   - [Duplicates and conflicts](#duplicates-and-conflicts)
+   - [The Combine report](#the-combine-report)
+7. [The report](#the-report)
    - [Exporting](#exporting)
-7. [Parser options](#parser-options)
+8. [Parser options](#parser-options)
    - [First launch](#first-launch)
-8. [Languages](#languages)
-9. [What is remembered](#what-is-remembered)
-10. [Keyboard shortcuts](#keyboard-shortcuts)
-11. [Troubleshooting](#troubleshooting)
-12. [Limits](#limits)
+9. [Languages](#languages)
+10. [What is remembered](#what-is-remembered)
+11. [Keyboard shortcuts](#keyboard-shortcuts)
+12. [Troubleshooting](#troubleshooting)
+13. [Limits](#limits)
 
 ---
 
 ## What it is
 
-GAIA Desktop does two things with GS1 data:
+GAIA Desktop does three things with GS1 data:
 
 - **Parse** — type, paste, open, or scan a GS1 element string or Digital Link URI and read the
   result as a full report: what each Application Identifier means, what is wrong with it, and
   why;
-- **Build** — assemble AI / value pairs into an element string or a Digital Link URI.
+- **Build** — assemble AI / value pairs into an element string or a Digital Link URI;
+- **Combine** — join up to three GS1-128 barcodes from one label into the single element string
+  a GS1 DataMatrix would carry, check it as a whole, and draw the symbol.
 
 Everything it knows about GS1 — every AI definition, validation rule, error message and
 localized description — comes from the GAIA engine underneath it. The app adds no rules of its
@@ -82,7 +89,7 @@ version. That is the line to quote in a bug report.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -98,7 +105,8 @@ the toolbar, no Scanner menu, no `scanner: off` in the status bar. See [Scanning
 
 The **Parse ⇄ Build** switch changes only the strip under the toolbar and the capture-side
 controls. The history, the report, the options panel and the export actions serve both modes,
-because a successful build simply becomes another capture.
+because a successful build simply becomes another capture. **Combine** is laid out differently:
+see [Combine mode](#combine-mode).
 
 The options panel is **closed on a first launch**. The mode, the panel's visibility, the theme
 and the last scanner device are all remembered between runs.
@@ -152,7 +160,8 @@ the parser exactly as the scanner sent them.
 
 The scanner controls are hidden in Build mode, but a connected scanner keeps working:
 *Scanner → Connect/disconnect* (<kbd>⌘K</kbd>) still toggles it, the status bar still reports
-it, and a scan arriving while the builder is open is still captured.
+it, and a scan arriving while the builder is open is still captured. In Combine mode the
+controls stay, and each scan is added to the combination instead of the history.
 
 Setting up a scanner for the first time — the Zebra Scanner SDK, the scanner's USB mode, and the
 GS1 settings — is covered step by step in the
@@ -236,6 +245,117 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Right-click a capture → **Build** loads its AIs into the editor. Change a value, rebuild, and
 the result lands as a new capture — the original is left untouched.
+
+---
+
+## Combine mode
+
+Older labels often spread their data over **several GS1-128 barcodes** — the GTIN in one, the
+expiry date and batch in another — because a single linear barcode cannot hold it all. Combine
+takes up to **three** of those barcodes, joins them into the one element string a **GS1
+DataMatrix** would carry, and checks the result as a whole. Once it is valid, the app draws the
+DataMatrix symbol.
+
+None of those barcodes needs to be complete on its own. A batch number without its GTIN fails
+on its own with `GE-S005`, but that is normal for one barcode of a set, so Combine checks it
+against the combination instead.
+
+### The Combine strip
+
+Switching to **Combine** replaces the input bar with a strip along the bottom of the window.
+The capture history steps aside, because Combine scans are not captures and never enter it. The
+report area shows the Combine report instead:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+There are two ways to bring in a barcode:
+
+- **Scan it.** On Windows the scanner controls stay in the toolbar in Combine mode, and each
+  scan goes straight into the combination rather than the history.
+- **Type or paste it** into the *Barcode* field and press <kbd>Enter</kbd> or **Add**. Write
+  FNC1 as **`{GS}`**, as in the input bar. A barcode typed without an AIM Code ID is taken as
+  GS1-128.
+
+| Button | Does |
+|---|---|
+| **Add** | Adds the barcode in the field |
+| **Remove Last** | Drops the most recent barcode (unavailable when there are none) |
+| **Reset** | Drops every barcode, clears the field and any refusal, and starts again |
+
+The status bar always says how many barcodes are held (*2 of 3 GS1-128 barcodes*), or why the
+last one was refused.
+
+### What Combine refuses
+
+A refused barcode is not added. The report and the status bar both say why:
+
+| Barcode | Refused because |
+|---|---|
+| An empty field | There is nothing to add |
+| A fourth barcode | Three is the most a label is combined from. Remove the last one, or reset |
+| Another symbology, by its AIM Code ID | Only GS1-128 is combined, so a GS1 DataMatrix (`]d2`) or a QR Code is refused, with its name |
+| AIs that cannot be read | A syntax error; the engine's error code and message are shown |
+| No AIs at all | There is nothing to combine |
+| One already scanned | The same element string twice, for example the same barcode scanned again; the report says which earlier barcode it repeats |
+
+Combine refuses only what it cannot use at all. Everything else (a wrong check digit, a bad
+date, a missing companion AI) is accepted and judged on the combination.
+
+### Duplicates and conflicts
+
+The AIs are combined in the order they were scanned. When two barcodes carry the same AI:
+
+- **with the same value**, it is kept once and listed under *Duplicates — kept once*, with the
+  barcodes it was read in;
+- **with different values**, it is a **conflict**. The verdict reads *CONFLICT*, the clashing
+  values are listed barcode by barcode, and **nothing is combined** until it is resolved.
+  Remove the barcode at fault, or reset.
+
+### The Combine report
+
+Top to bottom:
+
+1. **The verdict**: *no scans*, *CONFLICT*, valid or invalid, and how many barcodes are held.
+2. **The scans**: each barcode as it arrived, its symbology, and the element string left once
+   the AIM Code ID is stripped. A problem that only the combination can settle is shown on the
+   barcode, marked *judged on the combination*.
+3. **Duplicates** and **conflicts**, when there are any.
+4. **Combined**: the element string, its HRI and its length, then the combined input as a
+   labelled tape and one card per AI, both laid out as in the [parse report](#the-report). Every
+   error and warning on the combination is then listed under *Validation*.
+5. **The GS1 DataMatrix symbol**, with its HRI beneath. It is drawn only when the combination
+   is valid. Otherwise the report says why it was not drawn, so an invalid symbol cannot be
+   printed by mistake.
+
+For example, a label with two barcodes:
+
+| Barcode | Carries | On its own |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | valid |
+| `]C11726123110LOT-ABC` | (17) expiry date, (10) batch | `GE-S005` for both AIs, judged on the combination |
+
+These combine into `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, which is valid, so the symbol is drawn. AI `17` is
+fixed-length, so no FNC1 is needed after it. Combine inserts one wherever the standard requires
+it.
+
+**Save report** exports the Combine report as HTML or PDF, the same way as a parse report (see
+[Exporting](#exporting)), as soon as one barcode is held. The HTML file name starts
+`gaia-combine-`.
+
+The report follows the chosen language and theme. Changing a parser option or the language
+re-checks the barcodes already held. They also survive a switch to Parse or Build and back, but
+not a restart: Combine barcodes are not saved.
 
 ---
 
@@ -351,6 +471,8 @@ The history stores the input, not the analysis. It is re-parsed when it loads, w
 restored capture reflects the options in force **now**, not the ones in force when it was
 captured.
 
+The barcodes held in Combine mode are not saved: a restart starts Combine empty.
+
 ---
 
 ## Keyboard shortcuts
@@ -368,6 +490,9 @@ captured.
 
 In the builder: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> move between editable cells,
 <kbd>Enter</kbd> commits, <kbd>Escape</kbd> cancels.
+
+In Combine mode: <kbd>Enter</kbd> in the *Barcode* field adds the barcode. There, type FNC1 as
+`{GS}`; <kbd>⌘G</kbd> belongs to the Parse input bar.
 
 ---
 
@@ -392,3 +517,4 @@ In the builder: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> move between ed
 - **Digital Link targets accept a domain and path prefix**, not extra query parameters or a
   fragment.
 - **An AI may appear only once** in an element string — that is the GS1 rule, not an app limit.
+- **Combine takes GS1-128 barcodes only, three at most**, and does not keep them between runs.

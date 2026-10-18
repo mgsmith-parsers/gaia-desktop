@@ -120,7 +120,7 @@ ngaku-aku.
 | Lan | `readme.html` lan `docs/` (saben platform) | padha |
 
 Saben distribusi uga nggawa pandhuan: `docs/` disalin kanthi tata letake tetep, mula pranala antarane pandhuan lan
-terjemahan isih mlaku, kajaba piranti terjemahan (`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`); lan
+terjemahan isih mlaku, kajaba piranti terjemahan (`check-i18n.py`, `i18n-manifest.json`); lan
 `readme.html` ing oyod, indeks sing nyambung menyang saben pandhuan, saka `src/main/dist/readme.html` kanthi `@VERSION@`
 diganti versi pom. Kekarone ditulis dening langkah antrun `pick-launch-script`, sing mbusak `docs/` dhisik supaya
 pandhuan sing wis dibusak ora keri. Pranala readme ditulis tangan — pandhuan sing diganti jenenge utawa terjemahan sing

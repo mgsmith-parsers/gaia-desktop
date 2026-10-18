@@ -19,27 +19,34 @@ Uygulamanın nasıl kullanılacağını anlatır. Derleme, değiştirme ve dil e
    - [Düzenleyicinin kabul etmedikleri](#düzenleyicinin-kabul-etmedikleri)
    - [Öğe dizesi mi, Digital Link mi](#öğe-dizesi-mi-digital-link-mi)
    - [Var olan bir yakalamayı düzenleme](#var-olan-bir-yakalamayı-düzenleme)
-6. [Rapor](#rapor)
+6. [Birleştir kipi](#birleştir-kipi)
+   - [Birleştir şeridi](#birleştir-şeridi)
+   - [Birleştir'in kabul etmedikleri](#birleştirin-kabul-etmedikleri)
+   - [Yinelenenler ve çelişkiler](#yinelenenler-ve-çelişkiler)
+   - [Birleşim raporu](#birleşim-raporu)
+7. [Rapor](#rapor)
    - [Dışa aktarma](#dışa-aktarma)
-7. [Çözümleme seçenekleri](#çözümleme-seçenekleri)
+8. [Çözümleme seçenekleri](#çözümleme-seçenekleri)
    - [Programın ilk açılışı](#programın-ilk-açılışı)
-8. [Diller](#diller)
-9. [Neler hatırlanır](#neler-hatırlanır)
-10. [Klavye kısayolları](#klavye-kısayolları)
-11. [Sorun giderme](#sorun-giderme)
-12. [Sınırlar](#sınırlar)
+9. [Diller](#diller)
+10. [Neler hatırlanır](#neler-hatırlanır)
+11. [Klavye kısayolları](#klavye-kısayolları)
+12. [Sorun giderme](#sorun-giderme)
+13. [Sınırlar](#sınırlar)
 
 ---
 
 ## Nedir
 
-GAIA Desktop, GS1 verileriyle iki iş yapar:
+GAIA Desktop, GS1 verileriyle üç iş yapar:
 
 - **Çözümleme** — bir GS1 öğe dizesini ya da Digital Link URI'sini yazın, yapıştırın, açın veya
   tarayın; sonucu eksiksiz bir rapor olarak okuyun: her uygulama tanımlayıcısının (AI) ne
   anlama geldiğini, neyin yanlış olduğunu ve nedenini;
 - **Oluşturma** — AI / değer çiftlerini bir öğe dizesine ya da Digital Link URI'sine
-  dönüştürme.
+  dönüştürme;
+- **Birleştir** — bir etiketteki en fazla üç GS1-128 barkodunu, bir GS1 DataMatrix'in
+  taşıyacağı tek öğe dizesinde birleştirir, bunu bir bütün olarak denetler ve sembolü çizer.
 
 Uygulamanın GS1 hakkında bildiği her şey — her AI tanımı, her doğrulama kuralı, her hata iletisi
 ve yerelleştirilmiş her açıklama — altındaki GAIA motorundan gelir. Uygulama kendi kurallarını
@@ -85,7 +92,7 @@ yazar. Hata bildiriminde alıntılanacak satır budur.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -97,7 +104,7 @@ yazar. Hata bildiriminde alıntılanacak satır budur.
 ```
 
 > Şema, bu belgedeki tüm kod blokları gibi İngilizce etiketleri korur. Ekranda *Çözümle* /
-> *Oluştur*, *Yakalamalar*, *Raporu kaydet*, *Seçenekler*, *tarayıcı: kapalı* ve *Hakkında*
+> *Oluştur* / *Birleştir*, *Yakalamalar*, *Raporu kaydet*, *Seçenekler*, *tarayıcı: kapalı* ve *Hakkında*
 > göreceksiniz.
 
 **macOS ve Linux'ta şemadaki tarayıcı satırı yoktur** — araç çubuğunda ne düğme ne aygıt seçimi,
@@ -105,10 +112,18 @@ yazar. Hata bildiriminde alıntılanacak satır budur.
 
 **Çözümle ⇄ Oluştur** anahtarı yalnızca araç çubuğunun altındaki şeridi ve yakalama ile ilgili
 denetimleri değiştirir. Geçmiş, rapor, seçenekler paneli ve dışa aktarma eylemleri her iki kipe
-de hizmet eder; çünkü başarılı bir oluşturma yalnızca bir yakalama daha demektir.
+de hizmet eder; çünkü başarılı bir oluşturma yalnızca bir yakalama daha demektir. **Birleştir** kipinin düzeni farklıdır: bkz. [Birleştir kipi](#birleştir-kipi).
 
 Seçenekler paneli **ilk açılışta kapalıdır**. Kip, panelin görünürlüğü, tema ve son kullanılan
 tarayıcı çalıştırmalar arasında hatırlanır.
+
+**Yeni sürümler.** Uygulama açıldıktan birkaç saniye sonra, günde en fazla bir kez, GitHub'a
+daha yeni bir GAIA Desktop yayımlanıp yayımlanmadığını sorar. Yayımlanmışsa durum çubuğunda bir
+bağlantı belirir — *GAIA Desktop 1.1.0 kullanıma sunuldu* — ve sürüm sayfasını tarayıcınızda açar; sizin
+yerinize hiçbir şey indirilmez ya da kurulmaz. *Bu sürümü atla*, bildirimi daha sonraki bir
+sürüme kadar gizler. Yeni bir şey olmadığında ya da GitHub'a ulaşılamadığında denetim sessiz
+kalır. *Yardım → Güncellemeleri denetle…* hemen denetler ve ne bulduğunu söyler;
+*Yardım → Güncellemeleri otomatik denetle* günlük denetimi kapatır ve yeniden açar.
 
 ---
 
@@ -151,9 +166,11 @@ gönderdiği biçimde çözümleyiciye ulaşır.
 
 Oluştur kipinde tarayıcı denetimleri gizlenir, ancak bağlı bir tarayıcı çalışmayı sürdürür:
 *Tarayıcı → Bağla / Bağlantıyı kes* (<kbd>⌘K</kbd>) hâlâ onu değiştirir, durum çubuğu hâlâ
-bildirir ve düzenleyici açıkken gelen bir tarama yine yakalanır.
+bildirir ve düzenleyici açıkken gelen bir tarama yine yakalanır. Birleştir kipinde denetimler yerinde kalır ve her tarama geçmişe değil birleşime eklenir.
 
-Bir aygıt bağlanmıyorsa [Sorun giderme](#sorun-giderme) bölümüne bakın.
+Bir tarayıcının ilk kurulumu — Zebra Scanner SDK, tarayıcının USB kipi ve GS1 ayarları — her
+zip'te `docs/` altında gelen [Zebra tarayıcı kurulum kılavuzunda](GaiaDesktop-Zebra-Scanner-Windows-Turkish.md) adım adım
+anlatılır. Bir aygıt bağlanmıyorsa [Sorun giderme](#sorun-giderme) bölümüne bakın.
 
 ### Dosya açma
 
@@ -233,6 +250,120 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 Bir yakalamaya sağ tıklayıp → **Oluştur** dediğinizde AI'leri düzenleyiciye yüklenir. Bir değeri
 değiştirip yeniden oluşturun; sonuç yeni bir yakalama olarak gelir — özgün olan olduğu gibi
 kalır.
+
+---
+
+## Birleştir kipi
+
+Eski etiketler verilerini çoğu zaman **birkaç GS1-128 barkoduna** dağıtır — GTIN birinde, son
+kullanma tarihi ve parti bir başkasında — çünkü tek bir doğrusal barkod hepsini taşıyamaz.
+Birleştir, bu barkodlardan en fazla **üçünü** alır, bunları bir **GS1 DataMatrix**'in
+taşıyacağı tek öğe dizesinde birleştirir ve sonucu bir bütün olarak denetler. Sonuç geçerli
+olduğunda uygulama DataMatrix sembolünü çizer.
+
+Bu barkodların hiçbirinin tek başına eksiksiz olması gerekmez. GTIN'i olmayan bir parti numarası
+tek başına `GE-S005` ile başarısız olur, ama bu bir takımdaki tek barkod için olağandır; bu yüzden
+Birleştir onu birleşim üzerinden denetler.
+
+### Birleştir şeridi
+
+**Birleştir** kipine geçmek, girdi çubuğunun yerine pencerenin alt kenarı boyunca bir
+şerit koyar. Yakalama geçmişi kenara çekilir, çünkü Birleştir taramaları yakalama değildir
+ve geçmişe hiç girmez. Rapor alanında bunun yerine birleşim raporu görünür:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Bir barkod iki yoldan girilebilir:
+
+- **Taratarak.** Windows'ta tarayıcı denetimleri Birleştir kipinde araç çubuğunda kalır ve
+  her tarama geçmişe değil doğrudan birleşime gider.
+- **Yazarak ya da yapıştırarak**: *Barkod* alanına girip <kbd>Enter</kbd>'a
+  ya da **Ekle** düğmesine basın. FNC1'i girdi çubuğunda olduğu gibi **`{GS}`** olarak
+  yazın. AIM Code ID olmadan yazılan bir barkod GS1-128 kabul edilir.
+
+| Düğme | Ne yapar |
+|---|---|
+| **Ekle** | Alandaki barkodu ekler |
+| **Sonuncuyu kaldır** | En son barkodu kaldırır (hiç barkod yokken kullanılamaz) |
+| **Sıfırla** | Tüm barkodları kaldırır, alanı ve varsa reddi temizler, baştan başlar |
+
+Durum çubuğu her zaman kaç barkod tutulduğunu (*3 GS1-128 barkodundan 2*) ya da sonuncunun neden
+reddedildiğini söyler.
+
+### Birleştir'in kabul etmedikleri
+
+Reddedilen bir barkod eklenmez. Rapor da durum çubuğu da nedenini söyler:
+
+| Barkod | Reddedilme nedeni |
+|---|---|
+| Boş bir alan | Eklenecek bir şey yoktur |
+| Dördüncü bir barkod | Bir etiket en fazla üç barkoddan birleştirilir. Sonuncuyu kaldırın ya da sıfırlayın |
+| AIM Code ID'sine göre başka bir simgebilim | Yalnızca GS1-128 birleştirilir; bu yüzden bir GS1 DataMatrix (`]d2`) ya da QR Code adıyla birlikte reddedilir |
+| Okunamayan AI'lar | Bir sözdizimi hatası; motorun hata kodu ve iletisi gösterilir |
+| Hiç AI yok | Birleştirilecek bir şey yoktur |
+| Daha önce taranmış olan | Aynı öğe dizesi iki kez, örneğin aynı barkodun yeniden taranması; rapor hangi önceki barkodu yinelediğini söyler |
+
+Birleştir yalnızca hiç kullanamayacağı şeyi reddeder. Geri kalan her şey (yanlış bir
+denetim basamağı, hatalı bir tarih, eksik bir eşlikçi AI) kabul edilir ve birleşime göre
+değerlendirilir.
+
+### Yinelenenler ve çelişkiler
+
+AI'lar taranma sırasına göre birleştirilir. İki barkod aynı AI'yı taşıdığında:
+
+- **aynı değerle**: bir kez tutulur ve okunduğu barkodlarla birlikte *Yinelenenler — bir kez tutuldu*
+  altında listelenir;
+- **farklı değerlerle**: bu bir **çelişkidir**. Sonuç *ÇELİŞKİ* olur, çatışan
+  değerler barkod barkod listelenir ve çelişki çözülene kadar **hiçbir şey birleştirilmez**. Hatalı
+  barkodu kaldırın ya da sıfırlayın.
+
+### Birleşim raporu
+
+Yukarıdan aşağıya:
+
+1. **Sonuç**: *tarama yok*, *ÇELİŞKİ*, geçerli ya da geçersiz, ve kaç barkod
+   tutulduğu.
+2. **Taramalar**: her barkod geldiği haliyle, simgebilimi ve AIM Code ID çıkarıldıktan sonra
+   kalan öğe dizesi. Yalnızca birleşimin karara bağlayabileceği bir sorun barkodun üzerinde,
+   *birleşime göre değerlendirilir* işaretiyle gösterilir.
+3. Varsa **yinelenenler** ve **çelişkiler**.
+4. **Birleştirildi**: öğe dizesi, HRI'si ve uzunluğu; ardından birleşik girdi etiketli bir
+   şerit olarak ve AI başına bir kart, ikisi de [çözümleme raporundaki](#rapor) gibi
+   düzenlenmiş olarak. Birleşimle ilgili her hata ve uyarı ardından *Doğrulama*
+   altında listelenir.
+5. **GS1 DataMatrix sembolü**, altında HRI'siyle. Yalnızca birleşim geçerliyse çizilir. Aksi
+   halde rapor neden çizilmediğini söyler; böylece geçersiz bir sembol yanlışlıkla
+   yazdırılamaz.
+
+Örneğin iki barkodlu bir etiket:
+
+| Barkod | Taşıdığı | Tek başına |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | geçerli |
+| `]C11726123110LOT-ABC` | (17) son kullanma tarihi, (10) parti | iki AI için de `GE-S005`, birleşime göre değerlendirilir |
+
+Bunlar `01095060001343521726123110LOT-ABC` olarak birleşir, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`; bu geçerlidir, dolayısıyla sembol çizilir. AI `17`
+sabit uzunluktadır, bu yüzden ondan sonra FNC1 gerekmez. Birleştir, standardın
+gerektirdiği her yere bir tane ekler.
+
+**Raporu kaydet**, en az bir barkod tutulur tutulmaz birleşim raporunu bir çözümleme raporu
+gibi HTML ya da PDF olarak dışa aktarır (bkz. [Dışa aktarma](#dışa-aktarma)). HTML dosyasının adı
+`gaia-combine-` ile başlar.
+
+Rapor seçilen dili ve temayı izler. Bir çözümleme seçeneğini ya da dili değiştirmek, tutulan
+barkodları yeniden denetler. Barkodlar Çözümle ya da Oluştur kipine geçip geri
+dönmeye de dayanır, ama yeniden başlatmaya dayanmaz: Birleştir barkodları kaydedilmez.
 
 ---
 
@@ -334,7 +465,7 @@ Ev dizininizdeki `.gaia-desktop` içinde iki dosya:
 
 | Dosya | İçeriği |
 |---|---|
-| `options.properties` | Tüm çözümleme seçenekleri, tema, seçenekler panelinin açık olup olmadığı, son kullanılan tarayıcı ve pencerenin bırakıldığı kip |
+| `options.properties` | Tüm çözümleme seçenekleri, tema, seçenekler panelinin açık olup olmadığı, son kullanılan tarayıcı, pencerenin bırakıldığı kip ve güncelleme denetiminin ayarları — açık mı kapalı mı, en son ne zaman çalıştığı ve atlamayı seçtiğiniz sürüm |
 | `captures.tsv` | Yakalama geçmişi, en yeniler üstte, en çok 500 kayıt |
 
 Seçenekler her değiştirdiğinizde, geçmiş her değiştiğinde yazılır. İkisi de çıkışta yeniden
@@ -347,6 +478,9 @@ yalnızca o satır kadar zarar verir.
 
 Geçmiş, çözümlemeyi değil girdiyi saklar. Yüklenirken yeniden çözümlenir; yani geri yüklenen bir
 yakalama, yakalandığı andaki değil **şu anda** geçerli olan seçenekleri yansıtır.
+
+Birleştir kipinde tutulan barkodlar kaydedilmez: yeniden başlatmadan sonra
+Birleştir boş başlar.
 
 ---
 
@@ -366,6 +500,9 @@ yakalama, yakalandığı andaki değil **şu anda** geçerli olan seçenekleri y
 Düzenleyicide: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> değiştirilebilir hücreler
 arasında gezinir, <kbd>Enter</kbd> onaylar, <kbd>Esc</kbd> vazgeçer.
 
+Birleştir kipinde: *Barkod* alanında <kbd>Enter</kbd> barkodu ekler.
+Orada FNC1'i `{GS}` olarak yazın; <kbd>⌘G</kbd>, Çözümle kipinin girdi çubuğuna aittir.
+
 ---
 
 ## Sorun giderme
@@ -376,7 +513,7 @@ arasında gezinir, <kbd>Enter</kbd> onaylar, <kbd>Esc</kbd> vazgeçer.
 | Açılışta konsolda *"Unsupported JavaFX configuration…"* | Beklenen ve zararsız — araç takımı yalnızca nasıl yüklendiğini bildiriyor. Uygulama normal çalışır |
 | Yapıştırdığınız ayırıcı yok oluyor gibi | Beklenen davranış: görünür `{GS}` belirtecine dönüştürülür, çözümleyici yine gerçek karakteri alır. Bkz. [{GS} belirteci](#girdi-çubuğu-ve-gs-belirteci) |
 | *Tarayıcıyı bağla* düğmesi yok | macOS ya da Linux kullanıyorsunuz; oralarda tarayıcı sürücüleri yok. Bkz. [Tarama](#tarama) |
-| Tarayıcı bağlanmıyor | Seçim kutusundaki mantıksal adın modelinizle eşleştiğini, tarayıcının takılı olduğunu ve başka bir uygulamanın onu tutmadığını denetleyin |
+| Tarayıcı bağlanmıyor | Seçim kutusundaki mantıksal adın modelinizle eşleştiğini, tarayıcının takılı olduğunu ve başka bir uygulamanın onu tutmadığını denetleyin. [Zebra tarayıcı kurulum kılavuzu](GaiaDesktop-Zebra-Scanner-Windows-Turkish.md#11-sorun-giderme) her hata kodunu listeler. |
 | PDF dışa aktarımı hedef olmadığını söylüyor | Makinenizde yazıcı ya da PDF hedefi tanımlı değil. Bir tane ekleyin ya da HTML olarak dışa aktarıp tarayıcıdan yazdırın |
 | Bir menü ögesi `act.hri` gibi bir şey gösteriyor | Eksik bir etiket — lütfen bildirin; bu bir ayar değil, derleme kusurudur |
 
@@ -390,3 +527,5 @@ arasında gezinir, <kbd>Enter</kbd> onaylar, <kbd>Esc</kbd> vazgeçer.
   ya da parça kabul etmez.
 - **Bir AI yalnızca bir kez** bulunabilir bir öğe dizesinde — bu, uygulamanın değil GS1'in
   kuralıdır.
+- **Birleştir yalnızca GS1-128 barkodlarını kabul eder, en fazla üç tane**, ve bunları
+  oturumlar arasında saklamaz.

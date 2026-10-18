@@ -121,7 +121,7 @@ duka biyun su mallake ta.
 | Da | `readme.html` da `docs/` (kowane dandali) | iri ɗaya |
 
 Kowane rarrabawa yana ɗauke da jagororin ma: ana kwafar `docs/` tare da tsarinsa, don hanyoyin haɗi tsakanin jagorori
-da fassarori su ci gaba da aiki, ban da kayan aikin fassara (`check-i18n.py`, `i18n-manifest.json`, `i18n-plan.md`);
+da fassarori su ci gaba da aiki, ban da kayan aikin fassara (`check-i18n.py`, `i18n-manifest.json`);
 da `readme.html` a tushe, fihirisa da ke haɗawa zuwa kowannensu, daga `src/main/dist/readme.html` inda ake maye
 `@VERSION@` da sigar pom. Matakin antrun na `pick-launch-script` ne ke rubuta su duka, kuma yana goge `docs/` da farko
 don jagorar da aka cire kar ta ci gaba da zama. An rubuta hanyoyin haɗi na readme da hannu — jagorar da aka sake wa

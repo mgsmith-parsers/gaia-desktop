@@ -19,26 +19,34 @@ Hoe u de applicatie gebruikt. Voor bouwen, wijzigen of een taal toevoegen, zie d
    - [Wat de editor weigert](#wat-de-editor-weigert)
    - [Elementreeks of Digital Link](#elementreeks-of-digital-link)
    - [Een bestaande vastlegging bewerken](#een-bestaande-vastlegging-bewerken)
-6. [Het rapport](#het-rapport)
+6. [Modus Combineren](#modus-combineren)
+   - [De strook Combineren](#de-strook-combineren)
+   - [Wat Combineren weigert](#wat-combineren-weigert)
+   - [Dubbele en conflicten](#dubbele-en-conflicten)
+   - [Het combinatierapport](#het-combinatierapport)
+7. [Het rapport](#het-rapport)
    - [Exporteren](#exporteren)
-7. [Parseeropties](#parseeropties)
+8. [Parseeropties](#parseeropties)
    - [Eerste start](#eerste-start)
-8. [Talen](#talen)
-9. [Wat er wordt onthouden](#wat-er-wordt-onthouden)
-10. [Sneltoetsen](#sneltoetsen)
-11. [Problemen oplossen](#problemen-oplossen)
-12. [Grenzen](#grenzen)
+9. [Talen](#talen)
+10. [Wat er wordt onthouden](#wat-er-wordt-onthouden)
+11. [Sneltoetsen](#sneltoetsen)
+12. [Problemen oplossen](#problemen-oplossen)
+13. [Grenzen](#grenzen)
 
 ---
 
 ## Wat het is
 
-GAIA Desktop doet twee dingen met GS1-gegevens:
+GAIA Desktop doet drie dingen met GS1-gegevens:
 
 - **Parseren** — typ, plak, open of scan een GS1-elementreeks of een Digital Link-URI en lees
   het resultaat als een volledig rapport: wat elke toepassingsidentificatie (AI) betekent, wat
   er mis is en waarom;
-- **Samenstellen** — AI-/waardeparen samenvoegen tot een elementreeks of een Digital Link-URI.
+- **Samenstellen** — AI-/waardeparen samenvoegen tot een elementreeks of een Digital Link-URI;
+- **Combineren** — tot drie GS1-128-streepjescodes van één etiket samenvoegen tot de ene
+  elementreeks die een GS1 DataMatrix zou dragen, die als geheel controleren en het symbool
+  tekenen.
 
 Alles wat de applicatie van GS1 weet — elke AI-definitie, elke validatieregel, elke foutmelding
 en elke gelokaliseerde beschrijving — komt van de GAIA-engine eronder. De applicatie voegt geen
@@ -85,7 +93,7 @@ de versie van de engine. Dat is de regel die u in een foutmelding moet citeren.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -97,7 +105,7 @@ de versie van de engine. Dat is de regel die u in een foutmelding moet citeren.
 ```
 
 > Het schema houdt de Engelse opschriften aan, net als alle codeblokken in deze documentatie. Op
-> het scherm ziet u *Parseren* / *Samenstellen*, *Vastleggingen*, *Rapport opslaan*, *Opties*,
+> het scherm ziet u *Parseren* / *Samenstellen* / *Combineren*, *Vastleggingen*, *Rapport opslaan*, *Opties*,
 > *scanner: uit* en *Over*.
 
 **Op macOS en Linux bestaat de scannerregel niet** — geen schakelaar of apparaatkeuze in de
@@ -107,10 +115,19 @@ werkbalk, geen menu *Scanner* en geen *scanner: uit* in de statusbalk. Zie
 De schakelaar **Parseren ⇄ Samenstellen** verandert alleen de strook onder de werkbalk en de
 bedieningselementen voor vastleggen. De geschiedenis, het rapport, het optiepaneel en de
 exportacties dienen beide modi, omdat een geslaagde samenstelling eenvoudigweg nog een
-vastlegging wordt.
+vastlegging wordt. De modus **Combineren** is anders ingedeeld: zie [Modus Combineren](#modus-combineren).
 
 Het optiepaneel is **bij de eerste start gesloten**. De modus, de zichtbaarheid van het paneel,
 het thema en de laatst gebruikte scanner worden tussen sessies onthouden.
+
+**Nieuwe versies.** Enkele seconden na het starten, hoogstens één keer per dag, vraagt de
+applicatie aan GitHub of er een nieuwere GAIA Desktop is uitgebracht. Zo ja, dan verschijnt er
+een koppeling in de statusbalk — *GAIA Desktop 1.1.0 is beschikbaar* — die de releasepagina in uw
+browser opent; er wordt niets voor u gedownload of geïnstalleerd. *Deze versie overslaan*
+verbergt de melding tot een latere release. De controle blijft stil als er niets nieuws is of
+als GitHub niet bereikbaar is. *Help → Controleren op updates…* controleert meteen en meldt
+wat er gevonden is; *Help → Automatisch controleren op updates* zet de dagelijkse controle uit en weer
+aan.
 
 ---
 
@@ -156,9 +173,12 @@ FNC1-scheidingsteken de parser precies zo bereiken als de scanner ze verstuurde.
 In de modus Samenstellen is de scannerbediening verborgen, maar een verbonden scanner blijft
 werken: *Scanner → Verbinden / Loskoppelen* (<kbd>⌘K</kbd>) schakelt hem nog steeds, de
 statusbalk meldt hem nog steeds, en een scan die binnenkomt terwijl de editor openstaat wordt
-gewoon vastgelegd.
+gewoon vastgelegd. In de modus Combineren blijft de bediening staan, en wordt elke scan aan de combinatie
+toegevoegd in plaats van aan de geschiedenis.
 
-Als een apparaat geen verbinding maakt, zie [Problemen oplossen](#problemen-oplossen).
+Het voor het eerst instellen van een scanner — de Zebra Scanner SDK, de USB-modus van de scanner
+en de GS1-instellingen — wordt stap voor stap beschreven in de
+[installatiehandleiding voor Zebra-scanners](GaiaDesktop-Zebra-Scanner-Windows-Dutch.md), die in elke zip onder `docs/` zit. Als een apparaat geen verbinding maakt, zie [Problemen oplossen](#problemen-oplossen).
 
 ### Een bestand openen
 
@@ -242,6 +262,125 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 Rechtermuisknop op een vastlegging → **Samenstellen** laadt haar AI's in de editor. Wijzig een
 waarde, stel opnieuw samen, en het resultaat komt binnen als een nieuwe vastlegging — de
 oorspronkelijke blijft ongemoeid.
+
+---
+
+## Modus Combineren
+
+Oudere etiketten verdelen hun gegevens vaak over **meerdere GS1-128-streepjescodes** — de GTIN in
+de ene, de houdbaarheidsdatum en de partij in een andere — omdat één lineaire streepjescode niet
+alles kan bevatten. Combineren neemt tot **drie** van die streepjescodes, voegt ze samen tot
+de ene elementreeks die een **GS1 DataMatrix** zou dragen, en controleert het resultaat als
+geheel. Zodra dat geldig is, tekent de applicatie het DataMatrix-symbool.
+
+Geen van die streepjescodes hoeft op zichzelf volledig te zijn. Een partijnummer zonder zijn GTIN
+faalt op zichzelf met `GE-S005`, maar dat is normaal voor één streepjescode uit een set, dus
+Combineren controleert het in plaats daarvan op de combinatie.
+
+### De strook Combineren
+
+Overschakelen naar **Combineren** vervangt de invoerbalk door een strook onderaan het
+venster. De vastlegginggeschiedenis gaat opzij, omdat scans in de modus Combineren geen
+vastleggingen zijn en er nooit in komen. Het rapportgebied toont in plaats daarvan het
+combinatierapport:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Een streepjescode komt op twee manieren binnen:
+
+- **Scannen.** Onder Windows blijft de scannerbediening in de modus Combineren in de
+  werkbalk staan, en gaat elke scan rechtstreeks naar de combinatie in plaats van naar de
+  geschiedenis.
+- **Typen of plakken** in het veld *Streepjescode* en op <kbd>Enter</kbd> of
+  **Toevoegen** drukken. Schrijf FNC1 als **`{GS}`**, net als in de invoerbalk. Een
+  streepjescode die zonder AIM Code ID wordt getypt, geldt als GS1-128.
+
+| Knop | Doet |
+|---|---|
+| **Toevoegen** | Voegt de streepjescode uit het veld toe |
+| **Laatste verwijderen** | Verwijdert de meest recente streepjescode (niet beschikbaar als er geen zijn) |
+| **Resetten** | Verwijdert alle streepjescodes, leegt het veld en elke weigering, en begint opnieuw |
+
+De statusbalk zegt altijd hoeveel streepjescodes er zijn (*2 van 3 GS1-128-streepjescodes*), of waarom
+de laatste is geweigerd.
+
+### Wat Combineren weigert
+
+Een geweigerde streepjescode wordt niet toegevoegd. Het rapport en de statusbalk zeggen allebei
+waarom:
+
+| Streepjescode | Geweigerd omdat |
+|---|---|
+| Een leeg veld | Er is niets om toe te voegen |
+| Een vierde streepjescode | Een etiket wordt uit hoogstens drie gecombineerd. Verwijder de laatste, of reset |
+| Een andere symbologie, volgens de AIM Code ID | Alleen GS1-128 wordt gecombineerd, dus een GS1 DataMatrix (`]d2`) of een QR Code wordt geweigerd, met de naam erbij |
+| AI's die niet te lezen zijn | Een syntaxfout; de foutcode en de melding van de engine worden getoond |
+| Helemaal geen AI's | Er is niets om te combineren |
+| Een al gescande | Dezelfde elementreeks twee keer, bijvoorbeeld dezelfde streepjescode opnieuw gescand; het rapport zegt welke eerdere streepjescode hij herhaalt |
+
+Combineren weigert alleen wat het helemaal niet kan gebruiken. Al het andere (een verkeerd
+controlecijfer, een ongeldige datum, een ontbrekende begeleidende AI) wordt aanvaard en op de
+combinatie beoordeeld.
+
+### Dubbele en conflicten
+
+De AI's worden gecombineerd in de volgorde waarin ze zijn gescand. Als twee streepjescodes
+dezelfde AI dragen:
+
+- **met dezelfde waarde**, wordt die één keer behouden en vermeld onder
+  *Dubbele — één keer behouden*, met de streepjescodes waarin hij is gelezen;
+- **met verschillende waarden**, is het een **conflict**. Het oordeel luidt
+  *CONFLICT*, de botsende waarden worden per streepjescode vermeld, en **er wordt niets
+  gecombineerd** tot het is opgelost. Verwijder de foute streepjescode, of reset.
+
+### Het combinatierapport
+
+Van boven naar beneden:
+
+1. **Het oordeel**: *geen scans*, *CONFLICT*, geldig of ongeldig, en hoeveel
+   streepjescodes er zijn.
+2. **De scans**: elke streepjescode zoals hij binnenkwam, de symbologie, en de elementreeks die
+   overblijft zodra de AIM Code ID is verwijderd. Een probleem dat alleen de combinatie kan
+   beslechten, staat bij de streepjescode, gemarkeerd met *beoordeeld op de combinatie*.
+3. **Dubbele** en **conflicten**, als die er zijn.
+4. **Gecombineerd**: de elementreeks, de HRI en de lengte, daarna de gecombineerde invoer
+   als gelabelde band en één kaart per AI, beide weergegeven zoals in het
+   [parseerrapport](#het-rapport). Elke fout en waarschuwing over de combinatie wordt daarna vermeld
+   onder *Validatie*.
+5. **Het GS1 DataMatrix-symbool**, met de HRI eronder. Het wordt alleen getekend als de
+   combinatie geldig is. Anders zegt het rapport waarom het niet is getekend, zodat een ongeldig
+   symbool niet per ongeluk kan worden afgedrukt.
+
+Bijvoorbeeld een etiket met twee streepjescodes:
+
+| Streepjescode | Bevat | Op zichzelf |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | geldig |
+| `]C11726123110LOT-ABC` | (17) houdbaarheidsdatum, (10) partij | `GE-S005` voor beide AI's, beoordeeld op de combinatie |
+
+Samen worden ze `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, wat geldig is, dus het symbool wordt getekend. AI
+`17` heeft een vaste lengte, dus daarna is geen FNC1 nodig. Combineren voegt er een in
+overal waar de standaard dat vereist.
+
+**Rapport opslaan** exporteert het combinatierapport als HTML of PDF, net als een
+parseerrapport (zie [Exporteren](#exporteren)), zodra er één streepjescode is. De naam van het
+HTML-bestand begint met `gaia-combine-`.
+
+Het rapport volgt de gekozen taal en het gekozen thema. Een gewijzigde parseeroptie of taal
+controleert de streepjescodes die er al zijn opnieuw. Ze overleven ook een wissel naar
+Parseren of Samenstellen en terug, maar geen herstart: streepjescodes in de modus
+Combineren worden niet opgeslagen.
 
 ---
 
@@ -346,7 +485,7 @@ Twee bestanden in `.gaia-desktop` in uw thuismap:
 
 | Bestand | Bevat |
 |---|---|
-| `options.properties` | Alle parseeropties, het thema, of het optiepaneel open staat, de laatst gebruikte scanner en de modus waarin het venster is achtergelaten |
+| `options.properties` | Alle parseeropties, het thema, of het optiepaneel open staat, de laatst gebruikte scanner, de modus waarin het venster is achtergelaten, en de instellingen van de updatecontrole — aan of uit, wanneer die het laatst draaide en elke versie die u wilde overslaan |
 | `captures.tsv` | De vastlegginggeschiedenis, de nieuwste bovenaan, met een limiet van 500 items |
 
 De opties worden geschreven zodra u er een wijzigt; de geschiedenis zodra die verandert. Beide
@@ -360,6 +499,9 @@ standaardwaarde, dus één foute regel kost alleen die regel.
 De geschiedenis bewaart de invoer, niet de analyse. Die wordt bij het laden opnieuw uitgevoerd,
 wat betekent dat een herstelde vastlegging de opties weerspiegelt die **nu** gelden, niet die
 golden toen zij werd vastgelegd.
+
+De streepjescodes in de modus Combineren worden niet opgeslagen: na een herstart begint
+Combineren leeg.
 
 ---
 
@@ -379,6 +521,10 @@ golden toen zij werd vastgelegd.
 In de editor: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> verplaatsen tussen bewerkbare
 cellen, <kbd>Enter</kbd> bevestigt, <kbd>Esc</kbd> annuleert.
 
+In de modus Combineren: <kbd>Enter</kbd> in het veld *Streepjescode* voegt de
+streepjescode toe. Typ daar FNC1 als `{GS}`; <kbd>⌘G</kbd> hoort bij de invoerbalk van de modus
+Parseren.
+
 ---
 
 ## Problemen oplossen
@@ -389,7 +535,7 @@ cellen, <kbd>Enter</kbd> bevestigt, <kbd>Esc</kbd> annuleert.
 | *„Unsupported JavaFX configuration…”* in de console bij het starten | Verwacht en onschuldig — de toolkit meldt alleen hoe zij is geladen. De applicatie werkt normaal |
 | Een geplakt scheidingsteken lijkt te verdwijnen | Zo bedoeld: het wordt omgezet naar het zichtbare token `{GS}`, en de parser krijgt nog steeds het echte teken. Zie [het {GS}-token](#de-invoerbalk-en-het-gs-token) |
 | Er is geen knop *Scanner verbinden* | U werkt op macOS of Linux, waar de scannerstuurprogramma's niet bestaan. Zie [Scannen](#scannen) |
-| De scanner maakt geen verbinding | Controleer of de logische naam in de keuzelijst bij uw model past, of de scanner is aangesloten en of geen andere applicatie hem bezet houdt |
+| De scanner maakt geen verbinding | Controleer of de logische naam in de keuzelijst bij uw model past, of de scanner is aangesloten en of geen andere applicatie hem bezet houdt. De [installatiehandleiding voor Zebra-scanners](GaiaDesktop-Zebra-Scanner-Windows-Dutch.md#11-problemen-oplossen) somt elke foutcode op. |
 | De PDF-export meldt dat er geen bestemming is | Uw machine heeft geen printer of PDF-bestemming ingesteld. Voeg er een toe, of exporteer naar HTML en druk af vanuit een browser |
 | Een menu-item toont zoiets als `act.hri` | Er ontbreekt een opschrift — meld het alstublieft; dit is een fout in de build, geen instelling |
 
@@ -403,3 +549,5 @@ cellen, <kbd>Enter</kbd> bevestigt, <kbd>Esc</kbd> annuleert.
   queryparameters of fragment.
 - **Een AI mag maar één keer voorkomen** in een elementreeks — dat is de GS1-regel, geen grens
   van de applicatie.
+- **Combineren neemt alleen GS1-128-streepjescodes aan, hoogstens drie**, en bewaart ze
+  niet tussen sessies.

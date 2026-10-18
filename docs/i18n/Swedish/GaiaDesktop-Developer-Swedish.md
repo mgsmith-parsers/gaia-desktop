@@ -123,7 +123,7 @@ att båda göra anspråk på den.
 
 Varje distribution innehåller också handböckerna: `docs/` kopierad med strukturen bevarad, så att länkarna
 mellan handböcker och översättningar fortfarande fungerar, minus översättningsverktygen (`check-i18n.py`,
-`i18n-manifest.json`, `i18n-plan.md`); och `readme.html` i roten, ett register med länkar till var och en
+`i18n-manifest.json`); och `readme.html` i roten, ett register med länkar till var och en
 av dem, från `src/main/dist/readme.html` med `@VERSION@` filtrerad till pom-versionen. Båda skrivs av
 antrun-steget `pick-launch-script`, som först tar bort `docs/` så att en borttagen handbok inte blir kvar.
 Länkarna i readme-filen är skrivna för hand — en omdöpt handbok eller en översättning som läggs till under

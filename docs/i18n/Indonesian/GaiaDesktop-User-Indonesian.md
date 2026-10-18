@@ -19,26 +19,34 @@ Cara menggunakan aplikasi. Untuk membangun, mengubah, atau menambah bahasa, liha
    - [Apa yang ditolak editor](#apa-yang-ditolak-editor)
    - [String elemen atau Digital Link](#string-elemen-atau-digital-link)
    - [Menyunting tangkapan yang ada](#menyunting-tangkapan-yang-ada)
-6. [Laporan](#laporan)
+6. [Mode Gabung](#mode-gabung)
+   - [Jalur Gabung](#jalur-gabung)
+   - [Apa yang ditolak Gabung](#apa-yang-ditolak-gabung)
+   - [Duplikat dan pertentangan](#duplikat-dan-pertentangan)
+   - [Laporan gabungan](#laporan-gabungan)
+7. [Laporan](#laporan)
    - [Mengekspor](#mengekspor)
-7. [Opsi penguraian](#opsi-penguraian)
+8. [Opsi penguraian](#opsi-penguraian)
    - [Peluncuran pertama](#peluncuran-pertama)
-8. [Bahasa](#bahasa)
-9. [Apa yang diingat](#apa-yang-diingat)
-10. [Pintasan papan ketik](#pintasan-papan-ketik)
-11. [Pemecahan masalah](#pemecahan-masalah)
-12. [Batasan](#batasan)
+9. [Bahasa](#bahasa)
+10. [Apa yang diingat](#apa-yang-diingat)
+11. [Pintasan papan ketik](#pintasan-papan-ketik)
+12. [Pemecahan masalah](#pemecahan-masalah)
+13. [Batasan](#batasan)
 
 ---
 
 ## Apa ini
 
-GAIA Desktop melakukan dua hal dengan data GS1:
+GAIA Desktop melakukan tiga hal dengan data GS1:
 
 - **Mengurai** — ketik, tempel, buka, atau pindai sebuah string elemen GS1 atau URI Digital Link
   lalu baca hasilnya sebagai laporan lengkap: apa arti setiap Application Identifier (AI), apa
   yang salah, dan mengapa;
-- **Membangun** — menyusun pasangan AI / nilai menjadi string elemen atau URI Digital Link.
+- **Membangun** — menyusun pasangan AI / nilai menjadi string elemen atau URI Digital Link;
+- **Gabung** — menggabungkan hingga tiga kode batang GS1-128 dari satu label menjadi
+  satu string elemen yang akan dibawa sebuah GS1 DataMatrix, memeriksanya secara utuh, dan
+  menggambar simbolnya.
 
 Semua yang aplikasi ini ketahui tentang GS1 — setiap definisi AI, setiap aturan validasi, setiap
 pesan galat, dan setiap deskripsi yang dilokalkan — berasal dari mesin GAIA di bawahnya.
@@ -85,7 +93,7 @@ mesin. Baris itulah yang sebaiknya dikutip dalam laporan kesalahan.
 ┌────────────────────────────────────────────────────────────────────┐
 │ menu bar                                                           │
 ├────────────────────────────────────────────────────────────────────┤
-│ [Parse|Build]  … mode-specific controls …   Save report   Options  │
+│ [Parse|Build|Combine]  … mode-specific controls …  Save   Options  │
 ├────────────────────────────────────────────────────────────────────┤
 │ input bar (Parse)   or   AI editor (Build)                         │
 ├──────────────────┬─────────────────────────────────────────────────┤
@@ -97,7 +105,7 @@ mesin. Baris itulah yang sebaiknya dikutip dalam laporan kesalahan.
 ```
 
 > Bagan ini mempertahankan label bahasa Inggris, sama seperti semua blok kode dalam dokumentasi
-> ini. Di layar Anda akan melihat *Urai* / *Bangun*, *Tangkapan*, *Simpan laporan*, *Opsi*,
+> ini. Di layar Anda akan melihat *Urai* / *Bangun* / *Gabung*, *Tangkapan*, *Simpan laporan*, *Opsi*,
 > *pemindai: mati*, dan *Tentang*.
 
 **Di macOS dan Linux baris pemindai pada gambar itu tidak ada** — tidak ada sakelar maupun
@@ -106,10 +114,19 @@ bilah status. Lihat [Pemindaian](#pemindaian).
 
 Sakelar **Urai ⇄ Bangun** hanya mengubah jalur di bawah bilah alat serta kendali yang berkaitan
 dengan penangkapan. Riwayat, laporan, panel opsi, dan tindakan ekspor melayani kedua mode, sebab
-pembangunan yang berhasil hanya menjadi satu tangkapan lagi.
+pembangunan yang berhasil hanya menjadi satu tangkapan lagi. Mode **Gabung** ditata secara berbeda: lihat [Mode Gabung](#mode-gabung).
 
 Panel opsi **tertutup pada peluncuran pertama**. Mode, tampak-tidaknya panel, tema, dan pemindai
 terakhir yang dipakai diingat di antara sesi.
+
+**Versi baru.** Beberapa detik setelah dijalankan, paling banyak sekali sehari, aplikasi bertanya
+kepada GitHub apakah GAIA Desktop yang lebih baru telah dirilis. Jika ya, sebuah tautan muncul di
+bilah status — *GAIA Desktop 1.1.0 tersedia* — yang membuka halaman rilis di peramban Anda;
+tidak ada yang diunduh atau dipasang untuk Anda. *Lewati versi ini* menyembunyikan
+pemberitahuan itu sampai rilis berikutnya. Pemeriksaan ini diam saja bila tidak ada yang baru
+atau bila GitHub tidak terjangkau. *Bantuan → Periksa pembaruan…* langsung memeriksa dan
+melaporkan hasilnya; *Bantuan → Periksa pembaruan secara otomatis* mematikan dan menghidupkan kembali
+pemeriksaan harian.
 
 ---
 
@@ -154,9 +171,12 @@ ke pengurai persis seperti yang dikirim pemindai.
 
 Dalam mode Bangun kendali pemindai disembunyikan, tetapi pemindai yang tersambung tetap bekerja:
 *Pemindai → Sambungkan / Putuskan* (<kbd>⌘K</kbd>) masih mengalihkannya, bilah status masih
-melaporkannya, dan pindaian yang datang saat editor terbuka tetap ditangkap.
+melaporkannya, dan pindaian yang datang saat editor terbuka tetap ditangkap. Dalam mode Gabung kendali tetap ada, dan setiap pindaian ditambahkan ke gabungan,
+bukan ke riwayat.
 
-Jika perangkat tidak mau tersambung, lihat [Pemecahan masalah](#pemecahan-masalah).
+Penyiapan pemindai untuk pertama kali — Zebra Scanner SDK, mode USB pemindai, dan pengaturan
+GS1 — dijelaskan langkah demi langkah dalam
+[panduan penyiapan pemindai Zebra](GaiaDesktop-Zebra-Scanner-Windows-Indonesian.md), yang disertakan di setiap zip di bawah `docs/`. Jika perangkat tidak mau tersambung, lihat [Pemecahan masalah](#pemecahan-masalah).
 
 ### Membuka berkas
 
@@ -238,6 +258,123 @@ GE-C003  (01)  Check digit validation failed for AI (01) value ''09506000134350'
 
 Klik kanan sebuah tangkapan → **Bangun** memuat AI-nya ke dalam editor. Ubah sebuah nilai, bangun
 ulang, dan hasilnya hadir sebagai tangkapan baru — yang asli dibiarkan utuh.
+
+---
+
+## Mode Gabung
+
+Label lama sering membagi datanya ke **beberapa kode batang GS1-128** — GTIN di satu kode,
+tanggal kedaluwarsa dan batch di kode lain — karena satu kode batang linear tidak dapat memuat
+semuanya. Gabung mengambil hingga **tiga** kode batang tersebut, menggabungkannya
+menjadi satu string elemen yang akan dibawa sebuah **GS1 DataMatrix**, dan memeriksa hasilnya
+secara utuh. Setelah hasilnya valid, aplikasi menggambar simbol DataMatrix.
+
+Tidak satu pun dari kode batang itu perlu lengkap dengan sendirinya. Nomor batch tanpa GTIN-nya
+gagal sendirian dengan `GE-S005`, tetapi itu wajar bagi satu kode batang dari satu set, sehingga
+Gabung memeriksanya pada gabungan.
+
+### Jalur Gabung
+
+Beralih ke **Gabung** mengganti bilah masukan dengan jalur di sepanjang bagian bawah
+jendela. Riwayat tangkapan menyingkir, karena pindaian mode Gabung bukan tangkapan dan
+tidak pernah masuk ke sana. Area laporan menampilkan laporan gabungan sebagai gantinya:
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│ [Parse|Build|Combine]   (scanner controls, on Windows)   Options   │
+├────────────────────────────────────────────────────────────────────┤
+│ Combine report                                   │ Options panel   │
+├────────────────────────────────────────────────────────────────────┤
+│ [Reset] [Remove Last] │ Barcode: [ …………………………………………… ] [Add]       │
+├────────────────────────────────────────────────────────────────────┤
+│ 2 of 3 GS1-128 barcodes                                   [About]  │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+Ada dua cara memasukkan kode batang:
+
+- **Memindainya.** Di Windows, kendali pemindai tetap ada di bilah alat dalam mode
+  Gabung, dan setiap pindaian langsung masuk ke gabungan, bukan ke riwayat.
+- **Mengetik atau menempelkannya** ke kolom *Kode batang* lalu menekan
+  <kbd>Enter</kbd> atau **Tambah**. Tulis FNC1 sebagai **`{GS}`**, sama seperti di
+  bilah masukan. Kode batang yang diketik tanpa AIM Code ID dianggap GS1-128.
+
+| Tombol | Fungsi |
+|---|---|
+| **Tambah** | Menambahkan kode batang di kolom |
+| **Hapus terakhir** | Menghapus kode batang terbaru (tidak tersedia bila belum ada) |
+| **Setel ulang** | Menghapus semua kode batang, mengosongkan kolom dan penolakan apa pun, lalu mulai lagi |
+
+Bilah status selalu menyebutkan berapa kode batang yang tersimpan (*2 dari 3 kode batang GS1-128*),
+atau mengapa yang terakhir ditolak.
+
+### Apa yang ditolak Gabung
+
+Kode batang yang ditolak tidak ditambahkan. Laporan dan bilah status sama-sama menyebutkan
+alasannya:
+
+| Kode batang | Ditolak karena |
+|---|---|
+| Kolom kosong | Tidak ada yang ditambahkan |
+| Kode batang keempat | Satu label digabung dari paling banyak tiga. Hapus yang terakhir, atau setel ulang |
+| Simbologi lain, menurut AIM Code ID-nya | Hanya GS1-128 yang digabung, jadi GS1 DataMatrix (`]d2`) atau QR Code ditolak, dengan namanya |
+| AI yang tidak dapat dibaca | Galat sintaksis; kode galat dan pesan mesin ditampilkan |
+| Tidak ada AI sama sekali | Tidak ada yang digabung |
+| Yang sudah dipindai | String elemen yang sama dua kali, misalnya kode batang yang sama dipindai lagi; laporan menyebutkan kode batang sebelumnya yang diulanginya |
+
+Gabung hanya menolak apa yang sama sekali tidak dapat dipakainya. Selebihnya (digit
+pemeriksa yang salah, tanggal yang keliru, AI pendamping yang hilang) diterima dan dinilai pada
+gabungan.
+
+### Duplikat dan pertentangan
+
+AI digabung sesuai urutan pemindaiannya. Bila dua kode batang membawa AI yang sama:
+
+- **dengan nilai yang sama**, AI itu disimpan sekali dan dicantumkan di bawah
+  *Duplikat — disimpan sekali*, bersama kode batang tempat ia dibaca;
+- **dengan nilai berbeda**, itu sebuah **pertentangan**. Putusannya berbunyi
+  *BERTENTANGAN*, nilai yang bertentangan dicantumkan per kode batang, dan **tidak ada
+  yang digabung** sampai pertentangan itu diselesaikan. Hapus kode batang yang salah, atau setel
+  ulang.
+
+### Laporan gabungan
+
+Dari atas ke bawah:
+
+1. **Putusan**: *belum ada pindaian*, *BERTENTANGAN*, valid atau tidak valid, dan berapa
+   kode batang yang tersimpan.
+2. **Pindaian**: setiap kode batang sebagaimana datangnya, simbologinya, dan string elemen yang
+   tersisa setelah AIM Code ID dilepas. Masalah yang hanya dapat diputuskan oleh gabungan
+   ditampilkan pada kode batang itu, ditandai *dinilai pada gabungan*.
+3. **Duplikat** dan **pertentangan**, jika ada.
+4. **Hasil gabungan**: string elemen, HRI-nya, dan panjangnya, lalu masukan gabungan sebagai
+   pita berlabel dan satu kartu per AI, keduanya ditata seperti dalam
+   [laporan penguraian](#laporan). Setiap galat dan peringatan pada gabungan kemudian
+   dicantumkan di bawah *Validasi*.
+5. **Simbol GS1 DataMatrix**, dengan HRI-nya di bawah. Simbol hanya digambar bila gabungan valid.
+   Jika tidak, laporan menyebutkan mengapa simbol tidak digambar, agar simbol yang tidak valid
+   tidak tercetak secara tidak sengaja.
+
+Contohnya, label dengan dua kode batang:
+
+| Kode batang | Membawa | Sendirian |
+|---|---|---|
+| `]C10109506000134352` | (01) GTIN | valid |
+| `]C11726123110LOT-ABC` | (17) tanggal kedaluwarsa, (10) batch | `GE-S005` untuk kedua AI, dinilai pada gabungan |
+
+Keduanya bergabung menjadi `01095060001343521726123110LOT-ABC`, HRI
+`(01)09506000134352 (17)261231 (10)LOT-ABC`, yang valid, sehingga simbol digambar. AI `17`
+berpanjang tetap, jadi tidak perlu FNC1 setelahnya. Gabung menyisipkan satu di mana
+pun standar mengharuskannya.
+
+**Simpan laporan** mengekspor laporan gabungan sebagai HTML atau PDF, sama seperti laporan
+penguraian (lihat [Mengekspor](#mengekspor)), begitu ada satu kode batang. Nama berkas HTML-nya
+diawali `gaia-combine-`.
+
+Laporan mengikuti bahasa dan tema yang dipilih. Mengubah opsi penguraian atau bahasa memeriksa
+ulang kode batang yang sudah tersimpan. Kode batang itu juga bertahan saat beralih ke
+Urai atau Bangun dan kembali, tetapi tidak saat aplikasi dimulai ulang: kode
+batang mode Gabung tidak disimpan.
 
 ---
 
@@ -339,7 +476,7 @@ Dua berkas di dalam `.gaia-desktop` pada direktori rumah Anda:
 
 | Berkas | Berisi |
 |---|---|
-| `options.properties` | Semua opsi penguraian, tema, apakah panel opsi terbuka, pemindai terakhir yang dipakai, dan mode saat jendela ditinggalkan |
+| `options.properties` | Semua opsi penguraian, tema, apakah panel opsi terbuka, pemindai terakhir yang dipakai, mode saat jendela ditinggalkan, dan pengaturan pemeriksaan pembaruan — aktif atau tidak, kapan terakhir dijalankan, dan versi apa pun yang Anda pilih untuk dilewati |
 | `captures.tsv` | Riwayat tangkapan, yang terbaru dulu, dibatasi 500 entri |
 
 Opsi ditulis setiap kali Anda mengubah salah satunya; riwayat setiap kali ia berubah. Keduanya
@@ -353,6 +490,9 @@ satu baris keliru hanya merugikan baris itu.
 Riwayat menyimpan masukan, bukan hasil analisis. Masukan itu diurai ulang saat dimuat, yang
 berarti tangkapan yang dipulihkan mencerminkan opsi yang berlaku **sekarang**, bukan yang berlaku
 saat ia ditangkap.
+
+Kode batang yang tersimpan dalam mode Gabung tidak disimpan: setelah dimulai ulang,
+Gabung kosong kembali.
 
 ---
 
@@ -372,6 +512,10 @@ saat ia ditangkap.
 Di dalam editor: <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> berpindah antar sel yang dapat
 disunting, <kbd>Enter</kbd> menegaskan, <kbd>Esc</kbd> membatalkan.
 
+Dalam mode Gabung: <kbd>Enter</kbd> di kolom *Kode batang* menambahkan
+kode batang. Di sana, ketik FNC1 sebagai `{GS}`; <kbd>⌘G</kbd> milik bilah masukan mode
+Urai.
+
 ---
 
 ## Pemecahan masalah
@@ -382,7 +526,7 @@ disunting, <kbd>Enter</kbd> menegaskan, <kbd>Esc</kbd> membatalkan.
 | *“Unsupported JavaFX configuration…”* di konsol saat mulai | Wajar dan tidak berbahaya — pustaka hanya mencatat bagaimana ia dimuat. Aplikasi berjalan normal |
 | Pemisah yang Anda tempel tampak lenyap | Memang begitu: ia ditulis ulang menjadi token kasatmata `{GS}`, dan pengurai tetap menerima karakter yang sebenarnya. Lihat [token {GS}](#bilah-masukan-dan-token-gs) |
 | Tidak ada tombol *Sambungkan pemindai* | Anda berada di macOS atau Linux, tempat penggerak pemindai tidak tersedia. Lihat [Pemindaian](#pemindaian) |
-| Pemindai tidak mau tersambung | Periksa apakah nama logis pada pemilih cocok dengan model Anda, apakah pemindai terpasang, dan apakah tidak ada aplikasi lain yang menahannya |
+| Pemindai tidak mau tersambung | Periksa apakah nama logis pada pemilih cocok dengan model Anda, apakah pemindai terpasang, dan apakah tidak ada aplikasi lain yang menahannya. [Panduan penyiapan pemindai Zebra](GaiaDesktop-Zebra-Scanner-Windows-Indonesian.md#11-pemecahan-masalah) mencantumkan setiap kode galat. |
 | Ekspor PDF menyatakan tidak ada tujuan | Mesin Anda belum menyiapkan pencetak atau tujuan PDF. Tambahkan satu, atau ekspor ke HTML lalu cetak dari peramban |
 | Sebuah butir menu menampilkan sesuatu seperti `act.hri` | Ada label yang hilang — mohon laporkan; itu cacat saat pembangunan, bukan sebuah pengaturan |
 
@@ -396,3 +540,5 @@ disunting, <kbd>Enter</kbd> menegaskan, <kbd>Esc</kbd> membatalkan.
   fragmen.
 - **Sebuah AI hanya boleh muncul sekali** dalam satu string elemen — itu aturan GS1, bukan
   batasan aplikasi.
+- **Gabung hanya menerima kode batang GS1-128, paling banyak tiga**, dan tidak
+  menyimpannya antarsesi.
