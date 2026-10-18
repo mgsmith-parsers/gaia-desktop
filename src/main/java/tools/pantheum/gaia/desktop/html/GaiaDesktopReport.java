@@ -364,7 +364,7 @@ public final class GaiaDesktopReport {
      * right-to-left catalogues.
      */
     // head, masthead, cell and cellWide are package-private so that GaiaCombineReport renders in
-    // this same shell and stylesheet: Combine shows the viewer's content in GAIA Desktop's look.
+    // this same shell and stylesheet: Combine and Parse share one look.
     static void head(StringBuilder h, Theme theme, UiStrings s, String title) {
         h.append("<!DOCTYPE html>\n<html lang=\"").append(Languages.tag(s.language()))
          .append("\" data-theme=\"")
@@ -610,7 +610,7 @@ public final class GaiaDesktopReport {
         "}\n";
 
     /**
-     * What GaiaCombineReport adds: the viewer's tables (scans, duplicates, conflicts, elements,
+     * What GaiaCombineReport adds: its tables (scans, duplicates, conflicts, elements,
      * validation) drawn as this report's cards, section headings coloured for errors and warnings,
      * the refusal banner, and the symbol tile. The tile is white in both themes on purpose — see
      * DataMatrixSvg. text-align:start so a right-to-left page aligns to its own side.

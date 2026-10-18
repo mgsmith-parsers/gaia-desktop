@@ -57,8 +57,7 @@ import java.util.concurrent.TimeoutException;
  * close arriving on another thread uninitializes the wrong one. On the FX thread that second
  * mistake is worse still — JavaFX calls {@code OleInitialize} there at startup and registers
  * every window's drop target against it, so a {@code CoUninitialize} on it revokes the app's
- * drag and drop. (The viewer's {@code JposScannerSession} learned this first; this is its
- * pattern.) {@link #connect} and {@link #disconnect} hand their work to that thread and wait for
+ * drag and drop. {@link #connect} and {@link #disconnect} hand their work to that thread and wait for
  * it, so call them off the FX thread when the wait matters; {@code connect} can take as long as
  * the claim. Listener callbacks arrive on the JavaPOS event thread, or on {@code gaia-scanner}
  * for connect and disconnect; see {@link ScannerListener}.
