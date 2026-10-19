@@ -118,7 +118,7 @@ het allebei claimen.
 | | Standaard | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — alleen de klassen en resources van deze module | ~50 MB — afhankelijkheden erin uitgepakt |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, één voor één genoemd in het `Class-Path` van het manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jars, één voor één genoemd in het `Class-Path` van het manifest | — |
 | Leveren | de jar **en** `lib/` ernaast | één bestand |
 | Ook in `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) of `run.sh` (overige) | hetzelfde |
 | En | `readme.html` en `docs/` (elk platform) | hetzelfde |

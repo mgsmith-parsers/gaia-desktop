@@ -114,7 +114,7 @@ ngaku-aku.
 | | Gawan | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — mung kelas lan sumber daya modul iki | ~50 MB — dependensi dibukak ing njerone |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, dijenengi siji-siji ing `Class-Path` manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, dijenengi siji-siji ing `Class-Path` manifest | — |
 | Sing dikirim | jar **lan** `lib/` ing sandhinge | siji berkas |
 | Uga ing `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) utawa `run.sh` (liyane) | padha |
 | Lan | `readme.html` lan `docs/` (saben platform) | padha |

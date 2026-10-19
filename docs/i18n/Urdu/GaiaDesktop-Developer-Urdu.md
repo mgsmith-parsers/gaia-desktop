@@ -114,7 +114,7 @@ pom کی دو تفصیلات اسے ممکن بناتی ہیں، اور دونو
 | | ڈیفالٹ | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — صرف اس ماڈیول کی کلاسیں اور وسائل | ~50 MB — انحصارات اس کے اندر کھول کر رکھے گئے |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar، مینی فیسٹ `Class-Path` میں ایک ایک کر کے نامزد | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar، مینی فیسٹ `Class-Path` میں ایک ایک کر کے نامزد | — |
 | بھیجیں | jar **اور** اس کے ساتھ `lib/` | ایک فائل |
 | `dist/gaia-desktop-<version>-<platform>/` میں یہ بھی | `run.bat` (win) یا `run.sh` (باقی) | وہی |
 | اور | `readme.html` اور `docs/` (ہر پلیٹ فارم) | وہی |

@@ -113,7 +113,7 @@ claim am.
 | | Default | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — only dis module im classes and resources | ~50 MB — dependencies unpack inside am |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, dem name dem one by one for di manifest `Class-Path` | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jars, dem name dem one by one for di manifest `Class-Path` | — |
 | Wetin you go ship | di jar **and** di `lib/` wey dey near am | one file |
 | Also inside `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) or `run.sh` (di others) | di same |
 | And | `readme.html` and `docs/` (every platform) | di same |

@@ -116,7 +116,7 @@ att båda göra anspråk på den.
 | | Standard | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — bara den här modulens klasser och resurser | ~50 MB — beroenden uppackade i den |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jarfiler, namngivna en och en i manifestets `Class-Path` | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jarfiler, namngivna en och en i manifestets `Class-Path` | — |
 | Leverera | jar-filen **och** `lib/` bredvid | en fil |
 | Även i `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) eller `run.sh` (övriga) | detsamma |
 | Och | `readme.html` och `docs/` (varje plattform) | detsamma |

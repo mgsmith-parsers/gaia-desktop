@@ -86,7 +86,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | | デフォルト | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | 約 290 KB — このモジュールのクラスとリソースのみ | 約 50 MB — 依存関係を展開して格納 |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 個の jar。マニフェストの `Class-Path` に 1 つずつ記載 | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 個の jar。マニフェストの `Class-Path` に 1 つずつ記載 | — |
 | 出荷物 | jar **と**その隣の `lib/` | ファイル 1 つ |
 | `dist/gaia-desktop-<version>-<platform>/` にはほかに | `run.bat`（win）または `run.sh`（その他） | 同じ |
 | さらに | `readme.html` と `docs/`（全プラットフォーム） | 同じ |

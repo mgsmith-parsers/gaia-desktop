@@ -114,7 +114,7 @@ nó.
 | | Mặc định | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — chỉ các lớp và tài nguyên của mô-đun này | ~50 MB — các phụ thuộc được giải nén vào trong |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, liệt kê từng cái trong `Class-Path` của manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, liệt kê từng cái trong `Class-Path` của manifest | — |
 | Phát hành | jar **và** `lib/` bên cạnh | một tệp |
 | Cũng trong `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) hoặc `run.sh` (các nền tảng khác) | như trên |
 | Và | `readme.html` và `docs/` (mọi nền tảng) | như trên |

@@ -117,7 +117,7 @@ ve `mdep.skip`'tir.
 | | Varsayılan | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — yalnızca bu modülün sınıfları ve kaynakları | ~50 MB — bağımlılıklar içine açılmış |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, manifest `Class-Path`'inde tek tek adlandırılmış | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, manifest `Class-Path`'inde tek tek adlandırılmış | — |
 | Gönderilen | jar **ve** yanındaki `lib/` | tek dosya |
 | `dist/gaia-desktop-<version>-<platform>/` içinde ayrıca | `run.bat` (win) veya `run.sh` (diğerleri) | aynı |
 | Ve | `readme.html` ve `docs/` (her platform) | aynı |

@@ -121,7 +121,7 @@ impide que ambas la reclamen.
 | | Predeterminado | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — solo las clases y recursos de este módulo | ~50 MB — dependencias desempaquetadas dentro |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, nombrados uno a uno en el `Class-Path` del manifiesto | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jars, nombrados uno a uno en el `Class-Path` del manifiesto | — |
 | Se distribuye | el jar **y** `lib/` a su lado | un solo archivo |
 | También en `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) o `run.sh` (las demás) | lo mismo |
 | Y | `readme.html` y `docs/` (todas las plataformas) | lo mismo |

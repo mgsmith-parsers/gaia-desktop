@@ -115,7 +115,7 @@ duka biyun su mallake ta.
 | | Na asali | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — azuzuwa da albarkatun wannan module kawai | ~50 MB — an buɗe dogaro a cikinsa |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 17, an ambace su ɗaya bayan ɗaya a `Class-Path` na manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 16, an ambace su ɗaya bayan ɗaya a `Class-Path` na manifest | — |
 | Aika | jar **da** `lib/` a gefensa | fayil ɗaya |
 | Haka kuma a `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) ko `run.sh` (sauran) | iri ɗaya |
 | Da | `readme.html` da `docs/` (kowane dandali) | iri ɗaya |

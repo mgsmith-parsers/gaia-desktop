@@ -86,7 +86,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | | 默认 | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | 约 290 KB——仅本模块的类和资源 | 约 50 MB——依赖解包后放入其中 |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 个 jar，在清单的 `Class-Path` 中逐个列出 | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 个 jar，在清单的 `Class-Path` 中逐个列出 | — |
 | 交付 | jar **以及**旁边的 `lib/` | 一个文件 |
 | `dist/gaia-desktop-<version>-<platform>/` 中还有 | `run.bat`（win）或 `run.sh`（其他平台） | 相同 |
 | 以及 | `readme.html` 和 `docs/`（所有平台） | 相同 |

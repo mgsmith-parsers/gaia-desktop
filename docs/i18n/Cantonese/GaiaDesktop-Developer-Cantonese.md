@@ -86,7 +86,7 @@ pom 入面有兩個細節令呢樣嘢行得通，而兩樣睇落都好似可以�
 | | 預設 | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | 約 290 KB — 淨係呢個模組嘅類別同資源 | 約 50 MB — 依賴解壓咗入去 |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 個 jar，喺清單 `Class-Path` 入面逐個列出 | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 個 jar，喺清單 `Class-Path` 入面逐個列出 | — |
 | 出貨 | jar **同埋**佢隔籬嘅 `lib/` | 一個檔案 |
 | `dist/gaia-desktop-<version>-<platform>/` 入面仲有 | `run.bat`（win）或者 `run.sh`（其他） | 一樣 |
 | 同埋 | `readme.html` 同 `docs/`（所有平台） | 一樣 |

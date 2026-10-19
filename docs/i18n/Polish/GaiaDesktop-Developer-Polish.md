@@ -116,7 +116,7 @@ sprawiają, że nie zgłaszają do niej roszczeń oba naraz.
 | | Domyślny | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — tylko klasy i zasoby tego modułu | ~50 MB — zależności rozpakowane do środka |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jarów, wymienionych pojedynczo w `Class-Path` manifestu | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jarów, wymienionych pojedynczo w `Class-Path` manifestu | — |
 | Do dystrybucji | jar **i** `lib/` obok niego | jeden plik |
 | Także w `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) lub `run.sh` (pozostałe) | to samo |
 | Oraz | `readme.html` i `docs/` (każda platforma) | to samo |

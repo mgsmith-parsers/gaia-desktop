@@ -115,7 +115,7 @@ aby si ji nárokovala obě.
 | | Výchozí | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — jen třídy a prostředky tohoto modulu | ~50 MB — závislosti rozbalené dovnitř |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jarů, jmenovitě uvedených v `Class-Path` manifestu | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jarů, jmenovitě uvedených v `Class-Path` manifestu | — |
 | Dodává se | jar **a** `lib/` vedle něj | jeden soubor |
 | Také v `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) nebo `run.sh` (ostatní) | totéž |
 | A | `readme.html` a `docs/` (každá platforma) | totéž |

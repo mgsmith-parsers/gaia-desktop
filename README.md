@@ -138,7 +138,7 @@ nothing else is, so the directory can be zipped or copied as a set without picki
 ```
 target/dist/gaia-desktop-1.0.0-win/
 ├── gaia-desktop.jar
-├── lib/                    17 Maven jars (absent in -Pfat)
+├── lib/                    16 Maven jars (absent in -Pfat)
 ├── docs/                   the guides, the samples and their translations
 ├── readme.html             the index to docs/, version filled in from the pom
 └── run.bat                 (run.sh in the mac, mac-aarch64 and linux distributions)
@@ -318,7 +318,7 @@ copy.
 | | Default | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~340 KB, this module's classes and resources only | ~50 MB, dependencies unpacked into it |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jars, ~46–55 MB by platform, named one by one on the jar's manifest `Class-Path` | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jars, ~46–55 MB by platform, named one by one on the jar's manifest `Class-Path` | — |
 | Ship | the jar **and** `lib/` beside it | one file |
 
 Both start the same way — `./run.sh`, or `java -jar target/dist/gaia-desktop-<version>-<platform>/gaia-desktop.jar` — and both

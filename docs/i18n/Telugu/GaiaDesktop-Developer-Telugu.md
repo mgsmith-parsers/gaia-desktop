@@ -114,7 +114,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | | డిఫాల్ట్ | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — ఈ మాడ్యూల్ క్లాసులు మరియు వనరులు మాత్రమే | ~50 MB — ఆధారాలు దానిలోకి విప్పబడ్డాయి |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar లు, మానిఫెస్ట్ `Class-Path` లో ఒక్కొక్కటిగా పేర్కొన్నవి | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar లు, మానిఫెస్ట్ `Class-Path` లో ఒక్కొక్కటిగా పేర్కొన్నవి | — |
 | పంపేది | jar **మరియు** దాని పక్కన `lib/` | ఒకే ఫైల్ |
 | `dist/gaia-desktop-<version>-<platform>/` లో ఇంకా | `run.bat` (win) లేదా `run.sh` (ఇతరాలు) | అదే |
 | మరియు | `readme.html` మరియు `docs/` (ప్రతి వేదిక) | అదే |

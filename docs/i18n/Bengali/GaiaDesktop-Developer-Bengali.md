@@ -115,7 +115,7 @@ pom-এর দুটি খুঁটিনাটি এটি সম্ভব �
 | | ডিফল্ট | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — কেবল এই মডিউলের ক্লাস ও রিসোর্স | ~50 MB — নির্ভরতাগুলো ভেতরে খুলে রাখা |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17টি jar, ম্যানিফেস্ট `Class-Path`-এ একে একে নাম দেওয়া | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16টি jar, ম্যানিফেস্ট `Class-Path`-এ একে একে নাম দেওয়া | — |
 | পাঠানো হয় | jar **এবং** তার পাশে `lib/` | একটি ফাইল |
 | `dist/gaia-desktop-<version>-<platform>/`-এ আরও | `run.bat` (win) বা `run.sh` (অন্যগুলো) | একই |
 | এবং | `readme.html` ও `docs/` (প্রতিটি প্ল্যাটফর্ম) | একই |

@@ -118,7 +118,7 @@ keduanya sama-sama mengklaimnya.
 | | Bawaan | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — hanya kelas dan sumber daya modul ini | ~50 MB — dependensi dibongkar ke dalamnya |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, disebut satu per satu di `Class-Path` manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, disebut satu per satu di `Class-Path` manifest | — |
 | Dikirim | jar **dan** `lib/` di sebelahnya | satu berkas |
 | Juga di `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) atau `run.sh` (lainnya) | sama |
 | Dan | `readme.html` dan `docs/` (setiap platform) | sama |

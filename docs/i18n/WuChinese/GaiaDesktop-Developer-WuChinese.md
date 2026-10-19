@@ -86,7 +86,7 @@ pom 里有两只细节让迭桩事体做得成，两只看上去侪好像好删�
 | | 默认 | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | 约 290 KB — 只有迭个模块个类搭资源 | 约 50 MB — 依赖解开摆辣里向 |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 只 jar，辣清单 `Class-Path` 里一只一只列出来 | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 只 jar，辣清单 `Class-Path` 里一只一只列出来 | — |
 | 发出去个 | jar **搭**伊边上个 `lib/` | 一只文件 |
 | `dist/gaia-desktop-<version>-<platform>/` 里还有 | `run.bat`（win）或者 `run.sh`（别个） | 一样 |
 | 还有 | `readme.html` 搭 `docs/`（所有平台） | 一样 |

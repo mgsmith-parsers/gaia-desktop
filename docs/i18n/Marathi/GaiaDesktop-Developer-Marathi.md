@@ -115,7 +115,7 @@ pom मधील दोन तपशील हे शक्य करतात, 
 | | डीफॉल्ट | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — फक्त या मॉड्यूलचे क्लासेस आणि संसाधने | ~50 MB — अवलंबित्वे त्यात उघडून ठेवलेली |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, मॅनिफेस्ट `Class-Path` मध्ये एकेक करून नाव दिलेले | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, मॅनिफेस्ट `Class-Path` मध्ये एकेक करून नाव दिलेले | — |
 | पाठवा | jar **आणि** त्याच्या शेजारी `lib/` | एक फाइल |
 | `dist/gaia-desktop-<version>-<platform>/` मध्ये हेही | `run.bat` (win) किंवा `run.sh` (इतर) | तसेच |
 | आणि | `readme.html` आणि `docs/` (प्रत्येक प्लॅटफॉर्म) | तसेच |

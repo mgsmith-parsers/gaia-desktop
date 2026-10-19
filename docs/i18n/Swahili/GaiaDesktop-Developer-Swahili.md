@@ -114,7 +114,7 @@ mawili yasiidai.
 | | Chaguo-msingi | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — madarasa na rasilimali za moduli hii tu | ~50 MB — tegemezi zimefunguliwa ndani yake |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 17, zimetajwa moja moja kwenye `Class-Path` ya manifest | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 16, zimetajwa moja moja kwenye `Class-Path` ya manifest | — |
 | Kinachosafirishwa | jar **na** `lib/` kando yake | faili moja |
 | Pia ndani ya `dist/gaia-desktop-<version>-<platform>/` | `run.bat` (win) au `run.sh` (nyingine) | vivyo hivyo |
 | Na | `readme.html` na `docs/` (kila jukwaa) | vivyo hivyo |

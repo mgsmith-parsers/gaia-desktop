@@ -86,7 +86,7 @@ for p in win linux mac mac-aarch64; do (cd gaia-desktop && mvn -q package -Dskip
 | | 기본 | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | 약 290 KB — 이 모듈의 클래스와 리소스만 | 약 50 MB — 의존성을 풀어서 포함 |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 17개, 매니페스트 `Class-Path`에 하나씩 나열 | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | jar 16개, 매니페스트 `Class-Path`에 하나씩 나열 | — |
 | 배포 대상 | jar **와** 그 옆의 `lib/` | 파일 하나 |
 | `dist/gaia-desktop-<version>-<platform>/`에 추가로 | `run.bat`(win) 또는 `run.sh`(기타) | 동일 |
 | 그리고 | `readme.html`과 `docs/`(모든 플랫폼) | 동일 |

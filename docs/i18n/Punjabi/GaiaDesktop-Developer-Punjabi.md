@@ -115,7 +115,7 @@ pom ਦੇ ਦੋ ਵੇਰਵੇ ਇਸਨੂੰ ਕੰਮ ਕਰਵਾਉਂ�
 | | ਡਿਫਾਲਟ | `-Pfat` |
 |---|---|---|
 | `gaia-desktop.jar` | ~290 KB — ਸਿਰਫ਼ ਇਸ ਮੋਡੀਊਲ ਦੀਆਂ ਕਲਾਸਾਂ ਅਤੇ ਸਰੋਤ | ~50 MB — ਨਿਰਭਰਤਾਵਾਂ ਇਸ ਵਿੱਚ ਖੋਲ੍ਹ ਕੇ ਰੱਖੀਆਂ |
-| `dist/gaia-desktop-<version>-<platform>/lib/` | 17 jar, ਮੈਨੀਫੈਸਟ `Class-Path` ਵਿੱਚ ਇੱਕ-ਇੱਕ ਕਰਕੇ ਨਾਮ ਦਿੱਤੇ | — |
+| `dist/gaia-desktop-<version>-<platform>/lib/` | 16 jar, ਮੈਨੀਫੈਸਟ `Class-Path` ਵਿੱਚ ਇੱਕ-ਇੱਕ ਕਰਕੇ ਨਾਮ ਦਿੱਤੇ | — |
 | ਭੇਜੋ | jar **ਅਤੇ** ਉਸਦੇ ਨਾਲ `lib/` | ਇੱਕ ਫਾਈਲ |
 | `dist/gaia-desktop-<version>-<platform>/` ਵਿੱਚ ਇਹ ਵੀ | `run.bat` (win) ਜਾਂ `run.sh` (ਬਾਕੀ) | ਉਹੀ |
 | ਅਤੇ | `readme.html` ਅਤੇ `docs/` (ਹਰ ਪਲੇਟਫਾਰਮ) | ਉਹੀ |
