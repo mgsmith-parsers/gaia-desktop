@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <!--
-    Sample barcodes for GAIA Desktop: one per GS1 data carrier for Parse mode, and the three
-    GS1-128 barcodes of a legacy label for Combine mode. Every sample was run through the core
-    parser (and Combine's through ScanCombiner) and is valid; the element string, carrier and HRI
-    shown are what GAIA reported. Change a sample only after checking it the same way.
+    Sample barcodes for GAIA Desktop: the common GS1 data carriers and two errors for Parse mode,
+    and the three GS1-128 barcodes of a legacy label for Combine mode. Every sample was run
+    through the core parser (and Combine's through ScanCombiner): the valid ones are valid with
+    the carrier and HRI shown, and the two errors fail with exactly the errors their cards name.
+    Change a sample only after checking it the same way.
 
     The barcode images are drawn by TEC-IT's online barcode service, so opening this page sends
     the sample data to barcode.tec-it.com. FNC1 is written \F for TEC-IT (translate-esc=on), and
@@ -18,11 +19,13 @@
     :root {
       --bg: #fbfbf9; --fg: #1d1f21; --muted: #5d6166; --rule: #dcdcd6;
       --card: #ffffff; --link: #0b5cad; --accent: #2f7d4f; --chip: #eef3ef; --gs: #b4561b;
+      --err: #b3261e; --err-chip: #fbeceb;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #16181a; --fg: #e6e6e3; --muted: #9da1a6; --rule: #33363a;
         --card: #1e2124; --link: #7db4f0; --accent: #6cc28f; --chip: #23302a; --gs: #f0a36b;
+        --err: #f2a29b; --err-chip: #3a2422;
       }
     }
     * { box-sizing: border-box; }
@@ -40,12 +43,15 @@
     a { color: var(--link); }
     code, .mono { font: .88em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr)); gap: 1rem; margin-top: 1rem; }
-    .card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem; display: flex; flex-direction: column; }
+    .card { background: var(--card); border: 1px solid var(--rule); border-radius: 10px; padding: 1rem; display: flex; flex-direction: column; min-width: 0; }
     .symbol { background: #fff; border-radius: 6px; display: flex; align-items: center; justify-content: center;
-              min-height: 9rem; padding: .75rem; margin-bottom: .8rem; }
+              min-height: 9rem; padding: .75rem; margin-bottom: .8rem; overflow-wrap: anywhere; }
     .symbol img { max-width: 100%; max-height: 11rem; image-rendering: pixelated; }
     .chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .6rem; }
     .chip { font-size: .75rem; background: var(--chip); color: var(--accent); border-radius: 999px; padding: .05rem .55rem; }
+    .chip.err { background: var(--err-chip); color: var(--err); }
+    .err { color: var(--err); overflow-wrap: anywhere; }
+    .errline + .errline { margin-top: .35rem; }
     dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: .3rem .75rem; font-size: .9rem; }
     dt { color: var(--muted); }
     dd { margin: 0; min-width: 0; }
@@ -62,11 +68,11 @@
 <body>
 <main>
   <h1>GAIA Desktop 範例</h1>
-  <p class="lede">每種 GS1 數據載體各有一個條碼，另外仲有一張俾「合併」用嘅傳統標籤。你可以用 Zebra 掃描器直接喺螢幕度掃，或者將元素串複製去 GAIA Desktop 嘅輸入欄。</p>
+  <p class="lede">每種常用嘅 GS1 數據載體各有一個條碼，兩個 GAIA 會拒絕嘅，另外仲有一張俾「合併」用嘅傳統標籤。你可以用 Zebra 掃描器直接喺螢幕度掃，或者將元素串複製去 GAIA Desktop 嘅輸入欄。</p>
   <p class="note">每個元素串都係由佢嘅 AIM Code ID 開始，等 GAIA 知道今次掃描係嚟自邊種數據載體。<span class="gs">{GS}</span> 代表 FNC1，即係跟喺可變長度 AI 後面嘅分隔符；輸入欄會將佢轉做真正嘅字元。條碼圖片係由 <a href="https://barcode.tec-it.com">TEC-IT 網上條碼產生器</a>畫出嚟，所以打開呢一頁就會將範例數據傳俾佢。用嘅人多嗰陣，佢可能會顯示請求次數限制嘅通知，而唔係條碼；遲啲再重新載入就得。</p>
 
   <h2>解析</h2>
-  <p>喺<strong>解析</strong>模式，每次掃描或者貼上嘅內容都會拆做佢嘅應用識別碼（Application Identifier）。</p>
+  <p>喺<strong>解析</strong>模式，每次掃描或者貼上嘅內容都會拆做佢嘅應用識別碼（Application Identifier）。最後兩張卡係 GAIA 會捉到嘅錯：每張都寫明 GAIA 報嘅錯誤。</p>
   <div class="grid" id="parse"></div>
 
   <h2>合併</h2>
@@ -91,12 +97,6 @@
     { carrier: 'GS1 QR Code', aim: ']Q3', type: '2D', tec: 'GS1QRCode',
       data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
       hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
-    { carrier: 'GS1 DotCode', aim: ']J1', type: '2D', tec: 'DotCode', fnc1First: true,
-      data: '0109506000134352' + '17271231' + '10ABC123' + GS + '21SN0001',
-      hri: '(01)09506000134352 (17)271231 (10)ABC123 (21)SN0001' },
-    { carrier: 'GS1 DataBar Expanded', aim: ']e0', type: '線性', tec: 'GS1DataBarExpanded',
-      data: '0109506000134352' + '3103000750' + '15270630' + '10ABC123',
-      hri: '(01)09506000134352 (3103)000750 (15)270630 (10)ABC123' },
     { carrier: 'QR Code — GS1 Digital Link', aim: ']Q1', type: '2D', tec: 'QRCode',
       data: 'https://id.gs1.org/01/09506000134352/10/ABC123/21/SN0001?17=271231',
       hri: '(01)09506000134352 (10)ABC123 (21)SN0001 (17)271231' },
@@ -110,6 +110,18 @@
     { carrier: 'ITF-14', aim: ']I1', type: '線性', tec: 'Code25IL',
       data: '19506000134359',
       hri: '(01)19506000134359', note: '淨係一個 GTIN-14，當做 AI (01) 讀。' },
+
+    // The two errors. These fail on purpose; the errors listed are what GAIA reported.
+    { label: '錯誤 — AI 加咗括號', carrier: 'Code 128', aim: ']C0', type: '線性', tec: 'Code128',
+      data: '(01)09506000134352(17)271231(10)ABC123(21)SN0001',
+      errors: ['GE-S001 — Unrecognised Application Identifier \'(0\' at position 0'],
+      note: '括號屬於俾人睇嘅文字（HRI），唔屬於數據。將 HRI 直接打入普通 Code 128，打印機就會印出呢種條碼；將 HRI 貼入輸入欄都係一樣。' },
+    { label: '錯誤 — 缺少必需嘅 AI', carrier: 'GS1 DataMatrix', aim: ']d2', type: '2D', tec: 'DataMatrix', fnc1First: true,
+      data: '17271231' + '10ABC123' + GS + '21SN0001',
+      errors: ['GE-S005 — AI (17) requires 01 OR 02 OR 255 OR 8006 OR 8026',
+               'GE-S005 — AI (10) requires 01 OR 02 OR 03 OR 8006 OR 8026',
+               'GE-S005 — AI (21) requires 01 OR 03 OR 8006'],
+      note: '第一個樣本拎走咗佢嘅 GTIN (01)：一個有效期、批號同序號，唔屬於任何產品。每個依賴 GTIN 嘅 AI 都會被標示。' },
   ];
 
   const combineScans = [
@@ -129,7 +141,8 @@
     hri: '(00)095060001234567893 (02)09506000134352 (37)24 (15)271231 (10)ABC123' };
 
   function tecUrl(s) {
-    // TEC-IT has no GS1 DotCode symbology: a DotCode becomes GS1 DotCode by starting with FNC1.
+    // fnc1First draws a plain Data Matrix that starts with FNC1, which makes it GS1 DataMatrix
+    // without TEC-IT's own GS1 checks: the missing-AI sample must be drawn as it is, invalid.
     const data = (s.fnc1First ? '\\F' : '') + s.data.split(GS).join('\\F');
     return 'https://barcode.tec-it.com/barcode.ashx?data=' + encodeURIComponent(data) +
            '&code=' + encodeURIComponent(s.tec) + '&translate-esc=on&dpi=150';
@@ -155,17 +168,21 @@
   function card(s) {
     const c = el('div', { class: 'card' });
     c.append(el('div', { class: 'symbol' },
-      el('img', { src: tecUrl(s), alt: s.carrier + ' 條碼：' + s.hri, loading: 'lazy' })));
+      el('img', { src: tecUrl(s), alt: s.carrier + ' 條碼：' + (s.hri || s.data.split(GS).join(' ')), loading: 'lazy' })));
     c.append(el('h3', {}, s.label || s.carrier));
     const chips = el('div', { class: 'chips' });
+    if (s.errors) chips.append(el('span', { class: 'chip err' }, '錯誤'));
     if (s.label) chips.append(el('span', { class: 'chip' }, s.carrier));
     chips.append(el('span', { class: 'chip' }, s.aim));
     if (s.type) chips.append(el('span', { class: 'chip' }, s.type));
     c.append(chips);
-    c.append(el('dl', {},
+    const dl = el('dl', {},
       el('dt', {}, '數據載體'), el('dd', {}, s.carrier + ' (' + s.aim + ')'),
-      el('dt', {}, '元素串'), el('dd', {}, elementString(s)),
-      el('dt', {}, 'HRI'), el('dd', {}, el('span', { class: 'mono' }, s.hri))));
+      el('dt', {}, '元素串'), el('dd', {}, elementString(s)));
+    if (s.hri) dl.append(el('dt', {}, 'HRI'), el('dd', {}, el('span', { class: 'mono' }, s.hri)));
+    if (s.errors) dl.append(el('dt', {}, 'GAIA 報告'),
+      el('dd', { class: 'err' }, ...s.errors.map(e => el('div', { class: 'errline' }, e))));
+    c.append(dl);
     if (s.note) c.append(el('p', { class: 'note' }, s.note));
     const b = el('button', { class: 'copy', type: 'button' }, '複製去 GAIA Desktop');
     b.addEventListener('click', async () => {
